@@ -1,0 +1,489 @@
+kiss.app.defineView("product", function (id, target) {
+    const texts = {
+        getStarted: {
+            en: "Get started →",
+            fr: "Démarrez maintenant →"
+        },
+        title: {
+            en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
+                <br>
+                Incredibly <span class="text-highlight" style="background-color: #a1ed00">powerful</span>`,
+            fr: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
+                <br>
+                Incroyablement <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`
+        },
+        subtitle: {
+            en: "An infinity of applications and uses are possible from the forms and their à la carte functionalities.",
+            fr: "Une infinité d'applications et d'usages sont possibles à partir des formulaires et de leurs fonctionnalités à la carte."
+        },
+        title1: {
+            en: "Flexible forms",
+            fr: "Des formulaires flexibles"
+        },
+        subtitle1: {
+            en: "With our forms, you can collect simple or complex information and process it efficiently with your personalized workflows.",
+            fr: "Avec nos formulaires, vous pouvez collecter des informations simples ou complexes et les traiter efficacement avec vos workflows personnalisés."
+        },
+        title2: {
+            en: "Organize your work.",
+            fr: "Organisez votre travail"
+        },
+        subtitle2: {
+            en: "Thanks to the custom views, you will be able to create your own structure to organize all your work in the best possible way.",
+            fr: "Grâce aux vues personnalisées, vous pourrez créer votre propre structure pour organiser l'ensemble de votre travail de la meilleure façon possible."
+        },
+        title3: {
+            en: "Customize your workflows to fit your needs",
+            fr: "Personnalisez vos workflows pour vos besoins"
+        },
+        subtitle3: {
+            en: "In a few minutes, you define the steps of the workflow, the actors and the possible decisions, and go!",
+            fr: "En quelques minutes, vous définissez les étapes du workflow, les acteurs et les décisions possibles, et c'est parti !"
+        },
+        title4: {
+            en: "Define your views",
+            fr: "Définissez vos vues"
+        },
+        subtitle4: {
+            en: "Configure how you want to see your data: choose your columns, filters, sort, group and create as many views as needed.",
+            fr: "Configurez la façon dont vous souhaitez voir vos données : choisissez vos colonnes, filtres, triez, regroupez et créez autant de vues que nécessaire."
+        },        
+        title5: {
+            en: "20 field types to build your forms",
+            fr: "20 types de champs pour vos formulaires"
+        },
+        subtitle5: {
+            en: "Creating rich forms requires a variety of field types.<br>We've got you covered!",
+            fr: "La création de formulaires riches nécessite des types de champs variés.<br>Nous vous couvrons !"
+        },
+        title6: {
+            en: "Many ways to organize your data",
+            fr: "Plein de manière d'organiser vos données"
+        },
+        subtitle6: {
+            en: "Creating views is a simple yet extremely powerful process for organizing all your data.",
+            fr: "La création des vues est un processus simple mais extrêmement puissant pour organiser toutes vos données."
+        },
+
+        // Field types
+        text: {
+            fr: "texte"
+        },
+        textDescription: {
+            en: "Add a short text to any element. The Text field is used for simple fields such as a name, a title, etc...",
+            fr: "Ajoutez un court texte à n'importe quel élément. Le champ Texte est utilisé pour des champs simples comme un nom, un titre, etc..."
+        },
+        number: {
+            fr: "nombre"
+        },
+        numberDescription: {
+            en: "The Number field allows you to process numeric information such as amounts, and you can also choose the units.",
+            fr: "Le champ Nombre permet de traiter les informations numériques telles que des montants, et vous pouvez également choisir les unités."
+        },
+        date: {
+            fr: "date"
+        },
+        dateDescription: {
+            en: "The Date field allows you to select a date in a calendar, for example to set an appointment, a deadline...",
+            fr: "Le champ Date vous permet de sélectionner une date dans un calendrier, par exemple pour fixer un RDV, une deadline, une échéance..."
+        },
+        time: {
+            fr: "heure"
+        },
+        timeDescription: {
+            en: "The Time control offers a drop-down list of time slots whose increment can be configured (every 5 minutes for example).",
+            fr: "Le champ Heure propose une liste déroulante de créneaux horaires dont l'incrément est paramétrable (par exemple toutes les 5mn)."
+        },
+        paragraph: {
+            fr: "paragraphe"
+        },
+        paragraphDescription: {
+            en: "The Paragraph field allows you to enter longer and multi-line texts, for example to add comments, descriptions, etc...",
+            fr: "Le champ Paragraphe permet de saisir des textes plus longs et multi-lignes, par exemple pour ajouter des commentaires, des descriptions, etc..."
+        },
+        aiParagraph: {
+            en: "AI paragraph",
+            fr: "paragraphe IA"
+        },
+        aiParagraphDescription: {
+            en: "The AI Paragraph field allows you to automatically generate the content of the field according to your instructions, thanks to OpenAI's AI.",
+            fr: "Le champ Paragraphe AI permet de générer automatiquement le contenu du champ selon vos instructions, grâce à l'IA de OpenAI."
+        },
+        select: {
+            fr: "sélection"
+        },
+        selectDescription: {
+            en: "The Drop-down List control offers to choose from a list of values possibly associated with a color.",
+            fr: "Le champ Liste déroulante propose de choisir parmi une liste de valeurs éventuellement associées à une couleur."
+        },
+        checkbox: {
+            fr: "case à cocher"
+        },
+        checkboxDescription: {
+            en: "The Check box field allows you to create checklists or to switch the state of a record easily.",
+            fr: "Le champ Case à cocher permet d'élaborder des checklists ou bien de basculer l'état d'une fiche facilement."
+        },
+        progressBar: {
+            en: "progress bar",
+            fr: "barre de progression"
+        },
+        progressBarDescription: {
+            en: "The Progress Bar field is useful for visually displaying the progress of a task or project.",
+            fr: "Le champ Barre de progression est utile pour afficher l'avancement d'une tâche ou d'un projet de manière visuelle."
+        },
+        rating: {
+            fr: "notation"
+        },
+        ratingDescription: {
+            en: "The Rating field is useful for rating items from 1 to 10, and you can also choose its symbol.",
+            fr: "Le champ Notation est utile pour évaluer des objets de 1 à 10, et vous pouvez aussi choisir son symbole."
+        },
+        attachment: {
+            fr: "fichiers attachés"
+        },
+        attachmentDescription: {
+            en: "The Attached Files field is used to embed one or more attachments to your data, and images can be previewed directly.",
+            fr: "Le champ Fichiers attachés est utilisé pour intégrer une ou plusieurs pièces jointes à vos données, et les images peuvent être prévisualisées directement."
+        },
+        selectColumn: {
+            en: "column selection",
+            fr: "sélection de colonne"
+        },
+        selectColumnDescription: {
+            en: "This type of field dynamically generates a drop-down list of values by retrieving information from a column in your views.",
+            fr: "Ce type champ génère dynamiquement une liste déroulante de valeurs en récupérant les informations dans une colonne de vos vues."
+        },
+        selectView: {
+            en: "selection inside a view",
+            fr: "sélection dans une vue"
+        },
+        selectViewDescription: {
+            en: "This type of field allows you to simultaneously retrieve several values from another record by selecting it in a view.",
+            fr: "Ce type de champ permet de récupérer simultanément plusieurs valeurs d'une autre fiche en la sélectionnat dans une vue."
+        },
+        collaborators: {
+            fr: "collaborateurs"
+        },
+        collaboratorsDescription: {
+            en: "The Collaborators field displays in a drop-down list the address book of users and groups in your organization.",
+            fr: "Le champ Collaborateurs affiche dans une liste déroulante le carnet d'adresses des utilisateurs et des groupes de votre organisation."
+        },
+        color: {
+            fr: "couleur"
+        },
+        colorDescription: {
+            en: "The Color field is used to assign a color to a data item by selecting it from a palette.",
+            fr: "Le champ Couleur permet d'attribuer une couleur à une donnée en la sélectionnant dans une palette."
+        },
+        icon: {
+            fr: "icône"
+        },
+        iconDescription: {
+            en: "The Icon control allows you to associate an icon to an object from a palette of more than 1000 icons.",
+            fr: "Le champ Icône vous permet d'associer une icône à un objet à partir d'une palette de plus de 1000 icônes."
+        },
+        password: {
+            fr: "mot de passe"
+        },
+        passwordDescription: {
+            en: "The Password field is a text field whose characters are masked in order to keep certain data confidential.",
+            fr: "Le champ Mot de passe est champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données."
+        },
+        link: {
+            en: "link to another table",
+            fr: "liaison vers une autre table"
+        },
+        linkDescription: {
+            en: "The Link field is very powerful because it allows you to connect your records to each other and navigate between them by hyper-link.",
+            fr: "Le champ de Liaison est très puissant car il permet de connecter vos données entre elles et de naviguer entre données par hyper-lien."
+        },
+        lookup: {
+            en: "lookup a value on linked records",
+            fr: "valeur d'une fiche liée"
+        },
+        lookupDescription: {
+            en: "This type of field is used to automatically retrieve a value in a record linked by a Link field.",
+            fr: "Ce type de champ permet de récupérer automatiquement une valeur dans une fiche liée par un champ de liaison."
+        },
+        summary: {
+            en: "summarize data from linked records",
+            fr: "calcul à partie de fiches liées"
+        },
+        summaryDescription: {
+            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
+            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+        }
+    }
+    const t = (id) => txtTitleCase(id, texts)
+
+    return createBlock({
+        id: id,
+        target,
+        layout: "vertical",
+        alignItems: "center",
+
+        items: [
+            kiss.templates.title({
+                title: t("title"),
+                subtitle: t("subtitle")
+            }),
+            kiss.templates.screenshot("nocode templates applications - pickaform.png"),
+
+            // FORMS
+            kiss.templates.feature({
+                title: t("title1"),
+                description: t("subtitle1"),
+                screenshot: "forms-thumbnail.png",
+                CTA: t("getStarted"),
+                textPosition: "left"
+            }),
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // LEFT NAVIGATOR
+            kiss.templates.feature({
+                title: t("title2"),
+                description: t("subtitle2"),
+                screenshot: "views-thumbnail.png",
+                CTA: t("getStarted"),
+                textPosition: "right",
+                color: "#555555",
+                backgroundColor: "var(--feature-background)"
+            }),
+
+            // WORKFLOWS
+            kiss.templates.feature({
+                title: t("title3"),
+                description: t("subtitle3"),
+                screenshot: "workflows-thumbnail.png",
+                CTA: t("getStarted"),
+                textPosition: "left"
+            }),
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // VIEWS
+            kiss.templates.feature({
+                title: t("title4"),
+                description: t("subtitle4"),
+                screenshot: "business contract management - flexible views - pickaform.png",
+                CTA: t("getStarted"),
+                textPosition: "right",
+                color: "#555555",
+                backgroundColor: "var(--feature-background)"
+            }),
+
+            // FIELD TYPES
+            kiss.templates.title({
+                title: t("title5", texts),
+                subtitle: t("subtitle5", texts)
+            }),
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // Block containing all field types
+            {
+                display: "inline-flex",
+                flexFlow: "row",
+                flexWrap: "wrap",
+                alignItems: "baseline",
+                justifyContent: "center",
+                backgroundColor: "var(--feature-background)",
+                items: [
+                    // Text
+                    kiss.templates.fieldType({
+                        title: t("text"),
+                        description: t("textDescription"),
+                        screenshot: "field type - text - pickaform.png"
+                    }),
+                    // Number
+                    kiss.templates.fieldType({
+                        title: t("number"),
+                        description: t("numberDescription"),
+                        screenshot: "field type - number - pickaform.png"
+                    }),
+                    // Date
+                    kiss.templates.fieldType({
+                        title: t("date"),
+                        description: t("dateDescription"),
+                        screenshot: "field type - date - pickaform.png"
+                    }),
+                    // Time
+                    kiss.templates.fieldType({
+                        title: t("time"),
+                        description: t("timeDescription"),
+                        screenshot: "field type - time - pickaform.png"
+                    }),  
+                    // Paragraph
+                    kiss.templates.fieldType({
+                        title: t("paragraph"),
+                        description: t("paragraphDescription"),
+                        screenshot: "field type - paragraph - pickaform.png"
+                    }),
+                    // AI paragraph
+                    kiss.templates.fieldType({
+                        title: t("AI paragraph"),
+                        description: t("aiParagraphDescription"),
+                        screenshot: "field type - AI paragraph - pickaform.png"
+                    }),
+                    // Select
+                    kiss.templates.fieldType({
+                        title: t("select"),
+                        description: t("selectDescription"),
+                        screenshot: "field type - select - pickaform.png"
+                    }),
+                    // Checkbox
+                    kiss.templates.fieldType({
+                        title: t("checkbox"),
+                        description: t("checkboxDescription"),
+                        screenshot: "field type - checkbox - pickaform.png"
+                    }),
+                    // Progress bar
+                    kiss.templates.fieldType({
+                        title: t("progress bar"),
+                        description: t("progressBarDescription"),
+                        screenshot: "field type - progress bar - pickaform.png"
+                    }),
+                    // Rating
+                    kiss.templates.fieldType({
+                        title: t("rating"),
+                        description: t("ratingDescription"),
+                        screenshot: "field type - ranking - pickaform.png"
+                    }),
+                    // Attachment
+                    kiss.templates.fieldType({
+                        title: t("attachment"),
+                        description: t("attachmentDescription"),
+                        screenshot: "field type - attachment - pickaform.png"
+                    }),
+                    // Select from view column
+                    kiss.templates.fieldType({
+                        title: t("dynamic dropdown list"),
+                        description: t("selectColumnDescription"),
+                        screenshot: "field type - select from column - pickaform.png"
+                    }),
+                    // Select from view
+                    kiss.templates.fieldType({
+                        title: t("select from a view"),
+                        description: t("selectViewDescription"),
+                        screenshot: "field type - select from view - pickaform.png"
+                    }),
+                    // Collaborators
+                    kiss.templates.fieldType({
+                        title: t("collaborators"),
+                        description: t("collaboratorsDescription"),
+                        screenshot: "field type - collaborators - pickaform.png"
+                    }),
+                    // Color
+                    kiss.templates.fieldType({
+                        title: t("color"),
+                        description: t("colorDescription"),
+                        screenshot: "field type - color - pickaform.png"
+                    }),
+                    // Icon
+                    kiss.templates.fieldType({
+                        title: t("icon"),
+                        description: t("iconDescription"),
+                        screenshot: "field type - icon - pickaform.png"
+                    }),
+                    // Password
+                    kiss.templates.fieldType({
+                        title: t("password"),
+                        description: t("passwordDescription"),
+                        screenshot: "field type - password - pickaform.png"
+                    }),
+                    // Link
+                    kiss.templates.fieldType({
+                        title: t("link"),
+                        description: t("linkDescription"),
+                        screenshot: "field type - link - pickaform.png"
+                    }),
+                    // Lookup
+                    kiss.templates.fieldType({
+                        title: t("lookup"),
+                        description: t("lookupDescription"),
+                        screenshot: "field type - lookup - pickaform.png"
+                    }),                    
+                    // Summary
+                    kiss.templates.fieldType({
+                        title: t("summary"),
+                        description: t("summaryDescription"),
+                        screenshot: "field type - summary - pickaform.png"
+                    })
+                ]
+            },
+
+            // WORKING WITH VIEWS
+            kiss.templates.title({
+                title: t("title6", texts),
+                subtitle: t("subtitle6", texts)
+            }),
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // Block containing view demo
+            {
+                display: "inline-flex",
+                flexFlow: "row",
+                flexWrap: "wrap",
+                alignItems: "baseline",
+                justifyContent: "center",
+                backgroundColor: "var(--feature-background)",
+                items: [
+                    // Column selection
+                    kiss.templates.fieldType({
+                        title: t("column selection"),
+                        description: t("textDescription"),
+                        screenshot: "field type - text - pickaform.png"
+                    }),
+                    // Sorting
+                    kiss.templates.fieldType({
+                        title: t("sorting"),
+                        description: t("numberDescription"),
+                        screenshot: "field type - number - pickaform.png"
+                    }),
+                    // Filtering
+                    kiss.templates.fieldType({
+                        title: t("filtering"),
+                        description: t("dateDescription"),
+                        screenshot: "field type - date - pickaform.png"
+                    }),
+                    // One level grouping
+                    kiss.templates.fieldType({
+                        title: t("grouping"),
+                        description: t("timeDescription"),
+                        screenshot: "field type - time - pickaform.png"
+                    }),  
+                    // Multi-level grouping
+                    kiss.templates.fieldType({
+                        title: t("multi-grouping"),
+                        description: t("paragraphDescription"),
+                        screenshot: "field type - paragraph - pickaform.png"
+                    }),
+                    // Aggregations
+                    kiss.templates.fieldType({
+                        title: t("aggregations"),
+                        description: t("aiParagraphDescription"),
+                        screenshot: "field type - AI paragraph - pickaform.png"
+                    })
+                ]
+            }            
+        ],
+
+        events: {
+            click: (event) => {
+                if (event.target.parentNode.classList.contains("feature-CTA")) {
+                    log("CTA")
+                }
+            }
+        }
+    })
+});
