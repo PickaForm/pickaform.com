@@ -38,4 +38,6 @@ kiss.app.defineView("blogPost", function (id, target) {
             }
         }
     })
-});
+})
+
+;

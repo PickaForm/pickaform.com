@@ -196,4 +196,6 @@ kiss.app.defineView("navbar", function (id, target) {
             // }
         }
     })
-});
+})
+
+;

@@ -89,3 +89,5 @@ kiss.app.defineView("pricing", function(id, target) {
         }
     })
 })
+
+;

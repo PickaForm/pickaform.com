@@ -196,4 +196,6 @@ kiss.app.defineView("artworks", function (id, target) {
             }
         }
     })
-});
+})
+
+;

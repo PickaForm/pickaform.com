@@ -69,4 +69,6 @@ kiss.app.defineView("footer", function (id, target) {
         layout: "horizontal",
         items: blocks
     })
-});
+})
+
+;

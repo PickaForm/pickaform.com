@@ -162,4 +162,6 @@ kiss.app.defineView("blog", function (id, target) {
             }            
         }
     })
-});
+})
+
+;

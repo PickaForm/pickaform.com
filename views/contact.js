@@ -137,7 +137,6 @@ kiss.app.defineView("contact", function (id, target) {
             }            
         ]
     })
-    
-    
-    
-});
+})
+
+;

@@ -486,4 +486,6 @@ kiss.app.defineView("product", function (id, target) {
             }
         }
     })
-});
+})
+
+;

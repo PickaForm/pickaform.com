@@ -135,4 +135,6 @@ kiss.app.defineView("landing", function (id, target) {
             translateTo
         }
     })
-});
+})
+
+;

@@ -51,4 +51,6 @@ kiss.app.defineView("start", function (id, target) {
             }
         }
     })
-});
+})
+
+;

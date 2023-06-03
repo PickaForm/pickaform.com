@@ -196,7 +196,9 @@ kiss.app.defineView("artworks", function (id, target) {
             }
         }
     })
-});kiss.app.defineView("blog", function (id, target) {
+})
+
+;kiss.app.defineView("blog", function (id, target) {
     // Static model properties
     const modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
     const fieldTitle = "y9yVRPEQ"
@@ -360,7 +362,9 @@ kiss.app.defineView("artworks", function (id, target) {
             }            
         }
     })
-});kiss.app.defineView("blogPost", function (id, target) {
+})
+
+;kiss.app.defineView("blogPost", function (id, target) {
     const modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
 
     return createBlock({
@@ -400,7 +404,9 @@ kiss.app.defineView("artworks", function (id, target) {
             }
         }
     })
-});kiss.app.defineView("contact", function (id, target) {
+})
+
+;kiss.app.defineView("contact", function (id, target) {
     const modelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 
     const texts = {
@@ -539,10 +545,9 @@ kiss.app.defineView("artworks", function (id, target) {
             }            
         ]
     })
-    
-    
-    
-});kiss.app.defineView("footer", function (id, target) {
+})
+
+;kiss.app.defineView("footer", function (id, target) {
     const entries = [
         // PRODUCT
         {
@@ -613,7 +618,9 @@ kiss.app.defineView("artworks", function (id, target) {
         layout: "horizontal",
         items: blocks
     })
-});kiss.app.defineView("landing", function (id, target) {
+})
+
+;kiss.app.defineView("landing", function (id, target) {
     const texts = {
         title1: {
             en: `Best <span class="text-highlight" style="background-color: #00aaee">no-code</span> platform
@@ -750,21 +757,23 @@ kiss.app.defineView("artworks", function (id, target) {
             translateTo
         }
     })
-});kiss.app.defineView("legal", function (id, target) {
+})
+
+;kiss.app.defineView("legal", function (id, target) {
     return createBlock({
         id: id,
         target,
         layout: "horizontal",
         justifyContent: "center",
 
-        items: [
-            {
-                type: "html",
-                html: `PICKAFORM 2023 | Politique de confidentialité | Mentions légales`
-            }
-        ]
+        items: [{
+            type: "html",
+            html: `PICKAFORM 2023 | Politique de confidentialité | Mentions légales`
+        }]
     })
-});kiss.app.defineView("navbar", function (id, target) {
+})
+
+;kiss.app.defineView("navbar", function (id, target) {
     texts = {
         "Home": {
             fr: "Accueil"
@@ -962,7 +971,9 @@ kiss.app.defineView("artworks", function (id, target) {
             // }
         }
     })
-});kiss.app.defineView("pricing", function(id, target) {
+})
+
+;kiss.app.defineView("pricing", function(id, target) {
     const texts = {
         title: {
             en: "Get the Right Plan for<br>Your Business Needs",
@@ -1052,7 +1063,9 @@ kiss.app.defineView("artworks", function (id, target) {
             translateTo
         }
     })
-})kiss.app.defineView("product", function (id, target) {
+})
+
+;kiss.app.defineView("product", function (id, target) {
     const texts = {
         getStarted: {
             en: "Get started →",
@@ -1540,7 +1553,9 @@ kiss.app.defineView("artworks", function (id, target) {
             }
         }
     })
-});kiss.app.defineView("start", function (id, target) {
+})
+
+;kiss.app.defineView("start", function (id, target) {
     return createBlock({
         id,
         target,
@@ -1593,7 +1608,9 @@ kiss.app.defineView("artworks", function (id, target) {
             }
         }
     })
-});kiss.templates.blogPostBanner = function (post) {
+})
+
+;kiss.templates.blogPostBanner = function (post) {
     log(post)
     
     return {
