@@ -1,1 +1,1 @@
-jsmin.exe <kissjs.js >kissjs.min.js
+jsmin.exe <app.js >app.min.js
