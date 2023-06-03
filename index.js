@@ -15,6 +15,14 @@ function translateTo(language) {
     })
 }
 
+// Load styles
+kiss.loader.loadStyles([
+    "https://kissjs.net/resources/lib/kissjs/kissjs",
+    "https://kissjs.net/resources/lib/kissjs/styles/geometry/default",
+    "https://kissjs.net/resources/lib/kissjs/styles/colors/dark",
+    "styles"
+])    
+
 window.onload = async function () {
     kiss.db.mode = "memory"
     kiss.language.current = "fr"
@@ -22,10 +30,11 @@ window.onload = async function () {
 
     kiss.global.path = `https://${window.location.host}`
     kiss.global.pathImg = "./resources/img/"
-    
+
     await kiss.loader.loadScript("./app.min")
 
     kiss.app.init()
+
     kiss.router.navigateTo({
         ui: "start",
         content: "landing"

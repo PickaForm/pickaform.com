@@ -58,7 +58,7 @@ kiss.app.defineView("product", function (id, target) {
         },
         title6: {
             en: "Many ways to organize your data",
-            fr: "Plein de manière d'organiser vos données"
+            fr: "Plein de manières d'organiser vos données"
         },
         subtitle6: {
             en: "Creating views is a simple yet extremely powerful process for organizing all your data.",
