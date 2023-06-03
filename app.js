@@ -669,30 +669,18 @@ kiss.app.defineView("artworks", function (id, target) {
         subtitle4: {
             en: "You are not alone.<br>We audit and deploy for you at lightspeed.",
             fr: "Vous n'êtes pas seul.<br>Nous auditons et déployons pour vous à la vitesse lumière.",
-        },             
-        getStarted: {
-            en: "Get started &nbsp;",
-            fr: "Démarrez maintenant &nbsp;"
         },
-        screen1: {
-            en: "workflow - business contracts.png",
-            fr: "workflow - business contracts.png"
+        title5: {
+            en: `+25 years of expertise in
+                <br>
+                process <span class="text-highlight" style="background-color: #ed3757">optimization</span>`,
+            fr: `+25 ans d'expertise en
+                <br>
+                <span class="text-highlight" style="background-color: #ed3757">optimisation</span> des process métier`,
         },
-        screen2: {
-            en: "workflow - nocode.png",
-            fr: "workflow - nocode.png"
-        },
-        screen3: {
-            en: "nocode flexibility - pickaform.png",
-            fr: "nocode flexibility - pickaform.png"
-        },
-        screen4: {
-            en: "we help you - pickaform.png",
-            fr: "we help you - pickaform.png"
-        },
-        register: {
-            en: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=en",
-            fr: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=fr"
+        subtitle5: {
+            en: "Our customers save time.<br>Do you want to know how?",
+            fr: "Nos clients gagnent du temps.<br>Vous voulez savoir comment ?",
         }
     }
 
@@ -700,51 +688,47 @@ kiss.app.defineView("artworks", function (id, target) {
         id: id,
         target,
         layout: "vertical",
-        alignItems: "center",        
+        alignItems: "center",
         items: [
             // STRIP 1
             kiss.templates.title({
                 title: t("title1", texts),
                 subtitle: t("subtitle1", texts)
             }),
-            kiss.templates.buttonCTA({
-                text: t("getStarted", texts),
-                action: () => document.location = t("register", texts)
-            }),
-            kiss.templates.screenshot(screen("screen1", texts)),
+            kiss.templates.buttonCTA(),
+            kiss.templates.screenshot("workflow - business contracts.webp", texts),
 
             // STRIP 2
             kiss.templates.title({
                 title: t("title2", texts),
                 subtitle: t("subtitle2", texts)
             }),
-            kiss.templates.buttonCTA({
-                text: t("getStarted", texts),
-                action: () => document.location = t("register", texts)
-            }),
-            kiss.templates.screenshot(screen("screen2", texts)),
+            kiss.templates.buttonCTA(),
+            kiss.templates.screenshot("workflow - nocode.webp", texts),
 
             // STRIP 3
             kiss.templates.title({
                 title: t("title3", texts),
                 subtitle: t("subtitle3", texts)
             }),
-            kiss.templates.buttonCTA({
-                text: t("getStarted", texts),
-                action: () => document.location = t("register", texts)
-            }),
-            kiss.templates.screenshot(screen("screen3", texts)),
+            kiss.templates.buttonCTA(),
+            kiss.templates.screenshot("nocode flexibility - pickaform.webp", texts),
 
             // STRIP 4
             kiss.templates.title({
                 title: t("title4", texts),
                 subtitle: t("subtitle4", texts)
             }),
-            kiss.templates.buttonCTA({
-                text: t("getStarted", texts),
-                action: () => document.location = t("register", texts)
+            kiss.templates.buttonCTA(),
+            kiss.templates.screenshot("we help you - pickaform.webp", texts),
+
+            // STRIP 5
+            kiss.templates.title({
+                title: t("title5", texts),
+                subtitle: t("subtitle5", texts)
             }),
-            kiss.templates.screenshot(screen("screen4", texts))            
+            kiss.templates.buttonCTA(),
+            kiss.templates.screenshot("active people in business process - pickaform.webp", texts),
         ],
 
         methods: {
@@ -1125,7 +1109,7 @@ kiss.app.defineView("artworks", function (id, target) {
         },
         title6: {
             en: "Many ways to organize your data",
-            fr: "Plein de manière d'organiser vos données"
+            fr: "Plein de manières d'organiser vos données"
         },
         subtitle6: {
             en: "Creating views is a simple yet extremely powerful process for organizing all your data.",
@@ -1669,18 +1653,28 @@ kiss.templates.blogPost = function (post) {
     }
 }
 
-;kiss.templates.buttonCTA = function ({
-    text,
-    action
-}) {
+;kiss.templates.buttonCTA = function () {
+    const texts = {
+        getStarted: {
+            en: "Get started &nbsp;",
+            fr: "Démarrez maintenant &nbsp;"
+        },        
+        register: {
+            en: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=en",
+            fr: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=fr"
+        }
+    }
+
     return {
-        text,
-        action,
+        text: t("getStarted") + " ➔",
+        action: () => window.open(t("register", texts), "_new"),
 
         type: "button",
         backgroundColor: "#00aaee",
         backgroundColorHover: "#a1ed00",
+        boxShadowHover: "0 0 32px #a1ed00",
         color: "#ffffff",
+        colorHover: "#000000",
         fontSize: "2.5vh",
         iconSize: "2.5vh",
         icon: "fas fa-arrow-right",
@@ -1689,7 +1683,7 @@ kiss.templates.blogPost = function (post) {
         borderRadius: 10,
         borderWidth: 0,
         animation: "zoomIn",
-        padding: "1vh 3vh"
+        padding: "1vh 0 1vh 3vh"
     }
 }
 
