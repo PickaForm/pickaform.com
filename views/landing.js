@@ -106,7 +106,7 @@ kiss.app.defineView("landing", function (id, target) {
                 subtitle: t("subtitle5", texts)
             }),
             kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("nocode flexibility - pickaform.webp", texts),
+            kiss.templates.screenshot("active people in business process - pickaform.webp", texts),
         ],
 
         methods: {
