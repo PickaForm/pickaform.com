@@ -16,11 +16,19 @@ function translateTo(language) {
 }
 
 window.onload = async function () {
+    kiss.db.mode = "memory"
     kiss.language.current = "fr"
+    kiss.theme.set({color: "dark"})
+
     kiss.global.path = `https://${window.location.host}`
     kiss.global.pathImg = "./resources/img/"
     
     await kiss.loader.loadScript("./app.min")
+
     kiss.app.init()
-    kiss.router.navigateTo("start")
+    kiss.router.navigateTo({
+        ui: "start",
+        content: "landing"
+    })
+    $("splash").remove()
 };

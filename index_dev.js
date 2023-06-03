@@ -54,5 +54,11 @@ window.onload = async function () {
 
     kiss.global.path = `https://${window.location.host}`
     kiss.global.pathImg = "./resources/img/"
+
     kiss.app.init()
+    kiss.router.navigateTo({
+        ui: "start",
+        content: "landing"
+    })
+    $("splash").remove()
 };
