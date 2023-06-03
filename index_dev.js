@@ -15,12 +15,44 @@ function translateTo(language) {
     })
 }
 
+// Load application scripts
+kiss.loader.loadScripts([
+    "views/start",
+    "views/navbar",
+    "views/footer",
+    "views/legal",
+    "views/landing",
+    "views/pricing",
+    "views/product",
+    "views/blog",
+    "views/blogPost",
+    "views/contact",
+    "views/artworks",
+
+    // Templates
+    "blocks/navbar",
+    "blocks/title",
+    "blocks/screenshot",
+    "blocks/buttonCTA",
+    "blocks/footer",
+    "blocks/pricing",
+    "blocks/blogPost",
+    "blocks/blogPostEntry",
+    "blocks/feature",
+    "blocks/fieldType"
+])
+
+// Load application styles
+kiss.loader.loadStyles([
+    "styles"
+])
+
 window.onload = async function () {
+    kiss.db.mode = "memory"
     kiss.language.current = "fr"
+    kiss.theme.set({color: "dark"})
+
     kiss.global.path = `https://${window.location.host}`
     kiss.global.pathImg = "./resources/img/"
-    
-    await kiss.loader.loadScript("./app.min")
     kiss.app.init()
-    kiss.router.navigateTo("start")
 };
