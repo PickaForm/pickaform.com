@@ -114,7 +114,10 @@ kiss.app.defineView("landing", function (id, target) {
                 subtitle: t("subtitleExperience")
             }),
             kiss.templates.buttonCTA(t("bookDemo"), "contact"),
-            kiss.templates.screenshot("active people in business process - pickaform.webp"),
+
+            {
+                class: "footer-top-separator"
+            }
         ],
 
         methods: {

@@ -63,7 +63,7 @@ kiss.app.defineView("footer", function (id, target) {
     }))
 
     return createBlock({
-        id: id,
+        id,
         target,
         class: "footer",
         layout: "horizontal",

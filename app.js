@@ -615,7 +615,7 @@ kiss.app.defineView("artworks", function (id, target) {
     }))
 
     return createBlock({
-        id: id,
+        id,
         target,
         class: "footer",
         layout: "horizontal",
@@ -739,7 +739,10 @@ kiss.app.defineView("artworks", function (id, target) {
                 subtitle: t("subtitleExperience")
             }),
             kiss.templates.buttonCTA(t("bookDemo"), "contact"),
-            kiss.templates.screenshot("active people in business process - pickaform.webp"),
+
+            {
+                class: "footer-top-separator"
+            }
         ],
 
         methods: {
