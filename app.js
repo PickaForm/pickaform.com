@@ -409,33 +409,32 @@ kiss.app.defineView("artworks", function (id, target) {
 ;kiss.app.defineView("contact", function (id, target) {
     const modelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 
-    const texts = {
-        "title": {
+    const t = defineTexts(id, {
+        title: {
             en: "Let's keep in touch",
-            fr: ""
+            fr: "Prenons contact"
         },
-        "subtitle": {
-            en: `By explaining your project, we can help you quickstart your project, <span class="text-highlight" style="background-color: #00aaee">for free</span>`,
-            fr: ``
+        subtitle: {
+            en: `By explaining your project,<br>we can help you start <span class="text-highlight" style="background-color: #00aaee">for free</span>`,
+            fr: `En expliquant votre projet,<br>nous pouvons vous aider à démarrer<span class="text-highlight" style="background-color: #00aaee">gratuitement</span>`
         },        
-        "submit": {
+        submit: {
             en: "submit",
-            fr: ""
+            fr: "envoyer"
         },
-        "name": {
+        name: {
             fr: "nom"
         },
-        "company": {
+        company: {
             fr: "société"
         },
-        "project": {
+        project: {
             fr: "projet"
         },
-        "language": {
+        language: {
             fr: "langue"
         }
-    }
-    const t = (id) => txtTitleCase(id, texts)
+    })
 
     return createBlock({
         id,
@@ -454,8 +453,6 @@ kiss.app.defineView("artworks", function (id, target) {
             // CONTACT FORM
             {
                 type: "panel",
-                id: id,
-                target,
                 header: false,
                 maxWidth: 600,
                 width: "50%",
@@ -534,16 +531,22 @@ kiss.app.defineView("artworks", function (id, target) {
                             formData.useLabels = true
         
                             await kiss.ajax.request({
-                                url: "/command/publicForm/post/" + modelId,
+                                url: "https://localhost/command/publicForm/post/" + modelId,
                                 method: "post",
                                 body: JSON.stringify(formData)
                             })
-        
                         }
                     }
                 ]
             }            
-        ]
+        ],
+
+        methods: {
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo
+        }
     })
 })
 
@@ -621,7 +624,7 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("landing", function (id, target) {
-    const texts = {
+    const t = defineTexts(id, {
         title1: {
             en: `Best <span class="text-highlight" style="background-color: #00aaee">no-code</span> platform
                 <br>
@@ -681,60 +684,61 @@ kiss.app.defineView("artworks", function (id, target) {
         subtitle5: {
             en: "Our customers save time.<br>Do you want to know how?",
             fr: "Nos clients gagnent du temps.<br>Vous voulez savoir comment ?",
+        },
+        getStarted: {
+            en: "Get started",
+            fr: "Démarrez maintenant"
         }
-    }
+    })
 
     return createBlock({
-        id: id,
+        id,
         target,
         layout: "vertical",
         alignItems: "center",
         items: [
             // STRIP 1
             kiss.templates.title({
-                title: t("title1", texts),
-                subtitle: t("subtitle1", texts)
+                title: t("title1"),
+                subtitle: t("subtitle1")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("workflow - business contracts.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("workflow - business contracts.webp"),
 
             // STRIP 2
             kiss.templates.title({
-                title: t("title2", texts),
-                subtitle: t("subtitle2", texts)
+                title: t("title2"),
+                subtitle: t("subtitle2")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("workflow - nocode.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("workflow - nocode.webp"),
 
             // STRIP 3
             kiss.templates.title({
-                title: t("title3", texts),
-                subtitle: t("subtitle3", texts)
+                title: t("title3"),
+                subtitle: t("subtitle3")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("nocode flexibility - pickaform.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("nocode flexibility - pickaform.webp"),
 
             // STRIP 4
             kiss.templates.title({
-                title: t("title4", texts),
-                subtitle: t("subtitle4", texts)
+                title: t("title4"),
+                subtitle: t("subtitle4")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("we help you - pickaform.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("we help you - pickaform.webp"),
 
             // STRIP 5
             kiss.templates.title({
-                title: t("title5", texts),
-                subtitle: t("subtitle5", texts)
+                title: t("title5"),
+                subtitle: t("subtitle5")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("active people in business process - pickaform.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("active people in business process - pickaform.webp"),
         ],
 
         methods: {
-            load() {
-                this.texts = texts
-            },
             _afterConnected() {
                 this.translateTo(kiss.language.current)
             },
@@ -758,7 +762,7 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("navbar", function (id, target) {
-    texts = {
+    const t = defineTexts(id, {
         "Home": {
             fr: "Accueil"
         },
@@ -777,18 +781,18 @@ kiss.app.defineView("artworks", function (id, target) {
         "Get started": {
             fr: "Inscription"
         }
-    }
+    })
 
     const navItems = [
         // HOME
         {
-            text: t("Home", texts),
+            text: t("Home"),
             href: kiss.global.path + "/www/start/landing",
             view: "landing",
         },        
         // PRODUCT
         {
-            text: t("Product", texts),
+            text: t("Product"),
             href: kiss.global.path + "/www/start/product",
             view: "product"
         },
@@ -812,27 +816,27 @@ kiss.app.defineView("artworks", function (id, target) {
         },        
         // PRICING
         {
-            text: t("Pricing", texts),
+            text: t("Pricing"),
             href: kiss.global.path + "/www/start/pricing",
             view: "pricing"
         },
         // TEMPLATES
         {
-            text: t("Templates", texts),
+            text: t("Templates"),
             href: kiss.global.path + "/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
             view: ""
         },
         // LOGIN
         {
-            text: t("Login", texts),
+            text: t("Login"),
             href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-login",
             target: "_new",
             view: ""
         },
         // REGISTER
         {
-            text: t("Get started", texts),
+            text: t("Get started"),
             href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register",
             target: "_new",
             view: ""
@@ -851,7 +855,7 @@ kiss.app.defineView("artworks", function (id, target) {
         },
         items: [{
                 type: "image",
-                src: "./resources/img/pickaform.png"
+                src: "./resources/img/pickaform.webp"
             },
             {
                 type: "spacer",
@@ -917,7 +921,6 @@ kiss.app.defineView("artworks", function (id, target) {
 
         methods: {
             load() {
-                this.texts = texts
                 // this.adjustDisplayMode(kiss.screen.current.width)
             },
             _afterConnected() {
@@ -958,7 +961,7 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("pricing", function(id, target) {
-    const texts = {
+    const t = defineTexts(id, {
         title: {
             en: "Get the Right Plan for<br>Your Business Needs",
             fr: "Sélectionnez le plan adapté à vos besoins"
@@ -982,7 +985,7 @@ kiss.app.defineView("artworks", function (id, target) {
         "Get started": {
             fr: "Incription"
         }
-    }
+    })
 
     const plans = [
         {
@@ -1019,13 +1022,13 @@ kiss.app.defineView("artworks", function (id, target) {
 
         items: [
             kiss.templates.title({
-                title: t("title", texts),
-                subtitle: t("subtitle", texts),
+                title: t("title"),
+                subtitle: t("subtitle"),
             }),
             {
                 type: "html",
                 class: "pricing-table",
-                html: kiss.templates.pricingTable(plans, texts)
+                html: kiss.templates.pricingTable(plans)
             }
         ],
 
@@ -1038,10 +1041,7 @@ kiss.app.defineView("artworks", function (id, target) {
         },
 
         methods: {
-            load() {
-                this.texts = texts
-            },
-            _qqafterConnected() {
+            _afterConnected() {
                 this.translateTo(kiss.language.current)
             },
             translateTo
@@ -1050,7 +1050,7 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("product", function (id, target) {
-    const texts = {
+    const t = defineTexts(id, {
         getStarted: {
             en: "Get started →",
             fr: "Démarrez maintenant →"
@@ -1098,7 +1098,7 @@ kiss.app.defineView("artworks", function (id, target) {
         subtitle4: {
             en: "Configure how you want to see your data: choose your columns, filters, sort, group and create as many views as needed.",
             fr: "Configurez la façon dont vous souhaitez voir vos données : choisissez vos colonnes, filtres, triez, regroupez et créez autant de vues que nécessaire."
-        },        
+        },
         title5: {
             en: "20 field types to build your forms",
             fr: "20 types de champs pour vos formulaires"
@@ -1263,9 +1263,58 @@ kiss.app.defineView("artworks", function (id, target) {
         summaryDescription: {
             en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
             fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+        },
+
+        // Views
+        columnSelection: {
+            en: "choose your columns",
+            fr: "choix des colonnes"
+        },
+        columnSelectionDescription: {
+            en: "Select the columns most relevant to your way of working.",
+            fr: "Sélectionnez les colonnes les plus pertinentes pour votre façon de travailler."
+        },
+        sorting: {
+            en: "Multi-column sorting",
+            fr: "Tri multi-colonnes"
+        },
+        sortingDescription: {
+            en: "Sort your columns easily on several levels. Quickly change your sorting criteria.",
+            fr: "Triez vos colonnes facilement sur plusieurs niveaux. Modifiez rapidement vos critères de tri."
+        },
+        filtering: {
+            en: "simple of complex filters",
+            fr: "filtres simples ou complexes"
+        },
+        filteringDescription: {
+            en: "Filter your data with simple or complex logic by nesting 'AND' and 'OR' operations.",
+            fr: "Filtrez vos données avec une logique simple ou complexe en imbriquant des opérations 'ET' et 'OU'."
+        },
+        grouping: {
+            en: "grouping",
+            fr: "regroupement"
+        },
+        groupingDescription: {
+            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
+            fr: "En un seul clic, regroupez les données sur le critère de votre choix pour une meilleure vue d'ensemble."
+        },
+        multiGrouping: {
+            en: "multi-level grouping",
+            fr: "regroupement multi-niveaux"
+        },
+        multiGroupingDescription: {
+            en: "By grouping your data on several levels, you can instantly have a more detailed view of your data.",
+            fr: "En regroupant vos données sur plusieurs niveaux, vous pouvez en un instant avoir une vision plus fine de vos données."
+        },
+        aggregations: {
+            en: "aggregations",
+            fr: "aggrégations"
+        },
+        aggregationsDescription: {
+            en: "When a view is grouped on one or more fields, you can automatically calculate aggregations for each level.",
+            fr: "Lorsqu'une vue est groupée sur un ou plusieurs champs, vous pouvez automatiquement calculer des aggrégations pour chaque niveau."
         }
-    }
-    const t = (id) => txtTitleCase(id, texts)
+    })
 
     return createBlock({
         id: id,
@@ -1278,13 +1327,13 @@ kiss.app.defineView("artworks", function (id, target) {
                 title: t("title"),
                 subtitle: t("subtitle")
             }),
-            kiss.templates.screenshot("nocode templates applications - pickaform.png"),
+            kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
             // FORMS
             kiss.templates.feature({
                 title: t("title1"),
                 description: t("subtitle1"),
-                screenshot: "forms-thumbnail.png",
+                screenshot: "forms-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -1297,7 +1346,7 @@ kiss.app.defineView("artworks", function (id, target) {
             kiss.templates.feature({
                 title: t("title2"),
                 description: t("subtitle2"),
-                screenshot: "views-thumbnail.png",
+                screenshot: "views-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -1308,7 +1357,7 @@ kiss.app.defineView("artworks", function (id, target) {
             kiss.templates.feature({
                 title: t("title3"),
                 description: t("subtitle3"),
-                screenshot: "workflows-thumbnail.png",
+                screenshot: "workflows-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -1321,7 +1370,7 @@ kiss.app.defineView("artworks", function (id, target) {
             kiss.templates.feature({
                 title: t("title4"),
                 description: t("subtitle4"),
-                screenshot: "business contract management - flexible views - pickaform.png",
+                screenshot: "business contract management - flexible views - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -1330,8 +1379,8 @@ kiss.app.defineView("artworks", function (id, target) {
 
             // FIELD TYPES
             kiss.templates.title({
-                title: t("title5", texts),
-                subtitle: t("subtitle5", texts)
+                title: t("title5"),
+                subtitle: t("subtitle5")
             }),
 
             {
@@ -1340,140 +1389,138 @@ kiss.app.defineView("artworks", function (id, target) {
 
             // Block containing all field types
             {
-                display: "inline-flex",
-                flexFlow: "row",
-                flexWrap: "wrap",
-                alignItems: "baseline",
-                justifyContent: "center",
-                backgroundColor: "var(--feature-background)",
-                items: [
-                    // Text
-                    kiss.templates.fieldType({
-                        title: t("text"),
-                        description: t("textDescription"),
-                        screenshot: "field type - text - pickaform.png"
-                    }),
-                    // Number
-                    kiss.templates.fieldType({
-                        title: t("number"),
-                        description: t("numberDescription"),
-                        screenshot: "field type - number - pickaform.png"
-                    }),
-                    // Date
-                    kiss.templates.fieldType({
-                        title: t("date"),
-                        description: t("dateDescription"),
-                        screenshot: "field type - date - pickaform.png"
-                    }),
-                    // Time
-                    kiss.templates.fieldType({
-                        title: t("time"),
-                        description: t("timeDescription"),
-                        screenshot: "field type - time - pickaform.png"
-                    }),  
-                    // Paragraph
-                    kiss.templates.fieldType({
-                        title: t("paragraph"),
-                        description: t("paragraphDescription"),
-                        screenshot: "field type - paragraph - pickaform.png"
-                    }),
-                    // AI paragraph
-                    kiss.templates.fieldType({
-                        title: t("AI paragraph"),
-                        description: t("aiParagraphDescription"),
-                        screenshot: "field type - AI paragraph - pickaform.png"
-                    }),
-                    // Select
-                    kiss.templates.fieldType({
-                        title: t("select"),
-                        description: t("selectDescription"),
-                        screenshot: "field type - select - pickaform.png"
-                    }),
-                    // Checkbox
-                    kiss.templates.fieldType({
-                        title: t("checkbox"),
-                        description: t("checkboxDescription"),
-                        screenshot: "field type - checkbox - pickaform.png"
-                    }),
-                    // Progress bar
-                    kiss.templates.fieldType({
-                        title: t("progress bar"),
-                        description: t("progressBarDescription"),
-                        screenshot: "field type - progress bar - pickaform.png"
-                    }),
-                    // Rating
-                    kiss.templates.fieldType({
-                        title: t("rating"),
-                        description: t("ratingDescription"),
-                        screenshot: "field type - ranking - pickaform.png"
-                    }),
-                    // Attachment
-                    kiss.templates.fieldType({
-                        title: t("attachment"),
-                        description: t("attachmentDescription"),
-                        screenshot: "field type - attachment - pickaform.png"
-                    }),
-                    // Select from view column
-                    kiss.templates.fieldType({
-                        title: t("dynamic dropdown list"),
-                        description: t("selectColumnDescription"),
-                        screenshot: "field type - select from column - pickaform.png"
-                    }),
-                    // Select from view
-                    kiss.templates.fieldType({
-                        title: t("select from a view"),
-                        description: t("selectViewDescription"),
-                        screenshot: "field type - select from view - pickaform.png"
-                    }),
-                    // Collaborators
-                    kiss.templates.fieldType({
-                        title: t("collaborators"),
-                        description: t("collaboratorsDescription"),
-                        screenshot: "field type - collaborators - pickaform.png"
-                    }),
-                    // Color
-                    kiss.templates.fieldType({
-                        title: t("color"),
-                        description: t("colorDescription"),
-                        screenshot: "field type - color - pickaform.png"
-                    }),
-                    // Icon
-                    kiss.templates.fieldType({
-                        title: t("icon"),
-                        description: t("iconDescription"),
-                        screenshot: "field type - icon - pickaform.png"
-                    }),
-                    // Password
-                    kiss.templates.fieldType({
-                        title: t("password"),
-                        description: t("passwordDescription"),
-                        screenshot: "field type - password - pickaform.png"
-                    }),
-                    // Link
-                    kiss.templates.fieldType({
-                        title: t("link"),
-                        description: t("linkDescription"),
-                        screenshot: "field type - link - pickaform.png"
-                    }),
-                    // Lookup
-                    kiss.templates.fieldType({
-                        title: t("lookup"),
-                        description: t("lookupDescription"),
-                        screenshot: "field type - lookup - pickaform.png"
-                    }),                    
-                    // Summary
-                    kiss.templates.fieldType({
-                        title: t("summary"),
-                        description: t("summaryDescription"),
-                        screenshot: "field type - summary - pickaform.png"
-                    })
-                ]
+                class: "feature-details-container",
+                items: [{
+                    class: "feature-details-container-column",
+                    items: [
+                        // Text
+                        kiss.templates.featureDetails({
+                            title: t("text"),
+                            description: t("textDescription"),
+                            screenshot: "field type - text - pickaform.webp"
+                        }),
+                        // Number
+                        kiss.templates.featureDetails({
+                            title: t("number"),
+                            description: t("numberDescription"),
+                            screenshot: "field type - number - pickaform.webp"
+                        }),
+                        // Date
+                        kiss.templates.featureDetails({
+                            title: t("date"),
+                            description: t("dateDescription"),
+                            screenshot: "field type - date - pickaform.webp"
+                        }),
+                        // Time
+                        kiss.templates.featureDetails({
+                            title: t("time"),
+                            description: t("timeDescription"),
+                            screenshot: "field type - time - pickaform.webp"
+                        }),
+                        // Paragraph
+                        kiss.templates.featureDetails({
+                            title: t("paragraph"),
+                            description: t("paragraphDescription"),
+                            screenshot: "field type - paragraph - pickaform.webp"
+                        }),
+                        // AI paragraph
+                        kiss.templates.featureDetails({
+                            title: t("aiParagraph"),
+                            description: t("aiParagraphDescription"),
+                            screenshot: "field type - AI paragraph - pickaform.webp"
+                        }),
+                        // Select
+                        kiss.templates.featureDetails({
+                            title: t("select"),
+                            description: t("selectDescription"),
+                            screenshot: "field type - select - pickaform.webp"
+                        }),
+                        // Checkbox
+                        kiss.templates.featureDetails({
+                            title: t("checkbox"),
+                            description: t("checkboxDescription"),
+                            screenshot: "field type - checkbox - pickaform.webp"
+                        }),
+                        // Progress bar
+                        kiss.templates.featureDetails({
+                            title: t("progressBar"),
+                            description: t("progressBarDescription"),
+                            screenshot: "field type - progress bar - pickaform.webp"
+                        }),
+                        // Rating
+                        kiss.templates.featureDetails({
+                            title: t("rating"),
+                            description: t("ratingDescription"),
+                            screenshot: "field type - ranking - pickaform.webp"
+                        }),
+                        // Attachment
+                        kiss.templates.featureDetails({
+                            title: t("attachment"),
+                            description: t("attachmentDescription"),
+                            screenshot: "field type - attachment - pickaform.webp"
+                        }),
+                        // Select from view column
+                        kiss.templates.featureDetails({
+                            title: t("selectColumn"),
+                            description: t("selectColumnDescription"),
+                            screenshot: "field type - select from column - pickaform.webp"
+                        }),
+                        // Select from view
+                        kiss.templates.featureDetails({
+                            title: t("selectView"),
+                            description: t("selectViewDescription"),
+                            screenshot: "field type - select from view - pickaform.webp"
+                        }),
+                        // Collaborators
+                        kiss.templates.featureDetails({
+                            title: t("collaborators"),
+                            description: t("collaboratorsDescription"),
+                            screenshot: "field type - collaborators - pickaform.webp"
+                        }),
+                        // Color
+                        kiss.templates.featureDetails({
+                            title: t("color"),
+                            description: t("colorDescription"),
+                            screenshot: "field type - color - pickaform.webp"
+                        }),
+                        // Icon
+                        kiss.templates.featureDetails({
+                            title: t("icon"),
+                            description: t("iconDescription"),
+                            screenshot: "field type - icon - pickaform.webp"
+                        }),
+                        // Password
+                        kiss.templates.featureDetails({
+                            title: t("password"),
+                            description: t("passwordDescription"),
+                            screenshot: "field type - password - pickaform.webp"
+                        }),
+                        // Link
+                        kiss.templates.featureDetails({
+                            title: t("link"),
+                            description: t("linkDescription"),
+                            screenshot: "field type - link - pickaform.webp"
+                        }),
+                        // Lookup
+                        kiss.templates.featureDetails({
+                            title: t("lookup"),
+                            description: t("lookupDescription"),
+                            screenshot: "field type - lookup - pickaform.webp"
+                        }),
+                        // Summary
+                        kiss.templates.featureDetails({
+                            title: t("summary"),
+                            description: t("summaryDescription"),
+                            screenshot: "field type - summary - pickaform.webp"
+                        })
+                    ]
+                }]
             },
 
             // WORKING WITH VIEWS
             kiss.templates.title({
-                title: t("title6", texts),
-                subtitle: t("subtitle6", texts)
+                title: t("title6"),
+                subtitle: t("subtitle6")
             }),
 
             {
@@ -1482,51 +1529,49 @@ kiss.app.defineView("artworks", function (id, target) {
 
             // Block containing view demo
             {
-                display: "inline-flex",
-                flexFlow: "row",
-                flexWrap: "wrap",
-                alignItems: "baseline",
-                justifyContent: "center",
-                backgroundColor: "var(--feature-background)",
-                items: [
-                    // Column selection
-                    kiss.templates.fieldType({
-                        title: t("column selection"),
-                        description: t("textDescription"),
-                        screenshot: "field type - text - pickaform.png"
-                    }),
-                    // Sorting
-                    kiss.templates.fieldType({
-                        title: t("sorting"),
-                        description: t("numberDescription"),
-                        screenshot: "field type - number - pickaform.png"
-                    }),
-                    // Filtering
-                    kiss.templates.fieldType({
-                        title: t("filtering"),
-                        description: t("dateDescription"),
-                        screenshot: "field type - date - pickaform.png"
-                    }),
-                    // One level grouping
-                    kiss.templates.fieldType({
-                        title: t("grouping"),
-                        description: t("timeDescription"),
-                        screenshot: "field type - time - pickaform.png"
-                    }),  
-                    // Multi-level grouping
-                    kiss.templates.fieldType({
-                        title: t("multi-grouping"),
-                        description: t("paragraphDescription"),
-                        screenshot: "field type - paragraph - pickaform.png"
-                    }),
-                    // Aggregations
-                    kiss.templates.fieldType({
-                        title: t("aggregations"),
-                        description: t("aiParagraphDescription"),
-                        screenshot: "field type - AI paragraph - pickaform.png"
-                    })
-                ]
-            }            
+                class: "feature-details-container",
+                items: [{
+                    class: "feature-details-container-column",
+                    items: [
+                        // Column selection
+                        kiss.templates.featureDetails({
+                            title: t("columnSelection"),
+                            description: t("columnSelectionDescription"),
+                            screenshot: "views - select columns - pickaform.webp"
+                        }),
+                        // Sorting
+                        kiss.templates.featureDetails({
+                            title: t("sorting"),
+                            description: t("sortingDescription"),
+                            screenshot: "views - multi-column sorting - pickaform.webp"
+                        }),
+                        // Filtering
+                        kiss.templates.featureDetails({
+                            title: t("filtering"),
+                            description: t("filteringDescription"),
+                            screenshot: "views - filter data - pickaform.webp"
+                        }),
+                        // One level grouping
+                        kiss.templates.featureDetails({
+                            title: t("grouping"),
+                            description: t("groupingDescription"),
+                            screenshot: "views - group data - pickaform.webp"
+                        }),
+                        // Multi-level grouping
+                        kiss.templates.featureDetails({
+                            title: t("multiGrouping"),
+                            description: t("multiGroupingDescription"),
+                            screenshot: "views - multi-level grouping data - pickaform.webp"
+                        }),
+                        // Aggregations
+                        kiss.templates.featureDetails({
+                            title: t("aggregations"),
+                            description: t("aggregationsDescription"),
+                            screenshot: "views - data aggregation - pickaform.webp"
+                        })
+                    ]
+                }]
+            }
         ],
 
         events: {
@@ -1535,6 +1580,13 @@ kiss.app.defineView("artworks", function (id, target) {
                     log("CTA")
                 }
             }
+        },
+
+        methods: {
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo
         }
     })
 })
@@ -1653,21 +1705,13 @@ kiss.templates.blogPost = function (post) {
     }
 }
 
-;kiss.templates.buttonCTA = function () {
-    const texts = {
-        getStarted: {
-            en: "Get started &nbsp;",
-            fr: "Démarrez maintenant &nbsp;"
-        },        
-        register: {
-            en: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=en",
-            fr: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=fr"
-        }
-    }
-
+;kiss.templates.buttonCTA = function (text) {
     return {
-        text: t("getStarted") + " ➔",
-        action: () => window.open(t("register", texts), "_new"),
+        text: text + " &nbsp;&nbsp; ➔",
+        action: () => {
+            const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
+            window.open(link, "_new")
+        },
 
         type: "button",
         backgroundColor: "#00aaee",
@@ -1779,7 +1823,7 @@ kiss.templates.blogPost = function (post) {
     }
 }
 
-;kiss.templates.fieldType = function ({
+;kiss.templates.featureDetails = function ({
     title,
     description,
     screenshot
@@ -1789,15 +1833,15 @@ kiss.templates.blogPost = function (post) {
 
     return {
         id,
-        class: "field-type",
+        class: "feature-details",
         items: [
             {
-                class: "field-type-screenshot",
+                class: "feature-details-screenshot",
                 flex: 1,
                 items: [
                     {
                         type: "html",
-                        html: `<img src="${src}" class="field-type-screenshot-img">`,
+                        html: `<img src="${src}" class="feature-details-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src, 822, 522)
                         }
@@ -1810,8 +1854,8 @@ kiss.templates.blogPost = function (post) {
                 flex: 1,
                 maxWidth: 430,
                 html: /*html*/ `
-                    <h4 class="field-type-title">${title}</h4>
-                    <p class="field-type-description">${description}</p>`
+                    <h4 class="feature-details-title">${title}</h4>
+                    <p class="feature-details-description">${description}</p>`
             }
         ]     
     }
@@ -1866,15 +1910,15 @@ kiss.templates.navbarItems = function (items) {
     }).join("")
 }
 
-;kiss.templates.pricingTable = function (plans, texts) {
+;kiss.templates.pricingTable = function (plans) {
     return /*html*/ `
         <div class="pricing-table">
-            ${plans.map(plan => kiss.templates.pricingPlan(plan, texts))}
+            ${plans.map(plan => kiss.templates.pricingPlan(plan))}
         </div>
     `
 }
 
-kiss.templates.pricingPlan = function (plan, texts) {
+kiss.templates.pricingPlan = function (plan) {
     const gradient = kiss.tools.CSSGradient(plan.color, 135, -0.6)
     const lightColor = kiss.tools.adjustColor(plan.color, 1)
     const check = `<span style="color:${lightColor}" class="pricing-plan-check">✓</span>`
@@ -1885,14 +1929,14 @@ kiss.templates.pricingPlan = function (plan, texts) {
             <div class="pricing-plan-data">${check + plan.users} Users</div>
             <div class="pricing-plan-data">${check + plan.apps} Applications</div>
             <div class="pricing-plan-data">${check + plan.storage}</div>
-            <div class="pricing-plan-data">${check} ${t("unlimitedForms", texts)}</div>
-            <div class="pricing-plan-data">${check} ${t("unlimitedWorkflows", texts)}</div>
+            <div class="pricing-plan-data">${check} ${t("unlimitedForms")}</div>
+            <div class="pricing-plan-data">${check} ${t("unlimitedWorkflows")}</div>
             <div style="display: flex; flex-flow: row; align-items: center; justify-content: center;">
                 <div class="pricing-plan-price">
                     ${plan.price}
                 </div>
                 <div>
-                    ${t("userPerMonth", texts)}
+                    ${t("userPerMonth")}
                 </div>
             </div>
             <div class="pricing-plan-CTA" style="border-color: ${lightColor}">${t("Get started")}</div>
