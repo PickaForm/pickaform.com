@@ -47,7 +47,7 @@ kiss.app.defineView("product", function (id, target) {
         subtitle4: {
             en: "Configure how you want to see your data: choose your columns, filters, sort, group and create as many views as needed.",
             fr: "Configurez la façon dont vous souhaitez voir vos données : choisissez vos colonnes, filtres, triez, regroupez et créez autant de vues que nécessaire."
-        },        
+        },
         title5: {
             en: "20 field types to build your forms",
             fr: "20 types de champs pour vos formulaires"
@@ -338,134 +338,132 @@ kiss.app.defineView("product", function (id, target) {
 
             // Block containing all field types
             {
-                display: "inline-flex",
-                flexFlow: "row",
-                flexWrap: "wrap",
-                alignItems: "baseline",
-                justifyContent: "center",
-                backgroundColor: "var(--feature-background)",
-                items: [
-                    // Text
-                    kiss.templates.fieldType({
-                        title: t("text"),
-                        description: t("textDescription"),
-                        screenshot: "field type - text - pickaform.png"
-                    }),
-                    // Number
-                    kiss.templates.fieldType({
-                        title: t("number"),
-                        description: t("numberDescription"),
-                        screenshot: "field type - number - pickaform.png"
-                    }),
-                    // Date
-                    kiss.templates.fieldType({
-                        title: t("date"),
-                        description: t("dateDescription"),
-                        screenshot: "field type - date - pickaform.png"
-                    }),
-                    // Time
-                    kiss.templates.fieldType({
-                        title: t("time"),
-                        description: t("timeDescription"),
-                        screenshot: "field type - time - pickaform.png"
-                    }),  
-                    // Paragraph
-                    kiss.templates.fieldType({
-                        title: t("paragraph"),
-                        description: t("paragraphDescription"),
-                        screenshot: "field type - paragraph - pickaform.png"
-                    }),
-                    // AI paragraph
-                    kiss.templates.fieldType({
-                        title: t("aiParagraph"),
-                        description: t("aiParagraphDescription"),
-                        screenshot: "field type - AI paragraph - pickaform.png"
-                    }),
-                    // Select
-                    kiss.templates.fieldType({
-                        title: t("select"),
-                        description: t("selectDescription"),
-                        screenshot: "field type - select - pickaform.png"
-                    }),
-                    // Checkbox
-                    kiss.templates.fieldType({
-                        title: t("checkbox"),
-                        description: t("checkboxDescription"),
-                        screenshot: "field type - checkbox - pickaform.png"
-                    }),
-                    // Progress bar
-                    kiss.templates.fieldType({
-                        title: t("progressBar"),
-                        description: t("progressBarDescription"),
-                        screenshot: "field type - progress bar - pickaform.png"
-                    }),
-                    // Rating
-                    kiss.templates.fieldType({
-                        title: t("rating"),
-                        description: t("ratingDescription"),
-                        screenshot: "field type - ranking - pickaform.png"
-                    }),
-                    // Attachment
-                    kiss.templates.fieldType({
-                        title: t("attachment"),
-                        description: t("attachmentDescription"),
-                        screenshot: "field type - attachment - pickaform.png"
-                    }),
-                    // Select from view column
-                    kiss.templates.fieldType({
-                        title: t("selectColumn"),
-                        description: t("selectColumnDescription"),
-                        screenshot: "field type - select from column - pickaform.png"
-                    }),
-                    // Select from view
-                    kiss.templates.fieldType({
-                        title: t("selectView"),
-                        description: t("selectViewDescription"),
-                        screenshot: "field type - select from view - pickaform.png"
-                    }),
-                    // Collaborators
-                    kiss.templates.fieldType({
-                        title: t("collaborators"),
-                        description: t("collaboratorsDescription"),
-                        screenshot: "field type - collaborators - pickaform.png"
-                    }),
-                    // Color
-                    kiss.templates.fieldType({
-                        title: t("color"),
-                        description: t("colorDescription"),
-                        screenshot: "field type - color - pickaform.png"
-                    }),
-                    // Icon
-                    kiss.templates.fieldType({
-                        title: t("icon"),
-                        description: t("iconDescription"),
-                        screenshot: "field type - icon - pickaform.png"
-                    }),
-                    // Password
-                    kiss.templates.fieldType({
-                        title: t("password"),
-                        description: t("passwordDescription"),
-                        screenshot: "field type - password - pickaform.png"
-                    }),
-                    // Link
-                    kiss.templates.fieldType({
-                        title: t("link"),
-                        description: t("linkDescription"),
-                        screenshot: "field type - link - pickaform.png"
-                    }),
-                    // Lookup
-                    kiss.templates.fieldType({
-                        title: t("lookup"),
-                        description: t("lookupDescription"),
-                        screenshot: "field type - lookup - pickaform.png"
-                    }),                    
-                    // Summary
-                    kiss.templates.fieldType({
-                        title: t("summary"),
-                        description: t("summaryDescription"),
-                        screenshot: "field type - summary - pickaform.png"
-                    })
-                ]
+                class: "feature-details-container",
+                items: [{
+                    class: "feature-details-container-column",
+                    items: [
+                        // Text
+                        kiss.templates.featureDetails({
+                            title: t("text"),
+                            description: t("textDescription"),
+                            screenshot: "field type - text - pickaform.png"
+                        }),
+                        // Number
+                        kiss.templates.featureDetails({
+                            title: t("number"),
+                            description: t("numberDescription"),
+                            screenshot: "field type - number - pickaform.png"
+                        }),
+                        // Date
+                        kiss.templates.featureDetails({
+                            title: t("date"),
+                            description: t("dateDescription"),
+                            screenshot: "field type - date - pickaform.png"
+                        }),
+                        // Time
+                        kiss.templates.featureDetails({
+                            title: t("time"),
+                            description: t("timeDescription"),
+                            screenshot: "field type - time - pickaform.png"
+                        }),
+                        // Paragraph
+                        kiss.templates.featureDetails({
+                            title: t("paragraph"),
+                            description: t("paragraphDescription"),
+                            screenshot: "field type - paragraph - pickaform.png"
+                        }),
+                        // AI paragraph
+                        kiss.templates.featureDetails({
+                            title: t("aiParagraph"),
+                            description: t("aiParagraphDescription"),
+                            screenshot: "field type - AI paragraph - pickaform.png"
+                        }),
+                        // Select
+                        kiss.templates.featureDetails({
+                            title: t("select"),
+                            description: t("selectDescription"),
+                            screenshot: "field type - select - pickaform.png"
+                        }),
+                        // Checkbox
+                        kiss.templates.featureDetails({
+                            title: t("checkbox"),
+                            description: t("checkboxDescription"),
+                            screenshot: "field type - checkbox - pickaform.png"
+                        }),
+                        // Progress bar
+                        kiss.templates.featureDetails({
+                            title: t("progressBar"),
+                            description: t("progressBarDescription"),
+                            screenshot: "field type - progress bar - pickaform.png"
+                        }),
+                        // Rating
+                        kiss.templates.featureDetails({
+                            title: t("rating"),
+                            description: t("ratingDescription"),
+                            screenshot: "field type - ranking - pickaform.png"
+                        }),
+                        // Attachment
+                        kiss.templates.featureDetails({
+                            title: t("attachment"),
+                            description: t("attachmentDescription"),
+                            screenshot: "field type - attachment - pickaform.png"
+                        }),
+                        // Select from view column
+                        kiss.templates.featureDetails({
+                            title: t("selectColumn"),
+                            description: t("selectColumnDescription"),
+                            screenshot: "field type - select from column - pickaform.png"
+                        }),
+                        // Select from view
+                        kiss.templates.featureDetails({
+                            title: t("selectView"),
+                            description: t("selectViewDescription"),
+                            screenshot: "field type - select from view - pickaform.png"
+                        }),
+                        // Collaborators
+                        kiss.templates.featureDetails({
+                            title: t("collaborators"),
+                            description: t("collaboratorsDescription"),
+                            screenshot: "field type - collaborators - pickaform.png"
+                        }),
+                        // Color
+                        kiss.templates.featureDetails({
+                            title: t("color"),
+                            description: t("colorDescription"),
+                            screenshot: "field type - color - pickaform.png"
+                        }),
+                        // Icon
+                        kiss.templates.featureDetails({
+                            title: t("icon"),
+                            description: t("iconDescription"),
+                            screenshot: "field type - icon - pickaform.png"
+                        }),
+                        // Password
+                        kiss.templates.featureDetails({
+                            title: t("password"),
+                            description: t("passwordDescription"),
+                            screenshot: "field type - password - pickaform.png"
+                        }),
+                        // Link
+                        kiss.templates.featureDetails({
+                            title: t("link"),
+                            description: t("linkDescription"),
+                            screenshot: "field type - link - pickaform.png"
+                        }),
+                        // Lookup
+                        kiss.templates.featureDetails({
+                            title: t("lookup"),
+                            description: t("lookupDescription"),
+                            screenshot: "field type - lookup - pickaform.png"
+                        }),
+                        // Summary
+                        kiss.templates.featureDetails({
+                            title: t("summary"),
+                            description: t("summaryDescription"),
+                            screenshot: "field type - summary - pickaform.png"
+                        })
+                    ]
+                }]
             },
 
             // WORKING WITH VIEWS
@@ -480,51 +478,49 @@ kiss.app.defineView("product", function (id, target) {
 
             // Block containing view demo
             {
-                display: "inline-flex",
-                flexFlow: "row",
-                flexWrap: "wrap",
-                alignItems: "baseline",
-                justifyContent: "center",
-                backgroundColor: "var(--feature-background)",
-                items: [
-                    // Column selection
-                    kiss.templates.fieldType({
-                        title: t("columnSelection"),
-                        description: t("columnSelectionDescription"),
-                        screenshot: "views - select columns - pickaform.webp"
-                    }),
-                    // Sorting
-                    kiss.templates.fieldType({
-                        title: t("sorting"),
-                        description: t("sortingDescription"),
-                        screenshot: "views - multi-column sorting - pickaform.webp"
-                    }),
-                    // Filtering
-                    kiss.templates.fieldType({
-                        title: t("filtering"),
-                        description: t("filteringDescription"),
-                        screenshot: "views - filter data - pickaform.png"
-                    }),
-                    // One level grouping
-                    kiss.templates.fieldType({
-                        title: t("grouping"),
-                        description: t("groupingDescription"),
-                        screenshot: "field type - time - pickaform.png"
-                    }),  
-                    // Multi-level grouping
-                    kiss.templates.fieldType({
-                        title: t("multiGrouping"),
-                        description: t("multiGroupingDescription"),
-                        screenshot: "field type - paragraph - pickaform.png"
-                    }),
-                    // Aggregations
-                    kiss.templates.fieldType({
-                        title: t("aggregations"),
-                        description: t("aggregationsDescription"),
-                        screenshot: "field type - AI paragraph - pickaform.png"
-                    })
-                ]
-            }            
+                class: "feature-details-container",
+                items: [{
+                    class: "feature-details-container-column",
+                    items: [
+                        // Column selection
+                        kiss.templates.featureDetails({
+                            title: t("columnSelection"),
+                            description: t("columnSelectionDescription"),
+                            screenshot: "views - select columns - pickaform.webp"
+                        }),
+                        // Sorting
+                        kiss.templates.featureDetails({
+                            title: t("sorting"),
+                            description: t("sortingDescription"),
+                            screenshot: "views - multi-column sorting - pickaform.webp"
+                        }),
+                        // Filtering
+                        kiss.templates.featureDetails({
+                            title: t("filtering"),
+                            description: t("filteringDescription"),
+                            screenshot: "views - filter data - pickaform.png"
+                        }),
+                        // One level grouping
+                        kiss.templates.featureDetails({
+                            title: t("grouping"),
+                            description: t("groupingDescription"),
+                            screenshot: "field type - time - pickaform.png"
+                        }),
+                        // Multi-level grouping
+                        kiss.templates.featureDetails({
+                            title: t("multiGrouping"),
+                            description: t("multiGroupingDescription"),
+                            screenshot: "field type - paragraph - pickaform.png"
+                        }),
+                        // Aggregations
+                        kiss.templates.featureDetails({
+                            title: t("aggregations"),
+                            description: t("aggregationsDescription"),
+                            screenshot: "field type - AI paragraph - pickaform.png"
+                        })
+                    ]
+                }]
+            }
         ],
 
         events: {
@@ -534,7 +530,7 @@ kiss.app.defineView("product", function (id, target) {
                 }
             }
         },
-        
+
         methods: {
             _afterConnected() {
                 this.translateTo(kiss.language.current)

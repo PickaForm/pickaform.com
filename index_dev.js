@@ -64,7 +64,7 @@ kiss.loader.loadScripts([
     "blocks/blogPost",
     "blocks/blogPostEntry",
     "blocks/feature",
-    "blocks/fieldType"
+    "blocks/featureDetails"
 ])
 
 // Load styles

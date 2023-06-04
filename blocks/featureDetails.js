@@ -1,4 +1,4 @@
-kiss.templates.fieldType = function ({
+kiss.templates.featureDetails = function ({
     title,
     description,
     screenshot
@@ -8,15 +8,15 @@ kiss.templates.fieldType = function ({
 
     return {
         id,
-        class: "field-type",
+        class: "feature-details",
         items: [
             {
-                class: "field-type-screenshot",
+                class: "feature-details-screenshot",
                 flex: 1,
                 items: [
                     {
                         type: "html",
-                        html: `<img src="${src}" class="field-type-screenshot-img">`,
+                        html: `<img src="${src}" class="feature-details-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src, 822, 522)
                         }
@@ -29,8 +29,8 @@ kiss.templates.fieldType = function ({
                 flex: 1,
                 maxWidth: 430,
                 html: /*html*/ `
-                    <h4 class="field-type-title">${title}</h4>
-                    <p class="field-type-description">${description}</p>`
+                    <h4 class="feature-details-title">${title}</h4>
+                    <p class="feature-details-description">${description}</p>`
             }
         ]     
     }
