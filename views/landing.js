@@ -36,18 +36,6 @@ kiss.app.defineView("landing", function (id, target) {
             en: "One tool.<br>An infinity of use cases.",
             fr: "Un seul outil.<br>Des usages infinis.",
         },
-        titleCollaboration: {
-            en: `you + Us
-                <br>
-                = <span class="text-highlight" style="background-color: #ed3757">100% productivity</span>`,
-            fr: `vous + Nous
-                <br>
-                = <span class="text-highlight" style="background-color: #ed3757">100% productivité</span>`,
-        },
-        subtitleCollaboration: {
-            en: "You are not alone.<br>We audit and deploy for you at lightspeed.",
-            fr: "Vous n'êtes pas seul.<br>Nous auditons et déployons pour vous à la vitesse lumière.",
-        },
         titleExperience: {
             en: `+25 years of expertise in
                 <br>
@@ -102,22 +90,13 @@ kiss.app.defineView("landing", function (id, target) {
 
             // STRIP 4
             kiss.templates.title({
-                title: t("titleCollaboration"),
-                subtitle: t("subtitleCollaboration")
-            }),
-            kiss.templates.buttonCTA(t("getStarted")),
-            kiss.templates.screenshot("we help you - pickaform.webp"),
-
-            // STRIP 5
-            kiss.templates.title({
                 title: t("titleExperience"),
                 subtitle: t("subtitleExperience")
             }),
             kiss.templates.buttonCTA(t("bookDemo"), "contact"),
 
-            {
-                class: "footer-top-separator"
-            }
+            // CUSTOMERS
+            kiss.templates.screenshot("customer references - pickaform.webp"),
         ],
 
         methods: {
