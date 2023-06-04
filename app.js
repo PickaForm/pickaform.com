@@ -773,37 +773,43 @@ kiss.app.defineView("artworks", function (id, target) {
         // HOME
         {
             text: t("Home"),
-            href: kiss.global.path + "/www/start/landing",
+            href: "./index.html#ui=start&content=landing",
+            target: "_self",
             view: "landing",
         },        
         // PRODUCT
         {
             text: t("Product"),
-            href: kiss.global.path + "/www/start/product",
+            href: "./index.html#ui=start&content=product",
+            target: "_self",
             view: "product"
         },
         // CONTACT
         {
             text: "Contact",
-            href: kiss.global.path + "/www/start/contact",
+            href: "./index.html#ui=start&content=contact",
+            target: "_self",
             view: "contact"
         },
         // BLOG
         {
             text: "Blog",
-            href: kiss.global.path + "/www/start/blog",
+            href: "./index.html#ui=start&content=blog",
+            target: "_self",
             view: "blog"
         },
         // ART
         {
             text: "AI Art",
-            href: kiss.global.path + "/www/start/artworks",
+            href: "./index.html#ui=start&content=artworks",
+            target: "_self",
             view: "artworks"
         },        
         // PRICING
         {
             text: t("Pricing"),
-            href: kiss.global.path + "/www/start/pricing",
+            href: "./index.html#ui=start&content=pricing",
+            target: "_self",
             view: "pricing"
         },
         // TEMPLATES
