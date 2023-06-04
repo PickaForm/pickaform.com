@@ -1,18 +1,10 @@
-kiss.templates.buttonCTA = function () {
-    const texts = {
-        getStarted: {
-            en: "Get started &nbsp;",
-            fr: "Démarrez maintenant &nbsp;"
-        },        
-        register: {
-            en: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=en",
-            fr: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register&language=fr"
-        }
-    }
-
+kiss.templates.buttonCTA = function (text) {
     return {
-        text: t("getStarted") + " ➔",
-        action: () => window.open(t("register", texts), "_new"),
+        text: text + " &nbsp;&nbsp; ➔",
+        action: () => {
+            const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
+            window.open(link, "_new")
+        },
 
         type: "button",
         backgroundColor: "#00aaee",

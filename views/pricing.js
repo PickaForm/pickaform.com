@@ -1,5 +1,5 @@
 kiss.app.defineView("pricing", function(id, target) {
-    const texts = {
+    const t = defineTexts(id, {
         title: {
             en: "Get the Right Plan for<br>Your Business Needs",
             fr: "Sélectionnez le plan adapté à vos besoins"
@@ -23,7 +23,7 @@ kiss.app.defineView("pricing", function(id, target) {
         "Get started": {
             fr: "Incription"
         }
-    }
+    })
 
     const plans = [
         {
@@ -60,13 +60,13 @@ kiss.app.defineView("pricing", function(id, target) {
 
         items: [
             kiss.templates.title({
-                title: t("title", texts),
-                subtitle: t("subtitle", texts),
+                title: t("title"),
+                subtitle: t("subtitle"),
             }),
             {
                 type: "html",
                 class: "pricing-table",
-                html: kiss.templates.pricingTable(plans, texts)
+                html: kiss.templates.pricingTable(plans)
             }
         ],
 
@@ -79,10 +79,7 @@ kiss.app.defineView("pricing", function(id, target) {
         },
 
         methods: {
-            load() {
-                this.texts = texts
-            },
-            _qqafterConnected() {
+            _afterConnected() {
                 this.translateTo(kiss.language.current)
             },
             translateTo

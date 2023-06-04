@@ -1,5 +1,5 @@
 kiss.app.defineView("navbar", function (id, target) {
-    texts = {
+    const t = defineTexts(id, {
         "Home": {
             fr: "Accueil"
         },
@@ -18,18 +18,18 @@ kiss.app.defineView("navbar", function (id, target) {
         "Get started": {
             fr: "Inscription"
         }
-    }
+    })
 
     const navItems = [
         // HOME
         {
-            text: t("Home", texts),
+            text: t("Home"),
             href: kiss.global.path + "/www/start/landing",
             view: "landing",
         },        
         // PRODUCT
         {
-            text: t("Product", texts),
+            text: t("Product"),
             href: kiss.global.path + "/www/start/product",
             view: "product"
         },
@@ -53,27 +53,27 @@ kiss.app.defineView("navbar", function (id, target) {
         },        
         // PRICING
         {
-            text: t("Pricing", texts),
+            text: t("Pricing"),
             href: kiss.global.path + "/www/start/pricing",
             view: "pricing"
         },
         // TEMPLATES
         {
-            text: t("Templates", texts),
+            text: t("Templates"),
             href: kiss.global.path + "/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
             view: ""
         },
         // LOGIN
         {
-            text: t("Login", texts),
+            text: t("Login"),
             href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-login",
             target: "_new",
             view: ""
         },
         // REGISTER
         {
-            text: t("Get started", texts),
+            text: t("Get started"),
             href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register",
             target: "_new",
             view: ""
@@ -158,7 +158,6 @@ kiss.app.defineView("navbar", function (id, target) {
 
         methods: {
             load() {
-                this.texts = texts
                 // this.adjustDisplayMode(kiss.screen.current.width)
             },
             _afterConnected() {

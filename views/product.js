@@ -1,5 +1,5 @@
 kiss.app.defineView("product", function (id, target) {
-    const texts = {
+    const t = defineTexts(id, {
         getStarted: {
             en: "Get started →",
             fr: "Démarrez maintenant →"
@@ -212,9 +212,58 @@ kiss.app.defineView("product", function (id, target) {
         summaryDescription: {
             en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
             fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+        },
+
+        // Views
+        columnSelection: {
+            en: "choose your columns",
+            fr: "choix des colonnes"
+        },
+        columnSelectionDescription: {
+            en: "Select the columns most relevant to your way of working.",
+            fr: "Sélectionnez les colonnes les plus pertinentes pour votre façon de travailler."
+        },
+        sorting: {
+            en: "Multi-column sorting",
+            fr: "Tri multi-colonnes"
+        },
+        sortingDescription: {
+            en: "Sort your columns easily on several levels. Quickly change your sorting criteria.",
+            fr: "Triez vos colonnes facilement sur plusieurs niveaux. Modifiez rapidement vos critères de tri."
+        },
+        filtering: {
+            en: "simple of complex filters",
+            fr: "filtres simples ou complexes"
+        },
+        filteringDescription: {
+            en: "Filter your data with simple or complex logic by nesting 'AND' and 'OR' operations.",
+            fr: "Filtrez vos données avec une logique simple ou complexe en imbriquant des opérations 'ET' et 'OU'."
+        },
+        grouping: {
+            en: "grouping",
+            fr: "regroupement"
+        },
+        groupingDescription: {
+            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
+            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+        },
+        multiGrouping: {
+            en: "multi-level grouping",
+            fr: "regroupement multi-niveaux"
+        },
+        multiGroupingDescription: {
+            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
+            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+        },
+        aggregations: {
+            en: "aggregations",
+            fr: "aggrégations"
+        },
+        aggregationsDescription: {
+            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
+            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
         }
-    }
-    const t = (id) => txtTitleCase(id, texts)
+    })
 
     return createBlock({
         id: id,
@@ -279,8 +328,8 @@ kiss.app.defineView("product", function (id, target) {
 
             // FIELD TYPES
             kiss.templates.title({
-                title: t("title5", texts),
-                subtitle: t("subtitle5", texts)
+                title: t("title5"),
+                subtitle: t("subtitle5")
             }),
 
             {
@@ -328,7 +377,7 @@ kiss.app.defineView("product", function (id, target) {
                     }),
                     // AI paragraph
                     kiss.templates.fieldType({
-                        title: t("AI paragraph"),
+                        title: t("aiParagraph"),
                         description: t("aiParagraphDescription"),
                         screenshot: "field type - AI paragraph - pickaform.png"
                     }),
@@ -346,7 +395,7 @@ kiss.app.defineView("product", function (id, target) {
                     }),
                     // Progress bar
                     kiss.templates.fieldType({
-                        title: t("progress bar"),
+                        title: t("progressBar"),
                         description: t("progressBarDescription"),
                         screenshot: "field type - progress bar - pickaform.png"
                     }),
@@ -364,13 +413,13 @@ kiss.app.defineView("product", function (id, target) {
                     }),
                     // Select from view column
                     kiss.templates.fieldType({
-                        title: t("dynamic dropdown list"),
+                        title: t("selectColumn"),
                         description: t("selectColumnDescription"),
                         screenshot: "field type - select from column - pickaform.png"
                     }),
                     // Select from view
                     kiss.templates.fieldType({
-                        title: t("select from a view"),
+                        title: t("selectView"),
                         description: t("selectViewDescription"),
                         screenshot: "field type - select from view - pickaform.png"
                     }),
@@ -421,8 +470,8 @@ kiss.app.defineView("product", function (id, target) {
 
             // WORKING WITH VIEWS
             kiss.templates.title({
-                title: t("title6", texts),
-                subtitle: t("subtitle6", texts)
+                title: t("title6"),
+                subtitle: t("subtitle6")
             }),
 
             {
@@ -440,38 +489,38 @@ kiss.app.defineView("product", function (id, target) {
                 items: [
                     // Column selection
                     kiss.templates.fieldType({
-                        title: t("column selection"),
-                        description: t("textDescription"),
-                        screenshot: "field type - text - pickaform.png"
+                        title: t("columnSelection"),
+                        description: t("columnSelectionDescription"),
+                        screenshot: "views - select columns - pickaform.webp"
                     }),
                     // Sorting
                     kiss.templates.fieldType({
                         title: t("sorting"),
-                        description: t("numberDescription"),
-                        screenshot: "field type - number - pickaform.png"
+                        description: t("sortingDescription"),
+                        screenshot: "views - multi-column sorting - pickaform.webp"
                     }),
                     // Filtering
                     kiss.templates.fieldType({
                         title: t("filtering"),
-                        description: t("dateDescription"),
-                        screenshot: "field type - date - pickaform.png"
+                        description: t("filteringDescription"),
+                        screenshot: "views - filter data - pickaform.png"
                     }),
                     // One level grouping
                     kiss.templates.fieldType({
                         title: t("grouping"),
-                        description: t("timeDescription"),
+                        description: t("groupingDescription"),
                         screenshot: "field type - time - pickaform.png"
                     }),  
                     // Multi-level grouping
                     kiss.templates.fieldType({
-                        title: t("multi-grouping"),
-                        description: t("paragraphDescription"),
+                        title: t("multiGrouping"),
+                        description: t("multiGroupingDescription"),
                         screenshot: "field type - paragraph - pickaform.png"
                     }),
                     // Aggregations
                     kiss.templates.fieldType({
                         title: t("aggregations"),
-                        description: t("aiParagraphDescription"),
+                        description: t("aggregationsDescription"),
                         screenshot: "field type - AI paragraph - pickaform.png"
                     })
                 ]
@@ -484,6 +533,13 @@ kiss.app.defineView("product", function (id, target) {
                     log("CTA")
                 }
             }
+        },
+        
+        methods: {
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo
         }
     })
 })

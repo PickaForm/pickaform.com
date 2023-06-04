@@ -1,12 +1,12 @@
-kiss.templates.pricingTable = function (plans, texts) {
+kiss.templates.pricingTable = function (plans) {
     return /*html*/ `
         <div class="pricing-table">
-            ${plans.map(plan => kiss.templates.pricingPlan(plan, texts))}
+            ${plans.map(plan => kiss.templates.pricingPlan(plan))}
         </div>
     `
 }
 
-kiss.templates.pricingPlan = function (plan, texts) {
+kiss.templates.pricingPlan = function (plan) {
     const gradient = kiss.tools.CSSGradient(plan.color, 135, -0.6)
     const lightColor = kiss.tools.adjustColor(plan.color, 1)
     const check = `<span style="color:${lightColor}" class="pricing-plan-check">✓</span>`
@@ -17,14 +17,14 @@ kiss.templates.pricingPlan = function (plan, texts) {
             <div class="pricing-plan-data">${check + plan.users} Users</div>
             <div class="pricing-plan-data">${check + plan.apps} Applications</div>
             <div class="pricing-plan-data">${check + plan.storage}</div>
-            <div class="pricing-plan-data">${check} ${t("unlimitedForms", texts)}</div>
-            <div class="pricing-plan-data">${check} ${t("unlimitedWorkflows", texts)}</div>
+            <div class="pricing-plan-data">${check} ${t("unlimitedForms")}</div>
+            <div class="pricing-plan-data">${check} ${t("unlimitedWorkflows")}</div>
             <div style="display: flex; flex-flow: row; align-items: center; justify-content: center;">
                 <div class="pricing-plan-price">
                     ${plan.price}
                 </div>
                 <div>
-                    ${t("userPerMonth", texts)}
+                    ${t("userPerMonth")}
                 </div>
             </div>
             <div class="pricing-plan-CTA" style="border-color: ${lightColor}">${t("Get started")}</div>

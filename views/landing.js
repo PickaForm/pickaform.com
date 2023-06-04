@@ -1,5 +1,5 @@
 kiss.app.defineView("landing", function (id, target) {
-    const texts = {
+    const t = defineTexts(id, {
         title1: {
             en: `Best <span class="text-highlight" style="background-color: #00aaee">no-code</span> platform
                 <br>
@@ -59,60 +59,61 @@ kiss.app.defineView("landing", function (id, target) {
         subtitle5: {
             en: "Our customers save time.<br>Do you want to know how?",
             fr: "Nos clients gagnent du temps.<br>Vous voulez savoir comment ?",
+        },
+        getStarted: {
+            en: "Get started",
+            fr: "Démarrez maintenant"
         }
-    }
+    })
 
     return createBlock({
-        id: id,
+        id,
         target,
         layout: "vertical",
         alignItems: "center",
         items: [
             // STRIP 1
             kiss.templates.title({
-                title: t("title1", texts),
-                subtitle: t("subtitle1", texts)
+                title: t("title1"),
+                subtitle: t("subtitle1")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("workflow - business contracts.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("workflow - business contracts.webp"),
 
             // STRIP 2
             kiss.templates.title({
-                title: t("title2", texts),
-                subtitle: t("subtitle2", texts)
+                title: t("title2"),
+                subtitle: t("subtitle2")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("workflow - nocode.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("workflow - nocode.webp"),
 
             // STRIP 3
             kiss.templates.title({
-                title: t("title3", texts),
-                subtitle: t("subtitle3", texts)
+                title: t("title3"),
+                subtitle: t("subtitle3")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("nocode flexibility - pickaform.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("nocode flexibility - pickaform.webp"),
 
             // STRIP 4
             kiss.templates.title({
-                title: t("title4", texts),
-                subtitle: t("subtitle4", texts)
+                title: t("title4"),
+                subtitle: t("subtitle4")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("we help you - pickaform.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("we help you - pickaform.webp"),
 
             // STRIP 5
             kiss.templates.title({
-                title: t("title5", texts),
-                subtitle: t("subtitle5", texts)
+                title: t("title5"),
+                subtitle: t("subtitle5")
             }),
-            kiss.templates.buttonCTA(),
-            kiss.templates.screenshot("active people in business process - pickaform.webp", texts),
+            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.screenshot("active people in business process - pickaform.webp"),
         ],
 
         methods: {
-            load() {
-                this.texts = texts
-            },
             _afterConnected() {
                 this.translateTo(kiss.language.current)
             },

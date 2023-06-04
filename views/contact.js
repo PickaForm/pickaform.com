@@ -1,33 +1,32 @@
 kiss.app.defineView("contact", function (id, target) {
     const modelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 
-    const texts = {
-        "title": {
+    const t = defineTexts(id, {
+        title: {
             en: "Let's keep in touch",
-            fr: ""
+            fr: "Prenons contact"
         },
-        "subtitle": {
-            en: `By explaining your project, we can help you quickstart your project, <span class="text-highlight" style="background-color: #00aaee">for free</span>`,
-            fr: ``
+        subtitle: {
+            en: `By explaining your project,<br>we can help you start <span class="text-highlight" style="background-color: #00aaee">for free</span>`,
+            fr: `En expliquant votre projet,<br>nous pouvons vous aider à démarrer<span class="text-highlight" style="background-color: #00aaee">gratuitement</span>`
         },        
-        "submit": {
+        submit: {
             en: "submit",
-            fr: ""
+            fr: "envoyer"
         },
-        "name": {
+        name: {
             fr: "nom"
         },
-        "company": {
+        company: {
             fr: "société"
         },
-        "project": {
+        project: {
             fr: "projet"
         },
-        "language": {
+        language: {
             fr: "langue"
         }
-    }
-    const t = (id) => txtTitleCase(id, texts)
+    })
 
     return createBlock({
         id,
@@ -46,8 +45,6 @@ kiss.app.defineView("contact", function (id, target) {
             // CONTACT FORM
             {
                 type: "panel",
-                id: id,
-                target,
                 header: false,
                 maxWidth: 600,
                 width: "50%",
@@ -126,16 +123,22 @@ kiss.app.defineView("contact", function (id, target) {
                             formData.useLabels = true
         
                             await kiss.ajax.request({
-                                url: "/command/publicForm/post/" + modelId,
+                                url: "https://localhost/command/publicForm/post/" + modelId,
                                 method: "post",
                                 body: JSON.stringify(formData)
                             })
-        
                         }
                     }
                 ]
             }            
-        ]
+        ],
+
+        methods: {
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo
+        }
     })
 })
 
