@@ -1,9 +1,16 @@
-kiss.templates.buttonCTA = function (text) {
+kiss.templates.buttonCTA = function (text, page) {
     return {
         text: text + " &nbsp;&nbsp; ➔",
         action: () => {
-            const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
-            window.open(link, "_new")
+            if (page) {
+                kiss.router.navigateTo({
+                    content: "contact"
+                })
+            }
+            else {
+                const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
+                window.open(link, "_new")
+            }
         },
 
         type: "button",
@@ -14,13 +21,11 @@ kiss.templates.buttonCTA = function (text) {
         colorHover: "#000000",
         fontSize: "2.5vh",
         iconSize: "2.5vh",
-        icon: "fas fa-arrow-right",
-        iconPosition: "right",
         iconColor: "#ffffff",
         borderRadius: 10,
         borderWidth: 0,
         animation: "zoomIn",
-        padding: "1vh 0 1vh 3vh"
+        padding: "1vh 3vh"
     }
 }
 

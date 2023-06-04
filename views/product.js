@@ -1,8 +1,8 @@
 kiss.app.defineView("product", function (id, target) {
     const t = defineTexts(id, {
         getStarted: {
-            en: "Get started →",
-            fr: "Démarrez maintenant →"
+            en: "Get started",
+            fr: "Démarrez maintenant"
         },
         title: {
             en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
@@ -80,11 +80,23 @@ kiss.app.defineView("product", function (id, target) {
             en: "We never impose your way of working: if you prefer the tabbed presentation, you just need 1 click.",
             fr: "On ne vous impose jamais votre manière de travailler : si vous préférez la présentation en onglet, c'est juste un clic."
         },
+        titleBookDemo: {
+            en: `Not convinced?`,
+            fr: `Pas convaincu ?`
+        },
+        subtitleBookDemo: {
+            en: "Tell us about your project, and we'll show you how to make it happen in 20 minutes!",
+            fr: "Expliquez-nous votre projet, et on vous montre en 20 minutes comment le réaliser !"
+        },
+        bookDemo: {
+            en: `OK, I'll get in touch`,
+            fr: `OK, je prends contact`
+        },
 
         // Field types
         titleFieldTypes: {
-            en: "20 field types to build your forms",
-            fr: "20 types de champs pour vos formulaires"
+            en: "21 field types to build your forms",
+            fr: "21 types de champs pour vos formulaires"
         },
         descriptionFieldTypes: {
             en: "Creating rich forms requires a variety of field types.<br>We've got you covered!",
@@ -320,6 +332,7 @@ kiss.app.defineView("product", function (id, target) {
                 title: t("title"),
                 subtitle: t("subtitle")
             }),
+            kiss.templates.buttonCTA(t("getStarted")),
             kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
             // FORMS
@@ -618,7 +631,15 @@ kiss.app.defineView("product", function (id, target) {
                         })
                     ]
                 }]
-            }
+            },
+
+            // BOOK A DEMO
+            kiss.templates.title({
+                title: t("titleBookDemo"),
+                subtitle: t("subtitleBookDemo")
+            }),
+            kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+            kiss.templates.screenshot("book your demo - pickaform.webp")
         ],
 
         events: {

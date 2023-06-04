@@ -415,8 +415,8 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Prenons contact"
         },
         subtitle: {
-            en: `By explaining your project,<br>we can help you start <span class="text-highlight" style="background-color: #00aaee">for free</span>`,
-            fr: `En expliquant votre projet,<br>nous pouvons vous aider à démarrer<span class="text-highlight" style="background-color: #00aaee">gratuitement</span>`
+            en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
+            fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
         },        
         submit: {
             en: "submit",
@@ -625,7 +625,7 @@ kiss.app.defineView("artworks", function (id, target) {
 
 ;kiss.app.defineView("landing", function (id, target) {
     const t = defineTexts(id, {
-        title1: {
+        titlePitchline: {
             en: `Best <span class="text-highlight" style="background-color: #00aaee">no-code</span> platform
                 <br>
                 for your <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`,
@@ -633,11 +633,11 @@ kiss.app.defineView("artworks", function (id, target) {
                 <br>
                 pour vos <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`
         },
-        subtitle1: {
+        subtitlePitchline: {
             en: "Build your processes in minutes.<br>Collaborate instantly.",
             fr: "Créez vos workflows en quelques minutes.<br>Collaborez instantanément.",
         },
-        title2: {
+        titleNocodeWorkflow: {
             en: `no-code + workflows
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">superpowers</span>`,
@@ -645,11 +645,11 @@ kiss.app.defineView("artworks", function (id, target) {
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">super pouvoirs</span>`,
         },
-        subtitle2: {
+        subtitleNocodeWorkflow: {
             en: "Pick a form or build one.<br>Connect your workflows.",
             fr: "Choisissez vos formulaires.<br>Connectez vos workflows.",
         },
-        title3: {
+        titleFlexibility: {
             en: `no-code
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">flexibility</span>`,
@@ -657,11 +657,11 @@ kiss.app.defineView("artworks", function (id, target) {
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">flexibilité</span>`,
         },
-        subtitle3: {
+        subtitleFlexibility: {
             en: "One tool.<br>An infinity of use cases.",
             fr: "Un seul outil.<br>Des usages infinis.",
         },
-        title4: {
+        titleCollaboration: {
             en: `you + Us
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">100% productivity</span>`,
@@ -669,11 +669,11 @@ kiss.app.defineView("artworks", function (id, target) {
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">100% productivité</span>`,
         },
-        subtitle4: {
+        subtitleCollaboration: {
             en: "You are not alone.<br>We audit and deploy for you at lightspeed.",
             fr: "Vous n'êtes pas seul.<br>Nous auditons et déployons pour vous à la vitesse lumière.",
         },
-        title5: {
+        titleExperience: {
             en: `+25 years of expertise in
                 <br>
                 process <span class="text-highlight" style="background-color: #ed3757">optimization</span>`,
@@ -681,13 +681,17 @@ kiss.app.defineView("artworks", function (id, target) {
                 <br>
                 <span class="text-highlight" style="background-color: #ed3757">optimisation</span> des process métier`,
         },
-        subtitle5: {
+        subtitleExperience: {
             en: "Our customers save time.<br>Do you want to know how?",
             fr: "Nos clients gagnent du temps.<br>Vous voulez savoir comment ?",
         },
         getStarted: {
             en: "Get started",
             fr: "Démarrez maintenant"
+        },
+        bookDemo: {
+            en: `OK, I'll get in touch`,
+            fr: `OK, je prends contact`
         }
     })
 
@@ -699,42 +703,42 @@ kiss.app.defineView("artworks", function (id, target) {
         items: [
             // STRIP 1
             kiss.templates.title({
-                title: t("title1"),
-                subtitle: t("subtitle1")
+                title: t("titlePitchline"),
+                subtitle: t("subtitlePitchline")
             }),
             kiss.templates.buttonCTA(t("getStarted")),
             kiss.templates.screenshot("workflow - business contracts.webp"),
 
             // STRIP 2
             kiss.templates.title({
-                title: t("title2"),
-                subtitle: t("subtitle2")
+                title: t("titleNocodeWorkflow"),
+                subtitle: t("subtitleNocodeWorkflow")
             }),
             kiss.templates.buttonCTA(t("getStarted")),
             kiss.templates.screenshot("workflow - nocode.webp"),
 
             // STRIP 3
             kiss.templates.title({
-                title: t("title3"),
-                subtitle: t("subtitle3")
+                title: t("titleFlexibility"),
+                subtitle: t("subtitleFlexibility")
             }),
             kiss.templates.buttonCTA(t("getStarted")),
             kiss.templates.screenshot("nocode flexibility - pickaform.webp"),
 
             // STRIP 4
             kiss.templates.title({
-                title: t("title4"),
-                subtitle: t("subtitle4")
+                title: t("titleCollaboration"),
+                subtitle: t("subtitleCollaboration")
             }),
             kiss.templates.buttonCTA(t("getStarted")),
             kiss.templates.screenshot("we help you - pickaform.webp"),
 
             // STRIP 5
             kiss.templates.title({
-                title: t("title5"),
-                subtitle: t("subtitle5")
+                title: t("titleExperience"),
+                subtitle: t("subtitleExperience")
             }),
-            kiss.templates.buttonCTA(t("getStarted")),
+            kiss.templates.buttonCTA(t("bookDemo"), "contact"),
             kiss.templates.screenshot("active people in business process - pickaform.webp"),
         ],
 
@@ -1052,8 +1056,8 @@ kiss.app.defineView("artworks", function (id, target) {
 ;kiss.app.defineView("product", function (id, target) {
     const t = defineTexts(id, {
         getStarted: {
-            en: "Get started →",
-            fr: "Démarrez maintenant →"
+            en: "Get started",
+            fr: "Démarrez maintenant"
         },
         title: {
             en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
@@ -1067,51 +1071,98 @@ kiss.app.defineView("artworks", function (id, target) {
             en: "An infinity of applications and uses are possible from the forms and their à la carte functionalities.",
             fr: "Une infinité d'applications et d'usages sont possibles à partir des formulaires et de leurs fonctionnalités à la carte."
         },
-        title1: {
+        titleForms: {
             en: "Flexible forms",
             fr: "Des formulaires flexibles"
         },
-        subtitle1: {
+        descriptionForms: {
             en: "With our forms, you can collect simple or complex information and process it efficiently with your personalized workflows.",
             fr: "Avec nos formulaires, vous pouvez collecter des informations simples ou complexes et les traiter efficacement avec vos workflows personnalisés."
         },
-        title2: {
-            en: "Organize your work.",
-            fr: "Organisez votre travail"
-        },
-        subtitle2: {
-            en: "Thanks to the custom views, you will be able to create your own structure to organize all your work in the best possible way.",
-            fr: "Grâce aux vues personnalisées, vous pourrez créer votre propre structure pour organiser l'ensemble de votre travail de la meilleure façon possible."
-        },
-        title3: {
-            en: "Customize your workflows to fit your needs",
-            fr: "Personnalisez vos workflows pour vos besoins"
-        },
-        subtitle3: {
-            en: "In a few minutes, you define the steps of the workflow, the actors and the possible decisions, and go!",
-            fr: "En quelques minutes, vous définissez les étapes du workflow, les acteurs et les décisions possibles, et c'est parti !"
-        },
-        title4: {
+        titleViews: {
             en: "Define your views",
             fr: "Définissez vos vues"
         },
-        subtitle4: {
+        descriptionViews: {
             en: "Configure how you want to see your data: choose your columns, filters, sort, group and create as many views as needed.",
             fr: "Configurez la façon dont vous souhaitez voir vos données : choisissez vos colonnes, filtres, triez, regroupez et créez autant de vues que nécessaire."
         },
-        title5: {
-            en: "20 field types to build your forms",
-            fr: "20 types de champs pour vos formulaires"
+        titleWorkflows: {
+            en: "Customize your workflows to fit your needs",
+            fr: "Personnalisez vos workflows pour vos besoins"
         },
-        subtitle5: {
+        descriptionWorkflows: {
+            en: "In a few minutes, you define the steps of the workflow, the actors and the possible decisions, and go!",
+            fr: "En quelques minutes, vous définissez les étapes du workflow, les acteurs et les décisions possibles, et c'est parti !"
+        },
+        titleFormDesigner: {
+            en: "Integrated form designer",
+            fr: "Editeur de formulaire intégré"
+        },
+        descriptionFormDesigner: {
+            en: "Directly improve the layout of your forms in a few clicks and drag&drop.",
+            fr: "Améliorez directement la mise en page de vos formulaires en quelques clics et drag&drop."
+        },
+        titleFormFeatures: {
+            en: "A la carte form features",
+            fr: "Fonctionnalités à la carte"
+        },
+        descriptionFormFeatures: {
+            en: "Keep ergonomics simplified by activating only the features your users need.",
+            fr: "Gardez une ergonomie simplifée en activant seulement les fonctionnalités dont vos utilisateurs ont besoin."
+        },
+        titleCustomViews: {
+            en: "Organize your work",
+            fr: "Organisez votre travail"
+        },
+        descriptionCustomViews: {
+            en: "Thanks to the custom views, you will be able to create your own structure to organize all your work in the best possible way.",
+            fr: "Grâce aux vues personnalisées, vous pourrez créer votre propre structure pour organiser l'ensemble de votre travail de la meilleure façon possible."
+        },
+        titleLeftNavigation: {
+            en: "All data just a click away",
+            fr: "Toutes les données à portée de clic"
+        },
+        descriptionLeftNavigation: {
+            en: "The side navigation bar effectively condenses all the information you need, and each user only sees what is relevant to them.",
+            fr: "La barre de navigation latérale condense efficacement toute l'information dont vous avez besoin, et chaque utilisateur ne voit que ce qui le concerne."
+        },
+        titleTabsNavigation: {
+            en: "Unless you like tabs?",
+            fr: "A moins que vous aimiez les onglets ?"
+        },
+        descriptionTabsNavigation: {
+            en: "We never impose your way of working: if you prefer the tabbed presentation, you just need 1 click.",
+            fr: "On ne vous impose jamais votre manière de travailler : si vous préférez la présentation en onglet, c'est juste un clic."
+        },
+        titleBookDemo: {
+            en: `Not convinced?`,
+            fr: `Pas convaincu ?`
+        },
+        subtitleBookDemo: {
+            en: "Tell us about your project, and we'll show you how to make it happen in 20 minutes!",
+            fr: "Expliquez-nous votre projet, et on vous montre en 20 minutes comment le réaliser !"
+        },
+        bookDemo: {
+            en: `OK, I'll get in touch`,
+            fr: `OK, je prends contact`
+        },
+
+        // Field types
+        titleFieldTypes: {
+            en: "21 field types to build your forms",
+            fr: "21 types de champs pour vos formulaires"
+        },
+        descriptionFieldTypes: {
             en: "Creating rich forms requires a variety of field types.<br>We've got you covered!",
             fr: "La création de formulaires riches nécessite des types de champs variés.<br>Nous vous couvrons !"
         },
-        title6: {
+        // View features
+        titleViewCreation: {
             en: "Many ways to organize your data",
             fr: "Plein de manières d'organiser vos données"
         },
-        subtitle6: {
+        subtitleViewCreation: {
             en: "Creating views is a simple yet extremely powerful process for organizing all your data.",
             fr: "La création des vues est un processus simple mais extrêmement puissant pour organiser toutes vos données."
         },
@@ -1161,12 +1212,21 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Paragraphe AI permet de générer automatiquement le contenu du champ selon vos instructions, grâce à l'IA de OpenAI."
         },
         select: {
-            fr: "sélection"
+            en: "dropdown list",
+            fr: "liste déroulante"
         },
         selectDescription: {
             en: "The Drop-down List control offers to choose from a list of values possibly associated with a color.",
             fr: "Le champ Liste déroulante propose de choisir parmi une liste de valeurs éventuellement associées à une couleur."
         },
+        multipleSelect: {
+            en: "multiple select",
+            fr: "sélection multiple"
+        },
+        multipleSelectDescription: {
+            en: "Drop-down lists can, if necessary, receive several values and act as tags.",
+            fr: "Les listes déroulantes peuvent si nécessaire recevoir plusieurs valeurs et agir comme des tags."
+        },        
         checkbox: {
             fr: "case à cocher"
         },
@@ -1210,7 +1270,7 @@ kiss.app.defineView("artworks", function (id, target) {
         },
         selectViewDescription: {
             en: "This type of field allows you to simultaneously retrieve several values from another record by selecting it in a view.",
-            fr: "Ce type de champ permet de récupérer simultanément plusieurs valeurs d'une autre fiche en la sélectionnat dans une vue."
+            fr: "Ce type de champ permet de récupérer simultanément plusieurs valeurs d'une autre fiche en la sélectionnant dans une vue."
         },
         collaborators: {
             fr: "collaborateurs"
@@ -1327,37 +1387,14 @@ kiss.app.defineView("artworks", function (id, target) {
                 title: t("title"),
                 subtitle: t("subtitle")
             }),
+            kiss.templates.buttonCTA(t("getStarted")),
             kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
             // FORMS
             kiss.templates.feature({
-                title: t("title1"),
-                description: t("subtitle1"),
+                title: t("titleForms"),
+                description: t("descriptionForms"),
                 screenshot: "forms-thumbnail.webp",
-                CTA: t("getStarted"),
-                textPosition: "left"
-            }),
-
-            {
-                class: "feature-top-separator"
-            },
-
-            // LEFT NAVIGATOR
-            kiss.templates.feature({
-                title: t("title2"),
-                description: t("subtitle2"),
-                screenshot: "views-thumbnail.webp",
-                CTA: t("getStarted"),
-                textPosition: "right",
-                color: "#555555",
-                backgroundColor: "var(--feature-background)"
-            }),
-
-            // WORKFLOWS
-            kiss.templates.feature({
-                title: t("title3"),
-                description: t("subtitle3"),
-                screenshot: "workflows-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -1368,9 +1405,81 @@ kiss.app.defineView("artworks", function (id, target) {
 
             // VIEWS
             kiss.templates.feature({
-                title: t("title4"),
-                description: t("subtitle4"),
+                title: t("titleViews"),
+                description: t("descriptionViews"),
                 screenshot: "business contract management - flexible views - pickaform.webp",
+                CTA: t("getStarted"),
+                textPosition: "right",
+                color: "#555555",
+                backgroundColor: "var(--feature-background)"
+            }),            
+
+            // WORKFLOWS
+            kiss.templates.feature({
+                title: t("titleWorkflows"),
+                description: t("descriptionWorkflows"),
+                screenshot: "workflows-thumbnail.webp",
+                CTA: t("getStarted"),
+                textPosition: "left"
+            }),
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // FORM DESIGN
+            kiss.templates.feature({
+                title: t("titleFormDesigner"),
+                description: t("descriptionFormDesigner"),
+                screenshot: "integrated simple and powerful form designer - pickaform.webp",
+                CTA: t("getStarted"),
+                textPosition: "right",
+                color: "#555555",
+                backgroundColor: "var(--feature-background)"
+            }),
+
+            // FORM FEATURES
+            kiss.templates.feature({
+                title: t("titleFormFeatures"),
+                description: t("descriptionFormFeatures"),
+                screenshot: "a la carte form features - pickaform.webp",
+                CTA: t("getStarted"),
+                textPosition: "left"
+            }),            
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // NAVIGATOR
+            kiss.templates.feature({
+                title: t("titleCustomViews"),
+                description: t("descriptionCustomViews"),
+                screenshot: "views-thumbnail.webp",
+                CTA: t("getStarted"),
+                textPosition: "right",
+                color: "#555555",
+                backgroundColor: "var(--feature-background)"
+            }),
+
+            // LEFT PANE NAVIGATION
+            kiss.templates.feature({
+                title: t("titleLeftNavigation"),
+                description: t("descriptionLeftNavigation"),
+                screenshot: "navigate through your data with left pane - pickaform.webp",
+                CTA: t("getStarted"),
+                textPosition: "left"
+            }),
+
+            {
+                class: "feature-top-separator"
+            },
+
+            // TABS NAVIGATOR
+            kiss.templates.feature({
+                title: t("titleTabsNavigation"),
+                description: t("descriptionTabsNavigation"),
+                screenshot: "navigate through your data with tabs - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -1379,8 +1488,8 @@ kiss.app.defineView("artworks", function (id, target) {
 
             // FIELD TYPES
             kiss.templates.title({
-                title: t("title5"),
-                subtitle: t("subtitle5")
+                title: t("titleFieldTypes"),
+                subtitle: t("descriptionFieldTypes")
             }),
 
             {
@@ -1434,6 +1543,12 @@ kiss.app.defineView("artworks", function (id, target) {
                             title: t("select"),
                             description: t("selectDescription"),
                             screenshot: "field type - select - pickaform.webp"
+                        }),
+                        // Multiple select
+                        kiss.templates.featureDetails({
+                            title: t("multipleSelect"),
+                            description: t("multipleSelectDescription"),
+                            screenshot: "field type - multiple select - pickaform.webp"
                         }),
                         // Checkbox
                         kiss.templates.featureDetails({
@@ -1519,8 +1634,8 @@ kiss.app.defineView("artworks", function (id, target) {
 
             // WORKING WITH VIEWS
             kiss.templates.title({
-                title: t("title6"),
-                subtitle: t("subtitle6")
+                title: t("titleViewCreation"),
+                subtitle: t("subtitleViewCreation")
             }),
 
             {
@@ -1571,7 +1686,15 @@ kiss.app.defineView("artworks", function (id, target) {
                         })
                     ]
                 }]
-            }
+            },
+
+            // BOOK A DEMO
+            kiss.templates.title({
+                title: t("titleBookDemo"),
+                subtitle: t("subtitleBookDemo")
+            }),
+            kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+            kiss.templates.screenshot("book your demo - pickaform.webp")
         ],
 
         events: {
@@ -1705,12 +1828,19 @@ kiss.templates.blogPost = function (post) {
     }
 }
 
-;kiss.templates.buttonCTA = function (text) {
+;kiss.templates.buttonCTA = function (text, page) {
     return {
         text: text + " &nbsp;&nbsp; ➔",
         action: () => {
-            const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
-            window.open(link, "_new")
+            if (page) {
+                kiss.router.navigateTo({
+                    content: "contact"
+                })
+            }
+            else {
+                const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
+                window.open(link, "_new")
+            }
         },
 
         type: "button",
@@ -1721,13 +1851,11 @@ kiss.templates.blogPost = function (post) {
         colorHover: "#000000",
         fontSize: "2.5vh",
         iconSize: "2.5vh",
-        icon: "fas fa-arrow-right",
-        iconPosition: "right",
         iconColor: "#ffffff",
         borderRadius: 10,
         borderWidth: 0,
         animation: "zoomIn",
-        padding: "1vh 0 1vh 3vh"
+        padding: "1vh 3vh"
     }
 }
 

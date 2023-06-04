@@ -7,8 +7,8 @@ kiss.app.defineView("contact", function (id, target) {
             fr: "Prenons contact"
         },
         subtitle: {
-            en: `By explaining your project,<br>we can help you start <span class="text-highlight" style="background-color: #00aaee">for free</span>`,
-            fr: `En expliquant votre projet,<br>nous pouvons vous aider à démarrer<span class="text-highlight" style="background-color: #00aaee">gratuitement</span>`
+            en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
+            fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
         },        
         submit: {
             en: "submit",
