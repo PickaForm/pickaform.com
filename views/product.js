@@ -245,23 +245,23 @@ kiss.app.defineView("product", function (id, target) {
         },
         groupingDescription: {
             en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
-            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+            fr: "En un seul clic, regroupez les données sur le critère de votre choix pour une meilleure vue d'ensemble."
         },
         multiGrouping: {
             en: "multi-level grouping",
             fr: "regroupement multi-niveaux"
         },
         multiGroupingDescription: {
-            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
-            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+            en: "By grouping your data on several levels, you can instantly have a more detailed view of your data.",
+            fr: "En regroupant vos données sur plusieurs niveaux, vous pouvez en un instant avoir une vision plus fine de vos données."
         },
         aggregations: {
             en: "aggregations",
             fr: "aggrégations"
         },
         aggregationsDescription: {
-            en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
-            fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+            en: "When a view is grouped on one or more fields, you can automatically calculate aggregations for each level.",
+            fr: "Lorsqu'une vue est groupée sur un ou plusieurs champs, vous pouvez automatiquement calculer des aggrégations pour chaque niveau."
         }
     })
 
@@ -276,13 +276,13 @@ kiss.app.defineView("product", function (id, target) {
                 title: t("title"),
                 subtitle: t("subtitle")
             }),
-            kiss.templates.screenshot("nocode templates applications - pickaform.png"),
+            kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
             // FORMS
             kiss.templates.feature({
                 title: t("title1"),
                 description: t("subtitle1"),
-                screenshot: "forms-thumbnail.png",
+                screenshot: "forms-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -295,7 +295,7 @@ kiss.app.defineView("product", function (id, target) {
             kiss.templates.feature({
                 title: t("title2"),
                 description: t("subtitle2"),
-                screenshot: "views-thumbnail.png",
+                screenshot: "views-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -306,7 +306,7 @@ kiss.app.defineView("product", function (id, target) {
             kiss.templates.feature({
                 title: t("title3"),
                 description: t("subtitle3"),
-                screenshot: "workflows-thumbnail.png",
+                screenshot: "workflows-thumbnail.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -319,7 +319,7 @@ kiss.app.defineView("product", function (id, target) {
             kiss.templates.feature({
                 title: t("title4"),
                 description: t("subtitle4"),
-                screenshot: "business contract management - flexible views - pickaform.png",
+                screenshot: "business contract management - flexible views - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -346,121 +346,121 @@ kiss.app.defineView("product", function (id, target) {
                         kiss.templates.featureDetails({
                             title: t("text"),
                             description: t("textDescription"),
-                            screenshot: "field type - text - pickaform.png"
+                            screenshot: "field type - text - pickaform.webp"
                         }),
                         // Number
                         kiss.templates.featureDetails({
                             title: t("number"),
                             description: t("numberDescription"),
-                            screenshot: "field type - number - pickaform.png"
+                            screenshot: "field type - number - pickaform.webp"
                         }),
                         // Date
                         kiss.templates.featureDetails({
                             title: t("date"),
                             description: t("dateDescription"),
-                            screenshot: "field type - date - pickaform.png"
+                            screenshot: "field type - date - pickaform.webp"
                         }),
                         // Time
                         kiss.templates.featureDetails({
                             title: t("time"),
                             description: t("timeDescription"),
-                            screenshot: "field type - time - pickaform.png"
+                            screenshot: "field type - time - pickaform.webp"
                         }),
                         // Paragraph
                         kiss.templates.featureDetails({
                             title: t("paragraph"),
                             description: t("paragraphDescription"),
-                            screenshot: "field type - paragraph - pickaform.png"
+                            screenshot: "field type - paragraph - pickaform.webp"
                         }),
                         // AI paragraph
                         kiss.templates.featureDetails({
                             title: t("aiParagraph"),
                             description: t("aiParagraphDescription"),
-                            screenshot: "field type - AI paragraph - pickaform.png"
+                            screenshot: "field type - AI paragraph - pickaform.webp"
                         }),
                         // Select
                         kiss.templates.featureDetails({
                             title: t("select"),
                             description: t("selectDescription"),
-                            screenshot: "field type - select - pickaform.png"
+                            screenshot: "field type - select - pickaform.webp"
                         }),
                         // Checkbox
                         kiss.templates.featureDetails({
                             title: t("checkbox"),
                             description: t("checkboxDescription"),
-                            screenshot: "field type - checkbox - pickaform.png"
+                            screenshot: "field type - checkbox - pickaform.webp"
                         }),
                         // Progress bar
                         kiss.templates.featureDetails({
                             title: t("progressBar"),
                             description: t("progressBarDescription"),
-                            screenshot: "field type - progress bar - pickaform.png"
+                            screenshot: "field type - progress bar - pickaform.webp"
                         }),
                         // Rating
                         kiss.templates.featureDetails({
                             title: t("rating"),
                             description: t("ratingDescription"),
-                            screenshot: "field type - ranking - pickaform.png"
+                            screenshot: "field type - ranking - pickaform.webp"
                         }),
                         // Attachment
                         kiss.templates.featureDetails({
                             title: t("attachment"),
                             description: t("attachmentDescription"),
-                            screenshot: "field type - attachment - pickaform.png"
+                            screenshot: "field type - attachment - pickaform.webp"
                         }),
                         // Select from view column
                         kiss.templates.featureDetails({
                             title: t("selectColumn"),
                             description: t("selectColumnDescription"),
-                            screenshot: "field type - select from column - pickaform.png"
+                            screenshot: "field type - select from column - pickaform.webp"
                         }),
                         // Select from view
                         kiss.templates.featureDetails({
                             title: t("selectView"),
                             description: t("selectViewDescription"),
-                            screenshot: "field type - select from view - pickaform.png"
+                            screenshot: "field type - select from view - pickaform.webp"
                         }),
                         // Collaborators
                         kiss.templates.featureDetails({
                             title: t("collaborators"),
                             description: t("collaboratorsDescription"),
-                            screenshot: "field type - collaborators - pickaform.png"
+                            screenshot: "field type - collaborators - pickaform.webp"
                         }),
                         // Color
                         kiss.templates.featureDetails({
                             title: t("color"),
                             description: t("colorDescription"),
-                            screenshot: "field type - color - pickaform.png"
+                            screenshot: "field type - color - pickaform.webp"
                         }),
                         // Icon
                         kiss.templates.featureDetails({
                             title: t("icon"),
                             description: t("iconDescription"),
-                            screenshot: "field type - icon - pickaform.png"
+                            screenshot: "field type - icon - pickaform.webp"
                         }),
                         // Password
                         kiss.templates.featureDetails({
                             title: t("password"),
                             description: t("passwordDescription"),
-                            screenshot: "field type - password - pickaform.png"
+                            screenshot: "field type - password - pickaform.webp"
                         }),
                         // Link
                         kiss.templates.featureDetails({
                             title: t("link"),
                             description: t("linkDescription"),
-                            screenshot: "field type - link - pickaform.png"
+                            screenshot: "field type - link - pickaform.webp"
                         }),
                         // Lookup
                         kiss.templates.featureDetails({
                             title: t("lookup"),
                             description: t("lookupDescription"),
-                            screenshot: "field type - lookup - pickaform.png"
+                            screenshot: "field type - lookup - pickaform.webp"
                         }),
                         // Summary
                         kiss.templates.featureDetails({
                             title: t("summary"),
                             description: t("summaryDescription"),
-                            screenshot: "field type - summary - pickaform.png"
+                            screenshot: "field type - summary - pickaform.webp"
                         })
                     ]
                 }]
@@ -498,25 +498,25 @@ kiss.app.defineView("product", function (id, target) {
                         kiss.templates.featureDetails({
                             title: t("filtering"),
                             description: t("filteringDescription"),
-                            screenshot: "views - filter data - pickaform.png"
+                            screenshot: "views - filter data - pickaform.webp"
                         }),
                         // One level grouping
                         kiss.templates.featureDetails({
                             title: t("grouping"),
                             description: t("groupingDescription"),
-                            screenshot: "field type - time - pickaform.png"
+                            screenshot: "views - group data - pickaform.webp"
                         }),
                         // Multi-level grouping
                         kiss.templates.featureDetails({
                             title: t("multiGrouping"),
                             description: t("multiGroupingDescription"),
-                            screenshot: "field type - paragraph - pickaform.png"
+                            screenshot: "views - multi-level grouping data - pickaform.webp"
                         }),
                         // Aggregations
                         kiss.templates.featureDetails({
                             title: t("aggregations"),
                             description: t("aggregationsDescription"),
-                            screenshot: "field type - AI paragraph - pickaform.png"
+                            screenshot: "views - data aggregation - pickaform.webp"
                         })
                     ]
                 }]

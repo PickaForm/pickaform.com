@@ -92,7 +92,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         items: [{
                 type: "image",
-                src: "./resources/img/pickaform.png"
+                src: "./resources/img/pickaform.webp"
             },
             {
                 type: "spacer",
