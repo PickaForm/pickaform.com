@@ -27,7 +27,7 @@ kiss.app.defineView("navbar", function (id, target) {
             href: "./index.html#ui=start&content=landing",
             target: "_self",
             view: "landing",
-        },        
+        },
         // PRODUCT
         {
             text: t("Product"),
@@ -55,7 +55,7 @@ kiss.app.defineView("navbar", function (id, target) {
             href: "./index.html#ui=start&content=artworks",
             target: "_self",
             view: "artworks"
-        },        
+        },
         // PRICING
         {
             text: t("Pricing"),
@@ -96,7 +96,9 @@ kiss.app.defineView("navbar", function (id, target) {
         styles: {
             this: "user-select: none;"
         },
-        items: [{
+        items: [
+            // LOGO
+            {
                 type: "image",
                 src: "./resources/img/pickaform.webp"
             },
@@ -104,19 +106,19 @@ kiss.app.defineView("navbar", function (id, target) {
                 type: "spacer",
                 flex: 1
             },
+            // MENU
             {
                 id: "topbar-buttons",
                 type: "html",
                 html: kiss.templates.navbar(navItems)
             },
+            // CONTRAST
             {
                 id: "mode",
-                type: "checkbox",
-                iconOn: "fas fa-moon",
-                iconOff: "fas fa-sun",
-                iconColorOn: "#00aaee",
-                iconSize: 24
-            }
+                class: "button-mode",
+                type: "html",
+                html: "◐"
+            }            
         ],
 
         events: {
@@ -124,15 +126,30 @@ kiss.app.defineView("navbar", function (id, target) {
              * Intercepts the navbar click event to prevent direct navigation with href.
              * This allows to *not reload* the page and leverage the SPA behavior of KissJS when opening views.
              */
-            click: function(event) {
+            click: function (event) {
                 event.preventDefault()
-                
                 let element = event.target
-                
+
+                if (element.id == "mode") {
+                    if (kiss.theme.currentColor == "dark") {
+                        kiss.theme.set({
+                            color: "light"
+                        })
+                    }
+                    else {
+                        kiss.theme.set({
+                            color: "dark"
+                        })
+                    }
+                    return
+                }
+               
                 if (element.classList.contains("field-checkbox-icon")) {
                     const currentState = $("mode").getValue()
-                    const theme = (currentState === false) ? "dark": "light"
-                    kiss.theme.set({color: theme})
+                    const theme = (currentState === false) ? "dark" : "light"
+                    kiss.theme.set({
+                        color: theme
+                    })
                     return
                 }
 
@@ -147,11 +164,19 @@ kiss.app.defineView("navbar", function (id, target) {
                         kiss.router.navigateTo({
                             content: view
                         })
-                    }
-                    else {
+                    } else {
                         window.open(element.href, target)
                     }
                 }
+            },
+
+            mouseover: function (event) {
+                event.preventDefault()
+
+                let element = event.target
+
+
+
             }
         },
 
