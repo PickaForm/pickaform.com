@@ -192,7 +192,7 @@ kiss.app.defineView("navbar", function (id, target) {
 
         methods: {
             load() {
-                // this.adjustDisplayMode(kiss.screen.current.width)
+                this.adjustDisplayMode(kiss.screen.current.width)
             },
             _afterConnected() {
                 this.translateTo(kiss.language.current)
@@ -223,9 +223,10 @@ kiss.app.defineView("navbar", function (id, target) {
             displayAsButton() {
                 const menuButton = {
                     type: "button",
-                    icon: "fas fa-bars",
-                    padding: 10,
-                    margin: 10,
+                    text: "☰",
+                    padding: "0 6px",
+                    fontSize: 20,
+                    fontWeight: 900,
                     action: () => {
                         // Display menu vertically
                     }
