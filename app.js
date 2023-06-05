@@ -1835,7 +1835,7 @@ kiss.app.defineView("artworks", function (id, target) {
     
     return {
         type: "html",
-        html: `<img class="blog-post-banner-image" src="/${post.Image[0].path}">`
+        html: `<img class="blog-post-banner-image" src="${post.Image[0].path}">`
         // html: `<img loading="lazy" class="blog-post-banner-image" src="/uploads/01844399-988f-7974-a68f-92d35fc702cc/2023/05/06/zen%20coach.png">`
     }
 }
