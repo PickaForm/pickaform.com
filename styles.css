@@ -23,6 +23,10 @@
 }
 
 /* TOPBAR */
+#topbar-buttons {
+    white-space: nowrap;
+}
+
 .navbar-item {
     display: inline-flex;
     padding: 12px;

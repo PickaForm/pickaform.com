@@ -86,6 +86,11 @@ kiss.app.defineView("navbar", function (id, target) {
         }
     ]
 
+    const buttons = [{
+        type: "html",
+        html: kiss.templates.navbar(navItems)
+    }]
+
     return createBlock({
         id,
         target,
@@ -109,8 +114,7 @@ kiss.app.defineView("navbar", function (id, target) {
             // MENU
             {
                 id: "topbar-buttons",
-                type: "html",
-                html: kiss.templates.navbar(navItems)
+                items: buttons
             },
             // CONTRAST
             {
@@ -118,7 +122,7 @@ kiss.app.defineView("navbar", function (id, target) {
                 class: "button-mode",
                 type: "html",
                 html: "◐"
-            }            
+            }
         ],
 
         events: {
@@ -135,15 +139,14 @@ kiss.app.defineView("navbar", function (id, target) {
                         kiss.theme.set({
                             color: "light"
                         })
-                    }
-                    else {
+                    } else {
                         kiss.theme.set({
                             color: "dark"
                         })
                     }
                     return
                 }
-               
+
                 if (element.classList.contains("field-checkbox-icon")) {
                     const currentState = $("mode").getValue()
                     const theme = (currentState === false) ? "dark" : "light"
@@ -180,12 +183,12 @@ kiss.app.defineView("navbar", function (id, target) {
             }
         },
 
-        // subscriptions: {
-        //     EVT_WINDOW_RESIZED: function (msgData) {
-        //         if (!this.isConnected) return
-        //         this.adjustDisplayMode(msgData.current.width)
-        //     }
-        // },
+        subscriptions: {
+            EVT_WINDOW_RESIZED: function (msgData) {
+                if (!this.isConnected) return
+                this.adjustDisplayMode(msgData.current.width)
+            }
+        },
 
         methods: {
             load() {
@@ -196,34 +199,44 @@ kiss.app.defineView("navbar", function (id, target) {
             },
             translateTo,
 
-            // adjustDisplayMode(width) {
-            //     if (width < 900) {
-            //         if (this.mode == "narrow") return
-            //         this.mode = "narrow"
-            //         this.displayAsButton()
-            //     } else {
-            //         if (this.mode == "wide") return
-            //         this.mode = "wide"
-            //         this.displayAsMenu()
-            //     }
-            // },
+            adjustDisplayMode(width) {
+                if (width < 900) {
+                    if (this.mode == "narrow") return
+                    this.mode = "narrow"
+                    this.displayAsButton()
+                } else {
+                    if (this.mode == "wide") return
+                    this.mode = "wide"
+                    this.displayAsMenu()
+                }
+            },
 
-            // displayAsMenu() {
-            //     $("topbar-buttons").setItems(buttons)
-            // },
+            displayAsMenu() {
+                $("topbar-buttons")
+                    .setItems(buttons)
+                    .setAnimation({
+                        name: "slideInDown",
+                        speed: "faster"
+                    })
+            },
 
-            // displayAsButton() {
-            //     const menuButton = {
-            //         type: "button",
-            //         icon: "fas fa-bars",
-            //         padding: 10,
-            //         margin: 10,
-            //         action: () => {
-            //             // Display menu vertically
-            //         }
-            //     }
-            //     $("topbar-buttons").setItems([menuButton])
-            // }
+            displayAsButton() {
+                const menuButton = {
+                    type: "button",
+                    icon: "fas fa-bars",
+                    padding: 10,
+                    margin: 10,
+                    action: () => {
+                        // Display menu vertically
+                    }
+                }
+                $("topbar-buttons")
+                    .setItems([menuButton])
+                    .setAnimation({
+                        name: "zoomIn",
+                        speed: "faster"
+                    })
+            }
         }
     })
 })
