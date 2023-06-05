@@ -1,10 +1,14 @@
 kiss.app.defineView("blog", function (id, target) {
     // Static model properties
-    const modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
+    
     const fieldTitle = "y9yVRPEQ"
     const fieldDescription = "BedquzD8"
     const fieldPublicationDate = "floopJiS"
-    const postEndpoint = "https://localhost/command/blog/list"
+    
+    let postEndpoint = "https://localhost/command/blog/list"
+    postEndpoint = "https://cloud.pickaform.com/command/blog/list"
 
     return createBlock({
         id: id,

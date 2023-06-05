@@ -200,11 +200,15 @@ kiss.app.defineView("artworks", function (id, target) {
 
 ;kiss.app.defineView("blog", function (id, target) {
     // Static model properties
-    const modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
+    
     const fieldTitle = "y9yVRPEQ"
     const fieldDescription = "BedquzD8"
     const fieldPublicationDate = "floopJiS"
-    const postEndpoint = "https://localhost/command/blog/list"
+    
+    let postEndpoint = "https://localhost/command/blog/list"
+    postEndpoint = "https://cloud.pickaform.com/command/blog/list"
 
     return createBlock({
         id: id,
@@ -815,21 +819,21 @@ kiss.app.defineView("artworks", function (id, target) {
         // TEMPLATES
         {
             text: t("Templates"),
-            href: kiss.global.path + "/client/pickaform/demo.html#ui=templates-list",
+            href: "https://app.pickaform.com/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
             view: ""
         },
         // LOGIN
         {
             text: t("Login"),
-            href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-login",
+            href: "https://app.pickaform.com/client/pickaform/index_dev.html#ui=authentication-login",
             target: "_new",
             view: ""
         },
         // REGISTER
         {
             text: t("Get started"),
-            href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register",
+            href: "https://app.pickaform.com/client/pickaform/index_dev.html#ui=authentication-register",
             target: "_new",
             view: ""
         }

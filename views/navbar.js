@@ -66,21 +66,21 @@ kiss.app.defineView("navbar", function (id, target) {
         // TEMPLATES
         {
             text: t("Templates"),
-            href: kiss.global.path + "/client/pickaform/demo.html#ui=templates-list",
+            href: "https://app.pickaform.com/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
             view: ""
         },
         // LOGIN
         {
             text: t("Login"),
-            href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-login",
+            href: "https://app.pickaform.com/client/pickaform/index_dev.html#ui=authentication-login",
             target: "_new",
             view: ""
         },
         // REGISTER
         {
             text: t("Get started"),
-            href: kiss.global.path + "/client/pickaform/index_dev.html#ui=authentication-register",
+            href: "https://app.pickaform.com/client/pickaform/index_dev.html#ui=authentication-register",
             target: "_new",
             view: ""
         }
