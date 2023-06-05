@@ -373,6 +373,8 @@ kiss.app.defineView("artworks", function (id, target) {
     let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
     modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
 
+    let postEndpoint = "https://cloud.pickaform.com/command/blog/get"
+
     return createBlock({
         id: id,
         target,
@@ -397,7 +399,7 @@ kiss.app.defineView("artworks", function (id, target) {
             async load() {
                 const postId = kiss.context.postId
                 const post = await kiss.ajax.request({
-                    url: kiss.global.path + "/command/blog/get",
+                    url: postEndpoint,
                     method: "post",
                     body: JSON.stringify({
                         modelId,
