@@ -777,42 +777,42 @@ kiss.app.defineView("artworks", function (id, target) {
         // HOME
         {
             text: t("Home"),
-            href: "./index.html#ui=start&content=landing",
+            href: "./landing",
             target: "_self",
             view: "landing",
         },
         // PRODUCT
         {
             text: t("Product"),
-            href: "./index.html#ui=start&content=product",
+            href: "./product",
             target: "_self",
             view: "product"
         },
         // CONTACT
         {
             text: "Contact",
-            href: "./index.html#ui=start&content=contact",
+            href: "./contact",
             target: "_self",
             view: "contact"
         },
         // BLOG
         {
             text: "Blog",
-            href: "./index.html#ui=start&content=blog",
+            href: "./blog",
             target: "_self",
             view: "blog"
         },
         // ART
         {
             text: "AI Art",
-            href: "./index.html#ui=start&content=artworks",
+            href: "./artworks",
             target: "_self",
             view: "artworks"
         },
         // PRICING
         {
             text: t("Pricing"),
-            href: "./index.html#ui=start&content=pricing",
+            href: "./pricing",
             target: "_self",
             view: "pricing"
         },
