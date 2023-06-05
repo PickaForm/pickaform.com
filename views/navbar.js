@@ -88,7 +88,12 @@ kiss.app.defineView("navbar", function (id, target) {
 
     const buttons = [{
         type: "html",
-        html: kiss.templates.navbar(navItems)
+        html: kiss.templates.navbar(navItems, "row")
+    }]
+
+    const menu = [{
+        type: "html",
+        html: kiss.templates.navbar(navItems, "column")
     }]
 
     return createBlock({
@@ -227,8 +232,29 @@ kiss.app.defineView("navbar", function (id, target) {
                     padding: "0 6px",
                     fontSize: 20,
                     fontWeight: 900,
-                    action: () => {
+                    action: (event) => {
+                        event.stop()
+
                         // Display menu vertically
+                        createPanel({
+                                header: false,
+                                modal: true,
+                                class: "wave-3",
+                                width: "100%",
+                                height: "100%",
+                                layout: "vertical",
+                                items: menu,
+                                events: {
+                                    click: function(event) {
+                                        this.close()
+                                    }
+                                }
+                            })
+                            .render()
+                            .setAnimation({
+                                name: "slideInDown",
+                                speed: "faster"
+                            })
                     }
                 }
                 $("topbar-buttons")

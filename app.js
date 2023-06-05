@@ -837,7 +837,12 @@ kiss.app.defineView("artworks", function (id, target) {
 
     const buttons = [{
         type: "html",
-        html: kiss.templates.navbar(navItems)
+        html: kiss.templates.navbar(navItems, "row")
+    }]
+
+    const menu = [{
+        type: "html",
+        html: kiss.templates.navbar(navItems, "column")
     }]
 
     return createBlock({
@@ -941,7 +946,7 @@ kiss.app.defineView("artworks", function (id, target) {
 
         methods: {
             load() {
-                // this.adjustDisplayMode(kiss.screen.current.width)
+                this.adjustDisplayMode(kiss.screen.current.width)
             },
             _afterConnected() {
                 this.translateTo(kiss.language.current)
@@ -972,11 +977,33 @@ kiss.app.defineView("artworks", function (id, target) {
             displayAsButton() {
                 const menuButton = {
                     type: "button",
-                    icon: "fas fa-bars",
-                    padding: 10,
-                    margin: 10,
-                    action: () => {
+                    text: "☰",
+                    padding: "0 6px",
+                    fontSize: 20,
+                    fontWeight: 900,
+                    action: (event) => {
+                        event.stop()
+
                         // Display menu vertically
+                        createPanel({
+                                header: false,
+                                modal: true,
+                                class: "wave-3",
+                                width: "100%",
+                                height: "100%",
+                                layout: "vertical",
+                                items: menu,
+                                events: {
+                                    click: function(event) {
+                                        this.close()
+                                    }
+                                }
+                            })
+                            .render()
+                            .setAnimation({
+                                name: "slideInDown",
+                                speed: "faster"
+                            })
                     }
                 }
                 $("topbar-buttons")
@@ -2042,11 +2069,11 @@ kiss.templates.footerBlock = function ({
     }
 }
 
-;kiss.templates.navbar = function (items) {
+;kiss.templates.navbar = function (items, orientation) {
     return /*html*/ `
         <div class="nav-wrapper">
             <nav>
-                <ul>
+                <ul style="display: flex; flex-flow: ${orientation}; padding: 0">
                     ${kiss.templates.navbarItems(items)}
                 </ul>
             </nav>

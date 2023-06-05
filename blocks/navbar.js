@@ -1,8 +1,8 @@
-kiss.templates.navbar = function (items) {
+kiss.templates.navbar = function (items, orientation) {
     return /*html*/ `
         <div class="nav-wrapper">
             <nav>
-                <ul>
+                <ul style="display: flex; flex-flow: ${orientation}; padding: 0">
                     ${kiss.templates.navbarItems(items)}
                 </ul>
             </nav>

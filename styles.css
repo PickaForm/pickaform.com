@@ -36,7 +36,9 @@
     user-select: none;
     border-radius: 5px;
     box-shadow: var(--button-shadow);
-    transition: var(--transition-fast);    
+    transition: var(--transition-fast);
+    background: var(--body-background);
+    
 }
 
 .navbar-item:hover {
