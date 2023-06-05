@@ -1115,10 +1115,10 @@ kiss.app.defineView("artworks", function (id, target) {
         title: {
             en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
                 <br>
-                Incredibly <span class="text-highlight" style="background-color: #a1ed00">powerful</span>`,
+                Really <span class="text-highlight" style="background-color: #a1ed00">powerful</span>`,
             fr: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
                 <br>
-                Incroyablement <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`
+                Vraiment <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`
         },
         subtitle: {
             en: "An infinity of applications and uses are possible from the forms and their à la carte functionalities.",
