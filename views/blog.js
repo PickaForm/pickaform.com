@@ -82,6 +82,7 @@ kiss.app.defineView("blog", function (id, target) {
                     })
                 })
 
+                log(response.posts)
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)

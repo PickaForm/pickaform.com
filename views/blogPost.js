@@ -1,5 +1,6 @@
 kiss.app.defineView("blogPost", function (id, target) {
-    const modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
 
     return createBlock({
         id: id,

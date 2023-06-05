@@ -282,6 +282,7 @@ kiss.app.defineView("artworks", function (id, target) {
                     })
                 })
 
+                log(response.posts)
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
@@ -369,7 +370,8 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("blogPost", function (id, target) {
-    const modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
+    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
 
     return createBlock({
         id: id,
@@ -1862,7 +1864,8 @@ kiss.templates.blogPost = function (post) {
 }
 
 ;kiss.templates.blogPostEntry = function (post) {
-    const postUrl = kiss.global.path + "/www/start/blogPost/" + post.slug
+    // const postUrl = kiss.global.path + "/www/start/blogPost/" + post.slug
+    const postUrl = "./index.html#ui=start&content=blogPost&postId=" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
 
     return {
