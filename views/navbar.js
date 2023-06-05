@@ -197,7 +197,7 @@ kiss.app.defineView("navbar", function (id, target) {
 
         methods: {
             load() {
-                this.adjustDisplayMode(kiss.screen.current.width)
+                // this.adjustDisplayMode(kiss.screen.current.width)
             },
             _afterConnected() {
                 this.translateTo(kiss.language.current)
