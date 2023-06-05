@@ -17,7 +17,7 @@ kiss.templates.blogPost = function (post) {
                     <h1 class="blog-post-title">${post.Title}</h1>
                     <p class="blog-post-description">${post.Description}</p>
                     
-                    <p class="blog-post-body">${marked(post.Body)}</p>
+                    <p class="blog-post-body">${post.Body}</p>
                 `
             },
             ...post.Sections.map(section => {
