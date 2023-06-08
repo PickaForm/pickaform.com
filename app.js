@@ -737,20 +737,17 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("legal", function (id, target) {
-    return createBlock({
+    const blogUrl = kiss.global.path + "/" + kiss.language.current + "/blog"
+
+    return createHtml({
         id: id,
         target,
-        layout: "horizontal",
-        justifyContent: "center",
-
-        items: [{
-            type: "html",
-            html: `
-                PICKAFORM 2023 | Politique de confidentialité | Mentions légales
-                <br>
-                Impasse Faraday, 97490, Sainte-Marie, Réunion
-                `
-        }]
+        class: "footer-legal",
+        html: `
+            PICKAFORM 2023 | <a href="${blogUrl}/politique-de-confidentialite">Politique de confidentialité</a> | <a href="${blogUrl}/mentions-legales">Mentions légales</a>
+            <br>
+            Adresse: Impasse Faraday, 97490, Sainte-Marie, Réunion | SIRET: 83109916300014 | Email: contact@pickaform.com
+            `
     })
 })
 

@@ -108,6 +108,11 @@
     margin-top: 10vh;
 }
 
+.footer-legal {
+    text-align: center;
+    margin: 20px 0;
+}
+
 /* TITLES */
 h2.title {
     text-align: center;
