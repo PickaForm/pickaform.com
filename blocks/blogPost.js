@@ -36,8 +36,6 @@ kiss.templates.blogPost = function (post) {
 }
 
 kiss.templates.breadcrumb = function(post) {
-    log("============================")
-    log(post)
     return /*html*/`
         <nav aria-label="breadcrumb">
             <div itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
@@ -50,7 +48,7 @@ kiss.templates.breadcrumb = function(post) {
                     </span>
                     ➤
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
-                        <a href="${kiss.global.blogUrl}/${post.Category}" itemprop="item">
+                        <a href="${kiss.global.blogUrl}/search/${post.Category}" itemprop="item">
                             <span itemprop="name">${post.Category}</span>
                             <meta itemprop="position" content="2">
                         </a>
