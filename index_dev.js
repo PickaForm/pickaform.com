@@ -87,6 +87,7 @@ window.onload = async function () {
     kiss.global.blogEndPoint = "https://cloud.pickaform.com/command/blog" // https://localhost/command/blog
     kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7" // "0187ed6f-35e4-7b17-80c5-046e69931916"
 
+    // Load app
     kiss.app.init()
 
     kiss.router.navigateTo({
