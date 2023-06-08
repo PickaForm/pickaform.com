@@ -3,3 +3,5 @@
 /contact    /index.html#ui=start&content=contact
 /pricing    /index.html#ui=start&content=pricing
 /blog   /index.html#ui=start&content=blog
+/blog/:postId   /index.html#ui=start&content=blogPost&postId=:postId
+/blog/search/:category  /index.html#ui=start&content=blog&category=:category
