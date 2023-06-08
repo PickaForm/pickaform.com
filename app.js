@@ -205,6 +205,19 @@ kiss.app.defineView("artworks", function (id, target) {
     const fieldPublicationDate = "floopJiS"
     const postEndpoint = kiss.global.blogEndPoint + "/list"
 
+    const t = defineTexts(id, {
+        title: {
+            en: `Resources to
+                <span class="text-highlight" style="background-color: #00aaee">save time</span>`,
+            fr: `Des ressources pour
+                <br><span class="text-highlight" style="background-color: #00aaee">gagner du temps</span>`
+        },
+        subtitle: {
+            en: "News, stories and tips on project management, collaboration & productivity",
+            fr: "News et conseils sur la gestion de projet, la collaboration et la productivité"
+        }
+    })
+
     return createBlock({
         id: id,
         target,
@@ -215,8 +228,8 @@ kiss.app.defineView("artworks", function (id, target) {
         items: [
             // Blog header
             kiss.templates.title({
-                title: "Get Inspired to Do Big Things",
-                subtitle: "News, stories and tips on project management, collaboration & productivity"
+                title: t("title"),
+                subtitle: t("subtitle")
             }),
             // Search field
             {
@@ -243,21 +256,6 @@ kiss.app.defineView("artworks", function (id, target) {
                 class: "blog-pager"
             }
         ],
-
-        // events: {
-        //     click: (event) => {
-        //         const item = event.target
-        //         if (item.closest("a-block").classList.contains("blog-entry")) {
-        //             const postId = item.closest("a-block").id
-
-        //             kiss.context.postId = postId
-        //             kiss.router.navigateTo({
-        //                 content: "blogPost",
-        //                 postId
-        //             })
-        //         }
-        //     }
-        // },
 
         methods: {
             async load() {
@@ -398,6 +396,10 @@ kiss.app.defineView("artworks", function (id, target) {
                         postId
                     })
                 })
+
+                // Load marked prior to parsing post's body
+                await kiss.loader.loadScript("./resources/lib/marked/marked.min")
+                post.Body = marked(post.Body)
 
                 $("blog-post-banner").setItems([kiss.templates.blogPostBanner(post)])
                 $("blog-post-content").setItems([kiss.templates.blogPost(post)])
@@ -914,6 +916,7 @@ kiss.app.defineView("artworks", function (id, target) {
                 if (element.tagName == "LI") element = element.querySelector("a")
 
                 if (element.tagName == "A") {
+                    log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
 
@@ -1826,7 +1829,6 @@ kiss.app.defineView("artworks", function (id, target) {
     return {
         type: "html",
         html: `<img class="blog-post-banner-image" src="${post.Image[0].path}">`
-        // html: `<img loading="lazy" class="blog-post-banner-image" src="/uploads/01844399-988f-7974-a68f-92d35fc702cc/2023/05/06/zen%20coach.png">`
     }
 }
 
@@ -1890,7 +1892,6 @@ kiss.templates.breadcrumb = function(post) {
 }
 
 ;kiss.templates.blogPostEntry = function (post) {
-    // const postUrl = kiss.global.path + "/www/start/blogPost/" + post.slug
     const postUrl = kiss.global.blogUrl + "/" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
     const tags = post.tags.map(tag => `<span class="blog-entry-tag">${tag}</span>`).join("")
