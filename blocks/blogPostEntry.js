@@ -2,6 +2,7 @@ kiss.templates.blogPostEntry = function (post) {
     // const postUrl = kiss.global.path + "/www/start/blogPost/" + post.slug
     const postUrl = "./index.html#ui=start&content=blogPost&postId=" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
+    const tags = post.tags.map(tag => `<span class="blog-entry-tag">${tag}</span>`).join("")
 
     return {
         id: post.slug,
@@ -11,12 +12,11 @@ kiss.templates.blogPostEntry = function (post) {
             type: "html",
             html:
                 `
-                <a href="${postUrl}">
+                <a href="${postUrl}" class="no-underline">
                     <img loading="lazy" class="blog-entry-banner-image" src="${image.path}"></img>
-                </a>
-                <p class="blog-entry-tags">${post.tags}</p>
-                <a href="${postUrl}">
-                    <h2 class="blog-entry-title">${post.title}</h2>
+                    <span class="blog-entry-category">${post.category}</span>
+                    ${tags}
+                    <h3 class="blog-entry-title no-underline">${post.title}</h3>
                     <p class="blog-entry-description">${post.description}</p>
                 </a>`
         }]

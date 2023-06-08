@@ -56,6 +56,11 @@ window.onload = async function () {
     kiss.global.path = `https://${window.location.host}`
     kiss.global.pathImg = "./resources/img/"
 
+    // Blog settings
+    kiss.global.blogUrl = "https://vocal-fenglisu-166914.netlify.app/blog"
+    kiss.global.blogEndPoint = "https://cloud.pickaform.com/command/blog" // https://localhost/command/blog
+    kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7" // "0187ed6f-35e4-7b17-80c5-046e69931916"
+
     await kiss.loader.loadScript("./app.min")
 
     kiss.app.init()

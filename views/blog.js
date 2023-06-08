@@ -1,14 +1,9 @@
 kiss.app.defineView("blog", function (id, target) {
     // Static model properties
-    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
-    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
-    
     const fieldTitle = "y9yVRPEQ"
     const fieldDescription = "BedquzD8"
     const fieldPublicationDate = "floopJiS"
-    
-    let postEndpoint = "https://localhost/command/blog/list"
-    postEndpoint = "https://cloud.pickaform.com/command/blog/list"
+    const postEndpoint = kiss.global.blogEndPoint + "/list"
 
     return createBlock({
         id: id,
@@ -74,7 +69,7 @@ kiss.app.defineView("blog", function (id, target) {
                     url: postEndpoint,
                     method: "post",
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.blogModelId,
                         sortSyntax: "mongo",
                         sort: {[fieldPublicationDate]: -1}, // Sort by publication date
                         skip,
@@ -95,7 +90,7 @@ kiss.app.defineView("blog", function (id, target) {
                     method: "post",
                     showLoading: true,
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.blogModelId,
                         skip,
                         limit,
                         sortSyntax: "mongo",

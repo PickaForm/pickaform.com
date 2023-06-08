@@ -1,7 +1,7 @@
 :root {
     --font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    --font-family-sans-serif: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
-    --font-family-monospace: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
+    --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
     --shadow-image: 0 0 5vh #555555;
     --shadow-image-hover: 0 0 2vh #555555;
     --feature-background: #e0f6ff;
@@ -22,6 +22,10 @@
     background-size: cover;
 }
 
+.no-underline {
+    text-decoration: none !important;
+}
+
 /* TOPBAR */
 #topbar-buttons {
     white-space: nowrap;
@@ -38,7 +42,7 @@
     box-shadow: var(--button-shadow);
     transition: var(--transition-fast);
     background: var(--body-background);
-    
+
 }
 
 .navbar-item:hover {
@@ -46,7 +50,7 @@
     background-color: var(--button-background-hover) !important;
 }
 
-.navbar-item > a {
+.navbar-item>a {
     color: var(--body);
     font-size: 16px;
     font-family: var(--font-famly);
@@ -106,7 +110,7 @@
 }
 
 /* TITLES */
-h1.title {
+h2.title {
     text-align: center;
     font-family: var(--font-famly);
     font-size: 5vh;
@@ -114,7 +118,7 @@ h1.title {
     margin: 10vh 5vh 5vh 5vh;
 }
 
-h2.subtitle {
+h3.subtitle {
     text-align: center;
     font-family: var(--font-famly);
     font-size: 3vh;
@@ -198,13 +202,54 @@ h2.subtitle {
     border-radius: 10px;
 }
 
-p.blog-entry-description {
-    font-size: 2vh;
-    margin-bottom: 50px;
+.breadcrumb-item {
+    display: inline-block;
+    color: var(--body);
+    font-weight: 600;
+    border-radius: 16px;
+    padding: 5px 10px;
+    margin: 5px;
+    border: solid 2px var(--body);    
 }
 
-h2.blog-entry-title {
-    font-size: 2vh;
+.breadcrumb-item a {
+    color: var(--body);
+    text-decoration: none;
+}
+
+.blog-entry-category {
+    display: inline-block;
+    color: var(--body);
+    font-weight: 600;
+    border-radius: 16px;
+    padding: 5px 10px;
+    margin: 5px 5px 0px 0px;
+    border: solid 2px var(--body);
+}
+
+.blog-entry-tag {
+    display: inline-block;
+    color: #ffffff;
+    font-weight: 600;
+    background-color: #00aaee;
+    border-radius: 5px;
+    padding: 5px 10px;
+    margin: 5px 5px 0px 0px;
+}
+
+h3.blog-entry-title {
+    color: var(--body);
+    font-size: 1.8vh;
+}
+
+p.blog-entry-description {
+    color: var(--body);
+    font-size: 1.6vh;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 /* A SINGLE BLOG POST */
@@ -220,10 +265,10 @@ h2.blog-entry-title {
 }
 
 .blog-post-content {
-    background-color: #ffffff;
+    background-color: var(--body-background);
     max-width: 900px;
     border-radius: 20px;
-    box-shadow: 0 0 5vw #999999;
+    box-shadow: 0 0 5vw #313131;
     padding: 20px 50px;
     margin: -50px 0 5vw 0px;
 }

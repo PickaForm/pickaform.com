@@ -6,8 +6,8 @@ kiss.templates.title = function ({
         type: "html",
         width: "100%",
         html: /*html*/ `
-            <h1 class="title">${title}</h1>
-            <h2 class="subtitle">${subtitle}</h2>`
+            <h2 class="title">${title}</h2>
+            <h3 class="subtitle">${subtitle}</h3>`
     }
 }
 

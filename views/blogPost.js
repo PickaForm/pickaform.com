@@ -1,8 +1,5 @@
 kiss.app.defineView("blogPost", function (id, target) {
-    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
-    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
-
-    let postEndpoint = "https://cloud.pickaform.com/command/blog/get"
+    const postEndpoint = kiss.global.blogEndPoint + "/get"
 
     return createBlock({
         id: id,
@@ -31,7 +28,7 @@ kiss.app.defineView("blogPost", function (id, target) {
                     url: postEndpoint,
                     method: "post",
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.blogModelId,
                         postId
                     })
                 })
