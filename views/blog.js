@@ -5,6 +5,19 @@ kiss.app.defineView("blog", function (id, target) {
     const fieldPublicationDate = "floopJiS"
     const postEndpoint = kiss.global.blogEndPoint + "/list"
 
+    const t = defineTexts(id, {
+        title: {
+            en: `Resources to
+                <span class="text-highlight" style="background-color: #00aaee">save time</span>`,
+            fr: `Des ressources pour
+                <br><span class="text-highlight" style="background-color: #00aaee">gagner du temps</span>`
+        },
+        subtitle: {
+            en: "News, stories and tips on project management, collaboration & productivity",
+            fr: "News et conseils sur la gestion de projet, la collaboration et la productivité"
+        }
+    })
+
     return createBlock({
         id: id,
         target,
@@ -15,8 +28,8 @@ kiss.app.defineView("blog", function (id, target) {
         items: [
             // Blog header
             kiss.templates.title({
-                title: "Get Inspired to Do Big Things",
-                subtitle: "News, stories and tips on project management, collaboration & productivity"
+                title: t("title"),
+                subtitle: t("subtitle")
             }),
             // Search field
             {
@@ -43,21 +56,6 @@ kiss.app.defineView("blog", function (id, target) {
                 class: "blog-pager"
             }
         ],
-
-        // events: {
-        //     click: (event) => {
-        //         const item = event.target
-        //         if (item.closest("a-block").classList.contains("blog-entry")) {
-        //             const postId = item.closest("a-block").id
-
-        //             kiss.context.postId = postId
-        //             kiss.router.navigateTo({
-        //                 content: "blogPost",
-        //                 postId
-        //             })
-        //         }
-        //     }
-        // },
 
         methods: {
             async load() {

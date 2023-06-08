@@ -33,8 +33,8 @@
 
 .navbar-item {
     display: inline-flex;
-    padding: 12px;
-    margin: 10px 2px;
+    padding: 0 12px;
+    margin: 10px 3px;
     border: none;
     cursor: pointer;
     user-select: none;
@@ -42,7 +42,6 @@
     box-shadow: var(--button-shadow);
     transition: var(--transition-fast);
     background: var(--body-background);
-
 }
 
 .navbar-item:hover {
@@ -182,7 +181,6 @@ h3.subtitle {
 /* BLOG LIST OF ARTICLES */
 .blog-entry {
     width: 366px;
-    height: 455px;
     border: solid 10px transparent;
     border-radius: 10px;
     padding: 10px;
@@ -229,12 +227,9 @@ h3.subtitle {
 
 .blog-entry-tag {
     display: inline-block;
-    color: #ffffff;
-    font-weight: 600;
-    background-color: #00aaee;
+    color: #00aaee;
     border-radius: 5px;
-    padding: 5px 10px;
-    margin: 5px 5px 0px 0px;
+    margin: 5px;
 }
 
 h3.blog-entry-title {
@@ -246,7 +241,7 @@ p.blog-entry-description {
     color: var(--body);
     font-size: 1.6vh;
     display: -webkit-box;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 5;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -274,24 +269,27 @@ p.blog-entry-description {
 }
 
 h1.blog-post-title {
-    font-size: 4vh;
+    font-size: 46px;
     text-align: center;
     margin-bottom: 50px;
 }
 
 p.blog-post-description {
-    font-size: 2vh;
-    margin-bottom: 50px;
+    font-size: 30px;
 }
 
-h2.blog-post-title {
-    font-size: 2vh;
+.blog-post-content h2 {
+    font-size: 30px;
+    margin-top: 50px;
 }
 
-p.blog-post-body {
-    font-size: 1.5vh;
-    line-height: 3vh;
-    ;
+.blog-post-content ul {
+    margin-bottom: 2vh;
+}
+
+.blog-post-content p, li {
+    font-size: 18px;
+    line-height: 36px;
 }
 
 /* PRICING */

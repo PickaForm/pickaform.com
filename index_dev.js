@@ -78,7 +78,7 @@ kiss.loader.loadStyles([
 window.onload = async function () {
     kiss.db.mode = "memory"
     kiss.language.current = "fr"
-    kiss.theme.set({color: "dark"})
+    kiss.theme.set({color: "light"})
 
     kiss.global.path = `https://${window.location.host}`
     kiss.global.pathImg = "./resources/img/"

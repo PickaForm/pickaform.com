@@ -165,6 +165,7 @@ kiss.app.defineView("navbar", function (id, target) {
                 if (element.tagName == "LI") element = element.querySelector("a")
 
                 if (element.tagName == "A") {
+                    log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
 
