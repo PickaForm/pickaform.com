@@ -274,8 +274,9 @@ h1.blog-post-title {
     margin-bottom: 50px;
 }
 
-p.blog-post-description {
-    font-size: 30px;
+.blog-post-description {
+    font-size: 30px !important;
+    margin-bottom: 50px;
 }
 
 .blog-post-content h2 {
