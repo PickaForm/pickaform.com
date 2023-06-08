@@ -1860,8 +1860,6 @@ kiss.templates.blogPost = function (post) {
 }
 
 kiss.templates.breadcrumb = function(post) {
-    log("============================")
-    log(post)
     return /*html*/`
         <nav aria-label="breadcrumb">
             <div itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
@@ -1874,7 +1872,7 @@ kiss.templates.breadcrumb = function(post) {
                     </span>
                     ➤
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
-                        <a href="${kiss.global.blogUrl}/${post.Category}" itemprop="item">
+                        <a href="${kiss.global.blogUrl}/search/${post.Category}" itemprop="item">
                             <span itemprop="name">${post.Category}</span>
                             <meta itemprop="position" content="2">
                         </a>
@@ -1893,7 +1891,7 @@ kiss.templates.breadcrumb = function(post) {
 
 ;kiss.templates.blogPostEntry = function (post) {
     // const postUrl = kiss.global.path + "/www/start/blogPost/" + post.slug
-    const postUrl = "./index.html#ui=start&content=blogPost&postId=" + post.slug
+    const postUrl = kiss.global.blogUrl + "/" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
     const tags = post.tags.map(tag => `<span class="blog-entry-tag">${tag}</span>`).join("")
 
