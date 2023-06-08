@@ -1,27 +1,21 @@
 kiss.app.defineView("navbar", function (id, target) {
     const t = defineTexts(id, {
         "Home": {
-            en: "Home",
             fr: "Accueil"
         },
         "Product": {
-            en: "Product",
             fr: "Produit"
         },
         "Pricing": {
-            en: "Pricing",
             fr: "Pricing"
         },
         "Templates": {
-            en: "Templates",
             fr: "Modèles"
         },
         "Login": {
-            en: "Login",
             fr: "Connexion"
         },
         "Get started": {
-            en: "Get started",
             fr: "Inscription"
         }
     })
@@ -171,7 +165,6 @@ kiss.app.defineView("navbar", function (id, target) {
                 if (element.tagName == "LI") element = element.querySelector("a")
 
                 if (element.tagName == "A") {
-                    log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
 

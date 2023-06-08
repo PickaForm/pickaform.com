@@ -425,6 +425,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "envoyer"
         },
         name: {
+            en: "name",
             fr: "nom"
         },
         company: {
@@ -540,7 +541,7 @@ kiss.app.defineView("artworks", function (id, target) {
                         }
                     }
                 ]
-            }            
+            }        
         ],
 
         methods: {
@@ -744,7 +745,11 @@ kiss.app.defineView("artworks", function (id, target) {
 
         items: [{
             type: "html",
-            html: `PICKAFORM 2023 | Politique de confidentialité | Mentions légales`
+            html: `
+                PICKAFORM 2023 | Politique de confidentialité | Mentions légales
+                <br>
+                Impasse Faraday, 97490, Sainte-Marie, Réunion
+                `
         }]
     })
 })
@@ -752,27 +757,21 @@ kiss.app.defineView("artworks", function (id, target) {
 ;kiss.app.defineView("navbar", function (id, target) {
     const t = defineTexts(id, {
         "Home": {
-            en: "Home",
             fr: "Accueil"
         },
         "Product": {
-            en: "Product",
             fr: "Produit"
         },
         "Pricing": {
-            en: "Pricing",
             fr: "Pricing"
         },
         "Templates": {
-            en: "Templates",
             fr: "Modèles"
         },
         "Login": {
-            en: "Login",
             fr: "Connexion"
         },
         "Get started": {
-            en: "Get started",
             fr: "Inscription"
         }
     })
@@ -922,7 +921,6 @@ kiss.app.defineView("artworks", function (id, target) {
                 if (element.tagName == "LI") element = element.querySelector("a")
 
                 if (element.tagName == "A") {
-                    log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>")
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
 
@@ -1868,26 +1866,28 @@ kiss.templates.blogPost = function (post) {
 }
 
 kiss.templates.breadcrumb = function(post) {
+    const blogUrl = kiss.global.path + "/" + kiss.language.current + "/blog"
+
     return /*html*/`
         <nav aria-label="breadcrumb">
             <div itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
                 <div class="container">
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
-                        <a href="${kiss.global.blogUrl}" itemprop="item">
+                        <a href="${blogUrl}" itemprop="item">
                             <span itemprop="name">Blog</span>
                             <meta itemprop="position" content="1">
                         </a>
                     </span>
                     ➤
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
-                        <a href="${kiss.global.blogUrl}/search/${post.Category}" itemprop="item">
+                        <a href="${blogUrl}/search/${post.Category}" itemprop="item">
                             <span itemprop="name">${post.Category}</span>
                             <meta itemprop="position" content="2">
                         </a>
                     </span>
                     ➤
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item  active">
-                        <a href="${kiss.global.blogUrl}/${post.Slug}" itemprop="item">
+                        <a href="${blogUrl}/${post.Slug}" itemprop="item">
                             <span itemprop="name">${post.Title}</span>
                             <meta itemprop="position" content="3">
                         </a>
@@ -1898,7 +1898,7 @@ kiss.templates.breadcrumb = function(post) {
 }
 
 ;kiss.templates.blogPostEntry = function (post) {
-    const postUrl = kiss.global.blogUrl + "/" + post.slug
+    const postUrl = kiss.global.path + "/" + kiss.language.current + "/blog/" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
     const tags = post.tags.map(tag => `<span class="blog-entry-tag">${tag}</span>`).join("")
 
@@ -2000,6 +2000,7 @@ kiss.templates.breadcrumb = function(post) {
                 items: [
                     {
                         type: "html",
+                        class: "feature-screenshot-container-" + textPosition,
                         html: `<img src="${src}" class="feature-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src)

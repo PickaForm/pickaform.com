@@ -398,6 +398,16 @@ p.blog-post-description {
     margin: 1vh;
 }
 
+.feature-screenshot-container-right:hover {
+    transform: rotate(-2deg);
+    transition: all 0.2s;
+}
+
+.feature-screenshot-container-left:hover {
+    transform: rotate(2deg);
+    transition: all 0.2s;
+}
+
 .feature-screenshot-img {
     width: 100%;
     height: 100%;

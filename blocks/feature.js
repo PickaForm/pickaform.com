@@ -46,6 +46,7 @@ kiss.templates.feature = function ({
                 items: [
                     {
                         type: "html",
+                        class: "feature-screenshot-container-" + textPosition,
                         html: `<img src="${src}" class="feature-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src)

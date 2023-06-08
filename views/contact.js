@@ -15,6 +15,7 @@ kiss.app.defineView("contact", function (id, target) {
             fr: "envoyer"
         },
         name: {
+            en: "name",
             fr: "nom"
         },
         company: {
@@ -130,7 +131,7 @@ kiss.app.defineView("contact", function (id, target) {
                         }
                     }
                 ]
-            }            
+            }        
         ],
 
         methods: {

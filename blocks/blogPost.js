@@ -35,26 +35,28 @@ kiss.templates.blogPost = function (post) {
 }
 
 kiss.templates.breadcrumb = function(post) {
+    const blogUrl = kiss.global.path + "/" + kiss.language.current + "/blog"
+
     return /*html*/`
         <nav aria-label="breadcrumb">
             <div itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
                 <div class="container">
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
-                        <a href="${kiss.global.blogUrl}" itemprop="item">
+                        <a href="${blogUrl}" itemprop="item">
                             <span itemprop="name">Blog</span>
                             <meta itemprop="position" content="1">
                         </a>
                     </span>
                     ➤
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
-                        <a href="${kiss.global.blogUrl}/search/${post.Category}" itemprop="item">
+                        <a href="${blogUrl}/search/${post.Category}" itemprop="item">
                             <span itemprop="name">${post.Category}</span>
                             <meta itemprop="position" content="2">
                         </a>
                     </span>
                     ➤
                     <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item  active">
-                        <a href="${kiss.global.blogUrl}/${post.Slug}" itemprop="item">
+                        <a href="${blogUrl}/${post.Slug}" itemprop="item">
                             <span itemprop="name">${post.Title}</span>
                             <meta itemprop="position" content="3">
                         </a>

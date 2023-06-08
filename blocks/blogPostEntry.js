@@ -1,5 +1,5 @@
 kiss.templates.blogPostEntry = function (post) {
-    const postUrl = kiss.global.blogUrl + "/" + post.slug
+    const postUrl = kiss.global.path + "/" + kiss.language.current + "/blog/" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
     const tags = post.tags.map(tag => `<span class="blog-entry-tag">${tag}</span>`).join("")
 
