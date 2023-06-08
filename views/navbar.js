@@ -24,42 +24,42 @@ kiss.app.defineView("navbar", function (id, target) {
         // HOME
         {
             text: t("Home"),
-            href: "./landing",
+            href: `${kiss.global.path}/${kiss.language.current}/landing`,
             target: "_self",
             view: "landing",
         },
         // PRODUCT
         {
             text: t("Product"),
-            href: "./product",
+            href: `${kiss.global.path}/${kiss.language.current}/product`,
             target: "_self",
             view: "product"
         },
         // CONTACT
         {
             text: "Contact",
-            href: "./contact",
+            href: `${kiss.global.path}/${kiss.language.current}/contact`,
             target: "_self",
             view: "contact"
         },
         // BLOG
         {
             text: "Blog",
-            href: "./blog",
+            href: `${kiss.global.path}/${kiss.language.current}/blog`,
             target: "_self",
             view: "blog"
         },
         // ART
         {
             text: "AI Art",
-            href: "./artworks",
+            href: `${kiss.global.path}/${kiss.language.current}/artworks`,
             target: "_self",
             view: "artworks"
         },
         // PRICING
         {
             text: t("Pricing"),
-            href: "./pricing",
+            href: `${kiss.global.path}/${kiss.language.current}/pricing`,
             target: "_self",
             view: "pricing"
         },

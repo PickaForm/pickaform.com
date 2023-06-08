@@ -46,11 +46,11 @@ kiss.loader.loadStyles([
     "https://kissjs.net/resources/lib/kissjs/styles/geometry/default",
     "https://kissjs.net/resources/lib/kissjs/styles/colors/dark",
     "styles"
-])    
+])
 
 window.onload = async function () {
     kiss.db.mode = "memory"
-    kiss.language.current = "fr"
+    kiss.language.current = kiss.router.getRoute().language || "en"
     kiss.theme.set({color: "light"})
 
     kiss.global.path = `https://${window.location.host}`

@@ -7,9 +7,9 @@ kiss.app.defineView("blog", function (id, target) {
 
     const t = defineTexts(id, {
         title: {
-            en: `Resources to
+            en: `Your resources to
                 <span class="text-highlight" style="background-color: #00aaee">save time</span>`,
-            fr: `Des ressources pour
+            fr: `Vos ressources pour
                 <br><span class="text-highlight" style="background-color: #00aaee">gagner du temps</span>`
         },
         subtitle: {

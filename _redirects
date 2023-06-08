@@ -1,7 +1,7 @@
-/langing    /index.html#ui=start&content=landing
-/product    /index.html#ui=start&content=product
-/contact    /index.html#ui=start&content=contact
-/pricing    /index.html#ui=start&content=pricing
-/blog   /index.html#ui=start&content=blog
-/blog/:postId   /index.html#ui=start&content=blogPost&postId=:postId
-/blog/search/:category  /index.html#ui=start&content=blog&category=:category
+/:language/landing    /index.html#ui=start&content=landing&language=:language
+/:language/product    /index.html#ui=start&content=product&language=:language
+/:language/contact    /index.html#ui=start&content=contact&language=:language
+/:language/pricing    /index.html#ui=start&content=pricing&language=:language
+/:language/blog   /index.html#ui=start&content=blog&language=:language
+/:language/blog/:postId   /index.html#ui=start&content=blogPost&language=:language&postId=:postId
+/:language/blog/search/:category  /index.html#ui=start&content=blog&language=:language&category=:category

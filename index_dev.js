@@ -77,7 +77,7 @@ kiss.loader.loadStyles([
 
 window.onload = async function () {
     kiss.db.mode = "memory"
-    kiss.language.current = "fr"
+    kiss.language.current = kiss.router.getRoute().language || "en"
     kiss.theme.set({color: "light"})
 
     kiss.global.path = `https://${window.location.host}`
