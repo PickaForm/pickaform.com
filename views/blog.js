@@ -44,20 +44,20 @@ kiss.app.defineView("blog", function (id, target) {
             }
         ],
 
-        events: {
-            click: (event) => {
-                const item = event.target
-                if (item.closest("a-block").classList.contains("blog-entry")) {
-                    const postId = item.closest("a-block").id
+        // events: {
+        //     click: (event) => {
+        //         const item = event.target
+        //         if (item.closest("a-block").classList.contains("blog-entry")) {
+        //             const postId = item.closest("a-block").id
 
-                    kiss.context.postId = postId
-                    kiss.router.navigateTo({
-                        content: "blogPost",
-                        postId
-                    })
-                }
-            }
-        },
+        //             kiss.context.postId = postId
+        //             kiss.router.navigateTo({
+        //                 content: "blogPost",
+        //                 postId
+        //             })
+        //         }
+        //     }
+        // },
 
         methods: {
             async load() {
