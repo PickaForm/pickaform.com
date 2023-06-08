@@ -200,15 +200,10 @@ kiss.app.defineView("artworks", function (id, target) {
 
 ;kiss.app.defineView("blog", function (id, target) {
     // Static model properties
-    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
-    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
-    
     const fieldTitle = "y9yVRPEQ"
     const fieldDescription = "BedquzD8"
     const fieldPublicationDate = "floopJiS"
-    
-    let postEndpoint = "https://localhost/command/blog/list"
-    postEndpoint = "https://cloud.pickaform.com/command/blog/list"
+    const postEndpoint = kiss.global.blogEndPoint + "/list"
 
     return createBlock({
         id: id,
@@ -274,7 +269,7 @@ kiss.app.defineView("artworks", function (id, target) {
                     url: postEndpoint,
                     method: "post",
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.blogModelId,
                         sortSyntax: "mongo",
                         sort: {[fieldPublicationDate]: -1}, // Sort by publication date
                         skip,
@@ -295,7 +290,7 @@ kiss.app.defineView("artworks", function (id, target) {
                     method: "post",
                     showLoading: true,
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.blogModelId,
                         skip,
                         limit,
                         sortSyntax: "mongo",
@@ -370,10 +365,7 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.app.defineView("blogPost", function (id, target) {
-    let modelId = "0187ed6f-35e4-7b17-80c5-046e69931916"
-    modelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
-
-    let postEndpoint = "https://cloud.pickaform.com/command/blog/get"
+    const postEndpoint = kiss.global.blogEndPoint + "/get"
 
     return createBlock({
         id: id,
@@ -402,7 +394,7 @@ kiss.app.defineView("artworks", function (id, target) {
                     url: postEndpoint,
                     method: "post",
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.blogModelId,
                         postId
                     })
                 })
@@ -1831,8 +1823,6 @@ kiss.app.defineView("artworks", function (id, target) {
 })
 
 ;kiss.templates.blogPostBanner = function (post) {
-    log(post)
-    
     return {
         type: "html",
         html: `<img class="blog-post-banner-image" src="${post.Image[0].path}">`
@@ -1843,12 +1833,16 @@ kiss.app.defineView("artworks", function (id, target) {
 kiss.templates.blogPost = function (post) {
     return {
         layout: "vertical",
-        items: [{
+        items: [
+            {
+                type: "html",
+                html: kiss.templates.breadcrumb(post)
+            },
+            {
                 type: "html",
                 html: `
                     <h1 class="blog-post-title">${post.Title}</h1>
                     <p class="blog-post-description">${post.Description}</p>
-                    
                     <p class="blog-post-body">${post.Body}</p>
                 `
             },
@@ -1865,10 +1859,43 @@ kiss.templates.blogPost = function (post) {
     }
 }
 
+kiss.templates.breadcrumb = function(post) {
+    log("============================")
+    log(post)
+    return /*html*/`
+        <nav aria-label="breadcrumb">
+            <div itemscope="itemscope" itemtype="http://schema.org/BreadcrumbList" class="breadcrumb">
+                <div class="container">
+                    <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
+                        <a href="${kiss.global.blogUrl}" itemprop="item">
+                            <span itemprop="name">Blog</span>
+                            <meta itemprop="position" content="1">
+                        </a>
+                    </span>
+                    ➤
+                    <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item">
+                        <a href="${kiss.global.blogUrl}/${post.Category}" itemprop="item">
+                            <span itemprop="name">${post.Category}</span>
+                            <meta itemprop="position" content="2">
+                        </a>
+                    </span>
+                    ➤
+                    <span itemprop="itemListElement" itemscope="itemscope" itemtype="http://schema.org/ListItem" class="breadcrumb-item  active">
+                        <a href="${kiss.global.blogUrl}/${post.Slug}" itemprop="item">
+                            <span itemprop="name">${post.Title}</span>
+                            <meta itemprop="position" content="3">
+                        </a>
+                    </span>
+                </div>
+            </div>
+        </nav>`
+}
+
 ;kiss.templates.blogPostEntry = function (post) {
     // const postUrl = kiss.global.path + "/www/start/blogPost/" + post.slug
     const postUrl = "./index.html#ui=start&content=blogPost&postId=" + post.slug
     const image = (post.image && Array.isArray(post.image) && post.image.length > 0) ? post.image[0] : ""
+    const tags = post.tags.map(tag => `<span class="blog-entry-tag">${tag}</span>`).join("")
 
     return {
         id: post.slug,
@@ -1878,12 +1905,11 @@ kiss.templates.blogPost = function (post) {
             type: "html",
             html:
                 `
-                <a href="${postUrl}">
+                <a href="${postUrl}" class="no-underline">
                     <img loading="lazy" class="blog-entry-banner-image" src="${image.path}"></img>
-                </a>
-                <p class="blog-entry-tags">${post.tags}</p>
-                <a href="${postUrl}">
-                    <h2 class="blog-entry-title">${post.title}</h2>
+                    <span class="blog-entry-category">${post.category}</span>
+                    ${tags}
+                    <h3 class="blog-entry-title no-underline">${post.title}</h3>
                     <p class="blog-entry-description">${post.description}</p>
                 </a>`
         }]
@@ -2186,8 +2212,8 @@ kiss.templates.screenshotPreview = function (src, width, height) {
         type: "html",
         width: "100%",
         html: /*html*/ `
-            <h1 class="title">${title}</h1>
-            <h2 class="subtitle">${subtitle}</h2>`
+            <h2 class="title">${title}</h2>
+            <h3 class="subtitle">${subtitle}</h3>`
     }
 }
 
