@@ -2,7 +2,7 @@
  * Global functions for translation
  */
 const t = (textId) => `<span class="localized" id="${textId}">${txtTitleCase(textId)}</span>`
-const translateByPage = (textId, id = "") => `<span class="localized" id="${id + "-" + textId}">${txtTitleCase(id + "-" + textId) || textId}</span>`
+const translateByPage = (textId, id = "") => `<span class="localized" id="${id + "-" + textId}">${txtTitleCase(id + "-" + textId)}</span>`
 
 /**
  * Define texts for a specific page

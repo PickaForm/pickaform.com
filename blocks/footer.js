@@ -6,6 +6,7 @@ kiss.templates.footerBlock = function ({
     entries
 }) {
     return {
+        class: "footer-column",
         layout: "vertical",
         alignItems: "center",
         items: [{

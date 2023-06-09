@@ -19,12 +19,15 @@ kiss.app.defineView("contact", function (id, target) {
             fr: "nom"
         },
         company: {
+            en: "company",
             fr: "société"
         },
         project: {
+            project: "project",
             fr: "projet"
         },
         language: {
+            en: "language",
             fr: "langue"
         }
     })

@@ -1,21 +1,27 @@
 kiss.app.defineView("navbar", function (id, target) {
     const t = defineTexts(id, {
         "Home": {
+            en: "Home",
             fr: "Accueil"
         },
         "Product": {
+            en: "Product",
             fr: "Produit"
         },
         "Pricing": {
+            en: "Pricing",
             fr: "Pricing"
         },
         "Templates": {
+            en: "Templates",
             fr: "Modèles"
         },
         "Login": {
+            en: "Login",
             fr: "Connexion"
         },
         "Get started": {
+            en: "Get started",
             fr: "Inscription"
         }
     })

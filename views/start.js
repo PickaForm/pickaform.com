@@ -28,11 +28,6 @@ kiss.app.defineView("start", function (id, target) {
                     {
                         type: "view",
                         id: "footer"
-                    },
-                    // LEGAL
-                    {
-                        type: "view",
-                        id: "legal"
                     }
                 ]
             }

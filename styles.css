@@ -78,13 +78,18 @@
 /* FOOTER */
 .footer {
     color: #ffffff;
-    height: 400px;
     justify-content: center;
+    padding: 32px;
     background: rgb(0, 205, 246);
     background: -moz-linear-gradient(120deg, rgba(0, 205, 246, 1) 0%, rgba(0, 169, 241, 1) 100%);
     background: -webkit-linear-gradient(120deg, rgba(0, 205, 246, 1) 0%, rgba(0, 169, 241, 1) 100%);
     background: linear-gradient(120deg, rgba(0, 205, 246, 1) 0%, rgba(0, 169, 241, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#00cdf6", endColorstr="#00a9f1", GradientType=1);
+}
+
+.footer-column {
+    text-align: center;
+    width: 150px;
 }
 
 .footer-title {
@@ -96,8 +101,9 @@
 
 .footer-link {
     font-family: var(--font-famly);
-    font-size: 20px;
+    font-size: 16px;
     margin: 0.5vh;
+    cursor: pointer;
 }
 
 .footer-top-separator {

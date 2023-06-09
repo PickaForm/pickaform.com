@@ -1,62 +1,91 @@
 kiss.app.defineView("footer", function (id, target) {
+    const blogUrl = kiss.global.path + "/" + kiss.language.current + "/blog"
+
+    const t = defineTexts(id, {
+        "Home": {
+            en: "Home",
+            fr: "Accueil"
+        },
+        "Product": {
+            en: "Product",
+            fr: "Produit"
+        },
+        "Pricing": {
+            en: "Pricing",
+            fr: "Pricing"
+        },
+        "Privacy": {
+            en: "privacy policy",
+            fr: "politique de confidentialité"
+        },
+        "Terms": {
+            en: `terms of services`,
+            fr: `mentions légales`
+        }
+    })
+
     const entries = [
         // PRODUCT
         {
-            title: "Product",
+            title: "Site",
             items: [{
-                    label: "form",
+                    label: t("Home"),
                     action: () => kiss.views.show("landing", "content", true)
                 },
                 {
-                    label: "fields",
-                    action: () => kiss.views.show("landing", "content", true)
+                    label: t("Product"),
+                    action: () => kiss.views.show("product", "content", true)
                 },
                 {
-                    label: "workflow",
-                    action: () => kiss.views.show("landing", "content", true)
+                    label: "Contact",
+                    action: () => kiss.views.show("contact", "content", true)
                 },
                 {
-                    label: "API",
-                    action: () => kiss.views.show("landing", "content", true)
+                    label: "Blog",
+                    action: () => kiss.views.show("blog", "content", true)
+                },
+                {
+                    label: t("Pricing"),
+                    action: () => kiss.views.show("pricing", "content", true)
                 }
             ]
         },
-        // ALTERNATIVES
+        // LINKS
         {
-            title: "Alternatives",
-            items: [{
-                    label: "AirTable",
-                    action: () => kiss.views.show("landing", "content", true)
+            title: "Social",
+            items: [
+                {
+                    label: "LinkedIn",
+                    action: () => window.open("https://www.linkedin.com/company/pickaform-cloud/", "_new")
+                },                {
+                    label: "YouTube",
+                    action: () => window.open("https://www.youtube.com/@pickaform", "_new")
                 },
                 {
-                    label: "Asana",
-                    action: () => kiss.views.show("landing", "content", true)
+                    label: "Facebook",
+                    action: () => window.open("https://www.facebook.com/pickaform.applications", "_new")
                 },
                 {
-                    label: "Trello",
-                    action: () => kiss.views.show("landing", "content", true)
+                    label: "Twitter",
+                    action: () => window.open("https://twitter.com/PickaForm", "_new")
                 }
             ]
         },
-        // ALTERNATIVES
+        // LEGAL
         {
-            title: "Other cool stuff",
-            items: [{
-                    label: "Beboop",
-                    action: () => kiss.views.show("landing", "content", true)
-                },
+            title: "Legal",
+            items: [
                 {
-                    label: "Walalaa",
-                    action: () => kiss.views.show("landing", "content", true)
-                },
-                {
-                    label: "Grellox",
-                    action: () => kiss.views.show("landing", "content", true)
+                    label: t("Privacy"),
+                    action: () => window.open(blogUrl + "/politique-de-confidentialite", "_new")
+                },                {
+                    label: t("Terms"),
+                    action: () => window.open(blogUrl + "/mentions-legales", "_new")
                 }
             ]
-        }            
+        }        
     ]
-
+    
     const blocks = entries.map(entry => kiss.templates.footerBlock({
         title: entry.title,
         entries: entry.items
