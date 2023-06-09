@@ -96,7 +96,14 @@ kiss.app.defineView("footer", function (id, target) {
         target,
         class: "footer",
         layout: "horizontal",
-        items: blocks
+        items: blocks,
+
+        methods: {
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo
+        }
     })
 })
 

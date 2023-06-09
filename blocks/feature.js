@@ -8,7 +8,7 @@ kiss.templates.feature = function ({
     backgroundColor
 }) {
     const id = kiss.tools.shortUid()
-    const src = kiss.global.pathImg + screenshot
+    const src = kiss.global.pathImg + "/" + screenshot
 
     return {
         id,

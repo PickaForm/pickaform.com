@@ -4,7 +4,7 @@ kiss.templates.featureDetails = function ({
     screenshot
 }) {
     const id = kiss.tools.shortUid()
-    const src = kiss.global.pathImg + screenshot
+    const src = kiss.global.pathImg + "/" + screenshot
 
     return {
         id,

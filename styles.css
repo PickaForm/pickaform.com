@@ -75,6 +75,23 @@
     background-color: var(--button-background-hover) !important;
 }
 
+.button-flag {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: var(--button-shadow);
+    padding: 12px 11px;
+    margin: 0 0 0 5px;
+    cursor: pointer;
+    user-select: none;
+    border-radius: 5px;
+}
+
+.button-flag:hover {
+    box-shadow: var(--button-shadow-hover);
+    background-color: var(--button-background-hover) !important;
+}
+
 /* FOOTER */
 .footer {
     color: #ffffff;

@@ -1,4 +1,76 @@
-kiss.app.defineView("artworks", function (id, target) {
+kiss.db.mode = "memory"
+kiss.language.get()
+kiss.theme.set({color: "dark"})
+kiss.global.path = `https://${window.location.host}`
+kiss.global.pathImg = "./resources/img"
+kiss.global.blogEndPoint = "https://cloud.pickaform.com/command/blog" // https://localhost/command/blog
+kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7" // "0187ed6f-35e4-7b17-80c5-046e69931916"
+
+;/**
+ * Global functions for translation
+ */
+const t = (textId) => `<span class="localized" id="${textId}">${txtTitleCase(textId)}</span>`
+const translateByPage = (textId, id = "") => `<span class="localized" id="${id + "-" + textId}">${txtTitleCase(id + "-" + textId)}</span>`
+
+/**
+ * Define texts for a specific page
+ * 
+ * @param {string} pageId 
+ * @param {object[]} texts 
+ * @returns 
+ */
+const defineTexts = (pageId, texts) => {
+    let mappedTexts = {}
+    Object.keys(texts).forEach(key => mappedTexts[pageId + "-" + key] = texts[key])
+    kiss.app.defineTexts(mappedTexts)
+
+    const closure = (pageId) => {
+        return (textId) => {
+            return translateByPage(textId, pageId)
+        }
+    }
+    return closure(pageId)
+}
+
+/**
+ * Translate all localized elements of a page
+ * 
+ * @param {string} language 
+ */
+function translateTo(language) {
+    kiss.language.current = language
+    const itemsToTranslate = this.querySelectorAll(".localized")
+    
+    itemsToTranslate.forEach(item => {
+        const textId = item.getAttribute("id")
+        const newText = t(textId)
+        item.innerHTML = newText
+    })
+}
+
+/**
+ * Translate navbar, content, footer
+ */
+function translate() {
+    const translateButton = $("language")
+    const flagImage = translateButton.querySelector("img")
+    
+    // Switch flag image
+    const newFlag = `${kiss.global.pathImg}/flag-${kiss.language.current}.svg`
+    flagImage.src = newFlag
+
+    // Update language
+    let newLanguage = (kiss.language.current == "fr") ? "en" : "fr"
+    kiss.language.current = newLanguage
+
+    // Translate navbar, footer, content
+    $("navbar").translateTo(newLanguage)
+    $("footer").translateTo(newLanguage)
+    const currentContent = kiss.router.getRoute().content
+    $(currentContent).translateTo(newLanguage)
+}
+
+;kiss.app.defineView("artworks", function (id, target) {
     // Static model properties
     const modelId = "0188527b-7570-7551-9c32-99e1958e25b5"
     const fieldTitle = "pJZ5QvWL"
@@ -654,7 +726,14 @@ kiss.app.defineView("artworks", function (id, target) {
         target,
         class: "footer",
         layout: "horizontal",
-        items: blocks
+        items: blocks,
+
+        methods: {
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo
+        }
     })
 })
 
@@ -778,7 +857,7 @@ kiss.app.defineView("artworks", function (id, target) {
         },
         "Pricing": {
             en: "Pricing",
-            fr: "Pricing"
+            fr: "Tarifs"
         },
         "Templates": {
             en: "Templates",
@@ -895,6 +974,18 @@ kiss.app.defineView("artworks", function (id, target) {
                 id: "topbar-buttons",
                 items: buttons
             },
+            // LANGUAGE
+            {
+                id: "language",
+                class: "button-flag",
+                type: "html",
+                html: `<img style="width: 16px" src="${kiss.global.pathImg}/flag-${(kiss.language.current == "fr") ? "en" : "fr"}.svg">`,
+                events: {
+                    click: function() {
+                        translate()
+                    }
+                }
+            },
             // CONTRAST
             {
                 id: "mode",
@@ -913,6 +1004,7 @@ kiss.app.defineView("artworks", function (id, target) {
                 event.preventDefault()
                 let element = event.target
 
+                // Dark and Light mode
                 if (element.id == "mode") {
                     if (kiss.theme.currentColor == "dark") {
                         kiss.theme.set({
@@ -926,18 +1018,10 @@ kiss.app.defineView("artworks", function (id, target) {
                     return
                 }
 
-                if (element.classList.contains("field-checkbox-icon")) {
-                    const currentState = $("mode").getValue()
-                    const theme = (currentState === false) ? "dark" : "light"
-                    kiss.theme.set({
-                        color: theme
-                    })
-                    return
-                }
-
+                // Manage client-side navigation
                 if (element.tagName == "SPAN") element = element.closest("a")
                 if (element.tagName == "LI") element = element.querySelector("a")
-
+                
                 if (element.tagName == "A") {
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
@@ -950,15 +1034,6 @@ kiss.app.defineView("artworks", function (id, target) {
                         window.open(element.href, target)
                     }
                 }
-            },
-
-            mouseover: function (event) {
-                event.preventDefault()
-
-                let element = event.target
-
-
-
             }
         },
 
@@ -1019,7 +1094,7 @@ kiss.app.defineView("artworks", function (id, target) {
                                 layout: "vertical",
                                 items: menu,
                                 events: {
-                                    click: function(event) {
+                                    click: function (event) {
                                         this.close()
                                     }
                                 }
@@ -1987,7 +2062,7 @@ kiss.templates.breadcrumb = function(post) {
     backgroundColor
 }) {
     const id = kiss.tools.shortUid()
-    const src = kiss.global.pathImg + screenshot
+    const src = kiss.global.pathImg + "/" + screenshot
 
     return {
         id,
@@ -2076,7 +2151,7 @@ kiss.templates.breadcrumb = function(post) {
     screenshot
 }) {
     const id = kiss.tools.shortUid()
-    const src = kiss.global.pathImg + screenshot
+    const src = kiss.global.pathImg + "/" + screenshot
 
     return {
         id,
@@ -2193,7 +2268,7 @@ kiss.templates.pricingPlan = function (plan) {
 }
 
 ;kiss.templates.screenshot = function (src) {
-    src = kiss.global.pathImg + src
+    src = kiss.global.pathImg + "/" + src
 
     return {
         type: "html",

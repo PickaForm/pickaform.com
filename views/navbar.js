@@ -10,7 +10,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         "Pricing": {
             en: "Pricing",
-            fr: "Pricing"
+            fr: "Tarifs"
         },
         "Templates": {
             en: "Templates",
@@ -127,6 +127,18 @@ kiss.app.defineView("navbar", function (id, target) {
                 id: "topbar-buttons",
                 items: buttons
             },
+            // LANGUAGE
+            {
+                id: "language",
+                class: "button-flag",
+                type: "html",
+                html: `<img style="width: 16px" src="${kiss.global.pathImg}/flag-${(kiss.language.current == "fr") ? "en" : "fr"}.svg">`,
+                events: {
+                    click: function() {
+                        translate()
+                    }
+                }
+            },
             // CONTRAST
             {
                 id: "mode",
@@ -145,6 +157,7 @@ kiss.app.defineView("navbar", function (id, target) {
                 event.preventDefault()
                 let element = event.target
 
+                // Dark and Light mode
                 if (element.id == "mode") {
                     if (kiss.theme.currentColor == "dark") {
                         kiss.theme.set({
@@ -158,18 +171,10 @@ kiss.app.defineView("navbar", function (id, target) {
                     return
                 }
 
-                if (element.classList.contains("field-checkbox-icon")) {
-                    const currentState = $("mode").getValue()
-                    const theme = (currentState === false) ? "dark" : "light"
-                    kiss.theme.set({
-                        color: theme
-                    })
-                    return
-                }
-
+                // Manage client-side navigation
                 if (element.tagName == "SPAN") element = element.closest("a")
                 if (element.tagName == "LI") element = element.querySelector("a")
-
+                
                 if (element.tagName == "A") {
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
@@ -182,15 +187,6 @@ kiss.app.defineView("navbar", function (id, target) {
                         window.open(element.href, target)
                     }
                 }
-            },
-
-            mouseover: function (event) {
-                event.preventDefault()
-
-                let element = event.target
-
-
-
             }
         },
 
@@ -251,7 +247,7 @@ kiss.app.defineView("navbar", function (id, target) {
                                 layout: "vertical",
                                 items: menu,
                                 events: {
-                                    click: function(event) {
+                                    click: function (event) {
                                         this.close()
                                     }
                                 }

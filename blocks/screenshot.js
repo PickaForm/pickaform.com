@@ -1,5 +1,5 @@
 kiss.templates.screenshot = function (src) {
-    src = kiss.global.pathImg + src
+    src = kiss.global.pathImg + "/" + src
 
     return {
         type: "html",
