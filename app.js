@@ -335,6 +335,11 @@ function translate() {
                 this.getPosts(0, 6)
             },
 
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo,
+
             async getPosts(skip, limit) {
                 const response = await kiss.ajax.request({
                     url: postEndpoint,
