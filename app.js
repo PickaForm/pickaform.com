@@ -342,7 +342,7 @@ function translate() {
                     body: JSON.stringify({
                         modelId: kiss.global.blogModelId,
                         sortSyntax: "mongo",
-                        sort: {[fieldPublicationDate]: -1}, // Sort by publication date
+                        sort: {[kiss.global.blogPostPublicationDate]: -1}, // Sort by publication date
                         skip,
                         limit
                     })
