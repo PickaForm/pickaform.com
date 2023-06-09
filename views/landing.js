@@ -26,10 +26,8 @@ kiss.app.defineView("landing", function (id, target) {
         },
         titleFlexibility: {
             en: `no-code
-                <br>
                 = <span class="text-highlight" style="background-color: #ed3757">flexibility</span>`,
             fr: `no-code
-                <br>
                 = <span class="text-highlight" style="background-color: #ed3757">flexibilité</span>`,
         },
         subtitleFlexibility: {

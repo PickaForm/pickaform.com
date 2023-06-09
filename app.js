@@ -686,10 +686,8 @@ kiss.app.defineView("artworks", function (id, target) {
         },
         titleFlexibility: {
             en: `no-code
-                <br>
                 = <span class="text-highlight" style="background-color: #ed3757">flexibility</span>`,
             fr: `no-code
-                <br>
                 = <span class="text-highlight" style="background-color: #ed3757">flexibilité</span>`,
         },
         subtitleFlexibility: {
@@ -1249,6 +1247,7 @@ kiss.app.defineView("artworks", function (id, target) {
 
         // Field types
         text: {
+            en: "text",
             fr: "texte"
         },
         textDescription: {
@@ -1256,6 +1255,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Ajoutez un court texte à n'importe quel élément. Le champ Texte est utilisé pour des champs simples comme un nom, un titre, etc..."
         },
         number: {
+            en: "number",
             fr: "nombre"
         },
         numberDescription: {
@@ -1263,6 +1263,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Nombre permet de traiter les informations numériques telles que des montants, et vous pouvez également choisir les unités."
         },
         date: {
+            en: "date",
             fr: "date"
         },
         dateDescription: {
@@ -1270,6 +1271,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Date vous permet de sélectionner une date dans un calendrier, par exemple pour fixer un RDV, une deadline, une échéance..."
         },
         time: {
+            en: "time",
             fr: "heure"
         },
         timeDescription: {
@@ -1277,6 +1279,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Heure propose une liste déroulante de créneaux horaires dont l'incrément est paramétrable (par exemple toutes les 5mn)."
         },
         paragraph: {
+            en: "paragraph",
             fr: "paragraphe"
         },
         paragraphDescription: {
@@ -1308,6 +1311,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Les listes déroulantes peuvent si nécessaire recevoir plusieurs valeurs et agir comme des tags."
         },        
         checkbox: {
+            en: "checkbox",
             fr: "case à cocher"
         },
         checkboxDescription: {
@@ -1323,6 +1327,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Barre de progression est utile pour afficher l'avancement d'une tâche ou d'un projet de manière visuelle."
         },
         rating: {
+            en: "rating",
             fr: "notation"
         },
         ratingDescription: {
@@ -1330,6 +1335,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Notation est utile pour évaluer des objets de 1 à 10, et vous pouvez aussi choisir son symbole."
         },
         attachment: {
+            en: "attachment",
             fr: "fichiers attachés"
         },
         attachmentDescription: {
@@ -1367,6 +1373,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Couleur permet d'attribuer une couleur à une donnée en la sélectionnant dans une palette."
         },
         icon: {
+            en: "icon",
             fr: "icône"
         },
         iconDescription: {
@@ -1374,6 +1381,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Icône vous permet d'associer une icône à un objet à partir d'une palette de plus de 1000 icônes."
         },
         password: {
+            en: "password",
             fr: "mot de passe"
         },
         passwordDescription: {
