@@ -1,8 +1,4 @@
 kiss.app.defineView("blog", function (id, target) {
-    // Static model properties
-    const fieldTitle = "y9yVRPEQ"
-    const fieldDescription = "BedquzD8"
-    const fieldPublicationDate = "floopJiS"
     const postEndpoint = kiss.global.blogEndPoint + "/list"
 
     const t = defineTexts(id, {
@@ -92,7 +88,7 @@ kiss.app.defineView("blog", function (id, target) {
                         skip,
                         limit,
                         sortSyntax: "mongo",
-                        sort: {[fieldPublicationDate]: -1}, // Sort by publication date
+                        sort: {[kiss.global.blogPostPublicationDate]: -1}, // Sort by publication date
                         filterSyntax: "normalized",
                         filter: {
                             type: "group",
@@ -101,14 +97,14 @@ kiss.app.defineView("blog", function (id, target) {
                                 // Search in title
                                 {
                                     type: "filter",
-                                    fieldId: fieldTitle,
+                                    fieldId: kiss.global.blogPostTitle,
                                     operator: "contains",
                                     value: term
                                 },
                                 // Search in description
                                 {
                                     type: "filter",
-                                    fieldId: fieldDescription,
+                                    fieldId: kiss.global.blogPostDescription,
                                     operator: "contains",
                                     value: term
                                 }

@@ -72,8 +72,8 @@ kiss.app.defineView("pricing", function(id, target) {
 
         events: {
             click: (event) => {
-                if (event.target.classList.contains("pricing-plan-CTA")) {
-                    document.location = "https://localhost/client/pickaform/index_dev.html#ui=authentication-register"
+                if (event.target.closest("div").classList.contains("pricing-plan-CTA")) {
+                    document.location = kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register"
                 }
             }
         },

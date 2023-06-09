@@ -1,6 +1,4 @@
 kiss.app.defineView("contact", function (id, target) {
-    const modelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
-
     const t = defineTexts(id, {
         title: {
             en: "Let's keep in touch",
@@ -127,7 +125,7 @@ kiss.app.defineView("contact", function (id, target) {
                             formData.useLabels = true
         
                             await kiss.ajax.request({
-                                url: "https://localhost/command/publicForm/post/" + modelId,
+                                url: kiss.global.pathPickaform + "/command/publicForm/post/" + kiss.global.contactModelId,
                                 method: "post",
                                 body: JSON.stringify(formData)
                             })
