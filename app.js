@@ -1359,6 +1359,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Ce type de champ permet de récupérer simultanément plusieurs valeurs d'une autre fiche en la sélectionnant dans une vue."
         },
         collaborators: {
+            en: "collaborators",
             fr: "collaborateurs"
         },
         collaboratorsDescription: {
@@ -1366,6 +1367,7 @@ kiss.app.defineView("artworks", function (id, target) {
             fr: "Le champ Collaborateurs affiche dans une liste déroulante le carnet d'adresses des utilisateurs et des groupes de votre organisation."
         },
         color: {
+            en: "color",
             fr: "couleur"
         },
         colorDescription: {
