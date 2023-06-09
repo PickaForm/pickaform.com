@@ -21,6 +21,7 @@ kiss.app.defineView("pricing", function(id, target) {
             fr: "utilisateur /<br>mois"
         },
         "Get started": {
+            en: "Get started",
             fr: "Incription"
         }
     })
@@ -66,7 +67,7 @@ kiss.app.defineView("pricing", function(id, target) {
             {
                 type: "html",
                 class: "pricing-table",
-                html: kiss.templates.pricingTable(plans)
+                html: kiss.templates.pricingTable(plans, t)
             }
         ],
 

@@ -1,12 +1,12 @@
-kiss.templates.pricingTable = function (plans) {
+kiss.templates.pricingTable = function (plans, t) {
     return /*html*/ `
         <div class="pricing-table">
-            ${plans.map(plan => kiss.templates.pricingPlan(plan))}
+            ${plans.map(plan => kiss.templates.pricingPlan(plan, t))}
         </div>
     `
 }
 
-kiss.templates.pricingPlan = function (plan) {
+kiss.templates.pricingPlan = function (plan, t) {
     const gradient = kiss.tools.CSSGradient(plan.color, 135, -0.6)
     const lightColor = kiss.tools.adjustColor(plan.color, 1)
     const check = `<span style="color:${lightColor}" class="pricing-plan-check">✓</span>`

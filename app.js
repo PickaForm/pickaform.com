@@ -2,9 +2,14 @@ kiss.db.mode = "memory"
 kiss.language.get()
 kiss.theme.set({color: "dark"})
 kiss.global.path = `https://${window.location.host}`
+kiss.global.pathPickaform = `https://cloud.pickaform.com`
 kiss.global.pathImg = "./resources/img"
-kiss.global.blogEndPoint = "https://cloud.pickaform.com/command/blog" // https://localhost/command/blog
-kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7" // "0187ed6f-35e4-7b17-80c5-046e69931916"
+kiss.global.blogEndPoint = "https://cloud.pickaform.com/command/blog"
+kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
+kiss.global.blogPostTitle = "y9yVRPEQ"
+kiss.global.blogPostDescription = "BedquzD8"
+kiss.global.blogPostPublicationDate = "floopJiS"
+kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 
 ;/**
  * Global functions for translation
@@ -271,10 +276,6 @@ function translate() {
 })
 
 ;kiss.app.defineView("blog", function (id, target) {
-    // Static model properties
-    const fieldTitle = "y9yVRPEQ"
-    const fieldDescription = "BedquzD8"
-    const fieldPublicationDate = "floopJiS"
     const postEndpoint = kiss.global.blogEndPoint + "/list"
 
     const t = defineTexts(id, {
@@ -364,7 +365,7 @@ function translate() {
                         skip,
                         limit,
                         sortSyntax: "mongo",
-                        sort: {[fieldPublicationDate]: -1}, // Sort by publication date
+                        sort: {[kiss.global.blogPostPublicationDate]: -1}, // Sort by publication date
                         filterSyntax: "normalized",
                         filter: {
                             type: "group",
@@ -373,14 +374,14 @@ function translate() {
                                 // Search in title
                                 {
                                     type: "filter",
-                                    fieldId: fieldTitle,
+                                    fieldId: kiss.global.blogPostTitle,
                                     operator: "contains",
                                     value: term
                                 },
                                 // Search in description
                                 {
                                     type: "filter",
-                                    fieldId: fieldDescription,
+                                    fieldId: kiss.global.blogPostDescription,
                                     operator: "contains",
                                     value: term
                                 }
@@ -481,8 +482,6 @@ function translate() {
 })
 
 ;kiss.app.defineView("contact", function (id, target) {
-    const modelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
-
     const t = defineTexts(id, {
         title: {
             en: "Let's keep in touch",
@@ -609,7 +608,7 @@ function translate() {
                             formData.useLabels = true
         
                             await kiss.ajax.request({
-                                url: "https://localhost/command/publicForm/post/" + modelId,
+                                url: kiss.global.pathPickaform + "/command/publicForm/post/" + kiss.global.contactModelId,
                                 method: "post",
                                 body: JSON.stringify(formData)
                             })
@@ -651,6 +650,10 @@ function translate() {
         "Terms": {
             en: `terms of services`,
             fr: `mentions légales`
+        },
+        "Technology": {
+            en: `technology`,
+            fr: `technologie`
         }
     })
 
@@ -701,6 +704,16 @@ function translate() {
                 }
             ]
         },
+        // TECH
+        {
+            title: t("Technology"),
+            items: [
+                {
+                    label: "Powered by KissJS",
+                    action: () => window.open("https://kissjs.net", "_new")
+                }
+            ]
+        },        
         // LEGAL
         {
             title: "Legal",
@@ -713,7 +726,7 @@ function translate() {
                     action: () => window.open(blogUrl + "/mentions-legales", "_new")
                 }
             ]
-        }        
+        }
     ]
     
     const blocks = entries.map(entry => kiss.templates.footerBlock({
@@ -725,7 +738,6 @@ function translate() {
         id,
         target,
         class: "footer",
-        layout: "horizontal",
         items: blocks,
 
         methods: {
@@ -919,21 +931,21 @@ function translate() {
         // TEMPLATES
         {
             text: t("Templates"),
-            href: "https://app.pickaform.com/client/pickaform/demo.html#ui=templates-list",
+            href: kiss.global.pathPickaform + "/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
             view: ""
         },
         // LOGIN
         {
             text: t("Login"),
-            href: "https://app.pickaform.com/client/pickaform/index_dev.html#ui=authentication-login",
+            href: kiss.global.pathPickaform + "/client/pickaform/index_dev.html#ui=authentication-login",
             target: "_new",
             view: ""
         },
         // REGISTER
         {
             text: t("Get started"),
-            href: "https://app.pickaform.com/client/pickaform/index_dev.html#ui=authentication-register",
+            href: kiss.global.pathPickaform + "/client/pickaform/index_dev.html#ui=authentication-register",
             target: "_new",
             view: ""
         }
@@ -1140,6 +1152,7 @@ function translate() {
             fr: "utilisateur /<br>mois"
         },
         "Get started": {
+            en: "Get started",
             fr: "Incription"
         }
     })
@@ -1185,14 +1198,14 @@ function translate() {
             {
                 type: "html",
                 class: "pricing-table",
-                html: kiss.templates.pricingTable(plans)
+                html: kiss.templates.pricingTable(plans, t)
             }
         ],
 
         events: {
             click: (event) => {
-                if (event.target.classList.contains("pricing-plan-CTA")) {
-                    document.location = "https://localhost/client/pickaform/index_dev.html#ui=authentication-register"
+                if (event.target.closest("div").classList.contains("pricing-plan-CTA")) {
+                    document.location = kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register"
                 }
             }
         },
@@ -2233,15 +2246,15 @@ kiss.templates.navbarItems = function (items) {
     }).join("")
 }
 
-;kiss.templates.pricingTable = function (plans) {
+;kiss.templates.pricingTable = function (plans, t) {
     return /*html*/ `
         <div class="pricing-table">
-            ${plans.map(plan => kiss.templates.pricingPlan(plan))}
+            ${plans.map(plan => kiss.templates.pricingPlan(plan, t))}
         </div>
     `
 }
 
-kiss.templates.pricingPlan = function (plan) {
+kiss.templates.pricingPlan = function (plan, t) {
     const gradient = kiss.tools.CSSGradient(plan.color, 135, -0.6)
     const lightColor = kiss.tools.adjustColor(plan.color, 1)
     const check = `<span style="color:${lightColor}" class="pricing-plan-check">✓</span>`

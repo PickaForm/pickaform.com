@@ -21,6 +21,10 @@ kiss.app.defineView("footer", function (id, target) {
         "Terms": {
             en: `terms of services`,
             fr: `mentions légales`
+        },
+        "Technology": {
+            en: `technology`,
+            fr: `technologie`
         }
     })
 
@@ -71,6 +75,16 @@ kiss.app.defineView("footer", function (id, target) {
                 }
             ]
         },
+        // TECH
+        {
+            title: t("Technology"),
+            items: [
+                {
+                    label: "Powered by KissJS",
+                    action: () => window.open("https://kissjs.net", "_new")
+                }
+            ]
+        },        
         // LEGAL
         {
             title: "Legal",
@@ -83,7 +97,7 @@ kiss.app.defineView("footer", function (id, target) {
                     action: () => window.open(blogUrl + "/mentions-legales", "_new")
                 }
             ]
-        }        
+        }
     ]
     
     const blocks = entries.map(entry => kiss.templates.footerBlock({
@@ -95,7 +109,6 @@ kiss.app.defineView("footer", function (id, target) {
         id,
         target,
         class: "footer",
-        layout: "horizontal",
         items: blocks,
 
         methods: {

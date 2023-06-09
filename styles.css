@@ -94,6 +94,9 @@
 
 /* FOOTER */
 .footer {
+    display: inline-flex;
+    flex-wrap: wrap;
+    width: 100%;
     color: #ffffff;
     justify-content: center;
     padding: 32px;
@@ -106,7 +109,7 @@
 
 .footer-column {
     text-align: center;
-    width: 150px;
+    width: 200px;
 }
 
 .footer-title {
