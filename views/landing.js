@@ -13,16 +13,16 @@ kiss.app.defineView("landing", function (id, target) {
             fr: "Créez vos workflows en quelques minutes.<br>Collaborez instantanément.",
         },
         titleNocodeWorkflow: {
-            en: `no-code + workflows + ai
+            en: `no-code + workflows + AI
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">superpowers</span>`,
-            fr: `no-code + workflows + ai
+            fr: `no-code + workflows + IA
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">super pouvoirs</span>`,
         },
         subtitleNocodeWorkflow: {
             en: "Pick a form or build one.<br>Connect your workflows.<br>Add a pinch of AI.",
-            fr: "Choisissez vos formulaires.<br>Connectez vos workflows.<br>Ajouter une pincée d'IA.",
+            fr: "Choisissez vos formulaires<br>Connectez vos workflows<br>Ajoutez une pincée d'IA",
         },
         titleFlexibility: {
             en: `no-code
