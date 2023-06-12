@@ -1,16 +1,27 @@
+// Kiss init
 kiss.db.mode = "memory"
 kiss.language.get()
-kiss.theme.set({color: "dark"})
+kiss.theme.set({color: "light"})
+
+// Paths
 kiss.global.path = `https://${window.location.host}`
-kiss.global.pathPickaform = `https://cloud.pickaform.com`
 kiss.global.pathImg = "./resources/img"
+kiss.global.pathPickaform = `https://cloud.pickaform.com`
+
+// Blog
 kiss.global.blogEndPoint = "https://cloud.pickaform.com/command/blog"
 kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
 kiss.global.blogPostTitle = "y9yVRPEQ"
 kiss.global.blogPostDescription = "BedquzD8"
 kiss.global.blogPostPublicationDate = "floopJiS"
+
+// Contact
 kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 
+// AI Art
+kiss.global.artEndPoint = "https://cloud.pickaform.com/command/product"
+kiss.global.artModelId = "01889cf0-5878-7352-93b5-3a0fb88c852f"
+kiss.global.artTitle = "pJZ5QvWL"
 ;/**
  * Global functions for translation
  */
@@ -76,10 +87,6 @@ function translate() {
 }
 
 ;kiss.app.defineView("artworks", function (id, target) {
-    // Static model properties
-    const modelId = "0188527b-7570-7551-9c32-99e1958e25b5"
-    const fieldTitle = "pJZ5QvWL"
-
     return createBlock({
         id: id,
         target,
@@ -115,13 +122,16 @@ function translate() {
             // Pager
             {
                 id: "artworks-pager",
-                class: "artworks-pager"
+                class: "blog-pager"
             }
         ],
 
         events: {
             click: (event) => {
-                if (event.target.closest("div").classList.contains("artwork")) {
+                let div = event.target.closest("div")
+                if (!div) return
+
+                if (div.classList.contains("artwork")) {
                     const filename = event.target.src.replace(".256x256", "")
                     const tags = event.target.alt
 
@@ -162,10 +172,10 @@ function translate() {
 
             async getArtworks(skip, limit) {
                 const response = await kiss.ajax.request({
-                    url: kiss.global.path + "/command/product/list",
+                    url: kiss.global.artEndPoint + "/list",
                     method: "post",
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.artModelId,
                         sortSyntax: "mongo",
                         sort: {
                             createdAt: -1 // Sort by creation date
@@ -175,17 +185,17 @@ function translate() {
                     })
                 })
 
-                $("artworks-list").setInnerHtml(this.toHtml(response))
-                this.createPager(response.totalCount, skip, response.limit)
+                $("artworks-list").setInnerHtml($(id).toHtml(response))
+                $(id).createPager(response.totalCount, skip, response.limit)
             },
 
             async search(term, skip = 0, limit = 6) {
                 const response = await kiss.ajax.request({
-                    url: kiss.global.path + "/command/product/list",
+                    url: kiss.global.artEndPoint + "/list",
                     method: "post",
                     showLoading: true,
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.artModelId,
                         skip,
                         limit,
                         sortSyntax: "mongo",
@@ -200,7 +210,7 @@ function translate() {
                                 // Search in title
                                 {
                                     type: "filter",
-                                    fieldId: fieldTitle,
+                                    fieldId: kiss.global.artTitle,
                                     operator: "contains",
                                     value: term
                                 }
@@ -209,8 +219,8 @@ function translate() {
                     })
                 })
 
-                $("artworks-list").setInnerHtml(this.toHtml(response))
-                this.createPager(response.totalCount, response.skip, response.limit, term)
+                $("artworks-list").setInnerHtml($(id).toHtml(response))
+                $(id).createPager(response.totalCount, response.skip, response.limit, term)
             },
 
             toHtml(response) {
@@ -226,7 +236,7 @@ function translate() {
                         }
                     })
                 }).flat()
-                return items.map(this.renderArtwork).join("")
+                return items.map($(id).renderArtwork).join("")
             },
 
             renderArtwork(artwork) {
@@ -238,37 +248,9 @@ function translate() {
             },
 
             createPager(count, skip, limit, searchTerm) {
-                const rest = count % limit
-                const numberOfPages = Math.floor(count / limit) + ((rest == 0) ? 0 : 1)
-                const pageNumber = skip / limit
-
-                kiss.router.updateUrlHash({
-                    page: pageNumber + 1
-                })
-
-                let pagerButtons = []
-
-                for (let i = 0; i < numberOfPages; i++) {
-                    let newButton = {
-                        type: "button",
-                        text: i + 1 + "",
-                        backgroundColor: (i == pageNumber) ? "#bdecff" : "",
-                        width: "5vh",
-                        height: "5vh",
-                        borderRadius: "5vh",
-                        margin: "5px",
-                        action: () => {
-                            const newSkip = i * limit
-                            if (searchTerm) {
-                                $(id).search(searchTerm, newSkip, limit)
-                            } else {
-                                $(id).getArtworks(newSkip, limit)
-                            }
-                        }
-                    }
-                    pagerButtons.push(newButton)
-                }
-
+                const searchFunction = $(id).search
+                const getItemsFunction = $(id).getArtworks
+                const pagerButtons = kiss.templates.pager(count, skip, limit, searchTerm, searchFunction, getItemsFunction)
                 $("artworks-pager").setItems(pagerButtons)
             }
         }
@@ -357,7 +339,7 @@ function translate() {
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
-                this.createPager(response.totalCount, skip, response.limit)
+                $(id).createPager(response.totalCount, skip, response.limit)
             },
 
             async search(term, skip = 0, limit = 6) {
@@ -398,42 +380,13 @@ function translate() {
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
-                this.createPager(response.totalCount, response.skip, response.limit, term)
+                $(id).createPager(response.totalCount, response.skip, response.limit, term)
             },
 
             createPager(count, skip, limit, searchTerm) {
-                const rest = count % limit
-                const numberOfPages = Math.floor(count / limit) + ((rest == 0) ? 0 : 1)
-                const pageNumber = skip / limit
-                
-                kiss.router.updateUrlHash({
-                    page: pageNumber + 1
-                })
-
-                let pagerButtons = []
-
-                for (let i = 0; i < numberOfPages; i++) {
-                    let newButton = {
-                        type: "button",
-                        text: i + 1 + "",
-                        backgroundColor: (i == pageNumber) ? "#bdecff" : "",
-                        width: "5vh",
-                        height: "5vh",
-                        borderRadius: "5vh",
-                        margin: "5px",
-                        action: () => {
-                            const newSkip = i * limit
-                            if (searchTerm) {
-                                $(id).search(searchTerm, newSkip, limit)
-                            }
-                            else {
-                                $(id).getPosts(newSkip, limit)
-                            }
-                        }
-                    }
-                    pagerButtons.push(newButton)
-                }
-
+                const searchFunction = $(id).search
+                const getItemsFunction = $(id).getPosts
+                const pagerButtons = kiss.templates.pager(count, skip, limit, searchTerm, searchFunction, getItemsFunction)
                 $("blog-pager").setItems(pagerButtons)
             }            
         }
@@ -659,6 +612,10 @@ function translate() {
         "Technology": {
             en: `technology`,
             fr: `technologie`
+        },
+        "AI Art": {
+            en: "Midjourney integration",
+            fr: "Intégration Midjourney"
         }
     })
 
@@ -716,6 +673,24 @@ function translate() {
                 {
                     label: "Powered by KissJS",
                     action: () => window.open("https://kissjs.net", "_new")
+                },
+                {
+                    label: t("AI Art"),
+                    action: () => kiss.views.show("artworks", "content", true)
+                }
+            ]
+        },
+        // ARCHIVES
+        {
+            title: "Archives",
+            items: [
+                {
+                    label: "Blog (English)",
+                    action: () => window.open("https://blog.pickaform.com/en/", "_new")
+                },
+                {
+                    label: "Blog (Français)",
+                    action: () => window.open("https://blog.pickaform.com/fr/", "_new")
                 }
             ]
         },        
@@ -769,16 +744,16 @@ function translate() {
             fr: "Créez vos workflows en quelques minutes.<br>Collaborez instantanément.",
         },
         titleNocodeWorkflow: {
-            en: `no-code + workflows
+            en: `no-code + workflows + ai
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">superpowers</span>`,
-            fr: `no-code + workflows
+            fr: `no-code + workflows + ai
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">super pouvoirs</span>`,
         },
         subtitleNocodeWorkflow: {
-            en: "Pick a form or build one.<br>Connect your workflows.",
-            fr: "Choisissez vos formulaires.<br>Connectez vos workflows.",
+            en: "Pick a form or build one.<br>Connect your workflows.<br>Add a pinch of AI.",
+            fr: "Choisissez vos formulaires.<br>Connectez vos workflows.<br>Ajouter une pincée d'IA.",
         },
         titleFlexibility: {
             en: `no-code
@@ -919,13 +894,13 @@ function translate() {
             target: "_self",
             view: "blog"
         },
-        // ART
-        {
-            text: "AI Art",
-            href: `${kiss.global.path}/${kiss.language.current}/artworks`,
-            target: "_self",
-            view: "artworks"
-        },
+        // // ART
+        // {
+        //     text: "AI Art",
+        //     href: `${kiss.global.path}/${kiss.language.current}/artworks`,
+        //     target: "_self",
+        //     view: "artworks"
+        // },
         // PRICING
         {
             text: t("Pricing"),
@@ -2251,7 +2226,43 @@ kiss.templates.navbarItems = function (items) {
     }).join("")
 }
 
-;kiss.templates.pricingTable = function (plans, t) {
+;kiss.templates.pager = function (count, skip, limit, searchTerm, searchFunction, getItemsFunction) {
+    const rest = count % limit
+    const numberOfPages = Math.floor(count / limit) + ((rest == 0) ? 0 : 1)
+    const pageNumber = skip / limit
+
+    kiss.router.updateUrlHash({
+        page: pageNumber + 1
+    })
+
+    let pagerButtons = []
+
+    for (let i = 0; i < numberOfPages; i++) {
+        let newButton = {
+            type: "button",
+            text: i + 1 + "",
+            color: (i == pageNumber) ? "#ffffff" : "",
+            backgroundColor: (i == pageNumber) ? "#00aaee" : "",
+            fontSize: "1.5vh !important",
+            width: "3vh",
+            height: "3vh",
+            borderRadius: "5vh",
+            margin: "5px",
+            action: () => {
+                const newSkip = i * limit
+                if (searchTerm) {
+                    searchFunction(searchTerm, newSkip, limit)
+                } else {
+                    getItemsFunction(newSkip, limit)
+                }
+            }
+        }
+        pagerButtons.push(newButton)
+    }
+
+    return pagerButtons
+}
+kiss.templates.pricingTable = function (plans, t) {
     return /*html*/ `
         <div class="pricing-table">
             ${plans.map(plan => kiss.templates.pricingPlan(plan, t))}

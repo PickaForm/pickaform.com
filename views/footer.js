@@ -93,6 +93,20 @@ kiss.app.defineView("footer", function (id, target) {
                 }
             ]
         },
+        // ARCHIVES
+        {
+            title: "Archives",
+            items: [
+                {
+                    label: "Blog (English)",
+                    action: () => window.open("https://blog.pickaform.com/en/", "_new")
+                },
+                {
+                    label: "Blog (Français)",
+                    action: () => window.open("https://blog.pickaform.com/fr/", "_new")
+                }
+            ]
+        },        
         // LEGAL
         {
             title: "Legal",
