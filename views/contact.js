@@ -21,7 +21,7 @@ kiss.app.defineView("contact", function (id, target) {
             fr: "société"
         },
         project: {
-            project: "project",
+            en: "project",
             fr: "projet"
         },
         language: {

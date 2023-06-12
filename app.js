@@ -474,7 +474,7 @@ function translate() {
             fr: "société"
         },
         project: {
-            project: "project",
+            en: "project",
             fr: "projet"
         },
         language: {
