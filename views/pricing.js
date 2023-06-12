@@ -23,7 +23,20 @@ kiss.app.defineView("pricing", function(id, target) {
         "Get started": {
             en: "Get started",
             fr: "Incription"
-        }
+        },
+        enterprisePlan: {
+            en: `We have many other plans beyond that, and also on-premise versions beyond 100 users.
+                <br>
+                Please contact us for more informations:`,
+            fr: `Nous avons des offres au-delà, et des versions on-premise à partir de 100 utilisateurs.
+                <br>
+                Contactez-nous pour plus d'informations :`
+        },
+        contactUs: {
+            en: "Contact us",
+            fr: "Contactez-nous"
+        },
+        
     })
 
     const plans = [
@@ -68,6 +81,15 @@ kiss.app.defineView("pricing", function(id, target) {
                 type: "html",
                 class: "pricing-table",
                 html: kiss.templates.pricingTable(plans, t)
+            },
+            {
+                type: "html",
+                class: "pricing-enterprise",
+                html: t("enterprisePlan")
+            },
+            kiss.templates.buttonCTA(t("contactUs"), "contact"),
+            {
+                height: 100
             }
         ],
 

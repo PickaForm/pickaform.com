@@ -334,7 +334,6 @@ h1.blog-post-title {
     padding: 20px;
     border-radius: 10px;
     color: #ffffff;
-    margin-bottom: 100px;
 }
 
 .pricing-plan {
@@ -388,6 +387,14 @@ h1.blog-post-title {
     border-color: #ffffff !important;
     transition: all 0.5s;
 }
+
+.pricing-enterprise {
+    font-size: 2vh;
+    line-height: 3vh;
+    text-align: center;
+    margin: 3vh;
+}
+
 
 /* FEATURE */
 .feature-left {
