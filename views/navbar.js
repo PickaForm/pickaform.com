@@ -48,26 +48,21 @@ kiss.app.defineView("navbar", function (id, target) {
             target: "_self",
             view: "contact"
         },
-        // BLOG
-        {
-            text: "Blog",
-            href: `${kiss.global.path}/${kiss.language.current}/blog`,
-            target: "_self",
-            view: "blog"
-        },
-        // // ART
-        // {
-        //     text: "AI Art",
-        //     href: `${kiss.global.path}/${kiss.language.current}/artworks`,
-        //     target: "_self",
-        //     view: "artworks"
-        // },
         // PRICING
         {
             text: t("Pricing"),
             href: `${kiss.global.path}/${kiss.language.current}/pricing`,
             target: "_self",
             view: "pricing"
+        },
+        // BLOG
+        {
+            text: "Blog",
+            // href: `${kiss.global.path}/${kiss.language.current}/blog`,
+            href: `http://blog.pickaform.com/${kiss.language.current}/`,
+            target: "_self",
+            // view: "blog",
+            view: ""
         },
         // TEMPLATES
         {
@@ -273,7 +268,7 @@ kiss.app.defineView("navbar", function (id, target) {
                                                 window.open(element.href, target)
                                             }
                                         }
-                                        
+
                                         this.close()
                                     }
                                 }

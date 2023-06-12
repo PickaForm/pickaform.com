@@ -22,7 +22,7 @@ kiss.app.defineView("pricing", function(id, target) {
         },
         "Get started": {
             en: "Get started",
-            fr: "Incription"
+            fr: "Inscription"
         },
         enterprisePlan: {
             en: `We have many other plans beyond that, and also on-premise versions beyond 100 users.

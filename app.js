@@ -80,6 +80,7 @@ function translate() {
     // Update language
     let newLanguage = (kiss.language.current == "fr") ? "en" : "fr"
     kiss.language.current = newLanguage
+    localStorage.setItem("config-language", newLanguage)
 
     // Translate navbar, footer, content
     $("navbar").translateTo(newLanguage)
@@ -654,9 +655,10 @@ function translate() {
                 },
                 {
                     label: "Blog",
-                    action: () => kiss.router.navigateTo({
-                        content: "blog"
-                    })
+                    // action: () => kiss.router.navigateTo({
+                    //     content: "blog"
+                    // })
+                    action: () => window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
                 },
                 {
                     label: t("Pricing"),
@@ -910,26 +912,21 @@ function translate() {
             target: "_self",
             view: "contact"
         },
-        // BLOG
-        {
-            text: "Blog",
-            href: `${kiss.global.path}/${kiss.language.current}/blog`,
-            target: "_self",
-            view: "blog"
-        },
-        // // ART
-        // {
-        //     text: "AI Art",
-        //     href: `${kiss.global.path}/${kiss.language.current}/artworks`,
-        //     target: "_self",
-        //     view: "artworks"
-        // },
         // PRICING
         {
             text: t("Pricing"),
             href: `${kiss.global.path}/${kiss.language.current}/pricing`,
             target: "_self",
             view: "pricing"
+        },
+        // BLOG
+        {
+            text: "Blog",
+            // href: `${kiss.global.path}/${kiss.language.current}/blog`,
+            href: `http://blog.pickaform.com/${kiss.language.current}/`,
+            target: "_self",
+            // view: "blog",
+            view: ""
         },
         // TEMPLATES
         {
@@ -1135,7 +1132,7 @@ function translate() {
                                                 window.open(element.href, target)
                                             }
                                         }
-                                        
+
                                         this.close()
                                     }
                                 }
@@ -1186,7 +1183,7 @@ function translate() {
         },
         "Get started": {
             en: "Get started",
-            fr: "Incription"
+            fr: "Inscription"
         },
         enterprisePlan: {
             en: `We have many other plans beyond that, and also on-premise versions beyond 100 users.

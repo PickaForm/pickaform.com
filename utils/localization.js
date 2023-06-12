@@ -54,6 +54,7 @@ function translate() {
     // Update language
     let newLanguage = (kiss.language.current == "fr") ? "en" : "fr"
     kiss.language.current = newLanguage
+    localStorage.setItem("config-language", newLanguage)
 
     // Translate navbar, footer, content
     $("navbar").translateTo(newLanguage)

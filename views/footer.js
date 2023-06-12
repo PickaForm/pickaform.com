@@ -56,9 +56,10 @@ kiss.app.defineView("footer", function (id, target) {
                 },
                 {
                     label: "Blog",
-                    action: () => kiss.router.navigateTo({
-                        content: "blog"
-                    })
+                    // action: () => kiss.router.navigateTo({
+                    //     content: "blog"
+                    // })
+                    action: () => window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
                 },
                 {
                     label: t("Pricing"),
