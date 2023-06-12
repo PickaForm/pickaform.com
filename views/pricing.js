@@ -181,6 +181,9 @@ kiss.app.defineView("pricing", function(id, target) {
             {
                 height: 100
             },
+            {
+                class: "feature-top-separator"
+            },
             // FAQ
             {
                 class: "pricing-faq-container",

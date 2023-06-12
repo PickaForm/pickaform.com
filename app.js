@@ -1342,6 +1342,9 @@ function translate() {
             {
                 height: 100
             },
+            {
+                class: "feature-top-separator"
+            },
             // FAQ
             {
                 class: "pricing-faq-container",
