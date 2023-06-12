@@ -971,12 +971,7 @@ function translate() {
                 id: "language",
                 class: "button-flag",
                 type: "html",
-                html: `<img style="width: 16px" src="${kiss.global.pathImg}/flag-${(kiss.language.current == "fr") ? "en" : "fr"}.svg">`,
-                events: {
-                    click: function() {
-                        translate()
-                    }
-                }
+                html: `<img id="language-img" style="width: 16px" src="${kiss.global.pathImg}/flag-${(kiss.language.current == "fr") ? "en" : "fr"}.svg">`
             },
             // CONTRAST
             {
@@ -995,6 +990,11 @@ function translate() {
             click: function (event) {
                 event.preventDefault()
                 let element = event.target
+
+                if (element.id.includes("language")) {
+                    translate()
+                    return
+                }
 
                 // Dark and Light mode
                 if (element.id == "mode") {
