@@ -14,6 +14,7 @@ kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
 kiss.global.blogPostTitle = "y9yVRPEQ"
 kiss.global.blogPostDescription = "BedquzD8"
 kiss.global.blogPostPublicationDate = "floopJiS"
+kiss.global.blogPostPublished = "rhI4E1iH"
 
 // Contact
 kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
@@ -22,6 +23,7 @@ kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 kiss.global.artEndPoint = "https://cloud.pickaform.com/command/product"
 kiss.global.artModelId = "01889cf0-5878-7352-93b5-3a0fb88c852f"
 kiss.global.artTitle = "pJZ5QvWL"
+kiss.global.artPulished = "DgllE0KD"
 ;/**
  * Global functions for translation
  */
@@ -176,6 +178,10 @@ function translate() {
                     method: "post",
                     body: JSON.stringify({
                         modelId: kiss.global.artModelId,
+                        filterSyntax: "mongo",
+                        filter: {
+                            [kiss.global.artPulished]: true
+                        },
                         sortSyntax: "mongo",
                         sort: {
                             createdAt: -1 // Sort by creation date
@@ -224,18 +230,20 @@ function translate() {
             },
 
             toHtml(response) {
-                let items = response.products.map(artwork => {
-                    return artwork.images.map(image => {
-                        const imageId = (image.filename.split("-").pop()).split(".")[0]
-                        return {
-                            id: artwork.id + "-" + imageId,
-                            title: artwork.title,
-                            description: artwork.description,
-                            tags: artwork.tags.join(", "),
-                            image: image.thumbnails.m.path //image.path
-                        }
-                    })
-                }).flat()
+                let items = response.products
+                    .filter(product => product.published !== false)
+                    .map(artwork => {
+                        return artwork.images.map(image => {
+                            const imageId = (image.filename.split("-").pop()).split(".")[0]
+                            return {
+                                id: artwork.id + "-" + imageId,
+                                title: artwork.title,
+                                description: artwork.description,
+                                tags: artwork.tags.join(", "),
+                                image: image.thumbnails.m.path //image.path
+                            }
+                        })
+                    }).flat()
                 return items.map($(id).renderArtwork).join("")
             },
 
@@ -328,6 +336,10 @@ function translate() {
                     method: "post",
                     body: JSON.stringify({
                         modelId: kiss.global.blogModelId,
+                        filterSyntax: "mongo",
+                        filter: {
+                            [kiss.global.blogPostPublished]: true
+                        },
                         sortSyntax: "mongo",
                         sort: {[kiss.global.blogPostPublicationDate]: -1}, // Sort by publication date
                         skip,
@@ -335,7 +347,6 @@ function translate() {
                     })
                 })
 
-                log(response.posts)
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
@@ -625,23 +636,33 @@ function translate() {
             title: "Site",
             items: [{
                     label: t("Home"),
-                    action: () => kiss.views.show("landing", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "landing"
+                    })
                 },
                 {
                     label: t("Product"),
-                    action: () => kiss.views.show("product", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "product"
+                    })
                 },
                 {
                     label: "Contact",
-                    action: () => kiss.views.show("contact", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "contact"
+                    })
                 },
                 {
                     label: "Blog",
-                    action: () => kiss.views.show("blog", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "blog"
+                    })
                 },
                 {
                     label: t("Pricing"),
-                    action: () => kiss.views.show("pricing", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "pricing"
+                    })
                 }
             ]
         },
@@ -676,7 +697,9 @@ function translate() {
                 },
                 {
                     label: t("AI Art"),
-                    action: () => kiss.views.show("artworks", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "artworks"
+                    })
                 }
             ]
         },
