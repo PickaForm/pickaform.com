@@ -25,7 +25,8 @@ kiss.loader.loadScripts([
     "blocks/blogPost",
     "blocks/blogPostEntry",
     "blocks/feature",
-    "blocks/featureDetails"
+    "blocks/featureDetails",
+    "blocks/pager"
 ])
 
 // Load styles

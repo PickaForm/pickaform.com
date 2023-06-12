@@ -55,13 +55,13 @@ kiss.app.defineView("navbar", function (id, target) {
             target: "_self",
             view: "blog"
         },
-        // ART
-        {
-            text: "AI Art",
-            href: `${kiss.global.path}/${kiss.language.current}/artworks`,
-            target: "_self",
-            view: "artworks"
-        },
+        // // ART
+        // {
+        //     text: "AI Art",
+        //     href: `${kiss.global.path}/${kiss.language.current}/artworks`,
+        //     target: "_self",
+        //     view: "artworks"
+        // },
         // PRICING
         {
             text: t("Pricing"),

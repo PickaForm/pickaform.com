@@ -25,6 +25,10 @@ kiss.app.defineView("footer", function (id, target) {
         "Technology": {
             en: `technology`,
             fr: `technologie`
+        },
+        "AI Art": {
+            en: "Midjourney integration",
+            fr: "Intégration Midjourney"
         }
     })
 
@@ -82,9 +86,13 @@ kiss.app.defineView("footer", function (id, target) {
                 {
                     label: "Powered by KissJS",
                     action: () => window.open("https://kissjs.net", "_new")
+                },
+                {
+                    label: t("AI Art"),
+                    action: () => kiss.views.show("artworks", "content", true)
                 }
             ]
-        },        
+        },
         // LEGAL
         {
             title: "Legal",

@@ -80,7 +80,7 @@ kiss.app.defineView("blog", function (id, target) {
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
-                this.createPager(response.totalCount, skip, response.limit)
+                $(id).createPager(response.totalCount, skip, response.limit)
             },
 
             async search(term, skip = 0, limit = 6) {
@@ -121,42 +121,13 @@ kiss.app.defineView("blog", function (id, target) {
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
-                this.createPager(response.totalCount, response.skip, response.limit, term)
+                $(id).createPager(response.totalCount, response.skip, response.limit, term)
             },
 
             createPager(count, skip, limit, searchTerm) {
-                const rest = count % limit
-                const numberOfPages = Math.floor(count / limit) + ((rest == 0) ? 0 : 1)
-                const pageNumber = skip / limit
-                
-                kiss.router.updateUrlHash({
-                    page: pageNumber + 1
-                })
-
-                let pagerButtons = []
-
-                for (let i = 0; i < numberOfPages; i++) {
-                    let newButton = {
-                        type: "button",
-                        text: i + 1 + "",
-                        backgroundColor: (i == pageNumber) ? "#bdecff" : "",
-                        width: "5vh",
-                        height: "5vh",
-                        borderRadius: "5vh",
-                        margin: "5px",
-                        action: () => {
-                            const newSkip = i * limit
-                            if (searchTerm) {
-                                $(id).search(searchTerm, newSkip, limit)
-                            }
-                            else {
-                                $(id).getPosts(newSkip, limit)
-                            }
-                        }
-                    }
-                    pagerButtons.push(newButton)
-                }
-
+                const searchFunction = $(id).search
+                const getItemsFunction = $(id).getPosts
+                const pagerButtons = kiss.templates.pager(count, skip, limit, searchTerm, searchFunction, getItemsFunction)
                 $("blog-pager").setItems(pagerButtons)
             }            
         }

@@ -1,8 +1,4 @@
 kiss.app.defineView("artworks", function (id, target) {
-    // Static model properties
-    const modelId = "0188527b-7570-7551-9c32-99e1958e25b5"
-    const fieldTitle = "pJZ5QvWL"
-
     return createBlock({
         id: id,
         target,
@@ -38,13 +34,16 @@ kiss.app.defineView("artworks", function (id, target) {
             // Pager
             {
                 id: "artworks-pager",
-                class: "artworks-pager"
+                class: "blog-pager"
             }
         ],
 
         events: {
             click: (event) => {
-                if (event.target.closest("div").classList.contains("artwork")) {
+                let div = event.target.closest("div")
+                if (!div) return
+
+                if (div.classList.contains("artwork")) {
                     const filename = event.target.src.replace(".256x256", "")
                     const tags = event.target.alt
 
@@ -85,10 +84,10 @@ kiss.app.defineView("artworks", function (id, target) {
 
             async getArtworks(skip, limit) {
                 const response = await kiss.ajax.request({
-                    url: kiss.global.path + "/command/product/list",
+                    url: kiss.global.artEndPoint + "/list",
                     method: "post",
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.artModelId,
                         sortSyntax: "mongo",
                         sort: {
                             createdAt: -1 // Sort by creation date
@@ -98,17 +97,17 @@ kiss.app.defineView("artworks", function (id, target) {
                     })
                 })
 
-                $("artworks-list").setInnerHtml(this.toHtml(response))
-                this.createPager(response.totalCount, skip, response.limit)
+                $("artworks-list").setInnerHtml($(id).toHtml(response))
+                $(id).createPager(response.totalCount, skip, response.limit)
             },
 
             async search(term, skip = 0, limit = 6) {
                 const response = await kiss.ajax.request({
-                    url: kiss.global.path + "/command/product/list",
+                    url: kiss.global.artEndPoint + "/list",
                     method: "post",
                     showLoading: true,
                     body: JSON.stringify({
-                        modelId,
+                        modelId: kiss.global.artModelId,
                         skip,
                         limit,
                         sortSyntax: "mongo",
@@ -123,7 +122,7 @@ kiss.app.defineView("artworks", function (id, target) {
                                 // Search in title
                                 {
                                     type: "filter",
-                                    fieldId: fieldTitle,
+                                    fieldId: kiss.global.artTitle,
                                     operator: "contains",
                                     value: term
                                 }
@@ -132,8 +131,8 @@ kiss.app.defineView("artworks", function (id, target) {
                     })
                 })
 
-                $("artworks-list").setInnerHtml(this.toHtml(response))
-                this.createPager(response.totalCount, response.skip, response.limit, term)
+                $("artworks-list").setInnerHtml($(id).toHtml(response))
+                $(id).createPager(response.totalCount, response.skip, response.limit, term)
             },
 
             toHtml(response) {
@@ -149,7 +148,7 @@ kiss.app.defineView("artworks", function (id, target) {
                         }
                     })
                 }).flat()
-                return items.map(this.renderArtwork).join("")
+                return items.map($(id).renderArtwork).join("")
             },
 
             renderArtwork(artwork) {
@@ -161,37 +160,9 @@ kiss.app.defineView("artworks", function (id, target) {
             },
 
             createPager(count, skip, limit, searchTerm) {
-                const rest = count % limit
-                const numberOfPages = Math.floor(count / limit) + ((rest == 0) ? 0 : 1)
-                const pageNumber = skip / limit
-
-                kiss.router.updateUrlHash({
-                    page: pageNumber + 1
-                })
-
-                let pagerButtons = []
-
-                for (let i = 0; i < numberOfPages; i++) {
-                    let newButton = {
-                        type: "button",
-                        text: i + 1 + "",
-                        backgroundColor: (i == pageNumber) ? "#bdecff" : "",
-                        width: "5vh",
-                        height: "5vh",
-                        borderRadius: "5vh",
-                        margin: "5px",
-                        action: () => {
-                            const newSkip = i * limit
-                            if (searchTerm) {
-                                $(id).search(searchTerm, newSkip, limit)
-                            } else {
-                                $(id).getArtworks(newSkip, limit)
-                            }
-                        }
-                    }
-                    pagerButtons.push(newButton)
-                }
-
+                const searchFunction = $(id).search
+                const getItemsFunction = $(id).getArtworks
+                const pagerButtons = kiss.templates.pager(count, skip, limit, searchTerm, searchFunction, getItemsFunction)
                 $("artworks-pager").setItems(pagerButtons)
             }
         }
