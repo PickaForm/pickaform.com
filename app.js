@@ -1062,7 +1062,6 @@ function translate() {
         methods: {
             load() {
                 if (kiss.tools.isMobile()) {
-                    log("MOBIIIIIIIIIIIIIIIIIILE")
                     this.adjustDisplayMode(kiss.screen.current.width)
                 }
             },

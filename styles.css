@@ -436,6 +436,7 @@ h1.blog-post-title {
     max-height: 450px;
     padding: 2vh;
     margin: 1vh;
+    align-self: normal;
 }
 
 .feature-screenshot-container-right:hover {
@@ -482,6 +483,7 @@ h1.blog-post-title {
 .feature-details {
     display: flex;
     flex-flow: column;
+    align-items: center;
     max-width: 400px;
     padding: 3vh;
     border-radius: 5px;

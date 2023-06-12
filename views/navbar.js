@@ -200,7 +200,6 @@ kiss.app.defineView("navbar", function (id, target) {
         methods: {
             load() {
                 if (kiss.tools.isMobile()) {
-                    log("MOBIIIIIIIIIIIIIIIIIILE")
                     this.adjustDisplayMode(kiss.screen.current.width)
                 }
             },
