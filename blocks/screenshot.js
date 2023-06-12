@@ -25,6 +25,7 @@ kiss.templates.screenshotPreview = function (src, width, height) {
         verticalAlign: "center",
         alignItems: "center",
         justifyContent: "center",
+        background: "var(--background-1)",
 
         items: [{
             type: "html",

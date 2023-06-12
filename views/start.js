@@ -38,8 +38,8 @@ kiss.app.defineView("start", function (id, target) {
                 kiss.views
                     .show(route.content, "content", true)
                     .setAnimation({
-                        name: "zoomIn",
-                        speed: "faster"
+                        name: "fadeIn",
+                        speed: "slower"
                     })
 
                 $("content-container").scrollTop = 0

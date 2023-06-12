@@ -22,7 +22,7 @@ kiss.app.defineView("landing", function (id, target) {
         },
         subtitleNocodeWorkflow: {
             en: "Pick a form or build one.<br>Connect your workflows.<br>Add a pinch of AI.",
-            fr: "Choisissez vos formulaires<br>Connectez vos workflows<br>Ajoutez une pincée d'IA",
+            fr: "Choisissez vos formulaires.<br>Connectez vos workflows.<br>Ajoutez une pincée d'IA.",
         },
         titleFlexibility: {
             en: `no-code

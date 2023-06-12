@@ -1,7 +1,7 @@
 // Kiss init
 kiss.db.mode = "memory"
 kiss.language.get()
-kiss.theme.set({color: "light"})
+kiss.theme.set({color: "dark"})
 
 // Paths
 kiss.global.path = `https://${window.location.host}`
@@ -776,7 +776,7 @@ function translate() {
         },
         subtitleNocodeWorkflow: {
             en: "Pick a form or build one.<br>Connect your workflows.<br>Add a pinch of AI.",
-            fr: "Choisissez vos formulaires<br>Connectez vos workflows<br>Ajoutez une pincée d'IA",
+            fr: "Choisissez vos formulaires.<br>Connectez vos workflows.<br>Ajoutez une pincée d'IA.",
         },
         titleFlexibility: {
             en: `no-code
@@ -1935,8 +1935,8 @@ function translate() {
                 kiss.views
                     .show(route.content, "content", true)
                     .setAnimation({
-                        name: "zoomIn",
-                        speed: "faster"
+                        name: "fadeIn",
+                        speed: "slower"
                     })
 
                 $("content-container").scrollTop = 0
@@ -2344,6 +2344,7 @@ kiss.templates.screenshotPreview = function (src, width, height) {
         verticalAlign: "center",
         alignItems: "center",
         justifyContent: "center",
+        background: "var(--background-1)",
 
         items: [{
             type: "html",

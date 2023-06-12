@@ -1,7 +1,7 @@
 // Kiss init
 kiss.db.mode = "memory"
 kiss.language.get()
-kiss.theme.set({color: "light"})
+kiss.theme.set({color: "dark"})
 
 // Paths
 kiss.global.path = `https://${window.location.host}`
