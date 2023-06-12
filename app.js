@@ -1089,6 +1089,9 @@ function translate() {
                         name: "slideInDown",
                         speed: "faster"
                     })
+                
+                $("language").show()
+                $("mode").show()
             },
 
             displayAsButton() {
@@ -1098,6 +1101,7 @@ function translate() {
                     padding: "0 6px",
                     fontSize: 20,
                     fontWeight: 900,
+                    margin: "0 20px 0 0",
                     action: (event) => {
                         event.stop()
 
@@ -1112,6 +1116,26 @@ function translate() {
                                 items: menu,
                                 events: {
                                     click: function (event) {
+                                        event.preventDefault()
+                                        
+                                        // Manage client-side navigation
+                                        let element = event.target
+                                        if (element.tagName == "SPAN") element = element.closest("a")
+                                        if (element.tagName == "LI") element = element.querySelector("a")
+                                        
+                                        if (element.tagName == "A") {
+                                            const view = element.getAttribute("view")
+                                            const target = element.getAttribute("target")
+
+                                            if (view) {
+                                                kiss.router.navigateTo({
+                                                    content: view
+                                                })
+                                            } else {
+                                                window.open(element.href, target)
+                                            }
+                                        }
+                                        
                                         this.close()
                                     }
                                 }
@@ -1123,12 +1147,16 @@ function translate() {
                             })
                     }
                 }
+
                 $("topbar-buttons")
                     .setItems([menuButton])
                     .setAnimation({
                         name: "zoomIn",
                         speed: "faster"
                     })
+
+                $("language").hide()
+                $("mode").hide()
             }
         }
     })
