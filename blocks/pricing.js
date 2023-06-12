@@ -32,4 +32,21 @@ kiss.templates.pricingPlan = function (plan, t) {
     `
 }
 
+kiss.templates.pricingFAQ = function(question, answer)  {
+    return {
+        class: "pricing-faq",
+        items: [
+            {
+                type: "html",
+                padding: "1vh",
+                flex: 1,
+                maxWidth: 430,
+                html: /*html*/ `
+                    <h4 class="pricing-faq-title">${question}</h4>
+                    <p class="pricing-faq-description">${answer}</p>`
+            }
+        ]     
+    }
+}
+
 ;
