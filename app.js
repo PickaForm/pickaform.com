@@ -2058,13 +2058,11 @@ kiss.templates.breadcrumb = function(post) {
         boxShadowHover: "0 0 32px #a1ed00",
         color: "#ffffff",
         colorHover: "#000000",
-        fontSize: "2.5vh",
-        iconSize: "2.5vh",
-        iconColor: "#ffffff",
+        fontSize: "2vh",
         borderRadius: 10,
         borderWidth: 0,
         animation: "zoomIn",
-        padding: "1vh 3vh"
+        padding: "1vh 2vh"
     }
 }
 
