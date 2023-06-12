@@ -468,7 +468,6 @@ h1.blog-post-title {
 .feature-details-container-column {
     display: inline-flex;
     flex-wrap: wrap;
-    align-items: baseline;
     justify-content: center;
     max-width: 1300px;
 }
@@ -477,8 +476,7 @@ h1.blog-post-title {
     display: flex;
     flex-flow: column;
     max-width: 400px;
-    margin: 2vh 1vh 1vh 1vh;
-    padding: 1vh;
+    padding: 3vh;
     border-radius: 5px;
 }
 
