@@ -1,47 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <!-- LANDING PAGE -->
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/en/landing</loc>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/landing" />
   </url>
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/fr/landing</loc>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/landing" />
   </url>
 
+  <!-- PRODUCT -->
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/en/product</loc>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/product" />
   </url>
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/fr/product</loc>
     <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/product" />
   </url>
 
+  <!-- CONTACT -->
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/en/contact</loc>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/contact" />
   </url>
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/fr/contact</loc>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/contact" />
   </url>
 
+  <!-- PRICING -->
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/en/pricing</loc>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/pricing" />
   </url>
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/fr/pricing</loc>
     <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/pricing" />
   </url>
 
+  <!-- BLOG -->
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/en/blog</loc>
-    <priority>0.6</priority>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/blog" />
   </url>
   <url>
     <loc>https://vocal-fenglisu-166914.netlify.app/fr/blog</loc>
-    <priority>0.6</priority>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/blog" />
   </url>
 </urlset>
