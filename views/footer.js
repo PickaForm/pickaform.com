@@ -38,23 +38,33 @@ kiss.app.defineView("footer", function (id, target) {
             title: "Site",
             items: [{
                     label: t("Home"),
-                    action: () => kiss.views.show("landing", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "landing"
+                    })
                 },
                 {
                     label: t("Product"),
-                    action: () => kiss.views.show("product", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "product"
+                    })
                 },
                 {
                     label: "Contact",
-                    action: () => kiss.views.show("contact", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "contact"
+                    })
                 },
                 {
                     label: "Blog",
-                    action: () => kiss.views.show("blog", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "blog"
+                    })
                 },
                 {
                     label: t("Pricing"),
-                    action: () => kiss.views.show("pricing", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "pricing"
+                    })
                 }
             ]
         },
@@ -89,7 +99,9 @@ kiss.app.defineView("footer", function (id, target) {
                 },
                 {
                     label: t("AI Art"),
-                    action: () => kiss.views.show("artworks", "content", true)
+                    action: () => kiss.router.navigateTo({
+                        content: "artworks"
+                    })
                 }
             ]
         },

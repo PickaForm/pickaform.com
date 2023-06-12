@@ -14,6 +14,7 @@ kiss.global.blogModelId = "0187ed51-d3a5-70ea-869c-6c538d786fb7"
 kiss.global.blogPostTitle = "y9yVRPEQ"
 kiss.global.blogPostDescription = "BedquzD8"
 kiss.global.blogPostPublicationDate = "floopJiS"
+kiss.global.blogPostPublished = "rhI4E1iH"
 
 // Contact
 kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
@@ -22,4 +23,5 @@ kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 kiss.global.artEndPoint = "https://cloud.pickaform.com/command/product"
 kiss.global.artModelId = "01889cf0-5878-7352-93b5-3a0fb88c852f"
 kiss.global.artTitle = "pJZ5QvWL"
+kiss.global.artPulished = "DgllE0KD"
 ;

@@ -88,6 +88,10 @@ kiss.app.defineView("artworks", function (id, target) {
                     method: "post",
                     body: JSON.stringify({
                         modelId: kiss.global.artModelId,
+                        filterSyntax: "mongo",
+                        filter: {
+                            [kiss.global.artPulished]: true
+                        },
                         sortSyntax: "mongo",
                         sort: {
                             createdAt: -1 // Sort by creation date
@@ -136,18 +140,20 @@ kiss.app.defineView("artworks", function (id, target) {
             },
 
             toHtml(response) {
-                let items = response.products.map(artwork => {
-                    return artwork.images.map(image => {
-                        const imageId = (image.filename.split("-").pop()).split(".")[0]
-                        return {
-                            id: artwork.id + "-" + imageId,
-                            title: artwork.title,
-                            description: artwork.description,
-                            tags: artwork.tags.join(", "),
-                            image: image.thumbnails.m.path //image.path
-                        }
-                    })
-                }).flat()
+                let items = response.products
+                    .filter(product => product.published !== false)
+                    .map(artwork => {
+                        return artwork.images.map(image => {
+                            const imageId = (image.filename.split("-").pop()).split(".")[0]
+                            return {
+                                id: artwork.id + "-" + imageId,
+                                title: artwork.title,
+                                description: artwork.description,
+                                tags: artwork.tags.join(", "),
+                                image: image.thumbnails.m.path //image.path
+                            }
+                        })
+                    }).flat()
                 return items.map($(id).renderArtwork).join("")
             },
 

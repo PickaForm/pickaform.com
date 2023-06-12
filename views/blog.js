@@ -69,6 +69,10 @@ kiss.app.defineView("blog", function (id, target) {
                     method: "post",
                     body: JSON.stringify({
                         modelId: kiss.global.blogModelId,
+                        filterSyntax: "mongo",
+                        filter: {
+                            [kiss.global.blogPostPublished]: true
+                        },
                         sortSyntax: "mongo",
                         sort: {[kiss.global.blogPostPublicationDate]: -1}, // Sort by publication date
                         skip,
@@ -76,7 +80,6 @@ kiss.app.defineView("blog", function (id, target) {
                     })
                 })
 
-                log(response.posts)
                 const items = response.posts.map(kiss.templates.blogPostEntry)
 
                 $("blog-content").setItems(items)
