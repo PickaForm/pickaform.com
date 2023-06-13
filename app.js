@@ -1045,14 +1045,15 @@ function translate() {
                 if (element.tagName == "A") {
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
-                    const content = element.getAttribute("content")
+                    const section = element.getAttribute("section")
 
                     if (view) {
                         kiss.router.navigateTo({
                             content: view
                         })
-                    } else if (content == "blog") {
+                    } else if (section == "blog") {
                         window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
+
                     } else {
                         window.open(element.href, target)
                     }
@@ -2416,7 +2417,7 @@ kiss.templates.navbarItems = function (items) {
     return items.map(item => {
         return /*html*/`
             <li class="navbar-item">
-                <a href="${item.href}" view="${item.view}" content="${item.id}" target="${item.target}">${item.text}</a>
+                <a href="${item.href}" view="${item.view}" section="${item.id}" target="${item.target}">${item.text}</a>
             </li>
         `
     }).join("")

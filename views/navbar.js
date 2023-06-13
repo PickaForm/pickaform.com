@@ -178,15 +178,15 @@ kiss.app.defineView("navbar", function (id, target) {
                 if (element.tagName == "A") {
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
-                    const content = element.getAttribute("content")
+                    const section = element.getAttribute("section")
 
                     if (view) {
                         kiss.router.navigateTo({
                             content: view
                         })
-                    } else if (content == "blog") {
+                    } else if (section == "blog") {
                         window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
-                        
+
                     } else {
                         window.open(element.href, target)
                     }
