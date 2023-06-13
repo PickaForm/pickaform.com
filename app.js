@@ -2239,6 +2239,7 @@ kiss.templates.breadcrumb = function(post) {
 }) {
     const id = kiss.tools.shortUid()
     const src = kiss.global.pathImg + "/" + screenshot
+    const alt = screenshot.split(".")[0]
 
     return {
         id,
@@ -2277,7 +2278,7 @@ kiss.templates.breadcrumb = function(post) {
                     {
                         type: "html",
                         class: "feature-screenshot-container-" + textPosition,
-                        html: `<img src="${src}" class="feature-screenshot-img">`,
+                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src)
                         }
@@ -2328,6 +2329,7 @@ kiss.templates.breadcrumb = function(post) {
 }) {
     const id = kiss.tools.shortUid()
     const src = kiss.global.pathImg + "/" + screenshot
+    const alt = screenshot.split(".")[0]
 
     return {
         id,
@@ -2339,7 +2341,7 @@ kiss.templates.breadcrumb = function(post) {
                 items: [
                     {
                         type: "html",
-                        html: `<img src="${src}" class="feature-details-screenshot-img">`,
+                        html: `<img src="${src}" alt="${alt}" class="feature-details-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src, 822, 522)
                         }

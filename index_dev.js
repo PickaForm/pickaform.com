@@ -40,9 +40,9 @@ kiss.loader.loadStyles([
 window.onload = async function () {
     kiss.app.init()
 
-    // kiss.router.navigateTo({
-    //     ui: "start",
-    //     content: "landing"
-    // })
+    kiss.router.navigateTo({
+        ui: "start",
+        content: "landing"
+    })
     $("splash").remove()
 };

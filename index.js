@@ -10,9 +10,9 @@ window.onload = async function () {
     await kiss.loader.loadScript("./app.min")
     kiss.app.init()
     
-    // kiss.router.navigateTo({
-    //     ui: "start",
-    //     content: "landing"
-    // })
+    kiss.router.navigateTo({
+        ui: "start",
+        content: "landing"
+    })
     $("splash").remove()
 };

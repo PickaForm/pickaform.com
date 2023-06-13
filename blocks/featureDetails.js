@@ -5,6 +5,7 @@ kiss.templates.featureDetails = function ({
 }) {
     const id = kiss.tools.shortUid()
     const src = kiss.global.pathImg + "/" + screenshot
+    const alt = screenshot.split(".")[0]
 
     return {
         id,
@@ -16,7 +17,7 @@ kiss.templates.featureDetails = function ({
                 items: [
                     {
                         type: "html",
-                        html: `<img src="${src}" class="feature-details-screenshot-img">`,
+                        html: `<img src="${src}" alt="${alt}" class="feature-details-screenshot-img">`,
                         events: {
                             click: () => kiss.templates.screenshotPreview(src, 822, 522)
                         }
