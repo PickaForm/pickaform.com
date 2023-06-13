@@ -1,64 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
-  <!-- LANDING PAGE -->
+  
+  <!-- MAIN -->
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/en/landing</loc>
+    <loc>https://blog.pickaform.com/en/</loc>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/landing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://blog.pickaform.com/fr/" />
   </url>
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/fr/landing</loc>
+    <loc>https://blog.pickaform.com/fr/</loc>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/landing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://blog.pickaform.com/en/" />
+  </url>
+
+  <!-- LANDING PAGE -->
+  <url>
+    <loc>https://pickaform.fr/en/landing</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/landing" />
+  </url>
+  <url>
+    <loc>https://pickaform.fr/fr/landing</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/landing" />
   </url>
 
   <!-- PRODUCT -->
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/en/product</loc>
+    <loc>https://pickaform.fr/en/product</loc>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/product" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/product" />
   </url>
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/fr/product</loc>
+    <loc>https://pickaform.fr/fr/product</loc>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/product" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/product" />
   </url>
 
   <!-- CONTACT -->
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/en/contact</loc>
+    <loc>https://pickaform.fr/en/contact</loc>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/contact" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/contact" />
   </url>
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/fr/contact</loc>
+    <loc>https://pickaform.fr/fr/contact</loc>
     <priority>0.6</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/contact" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/contact" />
   </url>
 
   <!-- PRICING -->
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/en/pricing</loc>
+    <loc>https://pickaform.fr/en/pricing</loc>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/pricing" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/pricing" />
   </url>
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/fr/pricing</loc>
+    <loc>https://pickaform.fr/fr/pricing</loc>
     <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/pricing" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/pricing" />
   </url>
 
   <!-- BLOG -->
   <!--
     <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/en/blog</loc>
+    <loc>https://pickaform.fr/en/blog</loc>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://vocal-fenglisu-166914.netlify.app/fr/blog" />
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/blog" />
   </url>
   <url>
-    <loc>https://vocal-fenglisu-166914.netlify.app/fr/blog</loc>
+    <loc>https://pickaform.fr/fr/blog</loc>
     <priority>1.0</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://vocal-fenglisu-166914.netlify.app/en/blog" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/blog" />
   </url>
   -->
   <url>
