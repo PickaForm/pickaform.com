@@ -896,7 +896,6 @@ function translate() {
     const navItems = [
         // HOME
         {
-            id: "home",
             text: t("Home"),
             href: `${kiss.global.path}/${kiss.language.current}/landing`,
             target: "_self",
@@ -904,7 +903,6 @@ function translate() {
         },
         // PRODUCT
         {
-            id: "product",
             text: t("Product"),
             href: `${kiss.global.path}/${kiss.language.current}/product`,
             target: "_self",
@@ -912,7 +910,6 @@ function translate() {
         },
         // CONTACT
         {
-            id: "contact",
             text: "Contact",
             href: `${kiss.global.path}/${kiss.language.current}/contact`,
             target: "_self",
@@ -920,7 +917,6 @@ function translate() {
         },
         // PRICING
         {
-            id: "pricing",
             text: t("Pricing"),
             href: `${kiss.global.path}/${kiss.language.current}/pricing`,
             target: "_self",
@@ -928,14 +924,13 @@ function translate() {
         },
         // BLOG
         {
-            id: "blog",
             text: "Blog",
-            href: `https://blog.pickaform.com/${kiss.language.current}/`,
-            target: "_self"
+            href: `http://blog.pickaform.com/${kiss.language.current}`,
+            target: "_new",
+            view: ""
         },
         // TEMPLATES
         {
-            id: "templates",
             text: t("Templates"),
             href: kiss.global.pathPickaform + "/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
@@ -943,17 +938,15 @@ function translate() {
         },
         // LOGIN
         {
-            id: "login",
             text: t("Login"),
-            href: kiss.global.pathPickaform + "/client/pickaform/index_dev.html#ui=authentication-login",
+            href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
             target: "_new",
             view: ""
         },
         // REGISTER
         {
-            id: "register",
             text: t("Get started"),
-            href: kiss.global.pathPickaform + "/client/pickaform/index_dev.html#ui=authentication-register",
+            href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register",
             target: "_new",
             view: ""
         }
@@ -1045,15 +1038,14 @@ function translate() {
                 if (element.tagName == "A") {
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
-                    const section = element.getAttribute("section")
 
-                    if (view) {
+                    if (element.innerHTML == "Blog") {
+                        window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
+                    }
+                    else if (view) {
                         kiss.router.navigateTo({
                             content: view
                         })
-                    } else if (section == "blog") {
-                        window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
-
                     } else {
                         window.open(element.href, target)
                     }
@@ -2417,7 +2409,7 @@ kiss.templates.navbarItems = function (items) {
     return items.map(item => {
         return /*html*/`
             <li class="navbar-item">
-                <a href="${item.href}" view="${item.view}" section="${item.id}" target="${item.target}">${item.text}</a>
+                <a href="${item.href}" view="${item.view}" target="${item.target}">${item.text}</a>
             </li>
         `
     }).join("")
