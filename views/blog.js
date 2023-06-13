@@ -30,7 +30,7 @@ kiss.app.defineView("blog", function (id, target) {
             // Search field
             {
                 type: "text",
-                width: "366px",
+                width: "256px",
                 fieldWidth: "100%",
                 fieldHeight: "4vh",
                 fontSize: "2vh",

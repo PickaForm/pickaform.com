@@ -1,4 +1,16 @@
 kiss.app.defineView("artworks", function (id, target) {
+
+    const t = defineTexts(id, {
+        title: {
+            en: `Get Inspired by our AI Art Collection`,
+            fr: `Laissez-vous inspirer par notre collection d'art IA`
+        },
+        subtitle: {
+            en: "We used pickaform to streamline the process of creating Midjourney images",
+            fr: "Nous avons utilisé pickaform pour rationaliser le processus de création d'images Midjourney"
+        }
+    })
+
     return createBlock({
         id: id,
         target,
@@ -9,13 +21,13 @@ kiss.app.defineView("artworks", function (id, target) {
         items: [
             // Header
             kiss.templates.title({
-                title: "Get Inspired by our AI Art Collection",
-                subtitle: "We used pickaform to streamline the process of creating Midjourney images"
+                title: t("title"),
+                subtitle: t("subtitle")
             }),
             // Search field
             {
                 type: "text",
-                width: "366px",
+                width: "256px",
                 fieldWidth: "100%",
                 fieldHeight: "4vh",
                 fontSize: "2vh",
@@ -81,6 +93,11 @@ kiss.app.defineView("artworks", function (id, target) {
             async load() {
                 this.getArtworks(0, 10)
             },
+
+            _afterConnected() {
+                this.translateTo(kiss.language.current)
+            },
+            translateTo,
 
             async getArtworks(skip, limit) {
                 const response = await kiss.ajax.request({
