@@ -1,7 +1,11 @@
 // Kiss init
 kiss.db.mode = "memory"
 kiss.language.get()
-kiss.theme.set({color: "light"})
+
+// Dark theme after 22h
+kiss.theme.set({
+    color: (new Date().getHours() >= 22) ? "dark" : "light"
+})
 
 // Paths
 kiss.global.path = `https://${window.location.host}`
@@ -23,5 +27,4 @@ kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
 kiss.global.artEndPoint = "https://cloud.pickaform.com/command/product"
 kiss.global.artModelId = "01889cf0-5878-7352-93b5-3a0fb88c852f"
 kiss.global.artTitle = "pJZ5QvWL"
-kiss.global.artPulished = "DgllE0KD"
-;
+kiss.global.artPulished = "DgllE0KD";
