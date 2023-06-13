@@ -1,4 +1,4 @@
-/ /index.html#ui=start&content=landing&language=fr
+/   /index.html#ui=start&content=landing&language=fr
 /:language  /index.html#ui=start&content=landing&language=:language
 /:language/landing    /index.html#ui=start&content=landing&language=:language
 /:language/product    /index.html#ui=start&content=product&language=:language
