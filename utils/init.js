@@ -4,7 +4,7 @@ kiss.language.get()
 
 // Dark theme between 22h and 6h
 kiss.theme.set({
-    color: (new Date().getHours() <= 6 && new Date().getHours() >= 22) ? "dark" : "light"
+    color: (new Date().getHours() <= 6 || new Date().getHours() >= 22) ? "dark" : "light"
 })
 
 // Paths
