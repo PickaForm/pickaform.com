@@ -29,6 +29,7 @@ kiss.app.defineView("navbar", function (id, target) {
     const navItems = [
         // HOME
         {
+            id: "home",
             text: t("Home"),
             href: `${kiss.global.path}/${kiss.language.current}/landing`,
             target: "_self",
@@ -36,6 +37,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         // PRODUCT
         {
+            id: "product",
             text: t("Product"),
             href: `${kiss.global.path}/${kiss.language.current}/product`,
             target: "_self",
@@ -43,6 +45,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         // CONTACT
         {
+            id: "contact",
             text: "Contact",
             href: `${kiss.global.path}/${kiss.language.current}/contact`,
             target: "_self",
@@ -50,6 +53,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         // PRICING
         {
+            id: "pricing",
             text: t("Pricing"),
             href: `${kiss.global.path}/${kiss.language.current}/pricing`,
             target: "_self",
@@ -57,15 +61,14 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         // BLOG
         {
+            id: "blog",
             text: "Blog",
-            // href: `${kiss.global.path}/${kiss.language.current}/blog`,
-            href: `http://blog.pickaform.com/${kiss.language.current}/`,
-            target: "_self",
-            // view: "blog",
-            view: ""
+            href: `https://blog.pickaform.com/${kiss.language.current}/`,
+            target: "_self"
         },
         // TEMPLATES
         {
+            id: "templates",
             text: t("Templates"),
             href: kiss.global.pathPickaform + "/client/pickaform/demo.html#ui=templates-list",
             target: "_new",
@@ -73,6 +76,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         // LOGIN
         {
+            id: "login",
             text: t("Login"),
             href: kiss.global.pathPickaform + "/client/pickaform/index_dev.html#ui=authentication-login",
             target: "_new",
@@ -80,6 +84,7 @@ kiss.app.defineView("navbar", function (id, target) {
         },
         // REGISTER
         {
+            id: "register",
             text: t("Get started"),
             href: kiss.global.pathPickaform + "/client/pickaform/index_dev.html#ui=authentication-register",
             target: "_new",
@@ -173,11 +178,15 @@ kiss.app.defineView("navbar", function (id, target) {
                 if (element.tagName == "A") {
                     const view = element.getAttribute("view")
                     const target = element.getAttribute("target")
+                    const content = element.getAttribute("content")
 
                     if (view) {
                         kiss.router.navigateTo({
                             content: view
                         })
+                    } else if (content == "blog") {
+                        window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
+                        
                     } else {
                         window.open(element.href, target)
                     }
