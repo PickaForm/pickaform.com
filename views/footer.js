@@ -10,6 +10,10 @@ kiss.app.defineView("footer", function (id, target) {
             en: "Product",
             fr: "Produit"
         },
+        "Examples": {
+            en: "Examples",
+            fr: "Exemples"
+        },
         "Pricing": {
             en: "Pricing",
             fr: "Pricing"
@@ -46,6 +50,12 @@ kiss.app.defineView("footer", function (id, target) {
                     label: t("Product"),
                     action: () => kiss.router.navigateTo({
                         content: "product"
+                    })
+                },
+                {
+                    label: t("Examples"),
+                    action: () => kiss.router.navigateTo({
+                        content: "cases"
                     })
                 },
                 {
