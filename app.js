@@ -1892,7 +1892,7 @@ function translate() {
             name: "Silver",
             users: 10,
             apps: 3,
-            price: "15,00",
+            price: "15,00€",
             storage: "10 GB Storage",
             color: "#00aaee"
         },
@@ -1900,7 +1900,7 @@ function translate() {
             name: "Gold",
             users: 20,
             apps: 5,
-            price: "12,50",
+            price: "12,50€",
             storage: "20 GB Storage",
             color: "#8833ee"
         },
@@ -1908,7 +1908,7 @@ function translate() {
             name: "Platinum",
             users: 50,
             apps: 10,
-            price: "11,00",
+            price: "11,00€",
             storage: "50 GB Storage",
             color: "#ed3757"
         }
