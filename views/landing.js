@@ -84,7 +84,7 @@ kiss.app.defineView("landing", function (id, target) {
                 subtitle: t("subtitleFlexibility")
             }),
             kiss.templates.buttonCTA(t("getStarted")),
-            kiss.templates.screenshot("nocode flexibility - pickaform.webp"),
+            kiss.templates.screenshot("midjourney integration - pickaform.webp"),
 
             // STRIP 4
             kiss.templates.title({

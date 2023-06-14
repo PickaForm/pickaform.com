@@ -8,6 +8,10 @@ kiss.app.defineView("navbar", function (id, target) {
             en: "Product",
             fr: "Produit"
         },
+        "Examples": {
+            en: "Examples",
+            fr: "Exemples"
+        },
         "Pricing": {
             en: "Pricing",
             fr: "Tarifs"
@@ -41,6 +45,13 @@ kiss.app.defineView("navbar", function (id, target) {
             target: "_self",
             view: "product"
         },
+        // USE CASES
+        {
+            text: t("Examples"),
+            href: `${kiss.global.path}/${kiss.language.current}/cases`,
+            target: "_self",
+            view: "cases"
+        },        
         // CONTACT
         {
             text: "Contact",
