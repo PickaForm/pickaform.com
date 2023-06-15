@@ -387,7 +387,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: "CRM",
                 description: t("descriptionCRM"),
-                screenshot: "forms-thumbnail.webp",
+                screenshot: "example - CRM - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -400,7 +400,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleHR"),
                 description: t("descriptionHR"),
-                screenshot: "business contract management - flexible views - pickaform.webp",
+                screenshot: "example - HR onboarding - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -424,7 +424,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleLegal"),
                 description: t("descriptionLegal"),
-                screenshot: "integrated simple and powerful form designer - pickaform.webp",
+                screenshot: "example - Legal contract - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -448,7 +448,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleRequests"),
                 description: t("descriptionRequests"),
-                screenshot: "integrated simple and powerful form designer - pickaform.webp",
+                screenshot: "example - purchase request - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -483,7 +483,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleInventory"),
                 description: t("descriptionInventory"),
-                screenshot: "navigate through your data with left pane - pickaform.webp",
+                screenshot: "example - inventory - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -496,7 +496,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleProduct"),
                 description: t("descriptionProduct"),
-                screenshot: "views-thumbnail.webp",
+                screenshot: "example - product design - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
@@ -507,7 +507,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleDonation"),
                 description: t("descriptionDonation"),
-                screenshot: "navigate through your data with left pane - pickaform.webp",
+                screenshot: "example - donation - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "left"
             }),
@@ -520,7 +520,7 @@ kiss.app.defineView("cases", function (id, target) {
             kiss.templates.feature({
                 title: t("titleAnything"),
                 description: t("descriptionAnything"),
-                screenshot: "views-thumbnail.webp",
+                screenshot: "example - midjourney collection - pickaform.webp",
                 CTA: t("getStarted"),
                 textPosition: "right",
                 color: "#555555",
