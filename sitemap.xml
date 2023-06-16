@@ -37,6 +37,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/product" />
   </url>
 
+  <!-- CASES -->
+  <url>
+    <loc>https://pickaform.fr/en/cases</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/cases" />
+  </url>
+  <url>
+    <loc>https://pickaform.fr/fr/cases</loc>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/cases" />
+  </url>  
+
   <!-- CONTACT -->
   <url>
     <loc>https://pickaform.fr/en/contact</loc>

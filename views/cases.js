@@ -1,5 +1,19 @@
 kiss.app.defineView({
     id: "cases",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/cases",
+            fr: "https://pickaform.fr/fr/cases"
+        },
+        title: {
+            en: "Product features | Pickaform",
+            fr: "Fonctionnalités du produit | Pickaform"
+        },
+        description: {
+            en: `The full list of Pickaform product features. Combine no-code, workflows and AI to build the most flexible tools for your company!"`,
+            fr: `Liste des fonctionnalités du produit Pickaform. Combinez no-code, workflows et IA pour créer les outils les plus flexibles pour votre entreprise !"`
+        }
+    },
     renderer: function (id, target) {
         const t = defineTexts(id, {
             getStarted: {

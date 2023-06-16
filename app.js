@@ -485,6 +485,20 @@ function translate() {
 
 ;kiss.app.defineView({
     id: "cases",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/cases",
+            fr: "https://pickaform.fr/fr/cases"
+        },
+        title: {
+            en: "Product features | Pickaform",
+            fr: "Fonctionnalités du produit | Pickaform"
+        },
+        description: {
+            en: `The full list of Pickaform product features. Combine no-code, workflows and AI to build the most flexible tools for your company!"`,
+            fr: `Liste des fonctionnalités du produit Pickaform. Combinez no-code, workflows et IA pour créer les outils les plus flexibles pour votre entreprise !"`
+        }
+    },
     renderer: function (id, target) {
         const t = defineTexts(id, {
             getStarted: {
@@ -1358,6 +1372,10 @@ function translate() {
 ;kiss.app.defineView({
     id: "landing",
     meta: {
+        url: {
+            en: "https://pickaform.fr/en/landing",
+            fr: "https://pickaform.fr/fr/landing"
+        },
         title: {
             en: "Pickaform | Best no-code platform for your workflows",
             fr: "Pickaform | Meilleure plateforme no-code pour vos your workflows"
@@ -2039,6 +2057,10 @@ function translate() {
 ;kiss.app.defineView({
     id: "product",
     meta: {
+        url: {
+            en: "https://pickaform.fr/en/product",
+            fr: "https://pickaform.fr/fr/product"
+        },
         title: {
             en: "Product features | Pickaform",
             fr: "Fonctionnalités du produit | Pickaform"

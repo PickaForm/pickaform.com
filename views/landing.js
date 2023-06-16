@@ -1,6 +1,10 @@
 kiss.app.defineView({
     id: "landing",
     meta: {
+        url: {
+            en: "https://pickaform.fr/en/landing",
+            fr: "https://pickaform.fr/fr/landing"
+        },
         title: {
             en: "Pickaform | Best no-code platform for your workflows",
             fr: "Pickaform | Meilleure plateforme no-code pour vos your workflows"

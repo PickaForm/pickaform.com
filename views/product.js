@@ -1,6 +1,10 @@
 kiss.app.defineView({
     id: "product",
     meta: {
+        url: {
+            en: "https://pickaform.fr/en/product",
+            fr: "https://pickaform.fr/fr/product"
+        },
         title: {
             en: "Product features | Pickaform",
             fr: "Fonctionnalités du produit | Pickaform"
