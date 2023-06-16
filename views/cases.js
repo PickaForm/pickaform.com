@@ -47,8 +47,8 @@ kiss.app.defineView({
                 fr: "Ressources Humaines"
             },
             descriptionHR: {
-                en: "Create a tool in the image of your company for your recruitment process, your training, your contractual documents, your regulatory deadlines.",
-                fr: "Créez un outil à l'image de votre entreprise pour votre processus de recrutement, vos formations, vos documents contractuels, vos échéances règlementaires."
+                en: "Create a tool in the image of your company for your recruitment process, onboarding, training, contractual documents, or regulatory deadlines.",
+                fr: "Créez un outil à l'image de votre entreprise pour vos processus de recrutement, formations, documents contractuels, ou échéances règlementaires."
             },
             titleProjects: {
                 en: "Project follow-up",
