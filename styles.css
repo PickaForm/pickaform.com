@@ -140,7 +140,7 @@
 }
 
 /* TITLES */
-h2.title {
+h1.title {
     text-align: center;
     font-family: var(--font-famly);
     font-size: 5vh;
@@ -148,7 +148,7 @@ h2.title {
     margin: 10vh 5vh 5vh 5vh;
 }
 
-h3.subtitle {
+h2.subtitle {
     text-align: center;
     font-family: var(--font-famly);
     font-size: 3vh;
@@ -263,7 +263,7 @@ h3.subtitle {
     margin: 5px;
 }
 
-h3.blog-entry-title {
+h2.blog-entry-title {
     color: var(--body);
     font-size: 1.8vh;
 }
@@ -299,7 +299,7 @@ p.blog-entry-description {
     margin: -50px 0 5vw 0px;
 }
 
-h1.blog-post-title {
+h2.blog-post-title {
     font-size: 46px;
     text-align: center;
     margin-bottom: 50px;
@@ -310,7 +310,7 @@ h1.blog-post-title {
     margin-bottom: 50px;
 }
 
-.blog-post-content h2 {
+.blog-post-content h1 {
     font-size: 30px;
     margin-top: 50px;
 }
@@ -396,6 +396,13 @@ h1.blog-post-title {
     margin: 3vh;
 }
 
+/* FAQ */
+.pricing-faq-title {
+    color: #000000;
+    font-size: 5vh;
+    font-weight: 900;
+}
+
 .pricing-faq-container {
     display: flex;
     flex-flow: column;
@@ -405,22 +412,12 @@ h1.blog-post-title {
     padding: 6vh;
 }
 
-.pricing-faq-container-column {
-    display: inline-flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    max-width: 1300px;
-}
-
 .pricing-faq {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    max-width: 400px;
+    width: 100%;
     padding: 3vh;
+    margin: 1vh;
     border-radius: 5px;
     box-shadow: var(--shadow-2);
-    margin: 1vh;
 }
 
 h4.pricing-faq-title {

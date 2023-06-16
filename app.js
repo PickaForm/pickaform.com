@@ -1868,20 +1868,20 @@ function translate() {
             The story begins in 2009, long before "no-code" existed, and the design of the platform was 100% guided by the use of its users.
             In 2019, ten years after the very first version, the platform is dedicated "IBM CHAMPION" in the category of Collaboration software.
             From the outset, the platform has kept the same philosophy:
-            <br>- easy-to-make forms
-            <br>- a la carte functionalities integrated into forms
-            <br>- flexible and quick-to-implement workflow feature
-            <br>- simplicity
-            <br>Today, large companies use Pickaform on a daily basis for all types of use, and 95% of our users who adopt the platform stay on it for several years, guaranteeing maximum ROI!`,
+            <br>• easy-to-make forms
+            <br>• a la carte functionalities integrated into forms
+            <br>• flexible and quick-to-implement workflow feature
+            <br>• simplicity
+            <br>Today, large companies use Pickaform on a daily basis for all types of use, and 95% of our users who adopt the platform use it for several years, guaranteeing maximum ROI.`,
                 fr: `Pickaform n'est pas un logiciel cloud issu d'une simple idée et créé rapidement pour surfer sur la vague du no-code.
             L'histoire commence en 2009, bien avant que le "no-code" existe, et la conception de la plateforme a été guidée à 100% par l'usage de ses utilisateurs.
             En 2019, soit dix ans après la toute première version, la plateforme est consacrée "IBM CHAMPION" dans la categorie des logiciels de Collaboration.
             Depuis l'origine, la plateforme a conservé la même philosophie :
-            <br>- formulaires simples à fabriquer
-            <br>- fonctionnalités à la carte intégrées aux formulaires
-            <br>- fonctionnalité de workflow flexible et rapide à mettre en place
-            <br>- simplicité
-            <br>Aujourd'hui, de grandes entreprises utilisent Pickaform au quotidien pour tous types d'usages, et 95% de nos utilisateurs qui adoptent la plateforme restent dessus pour plusieurs années, garantissant un ROI maximal !`
+            <br>• formulaires simples à fabriquer
+            <br>• fonctionnalités à la carte intégrées aux formulaires
+            <br>• fonctionnalité de workflow flexible et rapide à mettre en place
+            <br>• simplicité
+            <br>Aujourd'hui, de grandes entreprises utilisent Pickaform au quotidien pour tous types d'usages, et 95% de nos utilisateurs qui adoptent la plateforme l'utilisent plusieurs années, garantissant un ROI maximal.`
             },
             faq1: {
                 en: "Who uses Pickaform?",
@@ -2032,20 +2032,22 @@ function translate() {
                 },
                 {
                     class: "pricing-faq-container",
-                    items: [{
-                        class: "pricing-faq-container-column",
-                        items: [
-                            kiss.templates.pricingFAQ(t("faq0"), t("answer0")),
-                            kiss.templates.pricingFAQ(t("faq1"), t("answer1")),
-                            kiss.templates.pricingFAQ(t("faq2"), t("answer2")),
-                            kiss.templates.pricingFAQ(t("faq3"), t("answer3")),
-                            kiss.templates.pricingFAQ(t("faq4"), t("answer4")),
-                            kiss.templates.pricingFAQ(t("faq5"), t("answer5")),
-                            kiss.templates.pricingFAQ(t("faq6"), t("answer6")),
-                            kiss.templates.pricingFAQ(t("faq7"), t("answer7")),
-                            kiss.templates.pricingFAQ(t("faq8"), t("answer8"))
-                        ]
-                    }]
+                    items: [
+                        {
+                            type: "html",
+                            class: "pricing-faq-title",
+                            html: "FAQ"
+                        },
+                        kiss.templates.pricingFAQ(t("faq0"), t("answer0")),
+                        kiss.templates.pricingFAQ(t("faq1"), t("answer1")),
+                        kiss.templates.pricingFAQ(t("faq2"), t("answer2")),
+                        kiss.templates.pricingFAQ(t("faq3"), t("answer3")),
+                        kiss.templates.pricingFAQ(t("faq4"), t("answer4")),
+                        kiss.templates.pricingFAQ(t("faq5"), t("answer5")),
+                        kiss.templates.pricingFAQ(t("faq6"), t("answer6")),
+                        kiss.templates.pricingFAQ(t("faq7"), t("answer7")),
+                        kiss.templates.pricingFAQ(t("faq8"), t("answer8"))
+                    ]
                 }
             ],
 
@@ -3191,9 +3193,6 @@ kiss.templates.pricingFAQ = function(question, answer)  {
         items: [
             {
                 type: "html",
-                padding: "1vh",
-                flex: 1,
-                maxWidth: 430,
                 html: /*html*/ `
                     <h4 class="pricing-faq-title">${question}</h4>
                     <p class="pricing-faq-description">${answer}</p>`
@@ -3255,8 +3254,8 @@ kiss.templates.screenshotPreview = function (src, width, height) {
         type: "html",
         width: "100%",
         html: /*html*/ `
-            <h2 class="title">${title}</h2>
-            <h3 class="subtitle">${subtitle}</h3>`
+            <h1 class="title">${title}</h1>
+            <h2 class="subtitle">${subtitle}</h2>`
     }
 }
 
