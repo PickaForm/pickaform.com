@@ -6,12 +6,12 @@ kiss.app.defineView({
             fr: "https://pickaform.fr/fr/cases"
         },
         title: {
-            en: "Product features | Pickaform",
-            fr: "Fonctionnalités du produit | Pickaform"
+            en: "Case studies | Pickaform",
+            fr: "Etudes de cas | Pickaform"
         },
         description: {
-            en: `The full list of Pickaform product features. Combine no-code, workflows and AI to build the most flexible tools for your company!"`,
-            fr: `Liste des fonctionnalités du produit Pickaform. Combinez no-code, workflows et IA pour créer les outils les plus flexibles pour votre entreprise !"`
+            en: `With no-code, combine your custom forms and workflows to create an infinite number of different tools.`,
+            fr: `Avec le no-code, combinez vos formulaires and workflows sur mesure pour créer une infinité d'outils différents.`
         }
     },
     renderer: function (id, target) {
