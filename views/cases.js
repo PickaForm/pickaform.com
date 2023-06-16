@@ -38,12 +38,12 @@ kiss.app.defineView({
             },
             descriptionCRM: {
                 en: `Build your custom CRM with all the fields and all the indicators that interest you for your business.
-            <br>Define your own sales pipeline with your custom workflow`,
+            <br>Define your own sales pipeline with your custom workflow.`,
                 fr: `Construisez votre CRM sur mesure avec tous les champs et tous les indicateurs qui vous intéressent pour votre métier.
             <br>Définissez votre propre pipeline de ventes avec votre workflow personnalisé.`
             },
             titleHR: {
-                en: "Define your Human Resources",
+                en: "Human Resources",
                 fr: "Ressources Humaines"
             },
             descriptionHR: {
