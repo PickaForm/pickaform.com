@@ -1,5 +1,19 @@
 kiss.app.defineView({
     id: "pricing",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/pricing",
+            fr: "https://pickaform.fr/fr/pricing"
+        },
+        title: {
+            en: "Pricing | Pickaform",
+            fr: "Tarifs | Pickaform"
+        },
+        description: {
+            en: `Get the Right Plan for Your Business Needs.`,
+            fr: `Sélectionnez le plan adapté à vos besoins.`
+        }
+    },    
     renderer: function (id, target) {
         const t = defineTexts(id, {
             title: {
