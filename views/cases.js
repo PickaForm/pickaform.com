@@ -15,8 +15,8 @@ kiss.app.defineView({
                 dépend de votre <span class="text-highlight" style="background-color: #a1ed00">imagination</span>`
             },
             subtitle: {
-                en: "Create the business tool of your dreams and start saving time.",
-                fr: "Créez l'outil métier de vos rêves et commencez à gagner du temps."
+                en: "With no-code, combine your custom forms and workflows to create an infinite number of different tools.",
+                fr: "Avec le no-code, combinez vos formulaires and workflows sur mesure pour créer une infinité d'outils différents."
             },
             titleCRM: {
                 en: "CRM",

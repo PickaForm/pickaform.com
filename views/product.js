@@ -25,8 +25,8 @@ kiss.app.defineView({
                 Vraiment <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`
             },
             subtitle: {
-                en: "An infinity of applications and uses are possible from the forms and their à la carte functionalities.",
-                fr: "Une infinité d'applications et d'usages sont possibles à partir des formulaires et de leurs fonctionnalités à la carte."
+                en: "Create the business tool of your dreams and start saving time.",
+                fr: "Créez l'outil métier de vos rêves et commencez à gagner du temps."
             },
             titleForms: {
                 en: "Flexible forms",
