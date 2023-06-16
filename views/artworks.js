@@ -1,5 +1,19 @@
 kiss.app.defineView({
     id: "artworks",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/artworks",
+            fr: "https://pickaform.fr/fr/artworks"
+        },
+        title: {
+            en: "Pickaform | Midjourney integration",
+            fr: "Pickaform | Integration Midjourney"
+        },
+        description: {
+            en: `Get Inspired by our AI Art Collection.`,
+            fr: `Laissez-vous inspirer par notre collection d'art IA.`
+        }
+    },    
     renderer: function (id, target) {
 
         const t = defineTexts(id, {

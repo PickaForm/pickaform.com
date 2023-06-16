@@ -94,6 +94,20 @@ function translate() {
 
 ;kiss.app.defineView({
     id: "artworks",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/artworks",
+            fr: "https://pickaform.fr/fr/artworks"
+        },
+        title: {
+            en: "Pickaform | Midjourney integration",
+            fr: "Pickaform | Integration Midjourney"
+        },
+        description: {
+            en: `Get Inspired by our AI Art Collection.`,
+            fr: `Laissez-vous inspirer par notre collection d'art IA.`
+        }
+    },    
     renderer: function (id, target) {
 
         const t = defineTexts(id, {
@@ -1057,6 +1071,20 @@ function translate() {
 
 ;kiss.app.defineView({
     id: "contact",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/contact",
+            fr: "https://pickaform.fr/fr/contact"
+        },
+        title: {
+            en: "Pickaform | Contact & FAQ",
+            fr: "Pickaform | Contact & FAQ"
+        },
+        description: {
+            en: `Request a demo or check the Frequently Asked Questions.`,
+            fr: `Demandez une démo ou jetez un oeil aux Questions Fréquentes.`
+        }
+    },    
     renderer: function (id, target) {
         const t = defineTexts(id, {
             title: {

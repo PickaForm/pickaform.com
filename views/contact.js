@@ -1,5 +1,19 @@
 kiss.app.defineView({
     id: "contact",
+    meta: {
+        url: {
+            en: "https://pickaform.fr/en/contact",
+            fr: "https://pickaform.fr/fr/contact"
+        },
+        title: {
+            en: "Pickaform | Contact & FAQ",
+            fr: "Pickaform | Contact & FAQ"
+        },
+        description: {
+            en: `Request a demo or check the Frequently Asked Questions.`,
+            fr: `Demandez une démo ou jetez un oeil aux Questions Fréquentes.`
+        }
+    },    
     renderer: function (id, target) {
         const t = defineTexts(id, {
             title: {

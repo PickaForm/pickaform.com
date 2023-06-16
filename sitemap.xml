@@ -96,4 +96,16 @@
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://blog.pickaform.com/en/" />
   </url>
+  
+  <!-- ARTWORKS -->
+  <url>
+    <loc>https://pickaform.fr/en/artworks</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://pickaform.fr/fr/artworks" />
+  </url>
+  <url>
+    <loc>https://pickaform.fr/fr/artworks</loc>
+    <priority>0.5</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://pickaform.fr/en/artworks" />
+  </url>
 </urlset>
