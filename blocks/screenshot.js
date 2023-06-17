@@ -5,8 +5,8 @@ kiss.templates.screenshot = function (src) {
     return {
         type: "html",
         class: "wave-2",
-        html: `<img loading="lazy" class="screenshot" src="${src}" alt="${alt}">`,
         width: "100%",
+        html: `<img loading="lazy" class="screenshot" src="${src}" alt="${alt}" width="100%" height="100%">`,
         events: {
             click: () => kiss.templates.screenshotPreview(src)
         }
@@ -34,7 +34,7 @@ kiss.templates.screenshotPreview = function (src, width, height) {
             display: "flex",
             width: "100%",
             height: "100%",
-            html: `<img loading="lazy" src="${src}" alt="${alt}" style="object-fit: contain; width: 100%; height: 100%;">`
+            html: `<img loading="lazy" src="${src}" alt="${alt}" width="100%" height="100%" style="object-fit: contain;">`
         }],
         
         events: {
