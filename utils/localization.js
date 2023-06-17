@@ -35,7 +35,7 @@ function translateTo(language) {
     
     itemsToTranslate.forEach(item => {
         const textId = item.getAttribute("id")
-        const newText = t(textId)
+        const newText = txtTitleCase(textId)
         item.innerHTML = newText
     })
 }
