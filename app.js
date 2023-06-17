@@ -1483,7 +1483,7 @@ function translate() {
                     subtitle: t("subtitlePitchline")
                 }),
                 kiss.templates.buttonCTA(t("getStarted")),
-                kiss.templates.screenshot("workflow - business contracts.webp"),
+                kiss.templates.screenshot("workflow - business contracts - pickaform.webp"),
 
                 // STRIP 2
                 kiss.templates.title({
@@ -1646,6 +1646,7 @@ function translate() {
                 // LOGO
                 {
                     type: "image",
+                    alt: "pickaform logo",
                     src: "./resources/img/pickaform.webp"
                 },
                 {
@@ -3230,12 +3231,13 @@ kiss.templates.pricingFAQ = function(question, answer)  {
 }
 
 ;kiss.templates.screenshot = function (src) {
+    const alt = src.split(".")[0]
     src = kiss.global.pathImg + "/" + src
 
     return {
         type: "html",
         class: "wave-2",
-        html: `<img loading="lazy" class="screenshot" src="${src}">`,
+        html: `<img loading="lazy" class="screenshot" src="${src}" alt="${alt}">`,
         width: "100%",
         events: {
             click: () => kiss.templates.screenshotPreview(src)
@@ -3244,6 +3246,7 @@ kiss.templates.pricingFAQ = function(question, answer)  {
 }
 
 kiss.templates.screenshotPreview = function (src, width, height) {
+    const alt = src.split(".")[0]
     createPanel({
         header: false,
         modal: true,
@@ -3263,7 +3266,7 @@ kiss.templates.screenshotPreview = function (src, width, height) {
             display: "flex",
             width: "100%",
             height: "100%",
-            html: `<img loading="lazy" src="${src}" style="object-fit: contain; width: 100%; height: 100%;">`
+            html: `<img loading="lazy" src="${src}" alt="${alt}" style="object-fit: contain; width: 100%; height: 100%;">`
         }],
         
         events: {
