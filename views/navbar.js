@@ -108,6 +108,8 @@ kiss.app.defineView({
             html: kiss.templates.navbar(navItems, "column")
         }]
 
+        const nextLanguage = (kiss.language.current == "fr") ? "en" : "fr"
+
         return createBlock({
             id,
             target,
@@ -139,7 +141,7 @@ kiss.app.defineView({
                     id: "language",
                     class: "button-flag",
                     type: "html",
-                    html: `<img id="language-img" style="width: 16px" src="${kiss.global.pathImg}/flag-${(kiss.language.current == "fr") ? "en" : "fr"}.svg">`
+                    html: `<img id="language-img" style="width: 16px" src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`
                 },
                 // CONTRAST
                 {
