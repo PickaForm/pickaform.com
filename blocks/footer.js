@@ -9,6 +9,7 @@ kiss.templates.footerBlock = function ({
         class: "footer-column",
         layout: "vertical",
         alignItems: "center",
+        margin: "0 0 20px 0",
         items: [{
                 type: "html",
                 html: `<div class="footer-title">${title}</div>`

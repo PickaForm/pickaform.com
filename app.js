@@ -1135,14 +1135,16 @@ function translate() {
                 {
                     type: "panel",
                     header: false,
-                    maxWidth: 600,
-                    width: "50%",
-                    minWidth: 400,
+                    // maxWidth: 600,
+                    // width: "50%",
+                    // minWidth: 400,
+                    width: () => (kiss.screen.current.width < 600) ? kiss.screen.current.width - 40 : 600,
+                    autoSize: true,
                     margin: "10vh 0 20vh 0",
                     layout: "vertical",
 
                     defaultConfig: {
-                        labelPosition: "top",
+                        labelPosition: "top"
                     },
 
                     items: [
@@ -1198,10 +1200,7 @@ function translate() {
                         {
                             type: "button",
                             text: t("submit"),
-                            icon: "fas fa-paper-plane",
-                            iconSize: "2vh",
-                            fontSize: "2vh",
-                            height: "5vh",
+                            height: 40,
                             backgroundColor: "#00aaee",
                             color: "#ffffff",
                             iconColor: "#ffffff",
@@ -3089,7 +3088,7 @@ kiss.templates.breadcrumb = function(post) {
                 type: "html",
                 padding: "1vh",
                 flex: 1,
-                maxWidth: 430,
+                maxWidth: () => (kiss.screen.current.width > 500) ? 430 : kiss.screen.current.width - 40,
                 html: /*html*/ `
                     <h4 class="feature-details-title">${title}</h4>
                     <p class="feature-details-description">${description}</p>`
@@ -3109,6 +3108,7 @@ kiss.templates.footerBlock = function ({
         class: "footer-column",
         layout: "vertical",
         alignItems: "center",
+        margin: "0 0 20px 0",
         items: [{
                 type: "html",
                 html: `<div class="footer-title">${title}</div>`

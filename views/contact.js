@@ -64,14 +64,16 @@ kiss.app.defineView({
                 {
                     type: "panel",
                     header: false,
-                    maxWidth: 600,
-                    width: "50%",
-                    minWidth: 400,
+                    // maxWidth: 600,
+                    // width: "50%",
+                    // minWidth: 400,
+                    width: () => (kiss.screen.current.width < 600) ? kiss.screen.current.width - 40 : 600,
+                    autoSize: true,
                     margin: "10vh 0 20vh 0",
                     layout: "vertical",
 
                     defaultConfig: {
-                        labelPosition: "top",
+                        labelPosition: "top"
                     },
 
                     items: [
@@ -127,10 +129,7 @@ kiss.app.defineView({
                         {
                             type: "button",
                             text: t("submit"),
-                            icon: "fas fa-paper-plane",
-                            iconSize: "2vh",
-                            fontSize: "2vh",
-                            height: "5vh",
+                            height: 40,
                             backgroundColor: "#00aaee",
                             color: "#ffffff",
                             iconColor: "#ffffff",

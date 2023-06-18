@@ -28,7 +28,7 @@ kiss.templates.featureDetails = function ({
                 type: "html",
                 padding: "1vh",
                 flex: 1,
-                maxWidth: 430,
+                maxWidth: () => (kiss.screen.current.width > 500) ? 430 : kiss.screen.current.width - 40,
                 html: /*html*/ `
                     <h4 class="feature-details-title">${title}</h4>
                     <p class="feature-details-description">${description}</p>`
