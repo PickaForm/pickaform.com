@@ -78,7 +78,7 @@ kiss.app.defineView({
             // TEMPLATES
             {
                 text: t("Templates"),
-                href: kiss.global.pathPickaform + "/client/pickaform/demo.html#ui=templates-list",
+                href: kiss.global.pathPickaform + `/client/pickaform/demo.html#ui=templates-list&language=${kiss.language.current}`,
                 target: "_new",
                 view: ""
             },
@@ -188,8 +188,12 @@ kiss.app.defineView({
                         const view = element.getAttribute("view")
                         const target = element.getAttribute("target")
 
-                        if (element.innerHTML == "Blog") {
+                        if (element.innerHTML.includes("Blog")) {
+                            // BLOG
                             window.open(`https://blog.pickaform.com/${kiss.language.current}/`, "_new")
+                        } else if (element.innerHTML.includes("Templates") || element.innerHTML.includes("Modèles")) {
+                            // TEMPLATES
+                            window.open(kiss.global.pathPickaform + `/client/pickaform/demo.html#ui=templates-list&language=${kiss.language.current}`, "_new")
                         } else if (view) {
                             kiss.router.navigateTo({
                                 content: view
