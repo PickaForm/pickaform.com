@@ -21,7 +21,7 @@ kiss.global.blogPostPublicationDate = "floopJiS"
 kiss.global.blogPostPublished = "rhI4E1iH"
 
 // Contact
-kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
+kiss.global.contactModelId = "0187b40b-0061-7f65-af86-982a361afcf3"
 
 // AI Art
 kiss.global.artEndPoint = "https://cloud.pickaform.com/command/product"
@@ -1099,21 +1099,13 @@ function translate() {
                 en: "submit",
                 fr: "envoyer"
             },
-            name: {
-                en: "name",
-                fr: "nom"
-            },
-            company: {
-                en: "company",
-                fr: "société"
-            },
-            project: {
-                en: "project",
-                fr: "projet"
-            },
-            language: {
-                en: "language",
-                fr: "langue"
+            thanks: {
+                en: `Thank you!
+                <br>Your request has been sent 🚀
+                <br>We will contact you very soon.`,
+                fr: `Merci !
+                <br>Votre demande a bien été envoyée 🚀
+                <br>Nous allons prendre contact avec vous très rapidement.`
             }
         })
 
@@ -1133,11 +1125,9 @@ function translate() {
 
                 // CONTACT FORM
                 {
+                    id: "contactForm",
                     type: "panel",
                     header: false,
-                    // maxWidth: 600,
-                    // width: "50%",
-                    // minWidth: 400,
                     width: () => (kiss.screen.current.width < 600) ? kiss.screen.current.width - 40 : 600,
                     autoSize: true,
                     margin: "10vh 0 20vh 0",
@@ -1152,49 +1142,76 @@ function translate() {
                         {
                             id: "name",
                             type: "text",
-                            label: t("name")
+                            label: "Name",
+                            required: true
                         },
                         // Email
                         {
                             id: "email",
                             type: "text",
                             label: "Email",
-                            validationType: "email"
+                            validationType: "email",
+                            required: true
                         },
                         // Telephone
                         {
                             id: "telephone",
                             type: "text",
-                            label: "Telephone"
+                            label: "Telephone",
+                            required: true
                         },
                         // Language
                         {
                             id: "language",
                             type: "select",
-                            label: t("language"),
-                            options: [{
-                                    label: "English",
-                                    value: "en"
-                                },
-                                {
-                                    label: "Français",
-                                    value: "fr"
-                                }
-                            ],
-                            value: kiss.language.current || "en"
+                            label: "Language",
+                            options: ["English", "Français"],
+                            value: (kiss.language.current == "fr") ? "Français" : "English",
+                            required: true
                         },
                         // Company
                         {
                             id: "company",
                             type: "text",
-                            label: t("company")
+                            label: "Company",
+                            required: true
                         },
+                        // Company size
+                        {
+                            id: "companySize",
+                            type: "select",
+                            label: "Company size",
+                            required: true,
+                            options: [
+                                {
+                                    "value": "1 - 10",
+                                    "color": "#FFAA00"
+                                },
+                                {
+                                    "value": "11 - 20",
+                                    "color": "#55CC00"
+                                },
+                                {
+                                    "value": "21 - 50",
+                                    "color": "#0075FF"
+                                },
+                                {
+                                    "value": "51 - 100",
+                                    "color": "#ED3757"
+                                },
+                                {
+                                    "value": "100+",
+                                    "color": "#8833EE"
+                                }
+                            ]                            
+                        },                        
                         // Project
                         {
                             id: "project",
                             type: "textarea",
-                            label: t("project"),
-                            rows: 10
+                            label: "Project",
+                            rows: 10,
+                            required: true
                         },
                         // Submit button
                         {
@@ -1205,7 +1222,10 @@ function translate() {
                             color: "#ffffff",
                             iconColor: "#ffffff",
                             action: async function () {
-                                let formData = this.closest("a-block").getData({
+                                const form = this.closest("a-panel")
+                                if (!form.validate()) return
+
+                                let formData = form.getData({
                                     useLabels: true
                                 })
                                 formData.useLabels = true
@@ -1215,10 +1235,26 @@ function translate() {
                                     method: "post",
                                     body: JSON.stringify(formData)
                                 })
+
+                                $("contactForm").hide()
+                                $("thankYou").show()
                             }
                         }
                     ]
-                }
+                },
+
+                // THANK YOU
+                {
+                    hidden: true,
+                    id: "thankYou",
+                    type: "html",
+                    class: "thank-you",
+                    html: t("thanks"),
+                    animation: {
+                        name: "rotateIn",
+                        speed: "fast"
+                    }
+                }                
             ],
 
             methods: {
@@ -3079,7 +3115,10 @@ kiss.templates.breadcrumb = function(post) {
                         type: "html",
                         html: `<img src="${src}" alt="${alt}" class="feature-details-screenshot-img">`,
                         events: {
-                            click: () => kiss.templates.screenshotPreview(src, 822, 522)
+                            click: () => {
+                                if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
+                                kiss.templates.screenshotPreview(src, 822, 522)
+                            }
                         }
                     }
                 ]
@@ -3088,7 +3127,7 @@ kiss.templates.breadcrumb = function(post) {
                 type: "html",
                 padding: "1vh",
                 flex: 1,
-                maxWidth: () => (kiss.screen.current.width > 500) ? 430 : kiss.screen.current.width - 40,
+                maxWidth: () => (kiss.screen.current.width > 500) ? 430 : kiss.screen.current.width - 10,
                 html: /*html*/ `
                     <h4 class="feature-details-title">${title}</h4>
                     <p class="feature-details-description">${description}</p>`

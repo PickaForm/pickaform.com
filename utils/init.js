@@ -21,7 +21,7 @@ kiss.global.blogPostPublicationDate = "floopJiS"
 kiss.global.blogPostPublished = "rhI4E1iH"
 
 // Contact
-kiss.global.contactModelId = "0187fc11-6405-73d4-abcf-8c323e9b91a9"
+kiss.global.contactModelId = "0187b40b-0061-7f65-af86-982a361afcf3"
 
 // AI Art
 kiss.global.artEndPoint = "https://cloud.pickaform.com/command/product"

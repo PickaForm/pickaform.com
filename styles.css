@@ -178,6 +178,20 @@ h2.subtitle {
     box-shadow: var(--shadow-image-hover);
 }
 
+/* CONTACT FORM */
+.thank-you {
+    margin: 10vh 0;
+    text-align: center;
+    font-family: Content-font, Roboto, sans-serif;
+    font-size: 3vh;
+    line-height: 4vh;
+    font-weight: 500;
+    background: var(--body-background);
+    padding: 2vh;
+    border-radius: 10px;
+    box-shadow: var(--shadow-3);
+}
+
 /* BLOG */
 .blog-header-title {
     margin-top: 10vh;

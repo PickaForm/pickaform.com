@@ -28,21 +28,13 @@ kiss.app.defineView({
                 en: "submit",
                 fr: "envoyer"
             },
-            name: {
-                en: "name",
-                fr: "nom"
-            },
-            company: {
-                en: "company",
-                fr: "société"
-            },
-            project: {
-                en: "project",
-                fr: "projet"
-            },
-            language: {
-                en: "language",
-                fr: "langue"
+            thanks: {
+                en: `Thank you!
+                <br>Your request has been sent 🚀
+                <br>We will contact you very soon.`,
+                fr: `Merci !
+                <br>Votre demande a bien été envoyée 🚀
+                <br>Nous allons prendre contact avec vous très rapidement.`
             }
         })
 
@@ -62,11 +54,9 @@ kiss.app.defineView({
 
                 // CONTACT FORM
                 {
+                    id: "contactForm",
                     type: "panel",
                     header: false,
-                    // maxWidth: 600,
-                    // width: "50%",
-                    // minWidth: 400,
                     width: () => (kiss.screen.current.width < 600) ? kiss.screen.current.width - 40 : 600,
                     autoSize: true,
                     margin: "10vh 0 20vh 0",
@@ -81,49 +71,76 @@ kiss.app.defineView({
                         {
                             id: "name",
                             type: "text",
-                            label: t("name")
+                            label: "Name",
+                            required: true
                         },
                         // Email
                         {
                             id: "email",
                             type: "text",
                             label: "Email",
-                            validationType: "email"
+                            validationType: "email",
+                            required: true
                         },
                         // Telephone
                         {
                             id: "telephone",
                             type: "text",
-                            label: "Telephone"
+                            label: "Telephone",
+                            required: true
                         },
                         // Language
                         {
                             id: "language",
                             type: "select",
-                            label: t("language"),
-                            options: [{
-                                    label: "English",
-                                    value: "en"
-                                },
-                                {
-                                    label: "Français",
-                                    value: "fr"
-                                }
-                            ],
-                            value: kiss.language.current || "en"
+                            label: "Language",
+                            options: ["English", "Français"],
+                            value: (kiss.language.current == "fr") ? "Français" : "English",
+                            required: true
                         },
                         // Company
                         {
                             id: "company",
                             type: "text",
-                            label: t("company")
+                            label: "Company",
+                            required: true
                         },
+                        // Company size
+                        {
+                            id: "companySize",
+                            type: "select",
+                            label: "Company size",
+                            required: true,
+                            options: [
+                                {
+                                    "value": "1 - 10",
+                                    "color": "#FFAA00"
+                                },
+                                {
+                                    "value": "11 - 20",
+                                    "color": "#55CC00"
+                                },
+                                {
+                                    "value": "21 - 50",
+                                    "color": "#0075FF"
+                                },
+                                {
+                                    "value": "51 - 100",
+                                    "color": "#ED3757"
+                                },
+                                {
+                                    "value": "100+",
+                                    "color": "#8833EE"
+                                }
+                            ]                            
+                        },                        
                         // Project
                         {
                             id: "project",
                             type: "textarea",
-                            label: t("project"),
-                            rows: 10
+                            label: "Project",
+                            rows: 10,
+                            required: true
                         },
                         // Submit button
                         {
@@ -134,7 +151,10 @@ kiss.app.defineView({
                             color: "#ffffff",
                             iconColor: "#ffffff",
                             action: async function () {
-                                let formData = this.closest("a-block").getData({
+                                const form = this.closest("a-panel")
+                                if (!form.validate()) return
+
+                                let formData = form.getData({
                                     useLabels: true
                                 })
                                 formData.useLabels = true
@@ -144,10 +164,26 @@ kiss.app.defineView({
                                     method: "post",
                                     body: JSON.stringify(formData)
                                 })
+
+                                $("contactForm").hide()
+                                $("thankYou").show()
                             }
                         }
                     ]
-                }
+                },
+
+                // THANK YOU
+                {
+                    hidden: true,
+                    id: "thankYou",
+                    type: "html",
+                    class: "thank-you",
+                    html: t("thanks"),
+                    animation: {
+                        name: "rotateIn",
+                        speed: "fast"
+                    }
+                }                
             ],
 
             methods: {
