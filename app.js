@@ -826,7 +826,7 @@ function translate() {
             },
             summary: {
                 en: "summarize data from linked records",
-                fr: "calcul à partie de fiches liées"
+                fr: "calcul à partir de fiches liées"
             },
             summaryDescription: {
                 en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
@@ -2429,7 +2429,7 @@ function translate() {
             },
             summary: {
                 en: "summarize data from linked records",
-                fr: "calcul à partie de fiches liées"
+                fr: "calcul à partir de fiches liées"
             },
             summaryDescription: {
                 en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
