@@ -188,7 +188,7 @@ kiss.app.defineView({
                 kiss.templates.feature({
                     title: t("titleProjects"),
                     description: t("descriptionProjects"),
-                    screenshot: "workflows-thumbnail.webp",
+                    screenshot: "example - project management - pickaform.webp",
                     CTA: t("getStarted"),
                     textPosition: "left"
                 }),
