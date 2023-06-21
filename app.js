@@ -1932,8 +1932,8 @@ function translate() {
                 Vraiment <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`
             },
             subtitle: {
-                en: "Create the business tool of your dreams and start saving time.",
-                fr: "Créez l'outil métier de vos rêves et commencez à gagner du temps."
+                en: "Create your own business tool and start saving time.",
+                fr: "Créez votre outil métier sur mesure et commencez à gagner du temps."
             },
             titleForms: {
                 en: "Flexible forms",
