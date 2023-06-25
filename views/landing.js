@@ -84,7 +84,7 @@ kiss.app.defineView({
                     subtitle: t("subtitlePitchline")
                 }),
                 kiss.templates.buttonCTA(t("getStarted")),
-                kiss.templates.screenshot("workflow - business contracts - pickaform.webp", false),
+                kiss.templates.screenshot("workflow - business contracts - pickaform.webp"),
 
                 // STRIP 2
                 kiss.templates.title({

@@ -1,4 +1,4 @@
-kiss.templates.screenshot = function (src, lazyLoading = true) {
+kiss.templates.screenshot = function (src) {
     const alt = src.split(".")[0]
     src = kiss.global.pathImg + "/" + src
 
@@ -6,7 +6,7 @@ kiss.templates.screenshot = function (src, lazyLoading = true) {
         type: "html",
         class: "wave-2",
         width: "100%",
-        html: `<img ${(lazyLoading) ? `loading="lazy"` : ""} class="screenshot" src="${src}" alt="${alt}" width="100%" height="100%">`,
+        html: `<img loading="lazy" class="screenshot" src="${src}" alt="${alt}" width="100%" height="100%">`,
         events: {
             click: () => kiss.templates.screenshotPreview(src)
         }
