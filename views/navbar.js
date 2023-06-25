@@ -283,12 +283,12 @@ kiss.app.defineView({
                                     id: "vertical-menu",
                                     header: false,
                                     modal: true,
-                                    class: "wave-3",
                                     width: "100%",
                                     height: "100%",
                                     layout: "vertical",
                                     items: menu,
                                     closeMethod: "hide",
+                                    background: "var(--background-blue)",
                                     events: {
                                         click: function (event) {
                                             $(id)._handleClick(event)
