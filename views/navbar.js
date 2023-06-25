@@ -106,7 +106,7 @@ kiss.app.defineView({
                 id: "language",
                 class: "button-flag",
                 type: "html",
-                html: `<img id="language-img" style="width: 16px" src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`,
+                html: `<img id="language-img" width=16 height=12 src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`,
                 subscriptions: {
                     EVT_LANGUAGE: function(msgData) {
                         log(this)
