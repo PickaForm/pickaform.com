@@ -137,8 +137,8 @@ kiss.app.defineView({
                 fr: `Pas convaincu ?`
             },
             subtitleBookDemo: {
-                en: "Tell us about your project, and we'll show you how to make it happen in 20 minutes!",
-                fr: "Expliquez-nous votre projet, et on vous montre en 20 minutes comment le réaliser !"
+                en: `Tell us about your project, and we'll show you how to make it happen in <span class="text-highlight" style="background-color: #00aaee">20 minutes!</span>`,
+                fr: `Expliquez-nous votre projet, et on vous montre en <span class="text-highlight" style="background-color: #00aaee">20 minutes</span> comment le réaliser !`
             },
             bookDemo: {
                 en: `OK, I'll get in touch`,

@@ -632,8 +632,8 @@ function translate() {
                 fr: `Pas convaincu ?`
             },
             subtitleBookDemo: {
-                en: "Tell us about your project, and we'll show you how to make it happen in 20 minutes!",
-                fr: "Expliquez-nous votre projet, et on vous montre en 20 minutes comment le réaliser !"
+                en: `Tell us about your project, and we'll show you how to make it happen in <span class="text-highlight" style="background-color: #00aaee">20 minutes!</span>`,
+                fr: `Expliquez-nous votre projet, et on vous montre en <span class="text-highlight" style="background-color: #00aaee">20 minutes</span> comment le réaliser !`
             },
             bookDemo: {
                 en: `OK, I'll get in touch`,
@@ -2006,8 +2006,8 @@ function translate() {
                 fr: `Pas convaincu ?`
             },
             subtitleBookDemo: {
-                en: "Tell us about your project, and we'll show you how to make it happen in 20 minutes!",
-                fr: "Expliquez-nous votre projet, et on vous montre en 20 minutes comment le réaliser !"
+                en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
+                fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
             },
             bookDemo: {
                 en: `OK, I'll get in touch`,
