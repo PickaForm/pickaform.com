@@ -28,6 +28,8 @@
 
 /* TOPBAR */
 #topbar-buttons {
+    display: flex;
+    flex-flow: row;
     white-space: nowrap;
 }
 
@@ -64,9 +66,11 @@
     font-size: 24px;
     box-shadow: var(--button-shadow);
     padding: 4px 8px;
-    margin: 0 20px 0 5px;
+    margin: 10px 5px;
     cursor: pointer;
     user-select: none;
+    color: var(--body);
+    background: var(--body-background);
     border-radius: 5px;
 }
 
@@ -81,9 +85,11 @@
     justify-content: center;
     box-shadow: var(--button-shadow);
     padding: 12px 11px;
-    margin: 0 0 0 5px;
+    margin: 10px 5px;
     cursor: pointer;
     user-select: none;
+    color: var(--body);
+    background: var(--body-background);
     border-radius: 5px;
 }
 

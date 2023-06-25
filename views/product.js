@@ -666,8 +666,14 @@ kiss.app.defineView({
                     title: t("titleBookDemo"),
                     subtitle: t("subtitleBookDemo")
                 }),
+
+                // CONTACT BUTTON
                 kiss.templates.buttonCTA(t("bookDemo"), "contact"),
-                kiss.templates.screenshot("book your demo - pickaform.webp")
+
+                {
+                    class: "feature-top-separator",
+                    margin: "10vh 0 0 0"
+                }
             ],
 
             events: {

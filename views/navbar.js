@@ -1,6 +1,8 @@
 kiss.app.defineView({
     id: "navbar",
     renderer: function (id, target) {
+        const nextLanguage = (kiss.language.current == "fr") ? "en" : "fr"
+
         const t = defineTexts(id, {
             "Home": {
                 en: "Home",
@@ -98,17 +100,44 @@ kiss.app.defineView({
             }
         ]
 
-        const buttons = [{
-            type: "html",
-            html: kiss.templates.navbar(navItems, "row")
-        }]
+        const options = [
+            // LANGUAGE
+            {
+                id: "language",
+                class: "button-flag",
+                type: "html",
+                html: `<img id="language-img" style="width: 16px" src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`,
+                subscriptions: {
+                    EVT_LANGUAGE: function(msgData) {
+                        log(this)
+                        const flagImage = this.querySelector("img")
+                        const newFlag = `${kiss.global.pathImg}/flag-${msgData.language}.svg`
+                        flagImage.src = newFlag
+                    }
+                }
+            },
+            // CONTRAST
+            {
+                id: "mode",
+                class: "button-mode",
+                type: "html",
+                html: "◐"
+            }
+        ]
 
-        const menu = [{
-            type: "html",
-            html: kiss.templates.navbar(navItems, "column")
-        }]
+        let buttons = [{
+                type: "html",
+                html: kiss.templates.navbar(navItems, "row")
+            },
+            ...options
+        ]
 
-        const nextLanguage = (kiss.language.current == "fr") ? "en" : "fr"
+        let menu = [{
+                type: "html",
+                html: kiss.templates.navbar(navItems, "column")
+            },
+            ...options
+        ]
 
         return createBlock({
             id,
@@ -135,20 +164,6 @@ kiss.app.defineView({
                 {
                     id: "topbar-buttons",
                     items: buttons
-                },
-                // LANGUAGE
-                {
-                    id: "language",
-                    class: "button-flag",
-                    type: "html",
-                    html: `<img id="language-img" style="width: 16px" src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`
-                },
-                // CONTRAST
-                {
-                    id: "mode",
-                    class: "button-mode",
-                    type: "html",
-                    html: "◐"
                 }
             ],
 
@@ -157,7 +172,31 @@ kiss.app.defineView({
                  * Intercepts the navbar click event to prevent direct navigation with href.
                  * This allows to *not reload* the page and leverage the SPA behavior of KissJS when opening views.
                  */
-                click: function (event) {
+                click: (event) => $(id)._handleClick(event)
+            },
+
+            subscriptions: {
+                EVT_WINDOW_RESIZED: function (msgData) {
+                    if (!this.isConnected) return
+                    this.adjustDisplayMode(msgData.current.width)
+                }
+            },
+
+            methods: {
+                load() {
+                    if (kiss.tools.isMobile()) {
+                        this.adjustDisplayMode(kiss.screen.current.width)
+                    }
+                },
+
+                // Translation
+                _afterConnected() {
+                    this.translateTo(kiss.language.current)
+                },
+                translateTo,
+
+                // Clicked on a menu item
+                _handleClick(event) {
                     event.preventDefault()
                     let element = event.target
 
@@ -202,53 +241,34 @@ kiss.app.defineView({
                             window.open(element.href, target)
                         }
                     }
-                }
-            },
-
-            subscriptions: {
-                EVT_WINDOW_RESIZED: function (msgData) {
-                    if (!this.isConnected) return
-                    this.adjustDisplayMode(msgData.current.width)
-                }
-            },
-
-            methods: {
-                load() {
-                    if (kiss.tools.isMobile()) {
-                        this.adjustDisplayMode(kiss.screen.current.width)
-                    }
                 },
-                _afterConnected() {
-                    this.translateTo(kiss.language.current)
-                },
-                translateTo,
 
+                // Responsiveness
                 adjustDisplayMode(width) {
                     if (width < 900) {
                         if (this.mode == "narrow") return
                         this.mode = "narrow"
-                        this.displayAsButton()
+                        this.displayMenuVertically()
                     } else {
                         if (this.mode == "wide") return
                         this.mode = "wide"
-                        this.displayAsMenu()
+                        this.displayMenuHorizontally()
                     }
                 },
 
-                displayAsMenu() {
+                // Horizontal menu
+                displayMenuHorizontally() {
                     $("topbar-buttons")
                         .setItems(buttons)
                         .setAnimation({
                             name: "slideInDown",
                             speed: "faster"
                         })
-
-                    $("language").show()
-                    $("mode").show()
                 },
 
-                displayAsButton() {
-                    const menuButton = {
+                // Vertical menu
+                displayMenuVertically() {
+                    const verticalMenu = {
                         type: "button",
                         text: "☰",
                         padding: "0 6px",
@@ -257,9 +277,10 @@ kiss.app.defineView({
                         margin: "0 20px 0 0",
                         action: (event) => {
                             event.stop()
+                            if ($("vertical-menu")) return $("vertical-menu").show()
 
-                            // Display menu vertically
                             createPanel({
+                                    id: "vertical-menu",
                                     header: false,
                                     modal: true,
                                     class: "wave-3",
@@ -267,28 +288,10 @@ kiss.app.defineView({
                                     height: "100%",
                                     layout: "vertical",
                                     items: menu,
+                                    closeMethod: "hide",
                                     events: {
                                         click: function (event) {
-                                            event.preventDefault()
-
-                                            // Manage client-side navigation
-                                            let element = event.target
-                                            if (element.tagName == "SPAN") element = element.closest("a")
-                                            if (element.tagName == "LI") element = element.querySelector("a")
-
-                                            if (element.tagName == "A") {
-                                                const view = element.getAttribute("view")
-                                                const target = element.getAttribute("target")
-
-                                                if (view) {
-                                                    kiss.router.navigateTo({
-                                                        content: view
-                                                    })
-                                                } else {
-                                                    window.open(element.href, target)
-                                                }
-                                            }
-
+                                            $(id)._handleClick(event)
                                             this.close()
                                         }
                                     }
@@ -302,14 +305,11 @@ kiss.app.defineView({
                     }
 
                     $("topbar-buttons")
-                        .setItems([menuButton])
+                        .setItems([verticalMenu])
                         .setAnimation({
                             name: "zoomIn",
                             speed: "faster"
                         })
-
-                    $("language").hide()
-                    $("mode").hide()
                 }
             }
         })

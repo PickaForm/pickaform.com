@@ -44,14 +44,10 @@ function translateTo(language) {
  * Translate navbar, content, footer
  */
 function translate() {
-    const translateButton = $("language")
-    const flagImage = translateButton.querySelector("img")
-    
-    // Switch flag image
-    const newFlag = `${kiss.global.pathImg}/flag-${kiss.language.current}.svg`
-    flagImage.src = newFlag
+    publish("EVT_LANGUAGE", {
+        language: kiss.language.current
+    })
 
-    // Update language
     let newLanguage = (kiss.language.current == "fr") ? "en" : "fr"
     kiss.language.current = newLanguage
     localStorage.setItem("config-language", newLanguage)
