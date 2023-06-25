@@ -154,7 +154,9 @@ kiss.app.defineView({
                 {
                     type: "image",
                     alt: "pickaform logo",
-                    src: "./resources/img/pickaform.webp"
+                    src: "./resources/img/pickaform.webp",
+                    width: 256,
+                    height: 60
                 },
                 {
                     type: "spacer",

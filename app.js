@@ -1281,7 +1281,7 @@ function translate() {
                     subtitle: t("subtitlePitchline")
                 }),
                 kiss.templates.buttonCTA(t("getStarted")),
-                kiss.templates.screenshot("workflow - business contracts - pickaform.webp"),
+                kiss.templates.screenshot("workflow - business contracts - pickaform.webp", false),
 
                 // STRIP 2
                 kiss.templates.title({
@@ -1476,7 +1476,9 @@ function translate() {
                 {
                     type: "image",
                     alt: "pickaform logo",
-                    src: "./resources/img/pickaform.webp"
+                    src: "./resources/img/pickaform.webp",
+                    width: 256,
+                    height: 60
                 },
                 {
                     type: "spacer",
@@ -3044,7 +3046,7 @@ kiss.templates.pricingFAQ = function(question, answer)  {
     }
 }
 
-;kiss.templates.screenshot = function (src) {
+;kiss.templates.screenshot = function (src, lazyLoading = true) {
     const alt = src.split(".")[0]
     src = kiss.global.pathImg + "/" + src
 
@@ -3052,7 +3054,7 @@ kiss.templates.pricingFAQ = function(question, answer)  {
         type: "html",
         class: "wave-2",
         width: "100%",
-        html: `<img loading="lazy" class="screenshot" src="${src}" alt="${alt}" width="100%" height="100%">`,
+        html: `<img ${(lazyLoading) ? `loading="lazy"` : ""} class="screenshot" src="${src}" alt="${alt}" width="100%" height="100%">`,
         events: {
             click: () => kiss.templates.screenshotPreview(src)
         }
