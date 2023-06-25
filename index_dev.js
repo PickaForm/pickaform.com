@@ -45,5 +45,4 @@ window.onload = async function () {
         ui: "start",
         content: "landing"
     })
-    $("splash").remove()
 };
