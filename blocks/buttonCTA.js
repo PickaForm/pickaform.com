@@ -22,7 +22,6 @@ kiss.templates.buttonCTA = function (text, page) {
         fontSize: "2vh",
         borderRadius: 10,
         borderWidth: 0,
-        animation: "zoomIn",
         padding: "1vh 2vh"
     }
 }

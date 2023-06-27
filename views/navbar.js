@@ -108,7 +108,7 @@ kiss.app.defineView({
                 type: "html",
                 html: `<img id="language-img" width=16 height=12 src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`,
                 subscriptions: {
-                    EVT_LANGUAGE: function(msgData) {
+                    EVT_LANGUAGE: function (msgData) {
                         log(this)
                         const flagImage = this.querySelector("img")
                         const newFlag = `${kiss.global.pathImg}/flag-${msgData.language}.svg`
@@ -282,36 +282,26 @@ kiss.app.defineView({
                             if ($("vertical-menu")) return $("vertical-menu").show()
 
                             createPanel({
-                                    id: "vertical-menu",
-                                    header: false,
-                                    modal: true,
-                                    width: "100%",
-                                    height: "100%",
-                                    layout: "vertical",
-                                    items: menu,
-                                    closeMethod: "hide",
-                                    background: "var(--background-blue)",
-                                    events: {
-                                        click: function (event) {
-                                            $(id)._handleClick(event)
-                                            this.close()
-                                        }
+                                id: "vertical-menu",
+                                header: false,
+                                modal: true,
+                                width: "100%",
+                                height: "100%",
+                                layout: "vertical",
+                                items: menu,
+                                closeMethod: "hide",
+                                background: "var(--background-blue)",
+                                events: {
+                                    click: function (event) {
+                                        $(id)._handleClick(event)
+                                        this.close()
                                     }
-                                })
-                                .render()
-                                .setAnimation({
-                                    name: "slideInDown",
-                                    speed: "faster"
-                                })
+                                }
+                            }).render()
                         }
                     }
 
-                    $("topbar-buttons")
-                        .setItems([verticalMenu])
-                        .setAnimation({
-                            name: "zoomIn",
-                            speed: "faster"
-                        })
+                    $("topbar-buttons").setItems([verticalMenu])
                 }
             }
         })
