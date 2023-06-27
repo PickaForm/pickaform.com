@@ -3063,7 +3063,7 @@ kiss.templates.pricingFAQ = function(question, answer)  {
     }
 }
 
-kiss.templates.screenshotPreview = function (src, width, height) {
+kiss.templates.screenshotPreview = function (src) {
     const alt = src.split(".")[0]
     createPanel({
         header: false,
@@ -3082,8 +3082,6 @@ kiss.templates.screenshotPreview = function (src, width, height) {
         items: [{
             type: "html",
             display: "flex",
-            xwidth: "100%",
-            xheight: "100%",
             html: `<img class="screenshot-preview" loading="lazy" src="${src}" alt="${alt}" width="100%" height="100%" style="object-fit: contain;">`
         }],
         
