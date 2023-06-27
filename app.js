@@ -2892,7 +2892,7 @@ kiss.templates.breadcrumb = function(post) {
                         events: {
                             click: () => {
                                 if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
-                                kiss.templates.screenshotPreview(src, 822, 522)
+                                kiss.templates.screenshotPreview(src)
                             }
                         }
                     }
@@ -3063,15 +3063,11 @@ kiss.templates.pricingFAQ = function(question, answer)  {
     }
 }
 
-kiss.templates.screenshotPreview = function (src, width, height) {
+kiss.templates.screenshotPreview = function (src) {
     const alt = src.split(".")[0]
     createPanel({
         header: false,
         modal: true,
-        
-        width: () => width || kiss.screen.current.width - 40,
-        height: () => height || kiss.screen.current.height - 40,
-        
         display: "flex",
         align: "center",
         verticalAlign: "center",
@@ -3082,8 +3078,6 @@ kiss.templates.screenshotPreview = function (src, width, height) {
         items: [{
             type: "html",
             display: "flex",
-            width: "100%",
-            height: "100%",
             html: `<img loading="lazy" src="${src}" alt="${alt}" width="100%" height="100%" style="object-fit: contain;">`
         }],
         

@@ -21,7 +21,7 @@ kiss.templates.featureDetails = function ({
                         events: {
                             click: () => {
                                 if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
-                                kiss.templates.screenshotPreview(src, 822, 522)
+                                kiss.templates.screenshotPreview(src)
                             }
                         }
                     }
