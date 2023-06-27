@@ -3063,22 +3063,28 @@ kiss.templates.pricingFAQ = function(question, answer)  {
     }
 }
 
-kiss.templates.screenshotPreview = function (src) {
+kiss.templates.screenshotPreview = function (src, width, height) {
     const alt = src.split(".")[0]
     createPanel({
         header: false,
         modal: true,
+        
+        width: () => kiss.screen.current.width - 40,
+        height: () => kiss.screen.current.height - 40,
+        
         display: "flex",
         align: "center",
         verticalAlign: "center",
         alignItems: "center",
         justifyContent: "center",
-        background: "var(--background-1)",
+        background: "var(--background-3)",
 
         items: [{
             type: "html",
             display: "flex",
-            html: `<img loading="lazy" src="${src}" alt="${alt}" width="100%" height="100%" style="object-fit: contain;">`
+            xwidth: "100%",
+            xheight: "100%",
+            html: `<img class="screenshot-preview" loading="lazy" src="${src}" alt="${alt}" width="100%" height="100%" style="object-fit: contain;">`
         }],
         
         events: {

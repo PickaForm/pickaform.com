@@ -190,6 +190,10 @@ h2.subtitle {
     box-shadow: var(--shadow-image-hover);
 }
 
+.screenshot-preview {
+    box-shadow: 0 0 50px 0px var(--body);
+}
+
 /* CONTACT FORM */
 .thank-you {
     margin: 10vh 0;
