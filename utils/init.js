@@ -24,7 +24,7 @@ kiss.global.blogPostPublished = "rhI4E1iH"
 kiss.global.contactModelId = "0187b40b-0061-7f65-af86-982a361afcf3"
 
 // AI Art
-kiss.global.artEndPoint = "https://app.pickaform.com/command/product"
+kiss.global.artEndPoint = "https://beta.pickaform.com/command/product"
 kiss.global.artModelId = "01889cf0-5878-7352-93b5-3a0fb88c852f"
 kiss.global.artTitle = "pJZ5QvWL"
 kiss.global.artPulished = "DgllE0KD";
