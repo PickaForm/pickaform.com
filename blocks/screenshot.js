@@ -10,7 +10,10 @@ kiss.templates.screenshot = function (src) {
         width: "100%",
         html: `<img loading="lazy" class="screenshot" src="${src}" alt="${alt}" width="100%" height="100%">`,
         events: {
-            click: () => kiss.templates.screenshotPreview(src)
+            click: () => {
+                if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
+                kiss.templates.screenshotPreview(src)
+            }
         }
     }
 }
