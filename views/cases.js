@@ -11,7 +11,7 @@ kiss.app.defineView({
         },
         description: {
             en: `With no-code, combine your custom forms and workflows to create an infinite number of different tools.`,
-            fr: `Avec le no-code, combinez vos formulaires and workflows sur mesure pour créer une infinité d'outils différents.`
+            fr: `Avec le no-code, combinez vos formulaires et workflows sur mesure pour créer une infinité d'outils différents.`
         }
     },
     renderer: function (id, target) {
@@ -30,7 +30,7 @@ kiss.app.defineView({
             },
             subtitle: {
                 en: "With no-code, combine your custom forms and workflows to create an infinite number of different tools.",
-                fr: "Avec le no-code, combinez vos formulaires and workflows sur mesure pour créer une infinité d'outils différents."
+                fr: "Avec le no-code, combinez vos formulaires et workflows sur mesure pour créer une infinité d'outils différents."
             },
             titleCRM: {
                 en: "CRM",
