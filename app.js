@@ -1734,7 +1734,7 @@ function translate() {
             },
             answer3: {
                 en: `There is no constraint. You can stop at anytime.`,
-                fr: `Il n'y a aucun engagement de durée. Vous pourrez stopper votre abonnement à tout moment.`
+                fr: `Il n'y a aucun engagement de durée. Vous pouvez stopper votre abonnement à tout moment.`
             },
             faq4: {
                 en: "What will happen if I exceed a quota?",
