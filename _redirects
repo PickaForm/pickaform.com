@@ -7,3 +7,4 @@
 /:language/blog   /index.html#ui=start&content=blog&language=:language
 /:language/blog/:postId   /index.html#ui=start&content=blogPost&language=:language&postId=:postId
 /:language/blog/search/:category  /index.html#ui=start&content=blog&language=:language&category=:category
+/:language/artworks    /index.html#ui=start&content=artworks&language=:language
