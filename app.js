@@ -840,8 +840,8 @@ function translate() {
             fr: "https://pickaform.fr/fr/contact"
         },
         title: {
-            en: "Pickaform | Contact & FAQ",
-            fr: "Pickaform | Contact & FAQ"
+            en: "Contact & FAQ | Pickaform",
+            fr: "Contact & FAQ | Pickaform"
         },
         description: {
             en: `Request a demo or check the Frequently Asked Questions.`,
