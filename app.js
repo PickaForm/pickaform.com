@@ -1395,7 +1395,7 @@ function translate() {
             // BLOG
             {
                 text: "Blog",
-                href: `http://blog.pickaform.com/${kiss.language.current}`,
+                href: `https://blog.pickaform.com/${kiss.language.current}`,
                 target: "_new",
                 view: ""
             },
