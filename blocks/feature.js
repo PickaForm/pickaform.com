@@ -36,7 +36,11 @@ kiss.templates.feature = function ({
                         <p>${description}</p>
                     </div>
                     <div class="feature-CTA">
-                        <p>${CTA}</p>
+                        <p>
+                            <a class="feature-CTA" href='${"https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")}'>
+                                ${CTA}
+                            </a>
+                        </p>
                     </div>
                     `
             },

@@ -490,7 +490,8 @@ h4.pricing-faq-title {
 }
 
 .feature-CTA {
-    color: #00aaee;
+    color: #00aaee !important;
+    text-decoration: none;
     font-weight: 600;
     font-family: var(--font-famly);
     font-size: 2vh;
