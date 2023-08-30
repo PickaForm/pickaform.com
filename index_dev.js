@@ -15,6 +15,7 @@ kiss.loader.loadScripts([
     "views/blogPost",
     "views/contact",
     "views/artworks",
+    "views/whoCanUse",
 
     // Templates
     "blocks/navbar",
@@ -27,7 +28,8 @@ kiss.loader.loadScripts([
     "blocks/blogPostEntry",
     "blocks/feature",
     "blocks/featureDetails",
-    "blocks/pager"
+    "blocks/pager",
+    "blocks/whoCanUse"
 ])
 
 // Load styles

@@ -465,6 +465,27 @@ h4.pricing-faq-title {
     line-height: 30px;
 }
 
+/* WHO CAN USE */
+.who-can-use {
+    width: 100%;
+    padding: 3vh;
+    background-color: var(--feature-background);
+}
+
+h4.who-can-use-title {
+    color: #62647b;
+    font-family: var(--font-famly);
+    font-size: 32px;
+    margin: 2vh 0 2vh 0;
+}
+
+.who-can-use-description {
+    color: #62647b;
+    font-family: var(--font-famly);
+    font-size: 20px;
+    line-height: 30px;
+}
+
 /* FEATURE */
 .feature-left {
     margin: 0 0 4vh 0;

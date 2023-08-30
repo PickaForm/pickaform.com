@@ -32,15 +32,11 @@ kiss.app.defineView({
                 en: "With no-code, combine your custom forms and workflows to create an infinite number of different tools.",
                 fr: "Avec le no-code, combinez vos formulaires et workflows sur mesure pour créer une infinité d'outils différents."
             },
-            titleCRM: {
-                en: "CRM",
-                fr: "Des formulaires flexibles"
-            },
             descriptionCRM: {
                 en: `Build your custom CRM with all the fields and all the indicators that interest you for your business.
-            <br>Define your own sales pipeline with your custom workflow.`,
+                    <br>Define your own sales pipeline with your custom workflow.`,
                 fr: `Construisez votre CRM sur mesure avec tous les champs et tous les indicateurs qui vous intéressent pour votre métier.
-            <br>Définissez votre propre pipeline de ventes avec votre workflow personnalisé.`
+                    <br>Définissez votre propre pipeline de ventes avec votre workflow personnalisé.`
             },
             titleHR: {
                 en: "Human Resources",
@@ -56,9 +52,9 @@ kiss.app.defineView({
             },
             descriptionProjects: {
                 en: `Manage your projects and their associated tasks by integrating all the parameters specific to your activity.
-            <br>Integrate your specifications, documentation, and deliverables into a simple and centralized tool.`,
+                    <br>Integrate your specifications, documentation, and deliverables into a simple and centralized tool.`,
                 fr: `Gérez vos projets et leurs tâches associées en intégrant tous les paramètres spécifiques à votre activité.
-            <br>Intégrez vos cahiers des charges, documentations, et livrables dans un outil simple et centralisé.`
+                    <br>Intégrez vos cahiers des charges, documentations, et livrables dans un outil simple et centralisé.`
             },
             titleLegal: {
                 en: "Legal",
@@ -199,9 +195,7 @@ kiss.app.defineView({
             descriptionView: {
                 en: "Organize your data as you see fit thanks to pickaform's ergonomic views: sort, filter, group, and aggregate in just a few clicks!",
                 fr: "Organisez vos données comme bon vous semble grâce aux vues ergonomiques de pickaform: triez, filtrez, regroupez, et aggrégez en quelques clics !"
-            },
-
-
+            }
         })
 
         return createBlock({
