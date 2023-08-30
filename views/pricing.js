@@ -81,10 +81,10 @@ kiss.app.defineView({
                 fr: "A qui s'adresse Pickaform ?"
             },
             answer1: {
-                en: `Pickaform is made for: companies, associations, the public sector, the self-employed, individuals who want to organize information.
-            More generally, to any person or organization wishing to organize their data and be able to access it online in a secure and possibly shared way with other users.`,
-                fr: `Pickaform est fait pour : les entreprises, les associations, le secteur public, les travailleurs indépendants, les particuliers qui veulent organiser des informations.
-            Plus généralement, à toute personne ou organisation souhaitant organiser ses données et pouvoir y accéder en ligne de manière sécurisée et éventuellement partagée avec d'autres utilisateurs.`
+                en: `Pickaform is made for: companies, associations, the public sector, digital companies who want to accelerate their projects and deliver faster, no-coders & makers who are looking to work with larger clients.
+                More generally, pickaform is useful for any person or organization wishing to organize their data and business processes in a collaborative way.`,
+                fr: `Pickaform est fait pour : les entreprises, les associations, le secteur public, les entreprises du numérique qui veulent accélérer leurs projets et livrer plus vite, les no-coders & makers qui cherchent à travailler avec des clients plus gros.
+                Plus généralement, pickaform est utile à toute personne ou organisation souhaitant organiser ses données et ses processus métier de manière collaborative.`
             },
             faq2: {
                 en: "How can I take a subscription?",
