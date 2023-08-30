@@ -143,7 +143,65 @@ kiss.app.defineView({
             bookDemo: {
                 en: `OK, I'll get in touch`,
                 fr: `OK, je prends contact`
-            }
+            },
+            titleVideos: {
+                en: `Pickaform in action`,
+                fr: `Pickaform en action`
+            },
+            subtitleVideos: {
+                en: `See directly how to build and use applications with workflows, without coding`,
+                fr: `Voyez directement comment construire et utiliser des applications avec workflows, sans coder`
+            },
+            titleAppFromTemplate: {
+                en: "Creating an application from a template",
+                fr: "Créer une application à partir d'un modèle"
+            },
+            descriptionAppFromTemplate: {
+                en: "Download an application in 1 click to your workspace and then modify it at will to adapt it to your needs!",
+                fr: "Téléchargez une application en 1 clic sur votre espace de travail et modifiez-là ensuite à volonté pour l'adapter à vos besoins !"
+            },
+            titleAppFromXLS: {
+                en: "Creating an application from an XLS file",
+                fr: "Créer une application à partir d'un fichier XLS"
+            },
+            descriptionAppFromXLS: {
+                en: "Import your Excel or CSV file and instantly transform it into a collaborative and secure application.",
+                fr: "Importez votre fichier Excel ou CSV et transformez-le instantanément en application collaborative et sécurisée."
+            },
+            titleFormDesigner: {
+                en: "Discovering the form design",
+                fr: "Découvrir l'éditeur de formulaire"
+            },
+            descriptionFormDesigner: {
+                en: "Modify your forms, give them an ergonomic and efficient layout, and make your users happy!",
+                fr: "Modifiez vos formulaires, offrez leur une mise en page ergonomique et efficace, et rendez vos utilisateurs heureux !"
+            },
+            titleWorkflow: {
+                en: "Discovering the workflow",
+                fr: "Découvrir le workflow"
+            },
+            descriptionWorkflow: {
+                en: "Save your employees time by streamlining the processing of your files, business, projects, recruitment, expense reports, purchase requests, etc.",
+                fr: "Faites gagner du temps à vos collaborateurs en fluidifiant le traitement de vos dossiers, affaires, projets, recrutements, notes de frais, demandes d'achats, etc..."
+            },
+            titleWorkflow3mn: {
+                en: "Creating a workflow in 3 minutes",
+                fr: "Créer un workflow en 3 minutes"
+            },
+            descriptionWorkflow3mn: {
+                en: "Pickaform is the simplest platform in the world for creating your personalized workflows: guaranteed return on investment!",
+                fr: "Pickaform est la plateforme la plus simple au monde pour créer vos workflows personnalisés: retour sur investissement garanti !"
+            },
+            titleView: {
+                en: "Creating a view for your data",
+                fr: "Créer une vue pour vos données"
+            },
+            descriptionView: {
+                en: "Organize your data as you see fit thanks to pickaform's ergonomic views: sort, filter, group, and aggregate in just a few clicks!",
+                fr: "Organisez vos données comme bon vous semble grâce aux vues ergonomiques de pickaform: triez, filtrez, regroupez, et aggrégez en quelques clics !"
+            },
+
+
         })
 
         return createBlock({
@@ -303,6 +361,69 @@ kiss.app.defineView({
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
                 }),
+
+
+                // SAMPLES VIDEOS
+                kiss.templates.title({
+                    title: t("titleVideos"),
+                    subtitle: t("subtitleVideos")
+                }),
+
+                {
+                    class: "feature-top-separator"
+                },
+
+                // Block containing videos
+                {
+                    class: "feature-details-container",
+                    items: [{
+                        class: "feature-details-container-column",
+                        items: [
+                            // Creating an app from a template
+                            kiss.templates.featureVideo({
+                                title: t("titleAppFromTemplate"),
+                                description: t("descriptionAppFromTemplate"),
+                                screenshot: "creating an application from a template - pickaform.webp",
+                                video: "https://www.youtube.com/watch?v=3joHKZOH_zA"
+                            }),
+                            // Creating an app from a template
+                            kiss.templates.featureVideo({
+                                title: t("titleAppFromXLS"),
+                                description: t("descriptionAppFromXLS"),
+                                screenshot: "creating an application from an XLS file - pickaform.webp",
+                                video: "https://www.youtube.com/watch?v=KS7nOiDW9eE"
+                            }),
+                            // Discovering the form designer
+                            kiss.templates.featureVideo({
+                                title: t("titleFormDesigner"),
+                                description: t("descriptionFormDesigner"),
+                                screenshot: "discovering the form designer - pickaform.webp",
+                                video: "https://www.youtube.com/watch?v=T992n1m_bII"
+                            }),
+                            // Discovering the workflow
+                            kiss.templates.featureVideo({
+                                title: t("titleWorkflow"),
+                                description: t("descriptionWorkflow"),
+                                screenshot: "discovering the workflow - pickaform.webp",
+                                video: "https://www.youtube.com/watch?v=As992YkHbu8"
+                            }),
+                            // Creating a workflow in 3mn
+                            kiss.templates.featureVideo({
+                                title: t("titleWorkflow3mn"),
+                                description: t("descriptionWorkflow3mn"),
+                                screenshot: "creating a workflow - pickaform.webp",
+                                video: "https://www.youtube.com/watch?v=hCZ5gbu7gMs"
+                            }),
+                            // Creating a view
+                            kiss.templates.featureVideo({
+                                title: t("titleView"),
+                                description: t("descriptionView"),
+                                screenshot: "creating a view - pickaform.webp",
+                                video: "https://www.youtube.com/watch?v=3ALIi2OS5eQ"
+                            })
+                        ]
+                    }]
+                },                
 
                 // BOOK A DEMO
                 kiss.templates.title({

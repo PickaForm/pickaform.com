@@ -444,14 +444,15 @@ h2.blog-post-title {
 
 .pricing-faq {
     width: 100%;
-    padding: 3vh;
+    padding: 0 3vh 3vh 3vh;
     margin: 1vh;
     border-radius: 5px;
+    background-color: var(--body-background);
     box-shadow: var(--shadow-2);
 }
 
 h4.pricing-faq-title {
-    color: #000000;
+    color: var(--body);
     font-family: var(--font-famly);
     font-size: 26px;
     margin: 2vh 0 2vh 0;
@@ -584,6 +585,30 @@ h4.feature-details-title {
     box-shadow: 0 0 20px rgba(0, 169, 241, 0.3);
     align-self: normal;
     cursor: pointer;
+}
+
+.feature-details-video {
+    position: relative;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.feature-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    padding: 10px 12px 6px 20px;
+    font-size: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.feature-details:hover .feature-play-button {
+    background-color: rgba(41, 124, 163, 1);
+    transition: all 0.5s;
 }
 
 /* ARTWORKS */
