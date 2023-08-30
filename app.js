@@ -3048,7 +3048,7 @@ kiss.templates.featureVideo = function ({
                     },
                     {
                         type: "html",
-                        html: `<div class="feature-play-button">▶</div>`
+                        html: `<div class="feature-play-button">▷</div>`
                     }
                 ]
             },
