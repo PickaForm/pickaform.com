@@ -467,6 +467,9 @@ h4.pricing-faq-title {
 
 /* WHO CAN USE */
 .who-can-use {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
     width: 100%;
     padding: 3vh;
     background-color: var(--feature-background);
@@ -476,7 +479,8 @@ h4.who-can-use-title {
     color: #62647b;
     font-family: var(--font-famly);
     font-size: 32px;
-    margin: 2vh 0 2vh 0;
+    margin: 1vh 0 2vh 0;
+    max-width: 1000px;
 }
 
 .who-can-use-description {
@@ -484,6 +488,8 @@ h4.who-can-use-title {
     font-family: var(--font-famly);
     font-size: 20px;
     line-height: 30px;
+    max-width: 1000px;
+    margin-bottom: 3vh;
 }
 
 /* FEATURE */
