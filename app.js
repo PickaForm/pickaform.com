@@ -3020,7 +3020,8 @@ kiss.templates.breadcrumb = function(post) {
         fontSize: "2vh",
         borderRadius: 10,
         borderWidth: 0,
-        padding: "1vh 2vh"
+        padding: "1vh 2vh",
+        margin: "0 0 2vh 0"
     }
 }
 
