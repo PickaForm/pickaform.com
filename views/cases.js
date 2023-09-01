@@ -165,7 +165,7 @@ kiss.app.defineView({
                 fr: "Importez votre fichier Excel ou CSV et transformez-le instantanément en application collaborative et sécurisée."
             },
             titleFormDesigner: {
-                en: "Discovering the form design",
+                en: "Discovering the form designer",
                 fr: "Découvrir l'éditeur de formulaire"
             },
             descriptionFormDesigner: {

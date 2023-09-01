@@ -34,11 +34,13 @@ kiss.app.defineView({
             },
             descriptionB2C: {
                 en: `Pickaform allows you to create your tailor-made applications, without coding.
+                <br>You can start from an existing application template, an Excel file, or the blank page.
                 <br>You go from idea to prototype during the day, and then refine your application for use.
                 <br>Pickaform allows you to create all types of applications to manage your activity, and excels in the implementation of your business processes (file monitoring, business monitoring, monitoring of internal or external requests, etc.)
                 <br>To go even faster, we support you in the implementation by transforming your needs into concrete and testable applications very quickly (within a day).
                 <br>Finally, pickaform is very transversal, so you can use it for a wide variety of needs to ensure a maximum return on investment.`,
                 fr: `Pickaform vous permet de créer vos applications sur mesure, sans coder.
+                <br>Vous pouvez partir d'un modèle d'application existant, d'un fichier Excel, ou de la page blanche.
                 <br>Vous passez de l'idée au prototype dans la journée, et vous affinez ensuite votre application à l'usage.
                 <br>Pickaform vous permet de créer tous types d'applications pour gérer votre activité, et excèle dans la mise en oeuvre de vos processus métier (suivi de dossiers, suivi d'affaires, suivi des demandes internes ou externes…)
                 <br>Pour aller encore plus vite, nous vous accompagnons dans la mise oeuvre en transformant vos besoins en applications concrètes et testables très rapidement (dans la journée).
@@ -69,8 +71,8 @@ kiss.app.defineView({
                 <br>With pickaform, you can create real business applications, turnkey, with structured forms, fine security, and above all the key component requested by all companies of a certain size: the workflow engine (BPM).
                 <br>Pickaform has already been deployed within entities of BNP PARIBAS, GROUPAMA, GROUPE SAUR, GROUPE HEINEKEN, ORANGE, CANAL+, and you can confidently consider approaching customers with greater potential for the growth of your business.`,
                 fr: `Vous connaissez déjà les outils no-code et vous les avez déjà utilisés pour créer des MVP, des outils métiers pour des TPE ou petites PME, et vous aimez beaucoup le modèle Freemium mais vous réalisez que ces outils seront trop limitatifs pour créer de grosses applications en production chez clients d'une taille plus importante.
-                <br>Avec pickaform, vous pouvez créer de vraies applications métier, clé-en-main, avec des formulaires structurée, une sécurité fine, et surtout le composant clé demandé par toutes les entreprises d'une certaine taille : le moteur de workflow (BPM).
-                <br>Pickaform a déjà été déployé au sein d'entités de BNP PARIBAS, GROUPAMA, GROUPE SAUR, GROUPE HEINEKEN, ORANGE, CANAL+, et vous pouvez sereinement envisager de démarcher des clients à plus fort potentiel pour la croissance de votre entreprise.
+                <br>Avec pickaform, vous pouvez créer de vraies applications métier, clé-en-main, avec des formulaires structurés, une sécurité fine, et surtout le composant clé demandé par toutes les entreprises d'une certaine taille : le moteur de workflow (BPM).
+                <br>Pickaform a déjà été déployé au sein d'entités des groupes BNP PARIBAS, GROUPAMA, GROUPE SAUR, GROUPE HEINEKEN, ORANGE, CANAL+, et vous pouvez sereinement envisager de démarcher des clients à plus fort potentiel pour la croissance de votre entreprise.
                 `
             },
             titleBookDemo: {
