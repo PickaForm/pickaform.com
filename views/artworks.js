@@ -68,6 +68,8 @@ kiss.app.defineView({
 
             events: {
                 click: (event) => {
+                    if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
+                    
                     let div = event.target.closest("div")
                     if (!div) return
 
