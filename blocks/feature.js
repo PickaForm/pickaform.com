@@ -54,7 +54,10 @@ kiss.templates.feature = function ({
                         class: "feature-screenshot-container-" + textPosition,
                         html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img">`,
                         events: {
-                            click: () => kiss.templates.screenshotPreview(src)
+                            click: () => {
+                                if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
+                                kiss.templates.screenshotPreview(src)
+                            }
                         }
                     }
                 ]
