@@ -79,6 +79,7 @@ kiss.app.defineView({
             },
             // TEMPLATES
             {
+                hidden: kiss.screen.isMobile,
                 text: t("Templates"),
                 href: kiss.global.pathPickaform + `/client/pickaform/demo.html#ui=templates-list&language=${kiss.language.current}`,
                 target: "_new",
@@ -86,6 +87,7 @@ kiss.app.defineView({
             },
             // LOGIN
             {
+                hidden: kiss.screen.isMobile,
                 text: t("Login"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
                 target: "_new",
@@ -93,6 +95,7 @@ kiss.app.defineView({
             },
             // REGISTER
             {
+                hidden: kiss.screen.isMobile,
                 text: t("Get started"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register",
                 target: "_new",
@@ -109,7 +112,6 @@ kiss.app.defineView({
                 html: `<img id="language-img" width=16 height=12 src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`,
                 subscriptions: {
                     EVT_LANGUAGE: function (msgData) {
-                        log(this)
                         const flagImage = this.querySelector("img")
                         const newFlag = `${kiss.global.pathImg}/flag-${msgData.language}.svg`
                         flagImage.src = newFlag

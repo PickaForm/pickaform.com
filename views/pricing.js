@@ -22,7 +22,7 @@ kiss.app.defineView({
             },
             subtitle: {
                 en: "Register and start your 14 days free trial.",
-                fr: "Enregistrez vous et démarrer l'essai de 14 jours."
+                fr: "Enregistrez vous et démarrez l'essai de 14 jours."
             },
             unlimitedForms: {
                 en: "unlimited forms",

@@ -1518,6 +1518,7 @@ function translate() {
             },
             // TEMPLATES
             {
+                hidden: kiss.screen.isMobile,
                 text: t("Templates"),
                 href: kiss.global.pathPickaform + `/client/pickaform/demo.html#ui=templates-list&language=${kiss.language.current}`,
                 target: "_new",
@@ -1525,6 +1526,7 @@ function translate() {
             },
             // LOGIN
             {
+                hidden: kiss.screen.isMobile,
                 text: t("Login"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
                 target: "_new",
@@ -1532,6 +1534,7 @@ function translate() {
             },
             // REGISTER
             {
+                hidden: kiss.screen.isMobile,
                 text: t("Get started"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register",
                 target: "_new",
@@ -1548,7 +1551,6 @@ function translate() {
                 html: `<img id="language-img" width=16 height=12 src="${kiss.global.pathImg}/flag-${nextLanguage}.svg" alt="switch to language ${nextLanguage}">`,
                 subscriptions: {
                     EVT_LANGUAGE: function (msgData) {
-                        log(this)
                         const flagImage = this.querySelector("img")
                         const newFlag = `${kiss.global.pathImg}/flag-${msgData.language}.svg`
                         flagImage.src = newFlag
@@ -1771,7 +1773,7 @@ function translate() {
             },
             subtitle: {
                 en: "Register and start your 14 days free trial.",
-                fr: "Enregistrez vous et démarrer l'essai de 14 jours."
+                fr: "Enregistrez vous et démarrez l'essai de 14 jours."
             },
             unlimitedForms: {
                 en: "unlimited forms",
@@ -3260,6 +3262,8 @@ kiss.templates.footerBlock = function ({
 
 kiss.templates.navbarItems = function (items) {
     return items.map(item => {
+        if (item.hidden) return ""
+        
         return /*html*/`
             <li class="navbar-item">
                 <a href="${item.href}" view="${item.view}" target="${item.target}">${item.text}</a>
