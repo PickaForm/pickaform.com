@@ -704,8 +704,13 @@ h2.artwork-title {
 }
 
 .button-booking {
-    font-size: 2vh;
+    font-size: 3vh;
     color: #00aaee;
     margin: 3vh;
     padding: 2vh 3vh;
+}
+
+a .button-booking {
+    color: #00aaee;
+    text-decoration: none;
 }
