@@ -1393,6 +1393,12 @@ function translate() {
                 <h2>✔ we coach you on our methodology to create your processes</h2>
                 <h2>✔ we coach you on NoCode design best practices</h2>
 
+                <center>
+                    <a href="https://calendly.com/pickaform/pickaform-live-demo">
+                        <div class="a-button button-booking">Book your private demo now to benefit from this unique offer!</div>
+                    </a>
+                </center>
+
                 <h2><a target="_new" href="https://www.nocode-summit.org/">Come see us on stand B2 in Paris, Station F, on October 10 and 11.</a></h2>`,
                 fr:
                 `<h1>Offre spéciale <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit</span></h1>
@@ -1402,8 +1408,15 @@ function translate() {
                 <h2>✔ nous construisons votre prototype avec vous</h2>
                 <h2>✔ nous vous coachons sur notre méthodologie pour créer vos process</h2>
                 <h2>✔ nous vous coachons sur les best practices de la conception NoCode</h2>
+                              
+                <center>
+                    <a href="https://calendly.com/pickaform/pickaform-live-demo">
+                        <div class="a-button button-booking">Réservez votre démo privée dès maintenant pour bénéficier de cette offre unique !</div>
+                    </a>
+                </center>
 
-                <h2><a target="_new" href="https://www.nocode-summit.org/">Passez nous voir sur le stand B2 à Paris, Station F, les 10 et 11 octobre.</a></h2>`
+                <h2><a target="_new" href="https://www.nocode-summit.org/">Passez nous voir sur le stand B2 à Paris, Station F, les 10 et 11 octobre.</a></h2>
+                `
             }
         })
 

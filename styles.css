@@ -702,3 +702,10 @@ h2.artwork-title {
     text-align: center;
     font-weight: normal;
 }
+
+.button-booking {
+    font-size: 2vh;
+    color: #00aaee;
+    margin: 3vh;
+    padding: 2vh 3vh;
+}
