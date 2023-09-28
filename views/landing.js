@@ -67,6 +67,10 @@ kiss.app.defineView({
                 fr: "Démarrez maintenant"
             },
             bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
+            getInTouch: {
                 en: `OK, I'll get in touch`,
                 fr: `OK, je prends contact`
             },
@@ -124,7 +128,7 @@ kiss.app.defineView({
                     title: t("titlePitchline"),
                     subtitle: t("subtitlePitchline")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - business contracts - pickaform.webp"),
 
                 // STRIP 2
@@ -132,7 +136,7 @@ kiss.app.defineView({
                     title: t("titleNocodeWorkflow"),
                     subtitle: t("subtitleNocodeWorkflow")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - nocode.webp"),
 
                 // STRIP 3
@@ -140,7 +144,7 @@ kiss.app.defineView({
                     title: t("titleFlexibility"),
                     subtitle: t("subtitleFlexibility")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("midjourney integration - pickaform.webp"),
 
                 // STRIP 4
@@ -148,7 +152,7 @@ kiss.app.defineView({
                     title: t("titleExperience"),
                     subtitle: t("subtitleExperience")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 // CUSTOMERS
                 kiss.templates.screenshot("customer references - pickaform.webp"),

@@ -57,12 +57,12 @@ kiss.app.defineView({
                 view: "cases"
             },
             // CONTACT
-            {
-                text: "Contact",
-                href: `${kiss.global.path}/${kiss.language.current}/contact`,
-                target: "_self",
-                view: "contact"
-            },
+            // {
+            //     text: "Contact",
+            //     href: `${kiss.global.path}/${kiss.language.current}/contact`,
+            //     target: "_self",
+            //     view: "contact"
+            // },
             // PRICING
             {
                 text: t("Pricing"),
@@ -85,19 +85,19 @@ kiss.app.defineView({
                 target: "_new",
                 view: ""
             },
-            // LOGIN
-            {
-                hidden: kiss.screen.isMobile,
-                text: t("Login"),
-                href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
-                target: "_new",
-                view: ""
-            },
             // REGISTER
             {
                 hidden: kiss.screen.isMobile,
                 text: t("Get started"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register",
+                target: "_new",
+                view: ""
+            },
+            // LOGIN
+            {
+                hidden: kiss.screen.isMobile,
+                text: t("Login"),
+                href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
                 target: "_new",
                 view: ""
             }

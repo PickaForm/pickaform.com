@@ -517,6 +517,10 @@ function translate() {
                 en: "Get started",
                 fr: "Démarrez maintenant"
             },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
             title: {
                 en: `What you can <span class="text-highlight" style="background-color: #00aaee">build</span>
                 <br>
@@ -633,10 +637,6 @@ function translate() {
                 en: `Tell us about your project, and we'll show you how to make it happen in <span class="text-highlight" style="background-color: #00aaee">20 minutes!</span>`,
                 fr: `Expliquez-nous votre projet, et on vous montre en <span class="text-highlight" style="background-color: #00aaee">20 minutes</span> comment le réaliser !`
             },
-            bookDemo: {
-                en: `OK, I'll get in touch`,
-                fr: `OK, je prends contact`
-            },
             titleVideos: {
                 en: `Pickaform in action`,
                 fr: `Pickaform en action`
@@ -706,7 +706,7 @@ function translate() {
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - contrat - pickaform.webp"),
 
                 // CRM
@@ -714,7 +714,7 @@ function translate() {
                     title: "CRM",
                     description: t("descriptionCRM"),
                     screenshot: "example - CRM - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -727,7 +727,7 @@ function translate() {
                     title: t("titleHR"),
                     description: t("descriptionHR"),
                     screenshot: "example - HR onboarding - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -738,7 +738,7 @@ function translate() {
                     title: t("titleProjects"),
                     description: t("descriptionProjects"),
                     screenshot: "example - project management - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -751,7 +751,7 @@ function translate() {
                     title: t("titleLegal"),
                     description: t("descriptionLegal"),
                     screenshot: "example - Legal contract - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -762,7 +762,7 @@ function translate() {
                     title: t("titlePhone"),
                     description: t("descriptionPhone"),
                     screenshot: "workflows-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -775,7 +775,7 @@ function translate() {
                     title: t("titleRequests"),
                     description: t("descriptionRequests"),
                     screenshot: "example - purchase request - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -786,7 +786,7 @@ function translate() {
                     title: t("titleSupport"),
                     description: t("descriptionSupport"),
                     screenshot: "a la carte form features - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -799,7 +799,7 @@ function translate() {
                     title: t("titleRecovery"),
                     description: t("descriptionRecovery"),
                     screenshot: "navigate through your data with tabs - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -810,7 +810,7 @@ function translate() {
                     title: t("titleInventory"),
                     description: t("descriptionInventory"),
                     screenshot: "example - inventory - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -823,7 +823,7 @@ function translate() {
                     title: t("titleProduct"),
                     description: t("descriptionProduct"),
                     screenshot: "example - product design - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -834,7 +834,7 @@ function translate() {
                     title: t("titleDonation"),
                     description: t("descriptionDonation"),
                     screenshot: "example - donation - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -847,7 +847,7 @@ function translate() {
                     title: t("titleAnything"),
                     description: t("descriptionAnything"),
                     screenshot: "example - midjourney collection - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -923,7 +923,7 @@ function translate() {
                 }),
 
                 // CONTACT BUTTON
-                kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 {
                     class: "feature-top-separator",
@@ -1381,6 +1381,10 @@ function translate() {
                 fr: "Démarrez maintenant"
             },
             bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
+            getInTouch: {
                 en: `OK, I'll get in touch`,
                 fr: `OK, je prends contact`
             },
@@ -1438,7 +1442,7 @@ function translate() {
                     title: t("titlePitchline"),
                     subtitle: t("subtitlePitchline")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - business contracts - pickaform.webp"),
 
                 // STRIP 2
@@ -1446,7 +1450,7 @@ function translate() {
                     title: t("titleNocodeWorkflow"),
                     subtitle: t("subtitleNocodeWorkflow")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - nocode.webp"),
 
                 // STRIP 3
@@ -1454,7 +1458,7 @@ function translate() {
                     title: t("titleFlexibility"),
                     subtitle: t("subtitleFlexibility")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("midjourney integration - pickaform.webp"),
 
                 // STRIP 4
@@ -1462,7 +1466,7 @@ function translate() {
                     title: t("titleExperience"),
                     subtitle: t("subtitleExperience")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 // CUSTOMERS
                 kiss.templates.screenshot("customer references - pickaform.webp"),
@@ -1537,12 +1541,12 @@ function translate() {
                 view: "cases"
             },
             // CONTACT
-            {
-                text: "Contact",
-                href: `${kiss.global.path}/${kiss.language.current}/contact`,
-                target: "_self",
-                view: "contact"
-            },
+            // {
+            //     text: "Contact",
+            //     href: `${kiss.global.path}/${kiss.language.current}/contact`,
+            //     target: "_self",
+            //     view: "contact"
+            // },
             // PRICING
             {
                 text: t("Pricing"),
@@ -1565,19 +1569,19 @@ function translate() {
                 target: "_new",
                 view: ""
             },
-            // LOGIN
-            {
-                hidden: kiss.screen.isMobile,
-                text: t("Login"),
-                href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
-                target: "_new",
-                view: ""
-            },
             // REGISTER
             {
                 hidden: kiss.screen.isMobile,
                 text: t("Get started"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register",
+                target: "_new",
+                view: ""
+            },
+            // LOGIN
+            {
+                hidden: kiss.screen.isMobile,
+                text: t("Login"),
+                href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
                 target: "_new",
                 view: ""
             }
@@ -1844,6 +1848,10 @@ function translate() {
                 en: "Contact us",
                 fr: "Contactez-nous"
             },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
             faq0: {
                 en: "Why choose pickaform?",
                 fr: "Pourquoi choisir pickaform ?"
@@ -2009,7 +2017,7 @@ function translate() {
                 },
 
                 // CONTACT
-                kiss.templates.buttonCTA(t("contactUs"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 // FAQ
                 {
@@ -2076,6 +2084,10 @@ function translate() {
             getStarted: {
                 en: "Get started",
                 fr: "Démarrez maintenant"
+            },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
             },
             title: {
                 en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
@@ -2160,10 +2172,6 @@ function translate() {
             subtitleBookDemo: {
                 en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
                 fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
-            },
-            bookDemo: {
-                en: `OK, I'll get in touch`,
-                fr: `OK, je prends contact`
             },
 
             // Field types
@@ -2417,7 +2425,7 @@ function translate() {
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
                 // FORMS
@@ -2425,7 +2433,7 @@ function translate() {
                     title: t("titleForms"),
                     description: t("descriptionForms"),
                     screenshot: "forms-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -2438,7 +2446,7 @@ function translate() {
                     title: t("titleViews"),
                     description: t("descriptionViews"),
                     screenshot: "business contract management - flexible views - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -2449,7 +2457,7 @@ function translate() {
                     title: t("titleWorkflows"),
                     description: t("descriptionWorkflows"),
                     screenshot: "workflows-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -2462,7 +2470,7 @@ function translate() {
                     title: t("titleFormDesigner"),
                     description: t("descriptionFormDesigner"),
                     screenshot: "integrated simple and powerful form designer - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -2473,7 +2481,7 @@ function translate() {
                     title: t("titleFormFeatures"),
                     description: t("descriptionFormFeatures"),
                     screenshot: "a la carte form features - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -2486,7 +2494,7 @@ function translate() {
                     title: t("titleCustomViews"),
                     description: t("descriptionCustomViews"),
                     screenshot: "views-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -2497,7 +2505,7 @@ function translate() {
                     title: t("titleLeftNavigation"),
                     description: t("descriptionLeftNavigation"),
                     screenshot: "navigate through your data with left pane - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -2510,7 +2518,7 @@ function translate() {
                     title: t("titleTabsNavigation"),
                     description: t("descriptionTabsNavigation"),
                     screenshot: "navigate through your data with tabs - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -2725,7 +2733,7 @@ function translate() {
                 }),
 
                 // CONTACT BUTTON
-                kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 {
                     class: "feature-top-separator",
@@ -3043,14 +3051,24 @@ kiss.templates.breadcrumb = function(post) {
     }
 }
 
-;kiss.templates.buttonCTA = function (text, page) {
+;/**
+ * Generate a CTA button
+ * 
+ * @param {string} text 
+ * @param {string} [page] - "contact" | "booking" 
+ */
+kiss.templates.buttonCTA = function (text, page) {
     return {
         text: text + " &nbsp;&nbsp; ➔",
         action: () => {
-            if (page) {
+            if (page == "contact") {
                 kiss.router.navigateTo({
                     content: "contact"
                 })
+            }
+            else if (page == "booking") {
+                const link = "https://calendly.com/pickaform/pickaform-live-demo"
+                window.open(link, "_new")
             }
             else {
                 const link = "https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")
@@ -3111,7 +3129,7 @@ kiss.templates.breadcrumb = function(post) {
                     </div>
                     <div class="feature-CTA">
                         <p>
-                            <a class="feature-CTA" href='${"https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")}'>
+                            <a class="feature-CTA" href='https://calendly.com/pickaform/pickaform-live-demo'>
                                 ${CTA}
                             </a>
                         </p>

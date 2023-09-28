@@ -52,6 +52,10 @@ kiss.app.defineView({
                 en: "Contact us",
                 fr: "Contactez-nous"
             },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
             faq0: {
                 en: "Why choose pickaform?",
                 fr: "Pourquoi choisir pickaform ?"
@@ -217,7 +221,7 @@ kiss.app.defineView({
                 },
 
                 // CONTACT
-                kiss.templates.buttonCTA(t("contactUs"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 // FAQ
                 {

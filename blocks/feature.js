@@ -37,7 +37,7 @@ kiss.templates.feature = function ({
                     </div>
                     <div class="feature-CTA">
                         <p>
-                            <a class="feature-CTA" href='${"https://app.pickaform.com/client/pickaform/index.html#ui=authentication-register&language=" + (kiss.language.current || "en")}'>
+                            <a class="feature-CTA" href='https://calendly.com/pickaform/pickaform-live-demo'>
                                 ${CTA}
                             </a>
                         </p>

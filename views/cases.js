@@ -20,6 +20,10 @@ kiss.app.defineView({
                 en: "Get started",
                 fr: "Démarrez maintenant"
             },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
             title: {
                 en: `What you can <span class="text-highlight" style="background-color: #00aaee">build</span>
                 <br>
@@ -136,10 +140,6 @@ kiss.app.defineView({
                 en: `Tell us about your project, and we'll show you how to make it happen in <span class="text-highlight" style="background-color: #00aaee">20 minutes!</span>`,
                 fr: `Expliquez-nous votre projet, et on vous montre en <span class="text-highlight" style="background-color: #00aaee">20 minutes</span> comment le réaliser !`
             },
-            bookDemo: {
-                en: `OK, I'll get in touch`,
-                fr: `OK, je prends contact`
-            },
             titleVideos: {
                 en: `Pickaform in action`,
                 fr: `Pickaform en action`
@@ -209,7 +209,7 @@ kiss.app.defineView({
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - contrat - pickaform.webp"),
 
                 // CRM
@@ -217,7 +217,7 @@ kiss.app.defineView({
                     title: "CRM",
                     description: t("descriptionCRM"),
                     screenshot: "example - CRM - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -230,7 +230,7 @@ kiss.app.defineView({
                     title: t("titleHR"),
                     description: t("descriptionHR"),
                     screenshot: "example - HR onboarding - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -241,7 +241,7 @@ kiss.app.defineView({
                     title: t("titleProjects"),
                     description: t("descriptionProjects"),
                     screenshot: "example - project management - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -254,7 +254,7 @@ kiss.app.defineView({
                     title: t("titleLegal"),
                     description: t("descriptionLegal"),
                     screenshot: "example - Legal contract - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -265,7 +265,7 @@ kiss.app.defineView({
                     title: t("titlePhone"),
                     description: t("descriptionPhone"),
                     screenshot: "workflows-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -278,7 +278,7 @@ kiss.app.defineView({
                     title: t("titleRequests"),
                     description: t("descriptionRequests"),
                     screenshot: "example - purchase request - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -289,7 +289,7 @@ kiss.app.defineView({
                     title: t("titleSupport"),
                     description: t("descriptionSupport"),
                     screenshot: "a la carte form features - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -302,7 +302,7 @@ kiss.app.defineView({
                     title: t("titleRecovery"),
                     description: t("descriptionRecovery"),
                     screenshot: "navigate through your data with tabs - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -313,7 +313,7 @@ kiss.app.defineView({
                     title: t("titleInventory"),
                     description: t("descriptionInventory"),
                     screenshot: "example - inventory - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -326,7 +326,7 @@ kiss.app.defineView({
                     title: t("titleProduct"),
                     description: t("descriptionProduct"),
                     screenshot: "example - product design - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -337,7 +337,7 @@ kiss.app.defineView({
                     title: t("titleDonation"),
                     description: t("descriptionDonation"),
                     screenshot: "example - donation - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -350,7 +350,7 @@ kiss.app.defineView({
                     title: t("titleAnything"),
                     description: t("descriptionAnything"),
                     screenshot: "example - midjourney collection - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -426,7 +426,7 @@ kiss.app.defineView({
                 }),
 
                 // CONTACT BUTTON
-                kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 {
                     class: "feature-top-separator",

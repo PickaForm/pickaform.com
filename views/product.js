@@ -20,6 +20,10 @@ kiss.app.defineView({
                 en: "Get started",
                 fr: "Démarrez maintenant"
             },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
             title: {
                 en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
                 <br>
@@ -103,10 +107,6 @@ kiss.app.defineView({
             subtitleBookDemo: {
                 en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
                 fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
-            },
-            bookDemo: {
-                en: `OK, I'll get in touch`,
-                fr: `OK, je prends contact`
             },
 
             // Field types
@@ -360,7 +360,7 @@ kiss.app.defineView({
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.buttonCTA(t("getStarted")),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
                 // FORMS
@@ -368,7 +368,7 @@ kiss.app.defineView({
                     title: t("titleForms"),
                     description: t("descriptionForms"),
                     screenshot: "forms-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -381,7 +381,7 @@ kiss.app.defineView({
                     title: t("titleViews"),
                     description: t("descriptionViews"),
                     screenshot: "business contract management - flexible views - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -392,7 +392,7 @@ kiss.app.defineView({
                     title: t("titleWorkflows"),
                     description: t("descriptionWorkflows"),
                     screenshot: "workflows-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -405,7 +405,7 @@ kiss.app.defineView({
                     title: t("titleFormDesigner"),
                     description: t("descriptionFormDesigner"),
                     screenshot: "integrated simple and powerful form designer - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -416,7 +416,7 @@ kiss.app.defineView({
                     title: t("titleFormFeatures"),
                     description: t("descriptionFormFeatures"),
                     screenshot: "a la carte form features - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -429,7 +429,7 @@ kiss.app.defineView({
                     title: t("titleCustomViews"),
                     description: t("descriptionCustomViews"),
                     screenshot: "views-thumbnail.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -440,7 +440,7 @@ kiss.app.defineView({
                     title: t("titleLeftNavigation"),
                     description: t("descriptionLeftNavigation"),
                     screenshot: "navigate through your data with left pane - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "left"
                 }),
 
@@ -453,7 +453,7 @@ kiss.app.defineView({
                     title: t("titleTabsNavigation"),
                     description: t("descriptionTabsNavigation"),
                     screenshot: "navigate through your data with tabs - pickaform.webp",
-                    CTA: t("getStarted"),
+                    CTA: t("bookDemo"),
                     textPosition: "right",
                     color: "#555555",
                     backgroundColor: "var(--feature-background)"
@@ -668,7 +668,7 @@ kiss.app.defineView({
                 }),
 
                 // CONTACT BUTTON
-                kiss.templates.buttonCTA(t("bookDemo"), "contact"),
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 {
                     class: "feature-top-separator",
