@@ -1,6 +1,10 @@
 /**
  * Global functions for translation
  */
+
+// Temporary fix for non EN-FR languages
+if (!["en", "fr"].includes(kiss.language.current)) kiss.language.current = "en"
+
 const t = (textId) => `<span class="localized" id="${textId}">${txtTitleCase(textId)}</span>`
 const translateByPage = (textId, id = "") => `<span class="localized" id="${id + "-" + textId}">${txtTitleCase(id + "-" + textId)}</span>`
 
