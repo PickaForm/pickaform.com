@@ -92,9 +92,7 @@ kiss.app.defineView({
                 <h2>
                     You are an investor?
                     <br>Great! We are looking to accelerate our growth.
-                </h2>
-
-                <h2><a target="_new" href="https://www.nocode-summit.org/">Come see us on stand B2 in Paris, Station F, on October 10 and 11.</a></h2>`,
+                </h2>`,
                 fr:
                 `<h1>Offre spéciale <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit</span></h1>
                 <h2>Si vous souscrivez un abonnement avant le 30 octobre 2023</h2>
@@ -113,10 +111,7 @@ kiss.app.defineView({
                 <h2>
                     Vous êtes un investisseur ?
                     <br>Parfait ! Nous cherchons à accélérer notre croissance.
-                </h2>
-
-                <h2><a target="_new" href="https://www.nocode-summit.org/">Passez nous voir sur le stand B2 à Paris, Station F, les 10 et 11 octobre.</a></h2>
-                `
+                </h2>`
             }
         })
 
