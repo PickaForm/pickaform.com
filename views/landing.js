@@ -87,12 +87,7 @@ kiss.app.defineView({
                     <a href="https://calendly.com/pickaform/pickaform-live-demo">
                         <div class="a-button button-booking">Book your private demo now to benefit from this unique offer!</div>
                     </a>
-                </center>
-
-                <h2>
-                    You are an investor?
-                    <br>Great! We are looking to accelerate our growth.
-                </h2>`,
+                </center>`,
                 fr:
                 `<h1>Offre spéciale <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit</span></h1>
                 <h2>Si vous souscrivez un abonnement avant le 30 octobre 2023</h2>
@@ -106,12 +101,7 @@ kiss.app.defineView({
                     <a href="https://calendly.com/pickaform/pickaform-live-demo">
                         <div class="a-button button-booking">Réservez votre démo privée dès maintenant pour bénéficier de cette offre unique !</div>
                     </a>
-                </center>
-
-                <h2>
-                    Vous êtes un investisseur ?
-                    <br>Parfait ! Nous cherchons à accélérer notre croissance.
-                </h2>`
+                </center>`
             }
         })
 
