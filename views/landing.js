@@ -29,16 +29,18 @@ kiss.app.defineView({
                 fr: "Créez vos workflows en quelques minutes.<br>Collaborez instantanément.",
             },
             titleNocodeWorkflow: {
-                en: `no-code + workflows + AI
+                en: `no-code
+                <br>+ Business Process Management
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">superpowers</span>`,
-                fr: `no-code + workflows + IA
+                fr: `no-code
+                <br>+ Business Process Management
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">super pouvoirs</span>`,
             },
             subtitleNocodeWorkflow: {
-                en: "Pick a form or build one.<br>Connect your workflows.<br>Add a pinch of AI.",
-                fr: "Choisissez vos formulaires.<br>Connectez vos workflows.<br>Ajoutez une pincée d'IA.",
+                en: "Pick a form or build one.<br>Connect your process.",
+                fr: "Choisissez vos formulaires.<br>Connectez vos workflows.",
             },
             titleFlexibility: {
                 en: `no-code
@@ -111,12 +113,12 @@ kiss.app.defineView({
             layout: "vertical",
             alignItems: "center",
             items: [
-                // EVENT
-                {
-                    type: "html",
-                    class: "offer",
-                    html: t("offer")
-                },
+                // EVENTS & ANNOUNCENMENTS
+                // {
+                //     type: "html",
+                //     class: "offer",
+                //     html: t("offer")
+                // },
 
                 // STRIP 1
                 kiss.templates.title({
