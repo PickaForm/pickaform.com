@@ -1815,11 +1815,21 @@ function translate() {
         const t = defineTexts(id, {
             title: {
                 en: "Get the Right Plan for<br>Your Business Needs",
-                fr: "Sélectionnez le plan adapté à vos besoins"
+                fr: "Sélectionnez le plan<br>adapté à vos besoins"
             },
             subtitle: {
                 en: "Register and start your 14 days free trial.",
                 fr: "Enregistrez vous et démarrez l'essai de 14 jours."
+            },
+            nocoders: {
+                en: `<br>
+                <br>
+                You are a <span class="text-highlight" style="background-color: #00aaee">Freelance NoCoder</span> or a <span class="text-highlight" style="background-color: #a1ed00">NoCode Agency</span>?
+                <br>Claim your special offer by scheduling an appointment <a href="https://calendly.com/pickaform/pickaform-live-demo">here</a>`,
+                fr: `<br>
+                <br>
+                Vous êtes un <span class="text-highlight" style="background-color: #00aaee">NoCodeur Freelance</span> ou une <span class="text-highlight" style="background-color: #a1ed00">Agence NoCode</span> ?
+                <br>Demandez votre offre spéciale en prenant RDV <a href="https://calendly.com/pickaform/pickaform-live-demo">ici</a>`
             },
             unlimitedForms: {
                 en: "unlimited forms",
@@ -2000,7 +2010,7 @@ function translate() {
             items: [
                 kiss.templates.title({
                     title: t("title"),
-                    subtitle: t("subtitle"),
+                    subtitle: t("subtitle") + t("nocoders"),
                 }),
 
                 // PRICING TABLE
