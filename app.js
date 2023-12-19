@@ -1848,12 +1848,12 @@ function translate() {
                 fr: "Inscription"
             },
             enterprisePlan: {
-                en: `We have many other plans beyond that, and also on-premise versions beyond 100 users.
+                en: `We have many other plans beyond that + on-premise versions beyond 100 users + a legacy HCL Domino version.
                 <br>
-                Please contact us for more informations:`,
-                fr: `Nous avons des offres au-delà, et des versions on-premise à partir de 100 utilisateurs.
+                Please contact us for more informations: contact@pickaform.com`,
+                fr: `Nous avons des offres au-delà + des versions on-premise à partir de 100 utilisateurs + une version compatible HCL Domino.
                 <br>
-                Contactez-nous pour plus d'informations :`
+                Contactez-nous pour plus d'informations : contact@pickaform.com`
             },
             contactUs: {
                 en: "Contact us",
