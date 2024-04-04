@@ -95,7 +95,7 @@ kiss.app.defineView({
             },
             // LOGIN
             {
-                hidden: kiss.screen.isMobile,
+                // hidden: kiss.screen.isMobile,
                 text: t("Login"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
                 target: "_new",
