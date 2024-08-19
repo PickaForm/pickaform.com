@@ -24,6 +24,26 @@ kiss.app.defineView({
             subtitle: {
                 en: "We used pickaform to streamline the process of creating Midjourney images",
                 fr: "Nous avons utilisé pickaform pour rationaliser le processus de création d'images Midjourney"
+            },
+            titleArtworks: {
+                en: "Midjourney ++",
+                fr: "Midjourney ++"
+            },
+            descriptionArtworks: {
+                en: `You can prompt your images from Pickaform.
+                    The images are directly stored in a database.
+                    You can find all your original prompts and your images are classified and searchable as in a real database.`,
+                fr: `Vous pouvez prompter vos images depuis Pickaform.
+                    Les images sont directement stockées dans une base de données.
+                    Vous pouvez retrouver tous vos prompts d'origine et vos images sont classées et recherchable comme dans une vraie base de données.`
+            },
+            bookDemo: {
+                en: `I book a demo`,
+                fr: `Je réserve une démo`
+            },
+            searchTerm: {
+                en: `Search`,
+                fr: `Rechercher`
             }
         })
 
@@ -40,6 +60,16 @@ kiss.app.defineView({
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
+
+                // Screenshot
+                kiss.templates.feature({
+                    title: t("titleArtworks"),
+                    description: t("descriptionArtworks"),
+                    screenshot: "example - midjourney collection - pickaform.webp",
+                    CTA: t("bookDemo"),
+                    textPosition: "left"
+                }),
+
                 // Search field
                 {
                     type: "text",
@@ -47,7 +77,7 @@ kiss.app.defineView({
                     fieldWidth: "100%",
                     fieldHeight: "4vh",
                     fontSize: "2vh",
-                    placeholder: "Search",
+                    label: t("searchTerm"),
                     events: {
                         change() {
                             $(id).search(this.getValue())
