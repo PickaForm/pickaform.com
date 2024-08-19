@@ -77,9 +77,9 @@ kiss.app.defineView({
                 fr: `OK, je prends contact`
             },
             offer: {
-                en: `<h1>Special offer <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit</span></h1>
-                <h2>If you purchase a subscription before October 30, 2023</h2>
-                <h2>✔ free starter pack worth <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">1000€</span></ h2>
+                en: `<h1>Special offer <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
+                <h2>Come see us on October 16 and 17 in Paris, Station F</h2>
+                <h2>If you purchase a subscription before October 30, 2024</h2>
                 <h2>✔ discount of <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">30%</span> on our services</span h2>
                 <h2>✔ we build your prototype with you</h2>
                 <h2>✔ we coach you on our methodology to create your processes</h2>
@@ -91,9 +91,9 @@ kiss.app.defineView({
                     </a>
                 </center>`,
                 fr:
-                `<h1>Offre spéciale <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit</span></h1>
-                <h2>Si vous souscrivez un abonnement avant le 30 octobre 2023</h2>
-                <h2>✔ pack de démarrage offert d'une valeur de <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">1000€</span></h2>
+                `<h1>Offre spéciale <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
+                <h2>Venez nous voir les 16 et 17 octobre à Paris, Station F</h2>
+                <h2>Si vous souscrivez un abonnement avant le 30 octobre 2024</h2>
                 <h2>✔ remise de <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">30%</span> sur nos prestations d'accompagnement.</h2>
                 <h2>✔ nous construisons votre prototype avec vous</h2>
                 <h2>✔ nous vous coachons sur notre méthodologie pour créer vos process</h2>
@@ -113,13 +113,6 @@ kiss.app.defineView({
             layout: "vertical",
             alignItems: "center",
             items: [
-                // EVENTS & ANNOUNCENMENTS
-                // {
-                //     type: "html",
-                //     class: "offer",
-                //     html: t("offer")
-                // },
-
                 // STRIP 1
                 kiss.templates.title({
                     title: t("titlePitchline"),
@@ -128,6 +121,13 @@ kiss.app.defineView({
                 kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - business contracts - pickaform.webp", false),
 
+                // EVENTS & ANNOUNCENMENTS
+                {
+                    type: "html",
+                    class: "offer",
+                    html: t("offer")
+                },
+                                
                 // STRIP 2
                 kiss.templates.title({
                     title: t("titleNocodeWorkflow"),
