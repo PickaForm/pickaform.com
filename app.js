@@ -129,7 +129,7 @@ function translate() {
                     You can find all your original prompts and your images are classified and searchable as in a real database.`,
                 fr: `Vous pouvez prompter vos images depuis Pickaform.
                     Les images sont directement stockées dans une base de données.
-                    Vous pouvez retrouver tous vos prompts d'origine et vos images sont classées et recherchable comme dans une vraie base de données.`
+                    Vous pouvez retrouver tous vos prompts d'origine et vos images sont classées et recherchables comme avec une vraie base de données.`
             },
             bookDemo: {
                 en: `I book a demo`,
