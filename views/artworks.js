@@ -84,15 +84,15 @@ kiss.app.defineView({
                         }
                     }
                 },
-                // List of artworks
-                {
-                    id: "artworks-list",
-                    class: "artworks-list"
-                },
                 // Pager
                 {
                     id: "artworks-pager",
                     class: "blog-pager"
+                },
+                // List of artworks
+                {
+                    id: "artworks-list",
+                    class: "artworks-list"
                 }
             ],
 

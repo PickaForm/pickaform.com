@@ -16,9 +16,9 @@ kiss.templates.pager = function (count, skip, limit, searchTerm, searchFunction,
             color: (i == pageNumber) ? "#ffffff" : "",
             backgroundColor: (i == pageNumber) ? "#00aaee" : "",
             fontSize: "1.5vh !important",
-            width: "3vh",
-            height: "3vh",
-            borderRadius: "5vh",
+            width: "4vh",
+            height: "4vh",
+            borderRadius: "10vh",
             margin: "5px",
             action: () => {
                 const newSkip = i * limit
