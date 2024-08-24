@@ -77,7 +77,8 @@ kiss.app.defineView({
                 fr: `OK, je prends contact`
             },
             offer: {
-                en: `<h1>Special offer <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
+                en:
+                `<h1>Special offer <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
                 <h2>Come see us on October 16 and 17 in Paris, Station F</h2>
                 <h2>If you purchase a subscription before October 30, 2024</h2>
                 <h2>✔ discount of <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">30%</span> on our services</span h2>
@@ -127,7 +128,7 @@ kiss.app.defineView({
                     class: "offer",
                     html: t("offer")
                 },
-                                
+
                 // STRIP 2
                 kiss.templates.title({
                     title: t("titleNocodeWorkflow"),

@@ -297,6 +297,22 @@ kiss.app.defineView({
                 en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
                 fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
             },
+            iaImage: {
+                en: "AI image",
+                fr: "image IA"
+            },
+            iaImageDescription: {
+                en: "generate an image via AI directly from this field and the image file will be stored as an attachment",
+                fr: "générez une image via l'IA directement depuis ce champ et le fichier de l'image sera stocké comme pièce jointe"
+            },
+            map: {
+                en: "map",
+                fr: "carte"
+            },
+            mapDescription: {
+                en: "The Map field allows you to display a location on a map and interact with it.",
+                fr: "Le champ Carte permet d'afficher une localisation sur une carte et d'interagir avec elle."
+            },
 
             // Views
             columnSelection: {
@@ -600,6 +616,18 @@ kiss.app.defineView({
                                 title: t("summary"),
                                 description: t("summaryDescription"),
                                 screenshot: "field type - summary - pickaform.webp"
+                            }),
+                            // IA image
+                            kiss.templates.featureDetails({
+                                title: t("iaImage"),
+                                description: t("iaImageDescription"),
+                                screenshot: "field type - aiImage - pickaform.webp"
+                            }),
+                            // Map
+                            kiss.templates.featureDetails({
+                                title: t("map"),
+                                description: t("mapDescription"),
+                                screenshot: "field type - map - pickaform.webp"
                             })
                         ]
                     }]

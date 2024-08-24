@@ -1425,7 +1425,8 @@ function translate() {
                 fr: `OK, je prends contact`
             },
             offer: {
-                en: `<h1>Special offer <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
+                en:
+                `<h1>Special offer <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
                 <h2>Come see us on October 16 and 17 in Paris, Station F</h2>
                 <h2>If you purchase a subscription before October 30, 2024</h2>
                 <h2>✔ discount of <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">30%</span> on our services</span h2>
@@ -1475,7 +1476,7 @@ function translate() {
                     class: "offer",
                     html: t("offer")
                 },
-                                
+
                 // STRIP 2
                 kiss.templates.title({
                     title: t("titleNocodeWorkflow"),
@@ -2403,6 +2404,22 @@ function translate() {
                 en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
                 fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
             },
+            iaImage: {
+                en: "AI image",
+                fr: "image IA"
+            },
+            iaImageDescription: {
+                en: "generate an image via AI directly from this field and the image file will be stored as an attachment",
+                fr: "générez une image via l'IA directement depuis ce champ et le fichier de l'image sera stocké comme pièce jointe"
+            },
+            map: {
+                en: "map",
+                fr: "carte"
+            },
+            mapDescription: {
+                en: "The Map field allows you to display a location on a map and interact with it.",
+                fr: "Le champ Carte permet d'afficher une localisation sur une carte et d'interagir avec elle."
+            },
 
             // Views
             columnSelection: {
@@ -2706,6 +2723,18 @@ function translate() {
                                 title: t("summary"),
                                 description: t("summaryDescription"),
                                 screenshot: "field type - summary - pickaform.webp"
+                            }),
+                            // IA image
+                            kiss.templates.featureDetails({
+                                title: t("iaImage"),
+                                description: t("iaImageDescription"),
+                                screenshot: "field type - aiImage - pickaform.webp"
+                            }),
+                            // Map
+                            kiss.templates.featureDetails({
+                                title: t("map"),
+                                description: t("mapDescription"),
+                                screenshot: "field type - map - pickaform.webp"
                             })
                         ]
                     }]
