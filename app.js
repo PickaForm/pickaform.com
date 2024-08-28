@@ -2218,8 +2218,8 @@ function translate() {
 
             // Field types
             titleFieldTypes: {
-                en: "21 field types to build your forms",
-                fr: "21 types de champs pour vos formulaires"
+                en: "23 field types to build your forms",
+                fr: "23 types de champs pour vos formulaires"
             },
             descriptionFieldTypes: {
                 en: "Creating rich forms requires a variety of field types.<br>We've got you covered!",
