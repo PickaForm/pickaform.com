@@ -2469,6 +2469,30 @@ function translate() {
             aggregationsDescription: {
                 en: "When a view is grouped on one or more fields, you can automatically calculate aggregations for each level.",
                 fr: "Lorsqu'une vue est groupée sur un ou plusieurs champs, vous pouvez automatiquement calculer des aggrégations pour chaque niveau."
+            },
+            calendar: {
+                en: "calendar view",
+                fr: "vue calendrier"
+            },
+            calendarDescription: {
+                en: "The Calendar view allows you to display your data in a calendar format and interact with it. The calendar offers a monthly or weekly view and allows filters and the choice of fields to display.",
+                fr: "La vue Calendrier permet d'afficher vos données sous forme de calendrier et d'interagir avec elles. Le calendrier propose une vision mensuelle ou par semaine et autorise les filtres et le choix des champs à afficher."
+            },
+            kanban: {
+                en: "kanban view",
+                fr: "vue kanban"
+            },
+            kanbanDescription: {
+                en: "The Kanban view allows you to organize your data in columns and move them easily from one column to another. It is particularly useful for managing small projects or daily tasks.",
+                fr: "La vue Kanban permet d'organiser vos données en colonnes et de les déplacer facilement d'une colonne à l'autre. C'est particulièrement utile pour gérer les petits projets ou les tâches quotidiennes."
+            },
+            timeline: {
+                en: "timeline view",
+                fr: "vue chronologie"
+            },
+            timelineDescription: {
+                en: "The Timeline view allows you to display your data in a temporal format by adjusting the zoom levels. In addition, it allows you to group data and filters as with other views.",
+                fr: "La vue Chronologie permet d'afficher vos données sous forme temporelle en ajustant les niveaux de zoom. De plus, elle permet en plus d'effectuer des regroupements de données et des filtres comme avec les autres vues."
             }
         })
 
@@ -2791,7 +2815,25 @@ function translate() {
                                 title: t("aggregations"),
                                 description: t("aggregationsDescription"),
                                 screenshot: "views - data aggregation - pickaform.webp"
-                            })
+                            }),
+                            // Calendar
+                            kiss.templates.featureDetails({
+                                title: t("calendar"),
+                                description: t("calendarDescription"),
+                                screenshot: "views - calendar - pickaform.webp"
+                            }),                        
+                            // Kanban
+                            kiss.templates.featureDetails({
+                                title: t("kanban"),
+                                description: t("kanbanDescription"),
+                                screenshot: "views - kanban - pickaform.webp"
+                            }),
+                            // Timeline
+                            kiss.templates.featureDetails({
+                                title: t("timeline"),
+                                description: t("timelineDescription"),
+                                screenshot: "views - timeline - pickaform.webp"
+                            })                     
                         ]
                     }]
                 },
