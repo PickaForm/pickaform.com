@@ -1471,11 +1471,11 @@ function translate() {
                 kiss.templates.screenshot("workflow - business contracts - pickaform.webp", false),
 
                 // EVENTS & ANNOUNCENMENTS
-                {
-                    type: "html",
-                    class: "offer",
-                    html: t("offer")
-                },
+                // {
+                //     type: "html",
+                //     class: "offer",
+                //     html: t("offer")
+                // },
 
                 // STRIP 2
                 kiss.templates.title({
