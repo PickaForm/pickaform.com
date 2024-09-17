@@ -131,7 +131,8 @@ kiss.app.defineView({
                     <br>✔ GDPR
                     <br>✔ Competitive pricing
                     <br>✔ English, French, Spanish & more coming
-                    <br>✅ Good for all company sizes and budgets
+                    <br>
+                    <br>✅ Perfect for all company sizes and budgets
                     `,
                 fr: `
                     <br>✔ Mise en page de formulaire riche
@@ -143,8 +144,9 @@ kiss.app.defineView({
                     <br>✔ Hébergé en France
                     <br>✔ RGPD
                     <br>✔ Tarification compétitive
-                    <br>✔ Anglais, français, espagnol et plus à venir
-                    <br>✅ Bon pour toutes les tailles d'entreprises et de budgets
+                    <br>✔ Anglais, Français, Espagnol et plus à venir
+                    <br>
+                    <br>✅ Parfait pour toutes les tailles d'entreprises et de budgets
                 `,
 
             },
@@ -160,6 +162,7 @@ kiss.app.defineView({
                     <br>❌ Complex pricing
                     <br>❌ Expensive for large teams
                     <br>❌ English only
+                    <br>
                     <br>✅ Good for companies with a substantial budget
                     `,
                 fr: `
@@ -174,6 +177,7 @@ kiss.app.defineView({
                     <br>❌ Tarification complexe
                     <br>❌ Cher pour les grandes équipes
                     <br>❌ Anglais seulement
+                    <br>
                     <br>✅ Bon pour les entreprises avec un budget conséquent
                 `,
             },
@@ -187,6 +191,7 @@ kiss.app.defineView({
                     <br>❌ Not so intuitive for non-technical users
                     <br>❌ Difficult data aggregations
                     <br>❌ English only
+                    <br>
                     <br>✅ Good for basic projects and small teams
                     `,
                 fr: `
@@ -199,6 +204,7 @@ kiss.app.defineView({
                     <br>❌ Pas intuitif pour les utilisateurs non techniques
                     <br>❌ Agrégations de données difficiles
                     <br>❌ Anglais seulement
+                    <br>
                     <br>✅ Bon pour les projets basiques et les petites équipes
                 `,
             },
@@ -212,6 +218,7 @@ kiss.app.defineView({
                     <br>❌ Designed for technical audiences
                     <br>❌ Lacks collaborative features for teams
                     <br>❌ English only
+                    <br>
                     <br>✅ Good for technical teams
                     `,
                 fr: `
@@ -224,6 +231,7 @@ kiss.app.defineView({
                     <br>❌ Conçu pour les audiences techniques
                     <br>❌ Manque de fonctionnalités collaboratives
                     <br>❌ Anglais seulement
+                    <br>
                     <br>✅ Bon pour les équipes techniques
                 `,
             },            
@@ -238,6 +246,7 @@ kiss.app.defineView({
                     <br>❌ No native PDF generation
                     <br>❌ Lacks collaborative features for teams
                     <br>❌ Long history of privacy and security concerns
+                    <br>
                     <br>✅ Great for spreadsheet work and calculations
                     `,
                 fr: `
@@ -250,6 +259,7 @@ kiss.app.defineView({
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Manque de fonctionnalités collaboratives
                     <br>❌ Préoccupations en matière de confidentialité
+                    <br>
                     <br>✅ Idéal comme tableur et pour les calculs
                 `,
             },
@@ -261,6 +271,7 @@ kiss.app.defineView({
                     <br>❌ No workflow engine (BPM)
                     <br>❌ No native PDF generation
                     <br>❌ Lacks collaborative features for teams
+                    <br>
                     <br>✅ Great for spreadsheet work and calculations
                     `,
                 fr: `
@@ -270,6 +281,7 @@ kiss.app.defineView({
                     <br>❌ Pas de moteur de workflow (BPM)
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Manque de fonctionnalités collaboratives
+                    <br>
                     <br>✅ Idéal comme tableur et pour les calculs
                 `,
             }           
