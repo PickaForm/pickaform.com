@@ -111,9 +111,9 @@ kiss.app.defineView({
                 fr: `Pourquoi Pickaform ?`
             },
             subtitleWhy: {
-                en: `Simply best suited for
+                en: `Simply the no-code solution best suited for
                     <br><span class="text-highlight" style="background-color: #00aaee">enterprises</span>`,
-                fr: `Simplement la plus adaptée aux
+                fr: `Simplement la solution no-code la plus adaptée aux
                     <br><span class="text-highlight" style="background-color: #00aaee">entreprises</span>`
             },
             compareTo: {
