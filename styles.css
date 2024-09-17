@@ -709,3 +709,46 @@ h2.artwork-title {
     margin: 3vh;
     padding: 2vh 3vh;
 }
+
+/* COMPARISSON TABLE */
+.vs-container {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 2vh;
+}
+
+.vs-select .field-select {
+    height: 4vh;
+}
+
+.vs-select .field-select-value {
+    height: 3vh;
+    font-size: 3vh;
+}
+
+.vs-select .field-option {
+    font-size: 2vh;
+}
+
+.vs {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #00aaee;
+    border: 2px solid #00aaee;
+    border-radius: 100%;
+    width: 4rem;
+    height: 4rem;
+    font-size: 2rem;
+    font-weight: 400;
+}
+
+.vs-content {
+    border: 2px solid #555555;
+    border-radius: 1vh;
+    padding: 2vh;
+    margin: 2vh;
+    box-shadow: 0 0 2vh #555555;
+}
