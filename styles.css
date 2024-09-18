@@ -712,8 +712,9 @@ h2.artwork-title {
 
 /* COMPARISSON TABLE */
 .vs-container {
-    display: flex;
-    flex-flow: column;
+    display: inline-flex;
+    flex-flow: row;
+    flex-wrap: wrap;
     align-items: center;
     justify-content: center;
     font-size: 2vh;

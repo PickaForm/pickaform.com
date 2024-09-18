@@ -1470,90 +1470,86 @@ function translate() {
             },
             pickaform: {
                 en: `
-                    <br>✔ Rich form layout
-                    <br>✔ Integrated workflow engine (BPM)
-                    <br>✔ Integrated PDF generation
-                    <br>✔ Very fast and stable
-                    <br>✔ Cloud + self-hosted deployments
-                    <br>✔ Hosted in France
-                    <br>✔ GDPR
-                    <br>✔ Competitive pricing
-                    <br>✔ English, French, Spanish & more coming
-                    <br>
-                    <br>✅ Perfect for all company sizes and budgets
+                    <br>✅ Cloud and on-premise
+                    <br>✅ Security model with precise access control
+                    <br>✅ Rich form layout
+                    <br>✅ Integrated workflow engine (BPM)
+                    <br>✅ Integrated PDF generation
+                    <br>✅ Very fast and stable
+                    <br>✅ Hosted in France
+                    <br>✅ GDPR
+                    <br>✅ Simple and competitive pricing
+                    <br>✅ English, French, Spanish & more coming
+                    <hr>✅ Perfect for all company sizes and budgets
                     `,
                 fr: `
-                    <br>✔ Mise en page de formulaire riche
-                    <br>✔ Moteur de workflow intégré (BPM)
-                    <br>✔ Génération de PDF intégrée
-                    <br>✔ Très rapide et très stable
-                    <br>✔ Validé par de grandes entreprises
-                    <br>✔ Déploiements cloud et on-premise
-                    <br>✔ Hébergé en France
-                    <br>✔ RGPD
-                    <br>✔ Tarification compétitive
-                    <br>✔ Anglais, Français, Espagnol et plus à venir
-                    <br>
-                    <br>✅ Parfait pour toutes les tailles d'entreprises et de budgets
+                    <br>✅ Cloud et on-premise
+                    <br>✅ Modèle de sécurité avec contrôle précis des accès
+                    <br>✅ Mise en page de formulaire riche
+                    <br>✅ Moteur de workflow intégré (BPM)
+                    <br>✅ Génération de PDF intégrée
+                    <br>✅ Très rapide et très stable
+                    <br>✅ Hébergé en France
+                    <br>✅ RGPD
+                    <br>✅ Tarification simple et compétitive
+                    <br>✅ Anglais, Français, Espagnol et plus à venir
+                    <hr>✅ Parfait pour toutes les tailles d'entreprises et de budgets
                 `,
 
             },
             airtable: {
                 en: `
                     <br>❌ Cloud only
-                    <br>❌ Poor security model
-                    <br>❌ Basic form layout, no sections, no columns
+                    <br>❌ Security model to be strengthened
+                    <br>❌ Basic form layout
+                    <br>❌ No sections, no columns
                     <br>❌ No workflow engine (BPM)
                     <br>❌ No native PDF generation
                     <br>❌ Low row limits, even at the enterprise level
-                    <br>❌ Lacks speed and stability at scale
+                    <br>❌ Lack of performance at scale
                     <br>❌ Complex pricing
                     <br>❌ Expensive for large teams
-                    <br>❌ English only
-                    <br>
-                    <br>✅ Good for companies with a substantial budget
+                    <br>❌ English interface only
+                    <hr>✅ Good for companies with a substantial budget
                     `,
                 fr: `
                     <br>❌ Cloud uniquement
-                    <br>❌ Modèle de sécurité médiocre
-                    <br>❌ Mise en page basique des formulaire
+                    <br>❌ Modèle de sécurité à renforcer
+                    <br>❌ Mise en page basique des formulaires
                     <br>❌ Pas de sections, pas de colonnes
                     <br>❌ Pas de moteur de workflow (BPM)
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Limitations sur la quantité de données
-                    <br>❌ Manque de vitesse et de stabilité à grande échelle
+                    <br>❌ Manque de performances à grande échelle
                     <br>❌ Tarification complexe
-                    <br>❌ Cher pour les grandes équipes
-                    <br>❌ Anglais seulement
-                    <br>
-                    <br>✅ Bon pour les entreprises avec un budget conséquent
+                    <br>❌ Budget conséquent pour les grandes équipes
+                    <br>❌ Interface en Anglais uniquement
+                    <hr>✅ Bon pour les entreprises avec un budget conséquent
                 `,
             },
             baserow: {
                 en: `
                     <br>❌ Airtable clone with inferior UI/UX
-                    <br>❌ Poor security model
+                    <br>❌ Security model to be strengthened
                     <br>❌ Basic form layout, no sections, no columns
                     <br>❌ No workflow engine (BPM)
                     <br>❌ No native PDF generation
                     <br>❌ Not so intuitive for non-technical users
                     <br>❌ Difficult data aggregations
-                    <br>❌ English only
-                    <br>
-                    <br>✅ Good for basic projects and small teams
+                    <br>❌ English interface only
+                    <hr>✅ Good for basic projects and small teams
                     `,
                 fr: `
                     <br>❌ Clone de Airtable avec une UI/UX inférieure
-                    <br>❌ Modèle de sécurité médiocre
-                    <br>❌ Mise en page basique des formulaire
+                    <br>❌ Modèle de sécurité à renforcer
+                    <br>❌ Mise en page basique des formulaires
                     <br>❌ Pas de sections, pas de colonnes
                     <br>❌ Pas de moteur de workflow (BPM)
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Pas intuitif pour les utilisateurs non techniques
                     <br>❌ Agrégations de données difficiles
-                    <br>❌ Anglais seulement
-                    <br>
-                    <br>✅ Bon pour les projets basiques et les petites équipes
+                    <br>❌ Interface en Anglais uniquement
+                    <hr>✅ Bon pour les projets basiques et les petites équipes
                 `,
             },
             nocodb: {
@@ -1565,22 +1561,20 @@ function translate() {
                     <br>❌ No native PDF generation
                     <br>❌ Designed for technical audiences
                     <br>❌ Lacks collaborative features for teams
-                    <br>❌ English only
-                    <br>
-                    <br>✅ Good for technical teams
+                    <br>❌ English interface only
+                    <hr>✅ Good for technical teams
                     `,
                 fr: `
                     <br>❌ Clone de Airtable avec une UI/UX inférieure
                     <br>❌ UI lente lors de la navigation dans les données
-                    <br>❌ Mise en page basique des formulaire
+                    <br>❌ Mise en page basique des formulaires
                     <br>❌ Pas de sections, pas de colonnes
                     <br>❌ Pas de moteur de workflow (BPM)
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Conçu pour les audiences techniques
                     <br>❌ Manque de fonctionnalités collaboratives
-                    <br>❌ Anglais seulement
-                    <br>
-                    <br>✅ Bon pour les équipes techniques
+                    <br>❌ Interface en Anglais uniquement
+                    <hr>✅ Bon pour les équipes techniques
                 `,
             },            
             googlesheets: {
@@ -1594,8 +1588,7 @@ function translate() {
                     <br>❌ No native PDF generation
                     <br>❌ Lacks collaborative features for teams
                     <br>❌ Long history of privacy and security concerns
-                    <br>
-                    <br>✅ Great for spreadsheet work and calculations
+                    <hr>✅ Great for spreadsheet work and calculations
                     `,
                 fr: `
                     <br>❌ Cloud uniquement
@@ -1607,8 +1600,7 @@ function translate() {
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Manque de fonctionnalités collaboratives
                     <br>❌ Préoccupations en matière de confidentialité
-                    <br>
-                    <br>✅ Idéal comme tableur et pour les calculs
+                    <hr>✅ Idéal comme tableur et pour les calculs
                 `,
             },
             excelsheets: {
@@ -1619,8 +1611,7 @@ function translate() {
                     <br>❌ No workflow engine (BPM)
                     <br>❌ No native PDF generation
                     <br>❌ Lacks collaborative features for teams
-                    <br>
-                    <br>✅ Great for spreadsheet work and calculations
+                    <hr>✅ Great for spreadsheet work and calculations
                     `,
                 fr: `
                     <br>❌ Pas adapté pour des applications d'entreprise
@@ -1629,8 +1620,7 @@ function translate() {
                     <br>❌ Pas de moteur de workflow (BPM)
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Manque de fonctionnalités collaboratives
-                    <br>
-                    <br>✅ Idéal comme tableur et pour les calculs
+                    <hr>✅ Idéal comme tableur et pour les calculs
                 `,
             }           
         })
