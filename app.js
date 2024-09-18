@@ -1506,8 +1506,6 @@ function translate() {
                     <br>❌ No workflow engine (BPM)
                     <br>❌ No native PDF generation
                     <br>❌ Low row limits, even at the enterprise level
-                    <br>❌ Lack of performance at scale
-                    <br>❌ Complex pricing
                     <br>❌ Expensive for large teams
                     <br>❌ English interface only
                     <hr>✅ Good for companies with a substantial budget
@@ -1520,8 +1518,6 @@ function translate() {
                     <br>❌ Pas de moteur de workflow (BPM)
                     <br>❌ Pas de génération native de PDF
                     <br>❌ Limitations sur la quantité de données
-                    <br>❌ Manque de performances à grande échelle
-                    <br>❌ Tarification complexe
                     <br>❌ Budget conséquent pour les grandes équipes
                     <br>❌ Interface en Anglais uniquement
                     <hr>✅ Bon pour les entreprises avec un budget conséquent
