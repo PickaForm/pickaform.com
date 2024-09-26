@@ -99,7 +99,6 @@ function translate() {
 function getNextLanguage() {
     const currentIndex = languages.indexOf(kiss.language.current)
     const nextIndex = (currentIndex + 1) % languages.length
-    console.log(languages[nextIndex])
     return languages[nextIndex]
 }
 

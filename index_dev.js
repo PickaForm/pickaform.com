@@ -41,6 +41,12 @@ kiss.loader.loadStyles([
 ])
 
 window.onload = async function () {
+    kiss.logger.init({
+        data: true,
+        types: [0],
+        categories: ["😘"]
+    })
+        
     kiss.app.init()
 
     kiss.router.navigateTo({
