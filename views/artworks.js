@@ -3,15 +3,18 @@ kiss.app.defineView({
     meta: {
         url: {
             en: "https://pickaform.fr/en/artworks",
-            fr: "https://pickaform.fr/fr/artworks"
+            fr: "https://pickaform.fr/fr/artworks",
+            es: "https://pickaform.fr/es/artworks",
         },
         title: {
             en: "Pickaform | Midjourney integration",
-            fr: "Pickaform | Integration Midjourney"
+            fr: "Pickaform | Integration Midjourney",
+            es: "Pickaform | Integración Midjourney"
         },
         description: {
             en: `Get Inspired by our AI Art Collection.`,
-            fr: `Laissez-vous inspirer par notre collection d'art IA.`
+            fr: `Laissez-vous inspirer par notre collection d'art IA.`,
+            es: `Déjate inspirar por nuestra colección de arte de IA.`
         }
     },    
     renderer: function (id, target) {
@@ -19,15 +22,18 @@ kiss.app.defineView({
         const t = defineTexts(id, {
             title: {
                 en: `Get Inspired by our AI Art Collection`,
-                fr: `Laissez-vous inspirer par notre collection d'art IA`
+                fr: `Laissez-vous inspirer par notre collection d'art IA`,
+                es: `Déjate inspirar por nuestra colección de arte de IA`
             },
             subtitle: {
                 en: "We used pickaform to streamline the process of creating Midjourney images",
-                fr: "Nous avons utilisé pickaform pour rationaliser le processus de création d'images Midjourney"
+                fr: "Nous avons utilisé pickaform pour rationaliser le processus de création d'images Midjourney",
+                es: "Utilizamos pickaform para agilizar el proceso de creación de imágenes de Midjourney"
             },
             titleArtworks: {
                 en: "Midjourney ++",
-                fr: "Midjourney ++"
+                fr: "Midjourney ++",
+                es: "Midjourney ++"
             },
             descriptionArtworks: {
                 en: `You can prompt your images from Pickaform.
@@ -35,15 +41,20 @@ kiss.app.defineView({
                     You can find all your original prompts and your images are classified and searchable as in a real database.`,
                 fr: `Vous pouvez prompter vos images depuis Pickaform.
                     Les images sont directement stockées dans une base de données.
-                    Vous pouvez retrouver tous vos prompts d'origine et vos images sont classées et recherchables comme avec une vraie base de données.`
+                    Vous pouvez retrouver tous vos prompts d'origine et vos images sont classées et recherchables comme avec une vraie base de données.`,
+                es: `Puede solicitar sus imágenes desde Pickaform.
+                    Las imágenes se almacenan directamente en una base de datos.
+                    Puede encontrar todos sus prompts originales y sus imágenes están clasificadas y son buscables como en una base de datos real.`
             },
             bookDemo: {
                 en: `I book a demo`,
-                fr: `Je réserve une démo`
+                fr: `Je réserve une démo`,
+                es: `Reservo una demo`
             },
             searchTerm: {
                 en: `Search`,
-                fr: `Rechercher`
+                fr: `Rechercher`,
+                es: `Buscar`
             }
         })
 

@@ -2,8 +2,9 @@
  * Global functions for translation
  */
 
-// Temporary fix for non EN-FR languages
-if (!["en", "fr"].includes(kiss.language.current)) kiss.language.current = "en"
+// Temporary fix for non EN-FR-ES languages
+const languages = ["en", "fr", "es"]
+if (!languages.includes(kiss.language.current)) kiss.language.current = "en"
 
 const t = (textId) => `<span class="localized" id="${textId}">${txtTitleCase(textId)}</span>`
 const translateByPage = (textId, id = "") => `<span class="localized" id="${id + "-" + textId}">${txtTitleCase(id + "-" + textId)}</span>`
@@ -48,11 +49,7 @@ function translateTo(language) {
  * Translate navbar, content, footer
  */
 function translate() {
-    publish("EVT_LANGUAGE", {
-        language: kiss.language.current
-    })
-
-    let newLanguage = (kiss.language.current == "fr") ? "en" : "fr"
+    let newLanguage = getNextLanguage()
     kiss.language.current = newLanguage
     localStorage.setItem("config-language", newLanguage)
 
@@ -61,6 +58,20 @@ function translate() {
     $("footer").translateTo(newLanguage)
     const currentContent = kiss.router.getRoute().content
     $(currentContent).translateTo(newLanguage)
+
+    publish("EVT_LANGUAGE", {
+        language: getNextLanguage()
+    })    
+}
+
+/**
+ * Get the next available language
+ */
+function getNextLanguage() {
+    const currentIndex = languages.indexOf(kiss.language.current)
+    const nextIndex = (currentIndex + 1) % languages.length
+    console.log(languages[nextIndex])
+    return languages[nextIndex]
 }
 
 ;

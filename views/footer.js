@@ -6,35 +6,43 @@ kiss.app.defineView({
         const t = defineTexts(id, {
             "Home": {
                 en: "Home",
-                fr: "Accueil"
+                fr: "Accueil",
+                es: "Inicio"
             },
             "Product": {
                 en: "Product",
-                fr: "Produit"
+                fr: "Produit",
+                es: "Producto"
             },
             "Examples": {
                 en: "Examples",
-                fr: "Exemples"
+                fr: "Exemples",
+                es: "Ejemplos"
             },
             "Pricing": {
                 en: "Pricing",
-                fr: "Pricing"
+                fr: "Pricing",
+                es: "Precios"
             },
             "Privacy": {
                 en: "privacy policy",
-                fr: "politique de confidentialité"
+                fr: "politique de confidentialité",
+                es: "política de privacidad"
             },
             "Terms": {
                 en: `terms of services`,
-                fr: `mentions légales`
+                fr: `mentions légales`,
+                es: `términos de servicio`
             },
             "Technology": {
                 en: `technology`,
-                fr: `technologie`
+                fr: `technologie`,
+                es: `tecnología`
             },
             "AI Art": {
                 en: "Midjourney integration",
-                fr: "Intégration Midjourney"
+                fr: "Intégration Midjourney",
+                es: "Integración Midjourney"
             }
         })
 

@@ -3,26 +3,31 @@ kiss.app.defineView({
     meta: {
         url: {
             en: "https://pickaform.fr/en/product",
-            fr: "https://pickaform.fr/fr/product"
+            fr: "https://pickaform.fr/fr/product",
+            es: "https://pickaform.fr/es/product"
         },
         title: {
             en: "Product features | Pickaform",
-            fr: "Fonctionnalités du produit | Pickaform"
+            fr: "Fonctionnalités du produit | Pickaform",
+            es: "Características del producto | Pickaform"
         },
         description: {
             en: `The full list of Pickaform product features. Combine no-code, workflows and AI to build the most flexible tools for your company!`,
-            fr: `Liste des fonctionnalités du produit Pickaform. Combinez no-code, workflows et IA pour créer les outils les plus flexibles pour votre entreprise !`
+            fr: `Liste des fonctionnalités du produit Pickaform. Combinez no-code, workflows et IA pour créer les outils les plus flexibles pour votre entreprise !`,
+            es: `Lista completa de las características del producto Pickaform. ¡Combine no-code, flujos de trabajo e IA para crear las herramientas más flexibles para su empresa!`
         }
     },
     renderer: function (id, target) {
         const t = defineTexts(id, {
             getStarted: {
                 en: "Get started",
-                fr: "Démarrez maintenant"
+                fr: "Démarrez maintenant",
+                es: "Empezar"
             },
             bookDemo: {
                 en: `I book a demo`,
-                fr: `Je réserve une démo`
+                fr: `Je réserve une démo`,
+                es: `Reservo una demo`
             },
             title: {
                 en: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
@@ -30,338 +35,422 @@ kiss.app.defineView({
                 Really <span class="text-highlight" style="background-color: #a1ed00">powerful</span>`,
                 fr: `Super <span class="text-highlight" style="background-color: #00aaee">simple</span>
                 <br>
-                Vraiment <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`
+                Vraiment <span class="text-highlight" style="background-color: #a1ed00">puissant</span>`,
+                es: `Súper <span class="text-highlight" style="background-color: #00aaee">simple</span>
+                <br>
+                Realmente <span class="text-highlight" style="background-color: #a1ed00">poderoso</span>`
             },
             subtitle: {
                 en: "Create your own business tool and start saving time.",
-                fr: "Créez votre outil métier sur mesure et commencez à gagner du temps."
+                fr: "Créez votre outil métier sur mesure et commencez à gagner du temps.",
+                es: "Cree su propia herramienta de negocio y comience a ahorrar tiempo."
             },
             titleForms: {
                 en: "Flexible forms",
-                fr: "Des formulaires flexibles"
+                fr: "Des formulaires flexibles",
+                es: "Formularios flexibles"
             },
             descriptionForms: {
                 en: "With our forms, you can collect simple or complex information and process it efficiently with your personalized workflows.",
-                fr: "Avec nos formulaires, vous pouvez collecter des informations simples ou complexes et les traiter efficacement avec vos workflows personnalisés."
+                fr: "Avec nos formulaires, vous pouvez collecter des informations simples ou complexes et les traiter efficacement avec vos workflows personnalisés.",
+                es: "Con nuestros formularios, puede recopilar información simple o compleja y procesarla de manera eficiente con sus flujos de trabajo personalizados."
             },
             titleViews: {
                 en: "Define your views",
-                fr: "Définissez vos vues"
+                fr: "Définissez vos vues",
+                es: "Defina sus vistas"
             },
             descriptionViews: {
                 en: "Configure how you want to see your data: choose your columns, filters, sort, group and create as many views as needed.",
-                fr: "Configurez la façon dont vous souhaitez voir vos données : choisissez vos colonnes, filtres, triez, regroupez et créez autant de vues que nécessaire."
+                fr: "Configurez la façon dont vous souhaitez voir vos données : choisissez vos colonnes, filtres, triez, regroupez et créez autant de vues que nécessaire.",
+                es: "Configure cómo desea ver sus datos: elija sus columnas, filtros, ordene, agrupe y cree tantas vistas como sea necesario."
             },
             titleWorkflows: {
                 en: "Customize your workflows to fit your needs",
-                fr: "Personnalisez vos workflows pour vos besoins"
+                fr: "Personnalisez vos workflows pour vos besoins",
+                es: "Personalice sus flujos de trabajo para sus necesidades"
             },
             descriptionWorkflows: {
                 en: "In a few minutes, you define the steps of the workflow, the actors and the possible decisions, and go!",
-                fr: "En quelques minutes, vous définissez les étapes du workflow, les acteurs et les décisions possibles, et c'est parti !"
+                fr: "En quelques minutes, vous définissez les étapes du workflow, les acteurs et les décisions possibles, et c'est parti !",
+                es: "En unos minutos, define los pasos del flujo de trabajo, los actores y las decisiones posibles, ¡y listo!"
             },
             titleFormDesigner: {
                 en: "Integrated form designer",
-                fr: "Editeur de formulaire intégré"
+                fr: "Editeur de formulaire intégré",
+                es: "Diseñador de formularios integrado"
             },
             descriptionFormDesigner: {
                 en: "Directly improve the layout of your forms in a few clicks and drag&drop.",
-                fr: "Améliorez directement la mise en page de vos formulaires en quelques clics et drag&drop."
+                fr: "Améliorez directement la mise en page de vos formulaires en quelques clics et drag&drop.",
+                es: "Mejore directamente el diseño de sus formularios en unos pocos clics y arrastrar y soltar."
             },
             titleFormFeatures: {
                 en: "A la carte form features",
-                fr: "Fonctionnalités à la carte"
+                fr: "Fonctionnalités à la carte",
+                es: "Funcionalidades a la carta"
             },
             descriptionFormFeatures: {
                 en: "Keep ergonomics simplified by activating only the features your users need.",
-                fr: "Gardez une ergonomie simplifée en activant seulement les fonctionnalités dont vos utilisateurs ont besoin."
+                fr: "Gardez une ergonomie simplifée en activant seulement les fonctionnalités dont vos utilisateurs ont besoin.",
+                es: "Mantenga la ergonomía simplificada activando solo las funciones que necesitan sus usuarios."
             },
             titleCustomViews: {
                 en: "Organize your work",
-                fr: "Organisez votre travail"
+                fr: "Organisez votre travail",
+                es: "Organice su trabajo"
             },
             descriptionCustomViews: {
                 en: "Thanks to the custom views, you will be able to create your own structure to organize all your work in the best possible way.",
-                fr: "Grâce aux vues personnalisées, vous pourrez créer votre propre structure pour organiser l'ensemble de votre travail de la meilleure façon possible."
+                fr: "Grâce aux vues personnalisées, vous pourrez créer votre propre structure pour organiser l'ensemble de votre travail de la meilleure façon possible.",
+                es: "Gracias a las vistas personalizadas, podrá crear su propia estructura para organizar todo su trabajo de la mejor manera posible."
             },
             titleLeftNavigation: {
                 en: "All data just a click away",
-                fr: "Toutes les données à portée de clic"
+                fr: "Toutes les données à portée de clic",
+                es: "Todos los datos a un clic de distancia"
             },
             descriptionLeftNavigation: {
                 en: "The side navigation bar effectively condenses all the information you need, and each user only sees what is relevant to them.",
-                fr: "La barre de navigation latérale condense efficacement toute l'information dont vous avez besoin, et chaque utilisateur ne voit que ce qui le concerne."
+                fr: "La barre de navigation latérale condense efficacement toute l'information dont vous avez besoin, et chaque utilisateur ne voit que ce qui le concerne.",
+                es: "La barra de navegación lateral condensa eficazmente toda la información que necesita, y cada usuario solo ve lo que le concierne."
             },
             titleTabsNavigation: {
                 en: "Unless you like tabs?",
-                fr: "A moins que vous aimiez les onglets ?"
+                fr: "A moins que vous aimiez les onglets ?",
+                es: "¿A menos que te gusten las pestañas?"
             },
             descriptionTabsNavigation: {
                 en: "We never impose your way of working: if you prefer the tabbed presentation, you just need 1 click.",
-                fr: "On ne vous impose jamais votre manière de travailler : si vous préférez la présentation en onglet, c'est juste un clic."
+                fr: "On ne vous impose jamais votre manière de travailler : si vous préférez la présentation en onglet, c'est juste un clic.",
+                es: "Nunca imponemos su forma de trabajar: si prefiere la presentación en pestañas, solo necesita 1 clic."
             },
             titleBookDemo: {
                 en: `Not convinced?`,
-                fr: `Pas convaincu ?`
+                fr: `Pas convaincu ?`,
+                es: `¿No estás convencido?`
             },
             subtitleBookDemo: {
                 en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
-                fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
+                fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`,
+                es: `Cuéntenos sobre su proyecto,<br>le mostramos<span class="text-highlight" style="background-color: #00aaee">en 20 minutos</span> cómo hacerlo realidad.`
             },
 
             // Field types
             titleFieldTypes: {
                 en: "23 field types to build your forms",
-                fr: "23 types de champs pour vos formulaires"
+                fr: "23 types de champs pour vos formulaires",
+                es: "23 tipos de campos para construir sus formularios"
             },
             descriptionFieldTypes: {
                 en: "Creating rich forms requires a variety of field types.<br>We've got you covered!",
-                fr: "La création de formulaires riches nécessite des types de champs variés.<br>Nous vous couvrons !"
+                fr: "La création de formulaires riches nécessite des types de champs variés.<br>Nous vous couvrons !",
+                es: "Crear formularios ricos requiere una variedad de tipos de campos.<br>¡Te tenemos cubierto!"
             },
             // View features
             titleViewCreation: {
                 en: "Many ways to organize your data",
-                fr: "Plein de manières d'organiser vos données"
+                fr: "Plein de manières d'organiser vos données",
+                es: "Muchas formas de organizar sus datos"
             },
             subtitleViewCreation: {
                 en: "Creating views is a simple yet extremely powerful process for organizing all your data.",
-                fr: "La création des vues est un processus simple mais extrêmement puissant pour organiser toutes vos données."
+                fr: "La création des vues est un processus simple mais extrêmement puissant pour organiser toutes vos données.",
+                es: "Crear vistas es un proceso simple pero extremadamente poderoso para organizar todos sus datos."
             },
 
             // Field types
             text: {
                 en: "text",
-                fr: "texte"
+                fr: "texte",
+                es: "texto"
             },
             textDescription: {
                 en: "Add a short text to any element. The Text field is used for simple fields such as a name, a title, etc...",
-                fr: "Ajoutez un court texte à n'importe quel élément. Le champ Texte est utilisé pour des champs simples comme un nom, un titre, etc..."
+                fr: "Ajoutez un court texte à n'importe quel élément. Le champ Texte est utilisé pour des champs simples comme un nom, un titre, etc...",
+                es: "Agregue un texto corto a cualquier elemento. El campo de texto se utiliza para campos simples como un nombre, un título, etc..."
             },
             number: {
                 en: "number",
-                fr: "nombre"
+                fr: "nombre",
+                es: "número"
             },
             numberDescription: {
                 en: "The Number field allows you to process numeric information such as amounts, and you can also choose the units.",
-                fr: "Le champ Nombre permet de traiter les informations numériques telles que des montants, et vous pouvez également choisir les unités."
+                fr: "Le champ Nombre permet de traiter les informations numériques telles que des montants, et vous pouvez également choisir les unités.",
+                es: "El campo Número le permite procesar información numérica como cantidades, y también puede elegir las unidades."
             },
             date: {
                 en: "date",
-                fr: "date"
+                fr: "date",
+                es: "fecha"
             },
             dateDescription: {
                 en: "The Date field allows you to select a date in a calendar, for example to set an appointment, a deadline...",
-                fr: "Le champ Date vous permet de sélectionner une date dans un calendrier, par exemple pour fixer un RDV, une deadline, une échéance..."
+                fr: "Le champ Date vous permet de sélectionner une date dans un calendrier, par exemple pour fixer un RDV, une deadline, une échéance...",
+                es: "El campo Fecha le permite seleccionar una fecha en un calendario, por ejemplo para programar una cita, una fecha límite..."
             },
             time: {
                 en: "time",
-                fr: "heure"
+                fr: "heure",
+                es: "hora"
             },
             timeDescription: {
                 en: "The Time control offers a drop-down list of time slots whose increment can be configured (every 5 minutes for example).",
-                fr: "Le champ Heure propose une liste déroulante de créneaux horaires dont l'incrément est paramétrable (par exemple toutes les 5mn)."
+                fr: "Le champ Heure propose une liste déroulante de créneaux horaires dont l'incrément est paramétrable (par exemple toutes les 5mn).",
+                es: "El control de Tiempo ofrece una lista desplegable de franjas horarias cuyo incremento se puede configurar (cada 5 minutos por ejemplo)."
             },
             paragraph: {
                 en: "paragraph",
-                fr: "paragraphe"
+                fr: "paragraphe",
+                es: "párrafo"
             },
             paragraphDescription: {
                 en: "The Paragraph field allows you to enter longer and multi-line texts, for example to add comments, descriptions, etc...",
-                fr: "Le champ Paragraphe permet de saisir des textes plus longs et multi-lignes, par exemple pour ajouter des commentaires, des descriptions, etc..."
+                fr: "Le champ Paragraphe permet de saisir des textes plus longs et multi-lignes, par exemple pour ajouter des commentaires, des descriptions, etc...",
+                es: "El campo Párrafo le permite ingresar textos más largos y de varias líneas, por ejemplo para agregar comentarios, descripciones, etc..."
             },
             aiParagraph: {
                 en: "AI paragraph",
-                fr: "paragraphe IA"
+                fr: "paragraphe IA",
+                es: "párrafo IA"
             },
             aiParagraphDescription: {
                 en: "The AI Paragraph field allows you to automatically generate the content of the field according to your instructions, thanks to OpenAI's AI.",
-                fr: "Le champ Paragraphe AI permet de générer automatiquement le contenu du champ selon vos instructions, grâce à l'IA de OpenAI."
+                fr: "Le champ Paragraphe AI permet de générer automatiquement le contenu du champ selon vos instructions, grâce à l'IA de OpenAI.",
+                es: "El campo Párrafo IA le permite generar automáticamente el contenido del campo según sus instrucciones, gracias a la IA de OpenAI."
             },
             select: {
                 en: "dropdown list",
-                fr: "liste déroulante"
+                fr: "liste déroulante",
+                es: "lista desplegable"
             },
             selectDescription: {
                 en: "The Drop-down List control offers to choose from a list of values possibly associated with a color.",
-                fr: "Le champ Liste déroulante propose de choisir parmi une liste de valeurs éventuellement associées à une couleur."
+                fr: "Le champ Liste déroulante propose de choisir parmi une liste de valeurs éventuellement associées à une couleur.",
+                es: "El control de Lista desplegable ofrece elegir entre una lista de valores posiblemente asociados con un color"
             },
             multipleSelect: {
                 en: "multiple select",
-                fr: "sélection multiple"
+                fr: "sélection multiple",
+                es: "selección múltiple"
             },
             multipleSelectDescription: {
                 en: "Drop-down lists can, if necessary, receive several values and act as tags.",
-                fr: "Les listes déroulantes peuvent si nécessaire recevoir plusieurs valeurs et agir comme des tags."
+                fr: "Les listes déroulantes peuvent si nécessaire recevoir plusieurs valeurs et agir comme des tags.",
+                es: "Las listas desplegables pueden, si es necesario, recibir varios valores y actuar como etiquetas."
             },
             checkbox: {
                 en: "checkbox",
-                fr: "case à cocher"
+                fr: "case à cocher",
+                es: "casilla de verificación"
             },
             checkboxDescription: {
                 en: "The Check box field allows you to create checklists or to switch the state of a record easily.",
-                fr: "Le champ Case à cocher permet d'élaborder des checklists ou bien de basculer l'état d'une fiche facilement."
+                fr: "Le champ Case à cocher permet d'élaborder des checklists ou bien de basculer l'état d'une fiche facilement.",
+                es: "El campo de Casilla de verificación le permite crear listas de verificación o cambiar fácilmente el estado de un registro."
             },
             progressBar: {
                 en: "progress bar",
-                fr: "barre de progression"
+                fr: "barre de progression",
+                es: "barra de progreso"
             },
             progressBarDescription: {
                 en: "The Progress Bar field is useful for visually displaying the progress of a task or project.",
-                fr: "Le champ Barre de progression est utile pour afficher l'avancement d'une tâche ou d'un projet de manière visuelle."
+                fr: "Le champ Barre de progression est utile pour afficher l'avancement d'une tâche ou d'un projet de manière visuelle.",
+                es: "El campo de Barra de progreso es útil para mostrar visualmente el progreso de una tarea o proyecto."
             },
             rating: {
                 en: "rating",
-                fr: "notation"
+                fr: "notation",
+                es: "calificación"
             },
             ratingDescription: {
                 en: "The Rating field is useful for rating items from 1 to 10, and you can also choose its symbol.",
-                fr: "Le champ Notation est utile pour évaluer des objets de 1 à 10, et vous pouvez aussi choisir son symbole."
+                fr: "Le champ Notation est utile pour évaluer des objets de 1 à 10, et vous pouvez aussi choisir son symbole.",
+                es: "El campo de Calificación es útil para calificar elementos de 1 a 10, y también puede elegir su símbolo."
             },
             attachment: {
                 en: "attachment",
-                fr: "fichiers attachés"
+                fr: "fichiers attachés",
+                es: "archivos adjuntos"
             },
             attachmentDescription: {
                 en: "The Attached Files field is used to embed one or more attachments to your data, and images can be previewed directly.",
-                fr: "Le champ Fichiers attachés est utilisé pour intégrer une ou plusieurs pièces jointes à vos données, et les images peuvent être prévisualisées directement."
+                fr: "Le champ Fichiers attachés est utilisé pour intégrer une ou plusieurs pièces jointes à vos données, et les images peuvent être prévisualisées directement.",
+                es: "El campo de Archivos adjuntos se utiliza para incrustar uno o varios archivos adjuntos en sus datos, y las imágenes se pueden previsualizar directamente."
             },
             selectColumn: {
                 en: "column selection",
-                fr: "sélection de colonne"
+                fr: "sélection de colonne",
+                es: "selección de columna"
             },
             selectColumnDescription: {
                 en: "This type of field dynamically generates a drop-down list of values by retrieving information from a column in your views.",
-                fr: "Ce type champ génère dynamiquement une liste déroulante de valeurs en récupérant les informations dans une colonne de vos vues."
+                fr: "Ce type champ génère dynamiquement une liste déroulante de valeurs en récupérant les informations dans une colonne de vos vues.", 
+                es: "Este tipo de campo genera dinámicamente una lista desplegable de valores recuperando información de una columna en sus vistas."
             },
             selectView: {
                 en: "selection inside a view",
-                fr: "sélection dans une vue"
+                fr: "sélection dans une vue",
+                es: "selección dentro de una vista"
             },
             selectViewDescription: {
                 en: "This type of field allows you to simultaneously retrieve several values from another record by selecting it in a view.",
-                fr: "Ce type de champ permet de récupérer simultanément plusieurs valeurs d'une autre fiche en la sélectionnant dans une vue."
+                fr: "Ce type de champ permet de récupérer simultanément plusieurs valeurs d'une autre fiche en la sélectionnant dans une vue.",
+                es: "Este tipo de campo le permite recuperar simultáneamente varios valores de otro registro seleccionándolo en una vista."
             },
             collaborators: {
                 en: "collaborators",
-                fr: "collaborateurs"
+                fr: "collaborateurs",
+                es: "colaboradores"
             },
             collaboratorsDescription: {
                 en: "The Collaborators field displays in a drop-down list the address book of users and groups in your organization.",
-                fr: "Le champ Collaborateurs affiche dans une liste déroulante le carnet d'adresses des utilisateurs et des groupes de votre organisation."
+                fr: "Le champ Collaborateurs affiche dans une liste déroulante le carnet d'adresses des utilisateurs et des groupes de votre organisation.",
+                es: "El campo de Colaboradores muestra en una lista desplegable el libro de direcciones de usuarios y grupos de su organización."
             },
             color: {
                 en: "color",
-                fr: "couleur"
+                fr: "couleur",
+                es: "color"
             },
             colorDescription: {
                 en: "The Color field is used to assign a color to a data item by selecting it from a palette.",
-                fr: "Le champ Couleur permet d'attribuer une couleur à une donnée en la sélectionnant dans une palette."
+                fr: "Le champ Couleur permet d'attribuer une couleur à une donnée en la sélectionnant dans une palette.", 
+                es: "El campo de Color se utiliza para asignar un color a un elemento de datos seleccionándolo en una paleta."
             },
             icon: {
                 en: "icon",
-                fr: "icône"
+                fr: "icône", 
+                es: "icono"
             },
             iconDescription: {
                 en: "The Icon control allows you to associate an icon to an object from a palette of more than 1000 icons.",
-                fr: "Le champ Icône vous permet d'associer une icône à un objet à partir d'une palette de plus de 1000 icônes."
+                fr: "Le champ Icône vous permet d'associer une icône à un objet à partir d'une palette de plus de 1000 icônes.",
+                es: "El control de Icono le permite asociar un icono a un objeto de una paleta de más de 1000 iconos."
             },
             password: {
                 en: "password",
-                fr: "mot de passe"
+                fr: "mot de passe",
+                es: "contraseña"
             },
             passwordDescription: {
                 en: "The Password field is a text field whose characters are masked in order to keep certain data confidential.",
-                fr: "Le champ Mot de passe est champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données."
+                fr: "Le champ Mot de passe est champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données.",
+                es: "El campo de Contraseña es un campo de texto cuyos caracteres están enmascarados para mantener confidencial ciertos datos."
             },
             link: {
                 en: "link to another table",
-                fr: "liaison vers une autre table"
+                fr: "liaison vers une autre table",
+                es: "enlace a otra tabla"
             },
             linkDescription: {
                 en: "The Link field is very powerful because it allows you to connect your records to each other and navigate between them by hyper-link.",
-                fr: "Le champ de Liaison est très puissant car il permet de connecter vos données entre elles et de naviguer entre données par hyper-lien."
+                fr: "Le champ de Liaison est très puissant car il permet de connecter vos données entre elles et de naviguer entre données par hyper-lien.",
+                es: "El campo de Enlace es muy potente porque le permite conectar sus registros entre sí y navegar entre ellos mediante hipervínculo."
             },
             lookup: {
                 en: "lookup a value on linked records",
-                fr: "valeur d'une fiche liée"
+                fr: "valeur d'une fiche liée",
+                es: "buscar un valor en registros vinculados"
             },
             lookupDescription: {
                 en: "This type of field is used to automatically retrieve a value in a record linked by a Link field.",
-                fr: "Ce type de champ permet de récupérer automatiquement une valeur dans une fiche liée par un champ de liaison."
+                fr: "Ce type de champ permet de récupérer automatiquement une valeur dans une fiche liée par un champ de liaison.",
+                es: "Este tipo de campo se utiliza para recuperar automáticamente un valor en un registro vinculado por un campo de enlace."
             },
             summary: {
                 en: "summarize data from linked records",
-                fr: "calcul à partir de fiches liées"
+                fr: "calcul à partir de fiches liées",
+                es: "resumir datos de registros vinculados"
             },
             summaryDescription: {
                 en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
-                fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison."
+                fr: "Ce type de champ permet d'effectuer un calcul (de type somme, moyenne) à partir de toutes les fiches liées par un champ de liaison.",
+                es: "Este tipo de campo se utiliza para realizar un cálculo (por ejemplo: suma, promedio) de todos los registros vinculados por un campo de enlace."
             },
             iaImage: {
                 en: "AI image",
-                fr: "image IA"
+                fr: "image IA",
+                es: "imagen IA"
             },
             iaImageDescription: {
                 en: "generate an image via AI directly from this field and the image file will be stored as an attachment",
-                fr: "générez une image via l'IA directement depuis ce champ et le fichier de l'image sera stocké comme pièce jointe"
+                fr: "générez une image via l'IA directement depuis ce champ et le fichier de l'image sera stocké comme pièce jointe",
+                es: "genere una imagen a través de la IA directamente desde este campo y el archivo de imagen se almacenará como un archivo adjunto"
             },
             map: {
                 en: "map",
-                fr: "carte"
+                fr: "carte",
+                es: "mapa"
             },
             mapDescription: {
                 en: "The Map field allows you to display a location on a map and interact with it.",
-                fr: "Le champ Carte permet d'afficher une localisation sur une carte et d'interagir avec elle."
+                fr: "Le champ Carte permet d'afficher une localisation sur une carte et d'interagir avec elle.",
+                es: "El campo de Mapa le permite mostrar una ubicación en un mapa e interactuar con ella."
             },
 
             // Views
             columnSelection: {
                 en: "choose your columns",
-                fr: "choix des colonnes"
+                fr: "choix des colonnes",
+                es: "elige tus columnas"
             },
             columnSelectionDescription: {
                 en: "Select the columns most relevant to your way of working.",
-                fr: "Sélectionnez les colonnes les plus pertinentes pour votre façon de travailler."
+                fr: "Sélectionnez les colonnes les plus pertinentes pour votre façon de travailler.",
+                es: "Seleccione las columnas más relevantes para su forma de trabajar."
             },
             sorting: {
                 en: "Multi-column sorting",
-                fr: "Tri multi-colonnes"
+                fr: "Tri multi-colonnes",
+                es: "Ordenación de varias columnas"
             },
             sortingDescription: {
                 en: "Sort your columns easily on several levels. Quickly change your sorting criteria.",
-                fr: "Triez vos colonnes facilement sur plusieurs niveaux. Modifiez rapidement vos critères de tri."
+                fr: "Triez vos colonnes facilement sur plusieurs niveaux. Modifiez rapidement vos critères de tri.",
+                es: "Ordene sus columnas fácilmente en varios niveles. Cambie rápidamente sus criterios de ordenación."
             },
             filtering: {
                 en: "simple of complex filters",
-                fr: "filtres simples ou complexes"
+                fr: "filtres simples ou complexes",
+                es: "filtros simples o complejos"
             },
             filteringDescription: {
                 en: "Filter your data with simple or complex logic by nesting 'AND' and 'OR' operations.",
-                fr: "Filtrez vos données avec une logique simple ou complexe en imbriquant des opérations 'ET' et 'OU'."
+                fr: "Filtrez vos données avec une logique simple ou complexe en imbriquant des opérations 'ET' et 'OU'.",
+                es: "Filtre sus datos con lógica simple o compleja anidando operaciones 'Y' y 'O'."
             },
             grouping: {
                 en: "grouping",
-                fr: "regroupement"
+                fr: "regroupement",
+                es: "agrupamiento"
             },
             groupingDescription: {
                 en: "This type of field is used to perform a calculation (ex: sum, average) from all the records linked by a Link field.",
-                fr: "En un seul clic, regroupez les données sur le critère de votre choix pour une meilleure vue d'ensemble."
+                fr: "En un seul clic, regroupez les données sur le critère de votre choix pour une meilleure vue d'ensemble.",
+                es: "Con un solo clic, agrupe los datos según el criterio que elija para una mejor visión general."
             },
             multiGrouping: {
                 en: "multi-level grouping",
-                fr: "regroupement multi-niveaux"
+                fr: "regroupement multi-niveaux",
+                es: "agrupamiento multinivel"
             },
             multiGroupingDescription: {
                 en: "By grouping your data on several levels, you can instantly have a more detailed view of your data.",
-                fr: "En regroupant vos données sur plusieurs niveaux, vous pouvez en un instant avoir une vision plus fine de vos données."
+                fr: "En regroupant vos données sur plusieurs niveaux, vous pouvez en un instant avoir une vision plus fine de vos données.",
+                es: "Al agrupar sus datos en varios niveles, puede tener al instante una vista más detallada de sus datos."
             },
             aggregations: {
                 en: "aggregations",
-                fr: "aggrégations"
+                fr: "aggrégations",
+                es: "agregaciones"
             },
             aggregationsDescription: {
                 en: "When a view is grouped on one or more fields, you can automatically calculate aggregations for each level.",
-                fr: "Lorsqu'une vue est groupée sur un ou plusieurs champs, vous pouvez automatiquement calculer des aggrégations pour chaque niveau."
+                fr: "Lorsqu'une vue est groupée sur un ou plusieurs champs, vous pouvez automatiquement calculer des aggrégations pour chaque niveau.",
+                es: "Cuando una vista está agrupada en uno o varios campos, puede calcular automáticamente agregaciones para cada nivel."
             },
             calendar: {
                 en: "calendar view",
@@ -369,23 +458,28 @@ kiss.app.defineView({
             },
             calendarDescription: {
                 en: "The Calendar view allows you to display your data in a calendar format and interact with it. The calendar offers a monthly or weekly view and allows filters and the choice of fields to display.",
-                fr: "La vue Calendrier permet d'afficher vos données sous forme de calendrier et d'interagir avec elles. Le calendrier propose une vision mensuelle ou par semaine et autorise les filtres et le choix des champs à afficher."
+                fr: "La vue Calendrier permet d'afficher vos données sous forme de calendrier et d'interagir avec elles. Le calendrier propose une vision mensuelle ou par semaine et autorise les filtres et le choix des champs à afficher.",
+                es: "La vista de Calendario le permite mostrar sus datos en formato de calendario e interactuar con ellos. El calendario ofrece una vista mensual o semanal y permite filtros y la elección de campos para mostrar."
             },
             kanban: {
                 en: "kanban view",
-                fr: "vue kanban"
+                fr: "vue kanban",
+                es: "vista kanban"
             },
             kanbanDescription: {
                 en: "The Kanban view allows you to organize your data in columns and move them easily from one column to another. It is particularly useful for managing small projects or daily tasks.",
-                fr: "La vue Kanban permet d'organiser vos données en colonnes et de les déplacer facilement d'une colonne à l'autre. C'est particulièrement utile pour gérer les petits projets ou les tâches quotidiennes."
+                fr: "La vue Kanban permet d'organiser vos données en colonnes et de les déplacer facilement d'une colonne à l'autre. C'est particulièrement utile pour gérer les petits projets ou les tâches quotidiennes.",
+                es: "La vista Kanban le permite organizar sus datos en columnas y moverlos fácilmente de una columna a otra. Es particularmente útil para gestionar pequeños proyectos o tareas diarias."
             },
             timeline: {
                 en: "timeline view",
-                fr: "vue chronologie"
+                fr: "vue chronologie",
+                es: "vista de línea de tiempo"
             },
             timelineDescription: {
                 en: "The Timeline view allows you to display your data in a temporal format by adjusting the zoom levels. In addition, it allows you to group data and filters as with other views.",
-                fr: "La vue Chronologie permet d'afficher vos données sous forme temporelle en ajustant les niveaux de zoom. De plus, elle permet en plus d'effectuer des regroupements de données et des filtres comme avec les autres vues."
+                fr: "La vue Chronologie permet d'afficher vos données sous forme temporelle en ajustant les niveaux de zoom. De plus, elle permet en plus d'effectuer des regroupements de données et des filtres comme avec les autres vues.",
+                es: "La vista de Línea de tiempo le permite mostrar sus datos en un formato temporal ajustando los niveles de zoom. Además, le permite agrupar datos y filtros como con otras vistas."
             }
         })
 

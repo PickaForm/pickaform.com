@@ -3,15 +3,18 @@ kiss.app.defineView({
     meta: {
         url: {
             en: "https://pickaform.fr/en/landing",
-            fr: "https://pickaform.fr/fr/landing"
+            fr: "https://pickaform.fr/fr/landing",
+            es: "https://pickaform.fr/es/landing"
         },
         title: {
             en: "Pickaform | Best no-code platform for your workflows",
-            fr: "Pickaform | Meilleure plateforme no-code pour vos your workflows"
+            fr: "Pickaform | Meilleure plateforme no-code pour vos your workflows",
+            es: "Pickaform | Mejor plataforma no-code para sus workflows"
         },
         description: {
             en: `Boost all your business processes by combining no-code, forms, workflows and AI.`,
-            fr: `Boostez tous vos processus métier en combinant no-code, formulaires, workflows et IA.`
+            fr: `Boostez tous vos processus métier en combinant no-code, formulaires, workflows et IA.`,
+            es: `Impulse todos sus procesos de negocio combinando no-code, formularios, flujos de trabajo y IA.`
         }
     },
     renderer: function (id, target) {
@@ -22,11 +25,15 @@ kiss.app.defineView({
                 for your <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`,
                 fr: `La meilleure plateforme <span class="text-highlight" style="background-color: #00aaee">no-code</span>
                 <br>
-                pour vos <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`
+                pour vos <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`,
+                es: `La mejor plataforma <span class="text-highlight" style="background-color: #00aaee">no-code</span>
+                <br>
+                para sus <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`
             },
             subtitlePitchline: {
                 en: "Build your processes in minutes.<br>Collaborate instantly.",
                 fr: "Créez vos workflows en quelques minutes.<br>Collaborez instantanément.",
+                es: "Construya sus flujos de trabajo en minutos.<br>Colabore al instante."
             },
             titleNocodeWorkflow: {
                 en: `no-code
@@ -37,20 +44,28 @@ kiss.app.defineView({
                 <br>+ Business Process Management
                 <br>
                 = <span class="text-highlight" style="background-color: #ed3757">super pouvoirs</span>`,
+                es: `no-code
+                <br>+ Business Process Management
+                <br>
+                = <span class="text-highlight" style="background-color: #ed3757">superpoderes</span>`
             },
             subtitleNocodeWorkflow: {
                 en: "Pick a form or build one.<br>Connect your process.",
                 fr: "Choisissez vos formulaires.<br>Connectez vos workflows.",
+                es: "Elija un formulario o construya uno.<br>Conecte su proceso."
             },
             titleFlexibility: {
                 en: `no-code
                 = <span class="text-highlight" style="background-color: #ed3757">flexibility</span>`,
                 fr: `no-code
                 = <span class="text-highlight" style="background-color: #ed3757">flexibilité</span>`,
+                es: `no-code
+                = <span class="text-highlight" style="background-color: #ed3757">flexibilidad</span>`
             },
             subtitleFlexibility: {
                 en: "One tool.<br>An infinity of use cases.",
                 fr: "Un seul outil.<br>Des usages infinis.",
+                es: "Una herramienta.<br>Un sinfín de casos de uso."
             },
             titleExperience: {
                 en: `+25 years of expertise in
@@ -59,22 +74,29 @@ kiss.app.defineView({
                 fr: `+25 ans d'expertise en
                 <br>
                 <span class="text-highlight" style="background-color: #ed3757">optimisation</span> des process métier`,
+                es: `+25 años de experiencia en
+                <br>
+                <span class="text-highlight" style="background-color: #ed3757">optimización</span> de procesos`
             },
             subtitleExperience: {
                 en: "Our customers save time.<br>Do you want to know how?",
                 fr: "Nos clients gagnent du temps.<br>Vous voulez savoir comment ?",
+                es: "Nuestros clientes ahorran tiempo.<br>¿Quiere saber cómo?"
             },
             getStarted: {
                 en: "Get started",
-                fr: "Démarrez maintenant"
+                fr: "Démarrez maintenant",
+                es: "Comience ahora"
             },
             bookDemo: {
                 en: `I book a demo`,
-                fr: `Je réserve une démo`
+                fr: `Je réserve une démo`,
+                es: `Reservo una demo`
             },
             getInTouch: {
                 en: `OK, I'll get in touch`,
-                fr: `OK, je prends contact`
+                fr: `OK, je prends contact`,
+                es: `OK, me pondré en contacto`
             },
             offer: {
                 en:
@@ -104,21 +126,39 @@ kiss.app.defineView({
                     <a href="https://calendly.com/pickaform/pickaform-live-demo">
                         <div class="a-button button-booking">Réservez votre démo privée dès maintenant pour bénéficier de cette offre unique !</div>
                     </a>
+                </center>`,
+                es:
+                `<h1>Oferta especial <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 16px;">NoCode Summit 2024</span></h1>
+                <h2>Venga a vernos el 16 y 17 de octubre en París, Station F</h2>
+                <h2>Si compra una suscripción antes del 30 de octubre de 2024</h2>
+                <h2>✔ descuento del <span class="text-highlight" style="color: black; background-color: #ffffff; padding: 5px;">30%</span> en nuestros servicios</h2>
+                <h2>✔ construimos su prototipo con usted</h2>
+                <h2>✔ le asesoramos sobre nuestra metodología para crear sus procesos</h2>
+                <h2>✔ le asesoramos sobre las mejores prácticas de diseño NoCode</h2>
+
+                <center>
+                    <a href="https://calendly.com/pickaform/pickaform-live-demo">
+                        <div class="a-button button-booking">¡Reserve su demostración privada ahora para beneficiarse de esta oferta única!</div>
+                    </a>
                 </center>`
             },
             titleWhy: {
                 en: `Why Pickaform?`,
-                fr: `Pourquoi Pickaform ?`
+                fr: `Pourquoi Pickaform ?`,
+                es: `¿Por qué Pickaform?`
             },
             subtitleWhy: {
                 en: `Simply the no-code solution best suited for
                     <br><span class="text-highlight" style="background-color: #00aaee">enterprises</span>`,
                 fr: `Simplement la solution no-code la plus adaptée aux
-                    <br><span class="text-highlight" style="background-color: #00aaee">entreprises</span>`
+                    <br><span class="text-highlight" style="background-color: #00aaee">entreprises</span>`,
+                es: `Simplemente la solución no-code más adecuada para
+                    <br><span class="text-highlight" style="background-color: #00aaee">empresas</span>`
             },
             compareTo: {
                 en: `Compare to`,
-                fr: `Comparer à`
+                fr: `Comparer à`,
+                es: `Comparar con`
             },
             pickaform: {
                 en: `
@@ -147,7 +187,19 @@ kiss.app.defineView({
                     <br>✅ Anglais, Français, Espagnol et plus à venir
                     <hr>✅ Parfait pour toutes les tailles d'entreprises et de budgets
                 `,
-
+                es: `
+                    <br>✅ Cloud y on-premise
+                    <br>✅ Modelo de seguridad con control preciso de accesos
+                    <br>✅ Diseño de formulario rico
+                    <br>✅ Motor de flujo de trabajo integrado (BPM)
+                    <br>✅ Generación de PDF integrada
+                    <br>✅ Muy rápido y muy estable
+                    <br>✅ Alojado en Francia
+                    <br>✅ RGPD
+                    <br>✅ Precios simples y competitivos
+                    <br>✅ Inglés, Francés, Español y más por venir
+                    <hr>✅ Perfecto para todas las tallas de empresas y presupuestos
+                `
             },
             airtable: {
                 en: `
@@ -174,6 +226,18 @@ kiss.app.defineView({
                     <br>❌ Interface en Anglais uniquement
                     <hr>✅ Bon pour les entreprises avec un budget conséquent
                 `,
+                es: `
+                    <br>❌ Solo en la nube
+                    <br>❌ Modelo de seguridad a fortalecer
+                    <br>❌ Diseño básico de formularios
+                    <br>❌ Sin secciones, sin columnas
+                    <br>❌ Sin motor de flujo de trabajo (BPM)
+                    <br>❌ Sin generación nativa de PDF
+                    <br>❌ Límites de filas bajos, incluso a nivel empresarial
+                    <br>❌ Costoso para equipos grandes
+                    <br>❌ Interfaz en inglés solamente
+                    <hr>✅ Bueno para empresas con un presupuesto sustancial
+                `
             },
             baserow: {
                 en: `
@@ -199,6 +263,17 @@ kiss.app.defineView({
                     <br>❌ Interface en Anglais uniquement
                     <hr>✅ Bon pour les projets basiques et les petites équipes
                 `,
+                es: `
+                    <br>❌ Clon de Airtable con una UI/UX inferior
+                    <br>❌ Modelo de seguridad a fortalecer
+                    <br>❌ Diseño básico de formularios, sin secciones, sin columnas
+                    <br>❌ Sin motor de flujo de trabajo (BPM)
+                    <br>❌ Sin generación nativa de PDF
+                    <br>❌ No tan intuitivo para usuarios no técnicos
+                    <br>❌ Difícil agregación de datos
+                    <br>❌ Interfaz en inglés solamente
+                    <hr>✅ Bueno para proyectos básicos y equipos pequeños
+                `
             },
             nocodb: {
                 en: `
@@ -224,6 +299,17 @@ kiss.app.defineView({
                     <br>❌ Interface en Anglais uniquement
                     <hr>✅ Bon pour les équipes techniques
                 `,
+                es: `
+                    <br>❌ Clon de Airtable con una UI/UX inferior
+                    <br>❌ UI muy lenta al navegar por los conjuntos de datos
+                    <br>❌ Diseño básico de formularios, sin secciones, sin columnas
+                    <br>❌ Sin motor de flujo de trabajo (BPM)
+                    <br>❌ Sin generación nativa de PDF
+                    <br>❌ Diseñado para audiencias técnicas
+                    <br>❌ Carece de funciones colaborativas para equipos
+                    <br>❌ Interfaz en inglés solamente
+                    <hr>✅ Bueno para equipos técnicos
+                `
             },            
             googlesheets: {
                 en: `
@@ -250,6 +336,18 @@ kiss.app.defineView({
                     <br>❌ Préoccupations en matière de confidentialité
                     <hr>✅ Idéal comme tableur et pour les calculs
                 `,
+                es: `
+                    <br>❌ Solo en la nube
+                    <br>❌ No apto para construir aplicaciones empresariales
+                    <br>❌ Imposible afinar la seguridad
+                    <br>❌ Sin formularios en absoluto
+                    <br>❌ Sin habilidades de relación / vinculación
+                    <br>❌ Sin motor de flujo de trabajo (BPM)
+                    <br>❌ Sin generación nativa de PDF
+                    <br>❌ Carece de funciones colaborativas para equipos
+                    <br>❌ Larga historia de preocupaciones de privacidad y seguridad
+                    <hr>✅ Ideal para trabajos de hojas de cálculo y cálculos
+                `
             },
             excelsheets: {
                 en: `
@@ -270,6 +368,15 @@ kiss.app.defineView({
                     <br>❌ Manque de fonctionnalités collaboratives
                     <hr>✅ Idéal comme tableur et pour les calculs
                 `,
+                es: `
+                    <br>❌ No apto para construir aplicaciones empresariales
+                    <br>❌ Imposible afinar la seguridad
+                    <br>❌ Sin habilidades de relación / vinculación
+                    <br>❌ Sin motor de flujo de trabajo (BPM)
+                    <br>❌ Sin generación nativa de PDF
+                    <br>❌ Carece de funciones colaborativas para equipos
+                    <hr>✅ Ideal para trabajos de hojas de cálculo y cálculos
+                `
             }           
         })
 

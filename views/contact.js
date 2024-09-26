@@ -3,30 +3,36 @@ kiss.app.defineView({
     meta: {
         url: {
             en: "https://pickaform.fr/en/contact",
-            fr: "https://pickaform.fr/fr/contact"
+            fr: "https://pickaform.fr/fr/contact",
+            es: "https://pickaform.fr/es/contact"
         },
         title: {
             en: "Contact & FAQ | Pickaform",
-            fr: "Contact & FAQ | Pickaform"
+            fr: "Contact & FAQ | Pickaform",
+            es: "Contacto y FAQ | Pickaform"
         },
         description: {
             en: `Request a demo or check the Frequently Asked Questions.`,
-            fr: `Demandez une démo ou jetez un oeil aux Questions Fréquentes.`
+            fr: `Demandez une démo ou jetez un oeil aux Questions Fréquentes.`,
+            es: `Solicite una demostración o consulte las Preguntas Frecuentes.`
         }
     },    
     renderer: function (id, target) {
         const t = defineTexts(id, {
             title: {
                 en: "Let's keep in touch",
-                fr: "Prenons contact"
+                fr: "Prenons contact",
+                es: "Mantengámonos en contacto"
             },
             subtitle: {
                 en: `Tell us about your project,<br>we show you<span class="text-highlight" style="background-color: #00aaee">in 20 minutes</span> how to make it happen.`,
-                fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`
+                fr: `Expliquez-nous votre projet,<br>nous vous montrons<span class="text-highlight" style="background-color: #00aaee">en 20mn</span> comment le réaliser.`,
+                es: `Cuéntenos sobre su proyecto,<br>le mostramos<span class="text-highlight" style="background-color: #00aaee">en 20 minutos</span> cómo hacerlo realidad.`
             },
             submit: {
                 en: "submit",
-                fr: "envoyer"
+                fr: "envoyer",
+                es: "enviar"
             },
             thanks: {
                 en: `Thank you!
@@ -34,7 +40,10 @@ kiss.app.defineView({
                 <br>We will contact you very soon.`,
                 fr: `Merci !
                 <br>Votre demande a bien été envoyée 🚀
-                <br>Nous allons prendre contact avec vous très rapidement.`
+                <br>Nous allons prendre contact avec vous très rapidement.`,
+                es: `¡Gracias!
+                <br>Su solicitud ha sido enviada 🚀
+                <br>Nos pondremos en contacto con usted muy pronto.`
             }
         })
 

@@ -8,11 +8,14 @@ kiss.app.defineView({
                 en: `Your resources to
                 <span class="text-highlight" style="background-color: #00aaee">save time</span>`,
                 fr: `Vos ressources pour
-                <br><span class="text-highlight" style="background-color: #00aaee">gagner du temps</span>`
+                <br><span class="text-highlight" style="background-color: #00aaee">gagner du temps</span>`,
+                es: `Sus recursos para
+                <br><span class="text-highlight" style="background-color: #00aaee">ahorrar tiempo</span>`
             },
             subtitle: {
                 en: "News, stories and tips on project management, collaboration & productivity",
-                fr: "News et conseils sur la gestion de projet, la collaboration et la productivité"
+                fr: "News et conseils sur la gestion de projet, la collaboration et la productivité",
+                es: "Noticias, historias y consejos sobre gestión de proyectos, colaboración y productividad"
             }
         })
 

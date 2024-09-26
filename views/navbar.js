@@ -1,36 +1,43 @@
 kiss.app.defineView({
     id: "navbar",
     renderer: function (id, target) {
-        const nextLanguage = (kiss.language.current == "fr") ? "en" : "fr"
+        const nextLanguage = getNextLanguage()
 
         const t = defineTexts(id, {
             "Home": {
                 en: "Home",
-                fr: "Accueil"
+                fr: "Accueil",
+                es: "Inicio"
             },
             "Product": {
                 en: "Product",
-                fr: "Produit"
+                fr: "Produit",
+                es: "Producto"
             },
             "Examples": {
                 en: "Examples",
-                fr: "Exemples"
+                fr: "Exemples",
+                es: "Ejemplos"
             },
             "Pricing": {
                 en: "Pricing",
-                fr: "Tarifs"
+                fr: "Tarifs",
+                es: "Precios"
             },
             "Templates": {
                 en: "Templates",
-                fr: "Modèles"
+                fr: "Modèles",
+                es: "Plantillas"
             },
             "Login": {
                 en: "Login",
-                fr: "Connexion"
+                fr: "Connexion",
+                es: "Iniciar sesión"
             },
             "Get started": {
                 en: "Get started",
-                fr: "Inscription"
+                fr: "Inscription",
+                es: "Registro"
             }
         })
 
