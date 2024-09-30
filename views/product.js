@@ -138,9 +138,9 @@ kiss.app.defineView({
 
             // Field types
             titleFieldTypes: {
-                en: "23 field types to build your forms",
-                fr: "23 types de champs pour vos formulaires",
-                es: "23 tipos de campos para construir sus formularios"
+                en: "24 field types to build your forms",
+                fr: "24 types de champs pour vos formulaires",
+                es: "24 tipos de campos para construir sus formularios"
             },
             descriptionFieldTypes: {
                 en: "Creating rich forms requires a variety of field types.<br>We've got you covered!",
@@ -390,6 +390,16 @@ kiss.app.defineView({
                 fr: "Le champ Carte permet d'afficher une localisation sur une carte et d'interagir avec elle.",
                 es: "El campo de Mapa le permite mostrar una ubicación en un mapa e interactuar con ella."
             },
+            richtext: {
+                en: "rich text",
+                fr: "texte enrichi",
+                es: "texto enriquecido"
+            },
+            richtextDescription: {
+                en: "Rich text allows you to manage formatted text with common features (titles, bold, italic, underline, color, etc...)",
+                fr: "Le texte enrichi vous permet de gérer du texte mise en forme avec les fonctionnalités courantes (titres, gras, italique, souligné, couleur, etc...)",
+                es: "El texto enriquecido le permite gestionar texto con formato con funciones comunes (títulos, negrita, cursiva, subrayado, color, etc...)"
+            },            
 
             // Views
             columnSelection: {
@@ -746,6 +756,12 @@ kiss.app.defineView({
                                 title: t("map"),
                                 description: t("mapDescription"),
                                 screenshot: "field type - map - pickaform.webp"
+                            }),
+                            // Rich text field
+                            kiss.templates.featureDetails({
+                                title: t("richtext"),
+                                description: t("richtextDescription"),
+                                screenshot: "field type - richtext - pickaform.webp"
                             })
                         ]
                     }]
