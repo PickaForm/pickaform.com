@@ -259,7 +259,6 @@ kiss.app.defineView({
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - contrat - pickaform.webp"),
 
                 // CRM

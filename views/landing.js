@@ -54,6 +54,32 @@ kiss.app.defineView({
                 fr: "Choisissez vos formulaires.<br>Connectez vos workflows.",
                 es: "Elija un formulario o construya uno.<br>Conecte su proceso."
             },
+            titleForms: {
+                en: `Incredible <span class="text-highlight" style="background-color: #00aaee">forms</span>
+                <br>in minutes`,
+                fr: `Des <span class="text-highlight" style="background-color: #00aaee">formulaires</span>
+                <br>incroyables en quelques minutes`,
+                es: `Formularios <span class="text-highlight" style="background-color: #00aaee">increíbles</span>
+                <br>en minutos`
+            },
+            subtitleForms: {
+                en: "Create your own business tool.<br>Start saving time.",
+                fr: "Créez votre outil métier.<br>Commencez à gagner du temps.",
+                es: "Cree su propia herramienta de negocio.<br>Comience a ahorrar tiempo."
+            },
+            titleGenerativeAI: {
+                en: `Generative <span class="text-highlight" style="background-color: #00aaee">AI</span>
+                <br>for your apps`,
+                fr: `IA <span class="text-highlight" style="background-color: #00aaee">générative</span>
+                <br>pour vos applications`,
+                es: `IA <span class="text-highlight" style="background-color: #00aaee">generativa</span>
+                <br>para sus aplicaciones`
+            },
+            subtitleGenerativeAI: {
+                en: "Explain simply what you want.<br>It's like magic.",
+                fr: "Expliquez simplement ce que vous voulez.<br>C'est comme de la magie.",
+                es: "Explique simplemente lo que quiere.<br>Es como magia."
+            },
             titleFlexibility: {
                 en: `no-code
                 = <span class="text-highlight" style="background-color: #ed3757">flexibility</span>`,
@@ -386,13 +412,12 @@ kiss.app.defineView({
             layout: "vertical",
             alignItems: "center",
             items: [
-                // STRIP 1
+                // STRIP - Best NoCode platform for your workflows
                 kiss.templates.title({
                     title: t("titlePitchline"),
                     subtitle: t("subtitlePitchline")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
-                kiss.templates.screenshot("workflow - business contracts - pickaform.webp", false),
+                kiss.templates.screenshot("workflow - nocode.webp", false),
 
                 // EVENTS & ANNOUNCENMENTS
                 // {
@@ -401,23 +426,35 @@ kiss.app.defineView({
                 //     html: t("offer")
                 // },
 
-                // STRIP 2
+                // STRIP - NoCode + Business Process Management = Superpowers
                 kiss.templates.title({
                     title: t("titleNocodeWorkflow"),
                     subtitle: t("subtitleNocodeWorkflow")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
-                kiss.templates.screenshot("workflow - nocode.webp"),
+                kiss.templates.screenshot("workflow - business contracts - pickaform.webp"),
 
-                // STRIP 3
+                // STRIP - Incredible forms in minutes
+                kiss.templates.title({
+                    title: t("titleForms"),
+                    subtitle: t("subtitleForms")
+                }),
+                kiss.templates.screenshot("incredible forms out-of-the-box - pickaform.webp"),
+
+                // STRIP - Generative AI for your apps
+                kiss.templates.title({
+                    title: t("titleGenerativeAI"),
+                    subtitle: t("subtitleGenerativeAI")
+                }),
+                kiss.templates.screenshot("generative ai to build applications - pickaform.webp"),
+
+                // STRIP - NoCode = Flexibility
                 kiss.templates.title({
                     title: t("titleFlexibility"),
                     subtitle: t("subtitleFlexibility")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("midjourney integration - pickaform.webp"),
 
-                // STRIP 4 - Comparison with competitors
+                // STRIP - Comparison with competitors
                 kiss.templates.title({
                     title: t("titleWhy"),
                     subtitle: t("subtitleWhy")
@@ -502,7 +539,7 @@ kiss.app.defineView({
                     ]
                 },
 
-                // STRIP 5
+                // STRIP - Experience
                 kiss.templates.title({
                     title: t("titleExperience"),
                     subtitle: t("subtitleExperience")

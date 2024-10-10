@@ -504,7 +504,6 @@ kiss.app.defineView({
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
 
                 // FORMS
