@@ -337,7 +337,7 @@ kiss.app.defineView({
             },
             passwordDescription: {
                 en: "The Password field is a text field whose characters are masked in order to keep certain data confidential.",
-                fr: "Le champ Mot de passe est champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données.",
+                fr: "Le champ Mot de passe est un champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données.",
                 es: "El campo de Contraseña es un campo de texto cuyos caracteres están enmascarados para mantener confidencial ciertos datos."
             },
             link: {
