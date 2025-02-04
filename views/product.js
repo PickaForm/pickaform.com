@@ -247,7 +247,7 @@ kiss.app.defineView({
             },
             checkboxDescription: {
                 en: "The Check box field allows you to create checklists or to switch the state of a record easily.",
-                fr: "Le champ Case à cocher permet d'élaborder des checklists ou bien de basculer l'état d'une fiche facilement.",
+                fr: "Le champ Case à cocher permet d'élaborer des checklists ou bien de basculer l'état d'une fiche facilement.",
                 es: "El campo de Casilla de verificación le permite crear listas de verificación o cambiar fácilmente el estado de un registro."
             },
             progressBar: {
