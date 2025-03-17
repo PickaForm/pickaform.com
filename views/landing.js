@@ -67,6 +67,19 @@ kiss.app.defineView({
                 fr: "Créez votre outil métier.<br>Commencez à gagner du temps.",
                 es: "Cree su propia herramienta de negocio.<br>Comience a ahorrar tiempo."
             },
+            titleDashboard: {
+                en: `Clear and impactful
+                <br><span class="text-highlight" style="background-color:rgb(163, 0, 238)">dashboards</span>`,
+                fr: `Des <span class="text-highlight" style="background-color:rgb(163, 0, 238)">tableaux de bord</span>
+                <br>clairs et impactants`,
+                es: `<span class="text-highlight" style="background-color:rgb(163, 0, 238)">Tableros de control</span>
+                <br>claros e impactantes`
+            },
+            subtitleDashboard: {
+                en: "Create your dashboards by yourself.<br>Get visual and intuitive answers.",
+                fr: "Créez vos tableaux de bord en toute autonomie.<br>Obtenez des réponses visuelles et intuitives.",
+                es: "Cree sus propios tableros de control.<br>Obtenga respuestas visuales e intuitivas."
+            },            
             titleGenerativeAI: {
                 en: `Generative <span class="text-highlight" style="background-color: #00aaee">AI</span>
                 <br>for your apps`,
@@ -439,6 +452,13 @@ kiss.app.defineView({
                     subtitle: t("subtitleForms")
                 }),
                 kiss.templates.screenshot("incredible forms out-of-the-box - pickaform.webp"),
+
+                // STRIP - Beautiful dashboards for your data
+                kiss.templates.title({
+                    title: t("titleDashboard"),
+                    subtitle: t("subtitleDashboard")
+                }),
+                kiss.templates.screenshot("example - dashboard - pickaform.webp"),
 
                 // STRIP - Generative AI for your apps
                 kiss.templates.title({

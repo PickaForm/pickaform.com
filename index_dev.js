@@ -47,5 +47,5 @@ window.onload = async function () {
             ui: "start",
             content: "landing"
         }
-    })    
+    })
 };

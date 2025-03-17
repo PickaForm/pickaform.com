@@ -1505,6 +1505,19 @@ function getNextLanguage() {
                 fr: "Créez votre outil métier.<br>Commencez à gagner du temps.",
                 es: "Cree su propia herramienta de negocio.<br>Comience a ahorrar tiempo."
             },
+            titleDashboard: {
+                en: `Clear and impactful
+                <br><span class="text-highlight" style="background-color:rgb(163, 0, 238)">dashboards</span>`,
+                fr: `Des <span class="text-highlight" style="background-color:rgb(163, 0, 238)">tableaux de bord</span>
+                <br>clairs et impactants`,
+                es: `<span class="text-highlight" style="background-color:rgb(163, 0, 238)">Tableros de control</span>
+                <br>claros e impactantes`
+            },
+            subtitleDashboard: {
+                en: "Create your dashboards by yourself.<br>Get visual and intuitive answers.",
+                fr: "Créez vos tableaux de bord en toute autonomie.<br>Obtenez des réponses visuelles et intuitives.",
+                es: "Cree sus propios tableros de control.<br>Obtenga respuestas visuales e intuitivas."
+            },            
             titleGenerativeAI: {
                 en: `Generative <span class="text-highlight" style="background-color: #00aaee">AI</span>
                 <br>for your apps`,
@@ -1877,6 +1890,13 @@ function getNextLanguage() {
                     subtitle: t("subtitleForms")
                 }),
                 kiss.templates.screenshot("incredible forms out-of-the-box - pickaform.webp"),
+
+                // STRIP - Beautiful dashboards for your data
+                kiss.templates.title({
+                    title: t("titleDashboard"),
+                    subtitle: t("subtitleDashboard")
+                }),
+                kiss.templates.screenshot("example - dashboard - pickaform.webp"),
 
                 // STRIP - Generative AI for your apps
                 kiss.templates.title({
@@ -2900,7 +2920,7 @@ function getNextLanguage() {
             },
             checkboxDescription: {
                 en: "The Check box field allows you to create checklists or to switch the state of a record easily.",
-                fr: "Le champ Case à cocher permet d'élaborder des checklists ou bien de basculer l'état d'une fiche facilement.",
+                fr: "Le champ Case à cocher permet d'élaborer des checklists ou bien de basculer l'état d'une fiche facilement.",
                 es: "El campo de Casilla de verificación le permite crear listas de verificación o cambiar fácilmente el estado de un registro."
             },
             progressBar: {
@@ -2990,7 +3010,7 @@ function getNextLanguage() {
             },
             passwordDescription: {
                 en: "The Password field is a text field whose characters are masked in order to keep certain data confidential.",
-                fr: "Le champ Mot de passe est champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données.",
+                fr: "Le champ Mot de passe est un champ texte dont les caractères sont masqués afin de garder la confidentialité de certaines données.",
                 es: "El campo de Contraseña es un campo de texto cuyos caracteres están enmascarados para mantener confidencial ciertos datos."
             },
             link: {
