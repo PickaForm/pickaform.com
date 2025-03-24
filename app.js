@@ -10,6 +10,7 @@ function animate(className, animationName) {
         entries.forEach(entry => {
         if (entry.isIntersecting) {
             entry.target.classList.add('animate__animated', 'animate__' + animationName)
+            entry.target.style.visibility = "visible"
             observer.unobserve(entry.target)
         }
         })
@@ -31,12 +32,16 @@ function animateElements() {
     animate("feature-title", "fadeInUp")
     animate("feature-description", "fadeInUp")
 
-    animate("screenshot-right", "slideInLeft")
-    animate("screenshot-left", "slideInRight")
+    animate("feature-screenshot-right", "slideInLeft")
+    animate("feature-screenshot-left", "slideInRight")
 
     // Feature details
     animate("feature-details-screenshot", "zoomIn")
     animate("feature-details-description", "fadeInUp")
+
+    // Pricing
+    animate("pricing-plan", "zoomIn")
+    animate("pricing-faq", "fadeInUp")
 }
 
 ;// Kiss init
@@ -4022,7 +4027,7 @@ kiss.templates.buttonCTA = function (text, page) {
                     {
                         type: "html",
                         class: "feature-screenshot-container-" + textPosition,
-                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img screenshot-${textPosition}">`,
+                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img feature-screenshot-${textPosition}">`,
                         events: {
                             click: () => {
                                 if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
