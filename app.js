@@ -1868,6 +1868,8 @@ function getNextLanguage() {
                     title: t("titlePitchline"),
                     subtitle: t("subtitlePitchline")
                 }),
+
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
                 kiss.templates.screenshot("workflow - nocode.webp", false),
 
                 // EVENTS & ANNOUNCENMENTS
@@ -2002,7 +2004,7 @@ function getNextLanguage() {
                     title: t("titleExperience"),
                     subtitle: t("subtitleExperience")
                 }),
-                kiss.templates.buttonCTA(t("bookDemo"), "booking"),                
+                kiss.templates.buttonCTA(t("bookDemo"), "booking"),
 
                 // CUSTOMERS
                 kiss.templates.screenshot("customer references - pickaform.webp"),
