@@ -36,7 +36,7 @@ function animateElements() {
 
     // Feature details
     animate("feature-details-screenshot", "zoomIn")
-    animate("feature-details-description", "fadeIn")
+    animate("feature-details-description", "fadeInUp")
 }
 
 ;
