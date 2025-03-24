@@ -2,6 +2,7 @@
 kiss.loader.loadScripts([
     "utils/init",
     "utils/localization",
+    "utils/animations",
 
     // Views
     "views/start",
@@ -34,7 +35,9 @@ kiss.loader.loadScripts([
 
 // Load styles
 kiss.loader.loadStyles([
-    "https://kissjs.net/resources/lib/kissjs/kissjs",
+    // "https://kissjs.net/resources/lib/kissjs/kissjs",
+    "./resources/lib/kissjs/kissjs",
+    "./resources/lib/kissjs/webfonts/fontawesome-all.min",
     "styles"
 ])
 

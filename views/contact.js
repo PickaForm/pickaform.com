@@ -196,6 +196,9 @@ kiss.app.defineView({
             ],
 
             methods: {
+                load() {
+                    animateElements()
+                },
                 _afterConnected() {
                     this.translateTo(kiss.language.current)
                 },

@@ -1,10 +1,54 @@
-// Kiss init
+/**
+ * Assigns an animation to an element when it is in the viewport
+ * 
+ * @param {string} className 
+ * @param {string} animationName 
+ */
+function animate(className, animationName) {
+    const animatedElements = document.querySelectorAll('.' + className)
+    const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('animate__animated', 'animate__' + animationName)
+            observer.unobserve(entry.target)
+        }
+        })
+    }, {
+        threshold: 0.1 // % of the element that needs to be in the viewport
+    })
+
+    animatedElements.forEach(el => {
+        observer.observe(el)
+    })
+}
+
+function animateElements() {
+    animate("title", "fadeInUp")
+    animate("subtitle", "fadeInUp")
+    animate("screenshot", "zoomIn")
+
+    // Features
+    animate("feature-title", "fadeInUp")
+    animate("feature-description", "fadeInUp")
+
+    animate("screenshot-right", "slideInLeft")
+    animate("screenshot-left", "slideInRight")
+
+    // Feature details
+    animate("feature-details-screenshot", "zoomIn")
+    animate("feature-details-description", "fadeIn")
+}
+
+;// Kiss init
 kiss.db.mode = "memory"
 kiss.language.get()
 
 // Dark theme between 22h and 6h
+// kiss.theme.set({
+//     color: (new Date().getHours() <= 6 || new Date().getHours() >= 22) ? "dark" : "light"
+// })
 kiss.theme.set({
-    color: (new Date().getHours() <= 6 || new Date().getHours() >= 22) ? "dark" : "light"
+    color: "dark"
 })
 
 // Paths
@@ -27,7 +71,9 @@ kiss.global.contactModelId = "0187b40b-0061-7f65-af86-982a361afcf3"
 kiss.global.artEndPoint = "https://beta.pickaform.com/command/product"
 kiss.global.artModelId = "01889cf0-5878-7352-93b5-3a0fb88c852f"
 kiss.global.artTitle = "pJZ5QvWL"
-kiss.global.artPulished = "DgllE0KD";/**
+kiss.global.artPulished = "DgllE0KD"
+
+;/**
  * Global functions for translation
  */
 
@@ -1047,6 +1093,9 @@ function getNextLanguage() {
             },
 
             methods: {
+                load() {
+                    animateElements()
+                },
                 _afterConnected() {
                     this.translateTo(kiss.language.current)
                 },
@@ -1254,6 +1303,9 @@ function getNextLanguage() {
             ],
 
             methods: {
+                load() {
+                    animateElements()
+                },
                 _afterConnected() {
                     this.translateTo(kiss.language.current)
                 },
@@ -2011,6 +2063,9 @@ function getNextLanguage() {
             ],
 
             methods: {
+                load() {
+                    animateElements()
+                },
                 _afterConnected() {
                     this.translateTo(kiss.language.current)
                 },
@@ -2664,6 +2719,9 @@ function getNextLanguage() {
             },
 
             methods: {
+                load() {
+                    animateElements()
+                },
                 _afterConnected() {
                     this.translateTo(kiss.language.current)
                 },
@@ -3539,6 +3597,9 @@ function getNextLanguage() {
             },
 
             methods: {
+                load() {
+                    animateElements()
+                },
                 _afterConnected() {
                     this.translateTo(kiss.language.current)
                 },
@@ -3961,7 +4022,7 @@ kiss.templates.buttonCTA = function (text, page) {
                     {
                         type: "html",
                         class: "feature-screenshot-container-" + textPosition,
-                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img">`,
+                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img screenshot-${textPosition}">`,
                         events: {
                             click: () => {
                                 if (kiss.tools.isMobile()) return // Don't zoom on mobile phones

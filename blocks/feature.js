@@ -52,7 +52,7 @@ kiss.templates.feature = function ({
                     {
                         type: "html",
                         class: "feature-screenshot-container-" + textPosition,
-                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img">`,
+                        html: `<img src="${src}" alt="${alt}" class="feature-screenshot-img screenshot-${textPosition}">`,
                         events: {
                             click: () => {
                                 if (kiss.tools.isMobile()) return // Don't zoom on mobile phones
