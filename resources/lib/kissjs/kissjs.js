@@ -37,7 +37,7 @@ const kiss = {
     $KissJS: "KissJS - Keep It Simple Stupid Javascript",
 
     // Build number
-    version: 4240,
+    version: 4250,
 
     // Tell isomorphic code we're on the client side
     isClient: true,
@@ -2374,7 +2374,7 @@ kiss.db.offline = {
             }
         }
         else if (modelId.startsWith("file")) {
-            // TODO: remove file from local drive or Amazon S3
+            // TODO: remove file from local drive or S3 storage
             
         }
 
@@ -8316,6 +8316,27 @@ kiss.pubsub = {
     },
 
     /**
+     * Subscribe a function to a channel, but unsubscribe it after the first call
+     * 
+     * @param {string} channel - The channel name
+     * @param {function} fn - The function to subscribe to the channel
+     * @param {string} [description] - Optional description of the subscription
+     * @returns {string} The subscription id
+     */
+    subscribeOnce(channel, fn, description) {
+        let subscriptionId = kiss.pubsub.subscribe(channel, fn, description)
+
+        // Unsubscribe the function after the first call
+        let originalFn = kiss.pubsub.subscriptions[channel][subscriptionId]
+        kiss.pubsub.subscriptions[channel][subscriptionId] = function(messageData) {
+            originalFn(messageData)
+            kiss.pubsub.unsubscribe(subscriptionId)
+        }
+
+        return subscriptionId
+    },
+
+    /**
      * Unsubscribe a function from the pubsub
      * 
      * @param {string} subscriptionId - The id of the subscription to remove
@@ -11759,7 +11780,7 @@ kiss.tools = {
     },
 
     /**
-     * Return the URL to access a file object on Amazon S3.
+     * Return the URL to access a file object on S3 compatible storage.
      * The file can be either public or private.
      * 
      * @param {Object} file
@@ -11773,6 +11794,10 @@ kiss.tools = {
         } = thumb ? kiss.tools.getThumbnail(file, thumb) : file
 
         path = path.replaceAll("\\", "/")
+
+        // Temporary fix for the S3 endpoint
+        // Needs to be checked with the server account config
+        path = path.replace("eu-west-3.amazonaws.com", "fr-par.scw.cloud")
 
         if (
             Array.isArray(file.accessReaders) &&
@@ -51062,7 +51087,13 @@ kiss.data.Model = class {
     // #region Relationships management
 
     /**
-     * Generate link records between 2 models when their 2 given fields are equal.
+     * Generate links between two models (= tables)
+     * 
+     * This is used to automatically create links between records when they have a matching value.
+     * Example:
+     * - you have a flat list of companies with a field "name"
+     * - you have a flat list of contacts with a field "company name"
+     * - you want to link the contacts to the companies which name matches the contact's company name
      * 
      * Note: it does **not** save the links into the database.
      * It's up to the caller function to decide what to do with the links (create them or cancel)
@@ -51790,6 +51821,7 @@ kiss.data.Model = class {
                                 mY: foreignModelId,
                                 rY: foreignRecord.id,
                                 fY: foreignLinkFieldId,
+                                accountId: kiss.session.currentAccountId,
                                 createdAt: new Date().toISOString(),
                                 createdBy: kiss.session.getUserId()
                             }
@@ -51810,6 +51842,7 @@ kiss.data.Model = class {
                                 mY: foreignModelId,
                                 rY: foreignRecord.id,
                                 fY: foreignLinkFieldId,
+                                accountId: kiss.session.currentAccountId,
                                 createdAt: new Date().toISOString(),
                                 createdBy: kiss.session.getUserId()
                             }
@@ -52316,8 +52349,11 @@ kiss.data.Model = class {
          *         "id": "dbba41cc-6ec6-4bb9-981a-4e27eafb20b9",
          *         "filename": "logo 8.png",
          *         "path": "https://pickaform-europe.s3.eu-west-3.amazonaws.com/files/a50616e1-8cce-4788-ae4e-7ee10d35b5f2/2022/06/17/logo%208.png",
+         *         "bucket": "pickaform-europe",
+         *         "key": "files/a50616e1-8cce-4788-ae4e-7ee10d35b5f2/2022/06/17/logo%208.png",
+         *         "s3Endpoint": "s3.eu-west-3.amazonaws.com",
          *         "size": 7092,
-         *         "type": "amazon_s3",
+         *         "type": "s3", // Means any compatible s3 storage (AWS, ScaleWay, etc.)
          *         "mimeType": "image/png",
          *         "thumbnails": {
          *              // Thumbnails infos
@@ -52326,17 +52362,17 @@ kiss.data.Model = class {
          *         "createdBy": "john.doe@pickaform.com"
          *     },
          *     {
-         *          "id": "0185c4f3-e3ff-7933-a1f2-e06459111665",
-         *          "filename": "France invest.PNG",
-         *          "path": "uploads\\01847546-a751-7a6e-9e6a-42b8b8e37570\\2023\\01\\18\\France invest.PNG",
-         *          "size": 75999,
-         *          "type": "local",
-         *          "mimeType": "image/png",
-         *          "thumbnails": {
+         *         "id": "0185c4f3-e3ff-7933-a1f2-e06459111665",
+         *         "filename": "France invest.PNG",
+         *         "path": "uploads\\01847546-a751-7a6e-9e6a-42b8b8e37570\\2023\\01\\18\\France invest.PNG",
+         *         "size": 75999,
+         *         "type": "local",
+         *         "mimeType": "image/png",
+         *         "thumbnails": {
          *              // Thumbnails infos
-         *          },
-         *          "createdAt": "2023-01-18T12:56:36.095Z",
-         *          "createdBy": "georges.lucas@pickaform.com"
+         *         },
+         *         "createdAt": "2023-01-18T12:56:36.095Z",
+         *         "createdBy": "georges.lucas@pickaform.com"
          *      }
          * ]
          */
@@ -53825,11 +53861,11 @@ kiss.data.Transaction = class {
         }
 
         if (!success) {
-            log(`kiss.data.Transaction - Could not process the operations`)
+            // log(`kiss.data.Transaction - Could not process the operations`)
             this._rollback()
             return []
         } else {
-            log(`kiss.data.Transaction - Processed ${flatOperations.length} operation(s)`)
+            // log(`kiss.data.Transaction - Processed ${flatOperations.length} operation(s)`)
             this._commit()
             return flatOperations
         }
@@ -57971,7 +58007,7 @@ kiss.app.defineModel({
             dataType: String
         },
         {
-            id: "type", // local, amazon_s3
+            id: "type", // local, s3, etc.
             dataType: String
         },
         {
