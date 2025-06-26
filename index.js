@@ -5,7 +5,7 @@ kiss.loader.loadStyles([
 ])
 
 window.onload = async function () {
-    await kiss.loader.loadScript("./app.min")
+    await kiss.loader.loadScript("./build.min")
 
     await kiss.app.init({
         debug: false,
