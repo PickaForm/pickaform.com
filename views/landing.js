@@ -51,7 +51,7 @@ kiss.app.defineView({
             },
             subtitleNocodeWorkflow: {
                 en: "Pick a form or build one.<br>Connect your process.",
-                fr: "Choisissez vos formulaires.<br>Connectez vos workflows.",
+                fr: "Choisissez un formulaire.<br>Connectez votre process.",
                 es: "Elija un formulario o construya uno.<br>Conecte su proceso."
             },
             titleForms: {
