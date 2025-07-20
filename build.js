@@ -1502,9 +1502,9 @@ function getNextLanguage() {
             es: "https://pickaform.fr/es/landing"
         },
         title: {
-            en: "Pickaform | Best no-code platform for your workflows",
-            fr: "Pickaform | Meilleure plateforme no-code pour vos your workflows",
-            es: "Pickaform | Mejor plataforma no-code para sus workflows"
+            en: "Pickaform | Best no-code platform for your processes",
+            fr: "Pickaform | Meilleure plateforme no-code pour vos process",
+            es: "Pickaform | Mejor plataforma no-code para sus procesos"
         },
         description: {
             en: `Boost all your business processes by combining no-code, forms, workflows and AI.`,
@@ -1517,18 +1517,18 @@ function getNextLanguage() {
             titlePitchline: {
                 en: `Best <span class="text-highlight" style="background-color: #00aaee">no-code</span> platform
                 <br>
-                for your <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`,
+                for your <span class="text-highlight" style="background-color: #a1ed00">processes</span>`,
                 fr: `La meilleure plateforme <span class="text-highlight" style="background-color: #00aaee">no-code</span>
                 <br>
-                pour vos <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`,
+                pour vos <span class="text-highlight" style="background-color: #a1ed00">process</span>`,
                 es: `La mejor plataforma <span class="text-highlight" style="background-color: #00aaee">no-code</span>
                 <br>
-                para sus <span class="text-highlight" style="background-color: #a1ed00">workflows</span>`
+                para sus <span class="text-highlight" style="background-color: #a1ed00">procesos</span>`
             },
             subtitlePitchline: {
                 en: "Build your processes in minutes.<br>Collaborate instantly.",
-                fr: "Créez vos workflows en quelques minutes.<br>Collaborez instantanément.",
-                es: "Construya sus flujos de trabajo en minutos.<br>Colabore al instante."
+                fr: "Créez vos process en quelques minutes.<br>Collaborez instantanément.",
+                es: "Construya sus procesos en minutos.<br>Colabore al instante."
             },
             titleNocodeWorkflow: {
                 en: `no-code

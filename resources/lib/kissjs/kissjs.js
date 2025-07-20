@@ -11,6 +11,7 @@
  * - a [kanban board](../../index.html#ui=start&section=kanban)
  * - a [gallery view](../../index.html#ui=start&section=gallery)
  * - a [timeline view](../../index.html#ui=start&section=timeline)
+ * - a map view
  * - a chart view
  * - a dashboard view
  * 
@@ -38,8 +39,8 @@ const kiss = {
     $KissJS: "KissJS - Keep It Simple Stupid Javascript",
 
     // Build number
-    version: 4540,
-
+    version: 4595,
+    
     // Tell isomorphic code we're on the client side
     isClient: true,
 
@@ -374,6 +375,7 @@ const kiss = {
                 "data/kanban",
                 "data/gallery",
                 "data/timeline",
+                "data/mapview",
                 "data/chartview",
                 "data/dashboard",
 
@@ -456,6 +458,7 @@ const kiss = {
                 "data/kanban",
                 "data/gallery",
                 "data/timeline",
+                "data/mapview",
                 "data/chartview",
                 "data/dashboard",
                 "elements/button",
@@ -1563,7 +1566,7 @@ kiss.db.faker = function (field) {
 
         case "select":
             // Time field is a select with custom options
-            if (field.template == "time") return ("0" + Math.round(Math.random() * 24)).slice(-2) + ":00"
+            if (field.template == "time") return ("0" + Math.round(Math.random() * 23)).slice(-2) + ":00"
 
             if (field.options) {
                 sourceArray = field.options.map(option => option.value)
@@ -1934,7 +1937,7 @@ kiss.db.offline = {
         log(`kiss.db.offline - createCollection <${modelId}> in mode <${(dbMode == "memory") ? "memory" : "offline"}>`)
 
         const newCollection = new Nedb({
-            filename: modelId,
+            filename: modelId + ".db",
             autoload: true,
             timestampData: true,
             inMemoryOnly: (dbMode === "memory")
@@ -2051,7 +2054,7 @@ kiss.db.offline = {
      * @returns {object[]} The array of inserted records data
      */
     async insertMany(modelId, records, dbMode = "offline") {
-        log("kiss.db - " + dbMode + " - insertMany - Model" + modelId + " / " + records.length + " record(s)", 0, records)
+        log("kiss.db - " + dbMode + " - insertMany - Model " + modelId + " / " + records.length + " record(s)", 0, records)
 
         const collection = await this.getCollection(modelId, dbMode)
         const createdBy = kiss.session.getUserId()
@@ -3240,7 +3243,7 @@ kiss.acl = {
         let model = record.model
 
         try {
-            const acl = (kiss.tools.isUid(model.id)) ? kiss.app.models.dynamicModel.acl : model.acl
+            const acl = (kiss.tools.isUid(model.id)) ? kiss.app.models?.dynamicModel?.acl : model.acl
             
             // No acl defined = everyone has access
             if (!acl) return true
@@ -3988,6 +3991,7 @@ kiss.app = {
         // - memory.html is to test the application locally without saving anything: a browser refresh will wipe data
         // - offline.html is to save the data inside the browser
         const location = window.location.pathname
+
         if (location.includes("demo")) {
             kiss.global.mode = "demo"
             kiss.db.setMode("memory")
@@ -9197,6 +9201,7 @@ kiss.session = {
     async restore() {
         // Offline sessions don't manage any user info
         if (kiss.session.isOffline()) {
+            this.initAccountOwner()
             await this._processHook("afterRestore")
             return true
         }
@@ -9867,34 +9872,36 @@ kiss.theme = {
             responsiveOptions = {
                 top: () => 0,
                 left: () => 0,
+                width: "100%",
                 height: "100%",
                 borderRadius: "0 0 0 0",
+                align: "center",
                 draggable: false
             }
         }
         else {
             responsiveOptions = {
                 verticalAlign: "center",
-                draggable: true
+                draggable: true,
+                animation: {
+                    name: "slideInRight",
+                    speed: "faster"
+                }                
             }
         }
 
         const titleStyle = {
-            color: "var(--blue)",
-            fontSize: "1.8rem",
+            fontSize: "2rem",
             fontWeight: "bold",
-            flex: 1,
-            width: "100%",
-            height: "2.4rem",
-            margin: "1.5rem 1.2rem",
-            boxShadow: "none",
+            textAlign: "center",
+            margin: "4rem 0 1.5rem 0",
         }
 
         const blockStyle = {
             // display: "inline-flex",
             // flexWrap: "wrap",
             boxShadow: "var(--shadow-2)",
-            margin: "1rem",
+            margin: "1rem 0",
             borderRadius: "var(--panel-border-radius)",
         }
 
@@ -9903,7 +9910,7 @@ kiss.theme = {
             icon: "fas fa-palette",
             flex: 1,
             height: "5rem",
-            width: (isMobile) ? "calc(100% - 2rem)" : "15rem",
+            width: "calc(100% - 2rem)",
             margin: "1rem",
             iconSize: "2.4rem",
             fontSize: "1.6rem",
@@ -9916,15 +9923,15 @@ kiss.theme = {
             id: "theme-window",
             title: txtTitleCase("theme"),
             icon: "fas fa-sliders-h",
-            modal: true,
-            backdropFilter: true,
+            draggable: true,
             closable: true,
-            display: "block",
-            position: "absolute",
-            align: "center",
-            maxWidth: (isMobile) ? "100%" : "72.5rem",
+            width: "30rem",
+            left: () => "calc(100% - 31rem)",
+            maxHeight: () => "calc(100% - 2rem)",
+            padding: "1rem",
             overflowY: "auto",
-    
+            zIndex: 1000,
+
             ...responsiveOptions,
             
             items: [
@@ -9993,13 +10000,21 @@ kiss.theme = {
                             iconColor: "#ffffff",
                             background: kiss.tools.CSSGradient("#ffbe61", 90, -0.05),
                             action: () => kiss.theme.set({color: "orange"})
-                        },                                  
+                        },
+                        // CLEAN
+                        {
+                            text: txtTitleCase("minimal"),
+                            color: "#456789",
+                            iconColor: "#456789",
+                            background: kiss.tools.CSSGradient("#fafafa", 90, -0.05),
+                            action: () => kiss.theme.set({color: "clean"})
+                        },                           
                         // CUSTOM THEME
                         {
                             hidden: isMobile,
                             text: txtTitleCase("custom"),
                             color: "var(--body)",
-                            icon: "fas fa-cog",
+                            icon: "fas fa-user-cog",
                             iconColor: "var(--body)",
                             backgroundColor: "transparent",
                             action: function () {
@@ -10076,7 +10091,7 @@ kiss.theme = {
                             id: "custom-size",
                             type: "slider",
                             label: txtTitleCase("custom"),
-                            labelPosition: (isMobile) ? "top" : "left",
+                            labelPosition: "top",
                             min: 75,
                             max: 150,
                             step: 0.5,
@@ -10151,6 +10166,7 @@ kiss.theme = {
             "--menu-item-selected",
             "--menu-border",
             "--menu-separator",
+            "--menu-box-shadow",
     
             txtTitleCase("buttons"),
             "--button-background",
@@ -11638,6 +11654,9 @@ kiss.undoRedo = {
         }
         catch(err) {
             // Overflow of the local storage
+            // Remove the last operations
+            kiss.undoRedo.log.undo = kiss.undoRedo.log.undo.slice(0, -10)
+            localStorage.setItem("session-undoRedo", JSON.stringify(kiss.undoRedo.log.undo))
         }
     },
 
@@ -11689,6 +11708,15 @@ kiss.undoRedo = {
                 // Overflow of the local storage
             }
         }   
+    },
+
+    /**
+     * Reset the undo/redo log
+     */
+    reset() {
+        kiss.undoRedo.log.undo = []
+        kiss.undoRedo.log.redo = []
+        localStorage.removeItem("session-undoRedo")
     }
 }
 
@@ -15625,6 +15653,52 @@ kiss.ui.Container = class Container extends kiss.ui.Component {
     }
 
     /**
+     * Set the new width
+     * 
+     * The width can be:
+     * - a number, which will be converted in pixels
+     * - a valid CSS value: 50px, 10vw
+     * - a function that returns a number or a valid CSS value
+     * 
+     * @param {number|string|function} width 
+     * @returns this
+     * 
+     * @example
+     * myPanel.setWidth(500)
+     * myPanel.setWidth("500px")
+     * myPanel.setWidth("40%")
+     * myPanel.setWidth(() => kiss.screen.current.width / 2) // Half the current screen size
+     */
+    setWidth(width) {
+        this.config.width = width
+        this.updateLayout()
+        return this
+    }
+
+    /**
+     * Set the new height
+     * 
+     * The height can be:
+     * - a number, which will be converted in pixels
+     * - a valid CSS value: 50px, 10vw
+     * - a function that returns a number or a valid CSS value
+     * 
+     * @param {number|string|function} height 
+     * @returns this
+     * 
+     * @example
+     * myPanel.setHeight(500)
+     * myPanel.setHeight("500px")
+     * myPanel.setHeight("40%")
+     * myPanel.setHeight(() => kiss.screen.current.height / 2) // Half the current screen size
+     */    
+    setHeight(height) {
+        this.config.height = height
+        this.updateLayout()
+        return this
+    }
+
+    /**
      * Update layout of the component with its new config parameters.
      * It affects:
      * - the size properties
@@ -16148,6 +16222,17 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
             this.canCreateRecord = (this.config.canCreateRecord !== false)
         }
 
+        // If the collection is not initialized, we initialize it with the current parameters
+        this.collection.init({
+            filter: this.filter,
+            filterSyntax: this.filterSyntax,
+            sort: this.sort,
+            sortSyntax: this.sortSyntax,
+            group: this.group,
+            projection: this.projection,
+            groupUnwind: this.groupUnwind
+        })
+
         // Apply local configuration, if any
         this.localConfig = this.getLocalConfig()
         if (this.localConfig) {
@@ -16290,7 +16375,6 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
      * @param {number} [delay] - Delay to retard the reload, when the back-end update needs time
      */
     async _reloadWhenNeeded(msgData, delay) {
-
         // If the datatable exists but is not connected, it means it's in the cache.
         // We can't reload it, but we put a flag on it so it will be reloaded when displayed again
         if (!this.isConnected) {
@@ -16606,16 +16690,17 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
         // Reset ftsearch
         this.resetSearchBar()
 
-        // Filter view data with new filter params
-        this.skip = 0
-        await this.collection.filterBy(filterConfig)
-        this._render()
-
+        
         // Save the new filter config
         this.filter = filterConfig
         await this.updateConfig({
             filter: this.filter
         })
+        
+        // Filter view data with new filter params
+        this.skip = 0
+        await this.collection.filterBy(filterConfig)
+        this._render()
 
         // Broadcast changes for the parent dashboard, if any
         if (this.dashboard) kiss.pubsub.publish("EVT_DASHBOARD_SETUP", this.id)
@@ -16675,6 +16760,7 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
     async reload() {
         if (!this.isConnected) return
         if (this.columns) this._initColumns()
+
         await this.load()
         this._render()
     }    
@@ -17223,15 +17309,7 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
                     icon: "fas fa-times",
                     width: "3rem",
                     height: "3rem",
-                    action: async () => {
-                        if (this.currentSearchTerm !== undefined && this.currentSearchTerm !== "") {
-                            this.skip = 0
-                            await this.collection.filterBy(this.filter)
-                            this.refresh()
-                        }
-
-                        this.resetSearchBar()
-                    }
+                    action: async () => this.closeSearchBar()
                 }
             ],
 
@@ -17276,15 +17354,7 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
                     icon: "fas fa-times",
                     width: "3rem",
                     height: "3rem",
-                    action: async () => {
-                        if (this.currentSearchTerm !== undefined && this.currentSearchTerm !== "") {
-                            this.skip = 0
-                            await this.collection.filterBy(this.filter)
-                            this.refresh()
-                        }
-
-                        this.resetSearchBar()
-                    }
+                    action: async () => this.closeSearchBar()
                 },
                 // Input field to enter search term
                 {
@@ -17339,6 +17409,29 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
     }
 
     /**
+     * Close the search bar and reset the search term.
+     */
+    async closeSearchBar() {
+        if (this.currentSearchTerm !== undefined && this.currentSearchTerm !== "") {
+            this.skip = 0
+
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: this.filter,
+                sortSyntax: this.sortSyntax,
+                sort: this.sort,
+                group: this.group,
+                projection: this.projection,
+                groupUnwind: this.groupUnwind
+            }, true)
+
+            this._render()
+        }
+
+        this.resetSearchBar()
+    }
+
+    /**
      * Reset the search made from the search bar
      */
     resetSearchBar() {
@@ -17355,8 +17448,18 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
     async ftsearch(value) {
         const searchFilter = this.createSearchFilter(value)
         this.skip = 0
-        await this.collection.filterBy(searchFilter)
-        this.refresh()
+
+        await this.collection.find({
+            filterSyntax: this.filterSyntax,
+            filter: searchFilter,
+            sortSyntax: this.sortSyntax,
+            sort: this.sort,
+            group: this.group,
+            projection: this.projection,
+            groupUnwind: this.groupUnwind
+        }, true)
+
+        this._render()
     }
 
     /**
@@ -17776,6 +17879,10 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
             actions = actions.concat(this.actions)
         }
 
+        if (actions.length == 0) {
+            return
+        }
+
         // Inject advanced actions, if any
         if (kiss.app.customActions && kiss.app.customActions.length > 0) {
             const userACL = kiss.session.getACL()
@@ -18043,6 +18150,7 @@ const createBlock = (config) => document.createElement("a-block").init(config)
  * @param {string|number} [config.headerHeight] - The header's height
  * @param {string} [config.position]
  * @param {string|number} [config.top]
+ * @param {string|number} [config.bottom]
  * @param {string|number} [config.left]
  * @param {string|number} [config.right]
  * @param {string} [config.align] - "center" to center the panel horizontally on the screen
@@ -18210,7 +18318,9 @@ kiss.ui.Panel = class Panel extends kiss.ui.Container {
             this.mask = document.createElement("div")
             this.mask.setAttribute("id", "panel-mask-" + id)
             this.mask.classList.add("panel-mask")
-            this.mask.onmousedown = () => $(id).close()
+            this.mask.onmousedown = () => {
+                if (config.closable !== false) $(id).close()
+            }
             
             if (config.zIndex) this.mask.style = `z-index: ${config.zIndex}`
             
@@ -18264,7 +18374,7 @@ kiss.ui.Panel = class Panel extends kiss.ui.Container {
 
         this._setProperties(config, [
             [
-                ["position", "top", "left", "right", "flex", "margin", "border", "borderColor", "borderRadius", "boxShadow", "transform", "zIndex", "opacity"],
+                ["position", "top", "bottom", "left", "right", "flex", "margin", "border", "borderColor", "borderRadius", "boxShadow", "transform", "zIndex", "opacity"],
                 [this.style]
             ],
             [
@@ -18539,52 +18649,6 @@ kiss.ui.Panel = class Panel extends kiss.ui.Container {
             if (this.mask) kiss.views.remove("panel-mask-" + this.id)
         }
         return true
-    }
-
-    /**
-     * Set the new panel width
-     * 
-     * The width can be:
-     * - a number, which will be converted in pixels
-     * - a valid CSS value: 50px, 10vw
-     * - a function that returns a number or a valid CSS value
-     * 
-     * @param {number|string|function} width 
-     * @returns this
-     * 
-     * @example
-     * myPanel.setWidth(500)
-     * myPanel.setWidth("500px")
-     * myPanel.setWidth("40%")
-     * myPanel.setWidth(() => kiss.screen.current.width / 2) // Half the current screen size
-     */
-    setWidth(width) {
-        this.config.width = width
-        this.updateLayout()
-        return this
-    }
-
-    /**
-     * Set the new panel height
-     * 
-     * The height can be:
-     * - a number, which will be converted in pixels
-     * - a valid CSS value: 50px, 10vw
-     * - a function that returns a number or a valid CSS value
-     * 
-     * @param {number|string|function} height 
-     * @returns this
-     * 
-     * @example
-     * myPanel.setHeight(500)
-     * myPanel.setHeight("500px")
-     * myPanel.setHeight("40%")
-     * myPanel.setHeight(() => kiss.screen.current.height / 2) // Half the current screen size
-     */    
-    setHeight(height) {
-        this.config.height = height
-        this.updateLayout()
-        return this
     }
 
     /**
@@ -19002,9 +19066,13 @@ kiss.ui.Calendar = class Calendar extends kiss.ui.DataComponent {
         try {
             log(`kiss.ui - Calendar ${this.id} - Loading collection <${this.collection.id} (changed: ${this.collection.hasChanged})>`)
 
-            this.collection.filter = this.filter
-            this.collection.filterSyntax = this.filterSyntax
-            await this.collection.find({}, true)
+            // Apply filter only:
+            // - Calendar is necessary sorted by date, so no need to apply sort
+            // - Grouping is not supported in the calendar
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: this.filter
+            })
 
             this._renderToolbar()
             this.showCalendar(this.date)
@@ -20149,7 +20217,7 @@ kiss.ui.ChartView = class ChartView extends kiss.ui.DataComponent {
                 <div class="chartview-chart"></div>
             </div>`.removeExtraSpaces()
 
-        // Set chart components
+        // Set chart view components
         this.header = this.querySelector(".chartview-header")
         this.headerTitle = this.querySelector(".chartview-title")
         this.toolbar = this.querySelector(".chartview-toolbar")
@@ -20177,20 +20245,18 @@ kiss.ui.ChartView = class ChartView extends kiss.ui.DataComponent {
         try {
             log(`kiss.ui - Chart ${this.id} - Loading collection <${this.collection.id} (changed: ${this.collection.hasChanged})>`)
 
-            // Apply filter, sort, group, projection
-            // Priority is given to local config, then to the passed collection, then to default
-            this.collection.filter = this.filter
-            this.collection.filterSyntax = this.filterSyntax
-            this.collection.sort = this.sort
-            this.collection.sortSyntax = this.sortSyntax
-            this.collection.group = this.group
-            this.collection.projection = this.projection
-            this.collection.groupUnwind = this.groupUnwind
-
             // Load records
-            await this.collection.find()
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: this.filter,
+                sortSyntax: this.sortSyntax,
+                sort: this.sort,
+                group: this.group,
+                projection: this.projection,
+                groupUnwind: this.groupUnwind
+            })            
 
-            // Render the chart toolbar
+            // Render the chart view toolbar
             this._renderToolbar()
 
         } catch (err) {
@@ -21819,7 +21885,6 @@ kiss.ui.ChartView = class ChartView extends kiss.ui.DataComponent {
                     }
                 }, 50)
             }
-
         }
         return this        
     }
@@ -23208,18 +23273,16 @@ kiss.ui.Datatable = class Datatable extends kiss.ui.DataComponent {
                 currentFilter = this.createSearchFilter(this.currentSearchTerm)
             }
 
-            // Apply filter, sort, group, projection
-            // Priority is given to local config, then to the passed collection, then to default
-            this.collection.filter = currentFilter
-            this.collection.filterSyntax = this.filterSyntax
-            this.collection.sort = this.sort
-            this.collection.sortSyntax = this.sortSyntax
-            this.collection.group = this.group
-            this.collection.projection = this.projection
-            this.collection.groupUnwind = this.groupUnwind
-
             // Load records
-            await this.collection.find()
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: currentFilter,
+                sortSyntax: this.sortSyntax,
+                sort: this.sort,
+                group: this.group,
+                projection: this.projection,
+                groupUnwind: this.groupUnwind
+            })
 
             // Hide the virtual scroller while the datatable is being built
             this._hideScroller()
@@ -23311,16 +23374,6 @@ kiss.ui.Datatable = class Datatable extends kiss.ui.DataComponent {
             if (!width) width = this.defaultColumnWidth.default
             this._columnsSetWidth(column.id, width)
         })
-    }
-
-    /**
-     * Generic method to refresh / re-render the view
-     * 
-     * Note: used in dataComponent (parent class) showSearchBar method.
-     * This method is invoked to refresh the view after a full-text search has been performed
-     */
-    refresh() {
-        this._render()
     }
 
     /**
@@ -23590,7 +23643,7 @@ kiss.ui.Datatable = class Datatable extends kiss.ui.DataComponent {
                 }
             }
 
-            // CLICKED A LINKED FIELD
+            // CLICKED A LINK FIELD
             if (clickedElement.classList.contains("field-link-value-cell") || clickedParent.classList.contains("field-link-value-cell")) {
                 const cell = clickedElement.closest("div")
                 const fieldId = this._cellGetFieldId(cell)
@@ -26940,6 +26993,7 @@ const createDatatable = (config) => document.createElement("a-datatable").init(c
  * 
  * @param {object} config
  * @param {Collection} config.collection - The data source collection
+ * @param {boolean} [config.showImage] - Show the image in the gallery (default = true)
  * @param {string} [config.imageFieldId] - The field to use as the image in the gallery. If not set, the first attachment field will be used.
  * @param {object} [config.record] - Record to persist the view configuration into the db
  * @param {object[]} [config.columns] - Where each column is: {title: "abc", type: "text|number|integer|float|date|button", id: "fieldId", button: {config}, renderer: function() {}}
@@ -27121,18 +27175,22 @@ kiss.ui.Gallery = class Gallery extends kiss.ui.DataComponent {
         try {
             log(`kiss.ui - Gallery ${this.id} - Loading collection <${this.collection.id} (changed: ${this.collection.hasChanged})>`)
 
-            // Apply filter, sort, group, projection
-            // Priority is given to local config, then to the passed collection, then to default
-            this.collection.filter = this.filter
-            this.collection.filterSyntax = this.filterSyntax
-            this.collection.sort = this.sort
-            this.collection.sortSyntax = this.sortSyntax
-            this.collection.group = this.group
-            this.collection.projection = this.projection
-            this.collection.groupUnwind = this.groupUnwind
+            // Add the search filter if needed
+            let currentFilter = this.filter
+            if (this.currentSearchTerm) {
+                currentFilter = this.createSearchFilter(this.currentSearchTerm)
+            }
 
             // Load records
-            await this.collection.find()
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: currentFilter,
+                sortSyntax: this.sortSyntax,
+                sort: this.sort,
+                group: this.group,
+                projection: this.projection,
+                groupUnwind: this.groupUnwind
+            })
 
             // Get the selected records
             this.getSelection()
@@ -27144,16 +27202,6 @@ kiss.ui.Gallery = class Gallery extends kiss.ui.DataComponent {
             log(err)
             log(`kiss.ui - Gallery ${this.id} - Couldn't load data properly`)
         }
-    }
-
-    /**
-     * Generic method to refresh / re-render the view
-     * 
-     * Note: used in dataComponent (parent class) showSearchBar method.
-     * This method is invoked to refresh the view after a full-text search has been performed
-     */
-    refresh() {
-        this._render()
     }
 
     /**
@@ -28750,18 +28798,22 @@ kiss.ui.Kanban = class Kanban extends kiss.ui.DataComponent {
         try {
             log(`kiss.ui - Kanban ${this.id} - Loading collection <${this.collection.id} (changed: ${this.collection.hasChanged})>`)
 
-            // Apply filter, sort, group, projection
-            // Priority is given to local config, then to the passed collection, then to default
-            this.collection.filter = this.filter
-            this.collection.filterSyntax = this.filterSyntax
-            this.collection.sort = this.sort
-            this.collection.sortSyntax = this.sortSyntax
-            this.collection.group = this.group
-            this.collection.projection = this.projection
-            this.collection.groupUnwind = this.groupUnwind
-
+            // Add the search filter if needed
+            let currentFilter = this.filter
+            if (this.currentSearchTerm) {
+                currentFilter = this.createSearchFilter(this.currentSearchTerm)
+            }
+            
             // Load records
-            await this.collection.find()
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: currentFilter,
+                sortSyntax: this.sortSyntax,
+                sort: this.sort,
+                group: this.group,
+                projection: this.projection,
+                groupUnwind: this.groupUnwind
+            }, false, false, "TEST")
 
             // Render the kanban toolbar
             this._renderToolbar()
@@ -28770,16 +28822,6 @@ kiss.ui.Kanban = class Kanban extends kiss.ui.DataComponent {
             log(err)
             log(`kiss.ui - Kanban ${this.id} - Couldn't load data properly`)
         }
-    }
-
-    /**
-     * Generic method to refresh / re-render the view
-     * 
-     * Note: used in dataComponent (parent class) showSearchBar method.
-     * This method is invoked to refresh the view after a full-text search has been performed
-     */
-    refresh() {
-        this._render()
     }
 
     /**
@@ -30305,6 +30347,785 @@ const createList = (config) => document.createElement("a-list").init(config)
 
 ;/** 
  * 
+ * The **Map view** derives from [DataComponent](kiss.ui.DataComponent.html).
+ * 
+ * It's a [map view](https://kissjs.net/#ui=start&section=mapview) with the following features:
+ * - default coordinates to center the map when the map is first loaded
+ * - default coordinates can be an address, which will be converted to GPS coordinates
+ * - default zoom level to use when the map is first displayed
+ * - display markers based on a field containing GPS coordinates
+ * - display labels for the markers based on a field
+ * - can limit the number of markers displayed on the map (for performances reason)
+ * - handle coordinates in the format "longitude,latitude" or "latitude,longitude"
+ * - toolbar with buttons to create new records, filter, search, setup the map view, and custom actions
+ * - custom click callback to handle marker clicks (e.g. open a record)
+ * 
+ * @param {object} config
+ * @param {Collection} config.collection - The data source collection
+ * @param {string} [config.coordinatesField] - The field to use as the GPS coordinates. If not set, the map won't display any marker.
+ * @param {string} [config.coordinatesFormat] - The format of the coordinates field. Default is "longitude,latitude".
+ * @param {string} [config.defaultCoordinates] - The default coordinates to use when the map is first displayed. Ex: "55.3895,-20.9906"
+ * @param {number} [config.defaultZoom] - The default zoom level to use when the map is first displayed. Between 1 and 19.
+ * @param {string} [config.labelField] - The field to use as the label for the markers.
+ * @param {number} [config.maxMarkers] - The maximum number of markers to display on the map (for performances reason). Default is 100.
+ * @param {function} [config.clickCallback] - Callback function to call when a marker is clicked. The function receives the clicked feature and the clicked coordinates.
+ * @param {object} [config.record] - Record to persist the view configuration into the db
+ * @param {string} [config.color] - Hexa color code. Ex: #00aaee
+ * @param {boolean} [config.showToolbar] - false to hide the toolbar (default = true)
+ * @param {boolean} [config.showActions] - false to hide the custom actions menu (default = true)
+ * @param {boolean} [config.canFilter] - false to hide the filter button (default = true)
+ * @param {boolean} [config.canSearch] - false to hide the search button (default = true)
+ * @param {boolean} [config.canCreateRecord] - Can we create new records from the map view?
+ * @param {boolean} [config.createRecordText] - Optional text to insert in the button to create a new record, instead of the default model's name
+ * @param {object[]} [config.actions] - Array of menu actions, where each menu entry is: {text: "abc", icon: "fas fa-check", action: function() {}}
+ * @param {number|string} [config.width]
+ * @param {number|string} [config.height]
+ * @returns this
+ * 
+ * ## Generated markup
+ * ```
+ * <a-mapview class="a-mapview">
+ *      <div class="mapview-toolbar">
+ *          <!-- MapView toolbar items -->
+ *      </div>
+ *      <div class="mapview-body-container">
+ *          <div class="mapview-body">
+ *              <!-- Body columns -->
+ *          </div>
+ *      </div>
+ * </a-mapview>
+ * ```
+ */
+kiss.ui.MapView = class MapView extends kiss.ui.DataComponent {
+    /**
+     * Its a Custom Web Component. Do not use the constructor directly with the **new** keyword.
+     * Instead, use one of the following methods:
+     * 
+     * Create the Web Component and call its **init** method:
+     * ```
+     * const myMapView = document.createElement("a-mapview").init(config)
+     * ```
+     * 
+     * Or use the shorthand for it:
+     * ```
+     * const myMapView = createMapView({
+     *  id: "my-mapview",
+     *  collection: kiss.app.collections["contact"],
+     *  coordinatesField: "gpsCoordinates",
+     *  coordinatesFormat: "longitude,latitude",
+     *  defaultCoordinates: "55.3895,-20.9906",
+     *  defaultZoom: 10,
+     *  labelField: "name"
+     * })
+     * 
+     * myMapView.render()
+     * ```
+     */
+    constructor() {
+        super()
+    }
+
+    /**
+     * Generates a Map View from a JSON config
+     * 
+     * @ignore
+     * @param {object} config - JSON config
+     * @returns {HTMLElement}
+     */
+    init(config) {
+        // This component must be resized with its parent container
+        config.autoSize = true
+
+        // Init the parent DataComponent
+        super.init(config)
+
+        // Options
+        this.showToolbar = (config.showToolbar !== false)
+        this.showActions = (config.showActions !== false)
+        this.showSetup = (config.showSetup !== false)
+        this.canSearch = (config.canSearch !== false)
+        this.canFilter = (config.canFilter !== false)
+        this.actions = config.actions || []
+        this.buttons = config.buttons || []
+        this.color = config.color || "#00aaee"
+        this.defaultColumnWidth = 20 // in rem
+
+        // Manage groups state
+        this.collapsedGroups = new Set()
+
+        // Build map view skeletton markup
+        let id = this.id
+        this.innerHTML = /*html*/
+            `<div class="mapview">
+                <div id="mapview-toolbar:${id}" class="mapview-toolbar">
+                    <div id="create:${id}"></div>
+                    <div id="actions:${id}"></div>
+                    <div id="setup:${id}"></div>
+                    <div id="filter:${id}"></div>
+                    <div id="refresh:${id}"></div>
+                    <div id="search-field:${id}"></div>
+                    <div id="search:${id}"></div>
+                </div>
+
+                <div class="mapview-body-container">
+                    <div id="mapview-body:${id}" class="mapview-body"></div>
+                </div>
+            </div>`.removeExtraSpaces()
+
+        // Set map view components
+        this.mapView = this.querySelector(".mapview")
+        this.mapViewToolbar = this.querySelector(".mapview-toolbar")
+        this.mapViewBodyContainer = this.querySelector(".mapview-body-container")
+        this.mapViewBody = this.querySelector(".mapview-body")
+
+        this._initMapViewParams(config)
+            ._initSize(config)
+            ._initElementsVisibility()
+            ._initSubscriptions()
+
+        return this
+    }
+
+    /**
+     * 
+     * MAP VIEW METHODS
+     * 
+     */
+
+    /**
+     * Load data into the map view.
+     * 
+     * Remark:
+     * - rendering time is proportional to the number of cards and visible fields (cards x fields)
+     * - rendering takes an average of 0.03 millisecond per card on an Intel i7-4790K
+     * 
+     * @ignore
+     */
+    async load() {
+        try {
+            log(`kiss.ui - Map view ${this.id} - Loading collection <${this.collection.id} (changed: ${this.collection.hasChanged})>`)
+
+            // Add the search filter if needed
+            let currentFilter = this.filter
+            if (this.currentSearchTerm) {
+                currentFilter = this.createSearchFilter(this.currentSearchTerm)
+            }
+
+            // Load records
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: currentFilter
+            })
+
+            // Render the map view toolbar
+            this._renderToolbar()
+
+        } catch (err) {
+            log(err)
+            log(`kiss.ui - Map view ${this.id} - Couldn't load data properly`)
+        }
+    }
+
+    /**
+     * Filter the markers based on the given bounds.
+     * 
+     * This method is called when the map bounds change, to update the markers displayed on the map.
+     * 
+     * @async
+     * @param {object} [bounds] - The bounding box to filter the markers. Ex: {maxLatitude: 50, minLatitude: 40, maxLongitude: 10, minLongitude: 0}. If not provided, it will use the current map bounds.
+     */
+    async filterMarkers(bounds) {
+        if (!this.coordinatesField || !this.labelField) return
+
+        this.bounds = bounds || this.bounds || await this.map.getBounds()
+        const result = []
+        const maxResults = this.maxMarkers
+
+        for (const record of this.collection.records) {
+            const coords = record[this.coordinatesField]?.split(",")
+            if (!coords || coords.length < 2) continue
+
+            let latitude, longitude
+            if (this.coordinatesFormat === "longitude,latitude") {
+                longitude = parseFloat(coords[0])
+                latitude = parseFloat(coords[1])
+            }
+            else {
+                latitude = parseFloat(coords[0])
+                longitude = parseFloat(coords[1])
+            }
+
+            if (isNaN(latitude) || isNaN(longitude)) continue
+
+            if (
+                longitude >= this.bounds.minLongitude &&
+                longitude <= this.bounds.maxLongitude &&
+                latitude >= this.bounds.minLatitude &&
+                latitude <= this.bounds.maxLatitude
+            ) {
+                result.push({
+                    latitude,
+                    longitude,
+                    label: record[this.labelField],
+                    recordId: record.id
+                })
+
+                if (result.length >= maxResults) break
+            }
+        }
+
+        this.markers = result
+        this.map.updateMarkers(this.markers)
+    }
+
+    /**
+     * Switch to search mode
+     * 
+     * Show/hide only the necessary buttons in this mode.
+     */
+    switchToSearchMode() {
+        if (kiss.screen.isMobile) {
+            $("create:" + this.id).hide()
+            $("search:" + this.id).hide()
+            $("expand:" + this.id).hide()
+            $("collapse:" + this.id).hide()
+        }
+    }
+
+    /**
+     * Reset search mode
+     */
+    resetSearchMode() {
+        if (kiss.screen.isMobile) {
+            $("create:" + this.id).show()
+            $("search:" + this.id).show()
+            $("expand:" + this.id).show()
+            $("collapse:" + this.id).show()
+        }
+    }
+
+    /**
+     * Update the map view color (toolbar buttons + modal windows)
+     * 
+     * @param {string} newColor
+     */
+    async setColor(newColor) {
+        this.color = newColor
+        Array.from(this.mapViewToolbar.children).forEach(item => {
+            if (item && item.firstChild && item.firstChild.type == "button") item.firstChild.setIconColor(newColor)
+        })
+    }
+
+    /**
+     * Show the filter window
+     */
+    showFilterWindow() {
+        super.showFilterWindow(null, null, this.color)
+    }
+
+    /**
+     * Update the map size (recomputes its width and height)
+     */
+    updateLayout() {
+        if (this.isConnected) {
+            this._setWidth()
+            this._setHeight()
+        }
+    }
+
+    /**
+     * Show the window to setup the map view:
+     * - field used to display the image
+     */
+    showSetupWindow() {
+        let textFields = this.model.getFieldsByType(["text", "mapField"])
+            .filter(field => !field.deleted)
+            .map(field => {
+                return {
+                    value: field.id,
+                    label: field.label.toTitleCase()
+                }
+            })
+
+        createPanel({
+            icon: "fas fa-map",
+            title: txtTitleCase("setup the map"),
+            headerBackgroundColor: this.color,
+            modal: true,
+            backdropFilter: true,
+            draggable: true,
+            closable: true,
+            align: "center",
+            verticalAlign: "center",
+            width: "40rem",
+
+            defaultConfig: {
+                labelPosition: "top",
+                optionsColor: this.color,
+                width: "100%"
+            },
+
+            items: [
+                // Source coordinates field
+                {
+                    type: "select",
+                    id: "map-coordinates-field:" + this.id,
+                    label: txtTitleCase("#coordinates field"),
+                    options: textFields,
+                    maxHeight: () => kiss.screen.current.height - 200,
+                    value: this.coordinatesField,
+                    events: {
+                        change: async function () {
+                            let coordinatesField = this.getValue()
+                            let viewId = this.id.split(":")[1]
+                            publish("EVT_VIEW_SETUP:" + viewId, {
+                                coordinatesField
+                            })
+                        }
+                    }
+                },
+                // Default coordinates format
+                {
+                    type: "select",
+                    id: "map-default-coordinates:" + this.id,
+                    label: txtTitleCase("coordinates format"),
+                    options: [{
+                            value: "longitude,latitude",
+                            label: txtTitleCase("longitude") + ", " + txtTitleCase("latitude")
+                        },
+                        {
+                            value: "latitude,longitude",
+                            label: txtTitleCase("latitude") + ", " + txtTitleCase("longitude")
+                        }
+                    ],
+                    value: this.coordinatesFormat || "longitude,latitude",
+                    events: {
+                        change: async function () {
+                            let coordinatesFormat = this.getValue()
+                            let viewId = this.id.split(":")[1]
+                            publish("EVT_VIEW_SETUP:" + viewId, {
+                                coordinatesFormat
+                            })
+                        }
+                    }
+                },
+                // Default GPS coordinates
+                {
+                    type: "text",
+                    id: "map-default-coordinates:" + this.id,
+                    label: txtTitleCase("default coordinates"),
+                    tip: txtTitleCase("#default coordinates help"),
+                    value: this.defaultCoordinates || "",
+                    events: {
+                        change: async function () {
+                            let defaultCoordinates = this.getValue()
+                            let viewId = this.id.split(":")[1]
+                            publish("EVT_VIEW_SETUP:" + viewId, {
+                                defaultCoordinates
+                            })
+                        }
+                    }
+                },
+                // Source label field
+                {
+                    type: "select",
+                    id: "map-label-field:" + this.id,
+                    label: txtTitleCase("#label field"),
+                    options: textFields,
+                    maxHeight: () => kiss.screen.current.height - 200,
+                    value: this.labelField,
+                    events: {
+                        change: async function () {
+                            let labelField = this.getValue()
+                            let viewId = this.id.split(":")[1]
+                            publish("EVT_VIEW_SETUP:" + viewId, {
+                                labelField
+                            })
+                        }
+                    }
+                },
+                // Default zoom level
+                {
+                    type: "slider",
+                    id: "map-default-zoom:" + this.id,
+                    label: txtTitleCase("default zoom level"),
+                    min: 1,
+                    max: 19,
+                    step: 1,
+                    value: this.defaultZoom || 10,
+                    events: {
+                        change: async function () {
+                            let defaultZoom = this.getValue()
+                            let viewId = this.id.split(":")[1]
+                            publish("EVT_VIEW_SETUP:" + viewId, {
+                                defaultZoom
+                            })
+                        }
+                    }
+                },
+                // Max number of markers
+                {
+                    type: "slider",
+                    id: "map-max-markers:" + this.id,
+                    label: txtTitleCase("#max markers"),
+                    min: 0,
+                    max: 1000,
+                    step: 5,
+                    value: this.maxMarkers || 100,
+                    events: {
+                        change: async function () {
+                            let maxMarkers = this.getValue()
+                            let viewId = this.id.split(":")[1]
+                            publish("EVT_VIEW_SETUP:" + viewId, {
+                                maxMarkers
+                            })
+                        }
+                    }
+                }
+            ]
+        }).render()
+    }
+
+    /**
+     * re-render the markers on the map view.
+     * 
+     * @private
+     * @ignore
+     */
+    _render() {
+        this.filterMarkers() // Filter markers based on the current bounds
+    }
+
+    /**
+     * Automatically called after the map view is rendered, to insert the map component.
+     * 
+     * @private
+     * @ignore
+     */
+    async _afterRender() {
+        this._createMap()
+    }
+
+    /**
+     * Create the map component and insert it into the map view body.
+     * 
+     * @private
+     * @ignore
+     * @returns this
+     */
+    async _createMap() {
+        let zoom = this.defaultZoom || 10
+        if (zoom > 19) zoom = 19
+        if (zoom < 1) zoom = 1
+
+        let coordinates = this.defaultCoordinates
+        let longitude, latitude
+
+        // If the default coordinates are an address, we try to convert it to GPS coordinates first
+        // To test this, we must use a regex that match a GPS coordinates format, like "55.5,-21.0" or "55.5, 21.0"
+        const regex = /^-?\d+(\.\d+)?,\s*-?\d+(\.\d+)?$/
+        
+        if (!regex.test(coordinates)) {
+            // log(`kiss.ui - Map view ${this.id} - Default coordinates is an address: ${this.defaultCoordinates}. Converting to GPS coordinates...`)
+            const geoloc = await kiss.tools.getGeolocationFromAddress(coordinates)
+            if (!geoloc) return
+
+            longitude = geoloc.longitude
+            latitude = geoloc.latitude
+        } else {
+            coordinates = coordinates.split(",")
+            if (this.coordinatesFormat === "longitude,latitude") {
+                longitude = parseFloat(coordinates[0])
+                latitude = parseFloat(coordinates[1])
+            } else {
+                longitude = parseFloat(coordinates[1])
+                latitude = parseFloat(coordinates[0])
+            }
+        }
+
+        this.map = createMap({
+            id: "map-for:" + this.id,
+            zoom,
+            longitude,
+            latitude,
+            width: "100%",
+            height: "100%",
+
+            // Open a record when a marker is clicked
+            clickCallback: async (feature, clicked) => {
+                const recordId = feature.get("recordId")
+                const record = await this.collection.getRecord(recordId)
+                await this.selectRecord(record)
+            }
+        })
+
+        this.map.style.order = 2
+        this.map.style.flex = "1 1 100%"
+        this.mapViewBody.style.width = "100%"
+        this.mapViewBody.style.height = "100%"
+        this.mapViewBody.appendChild(this.map)
+        this.map.render()
+
+        return this
+    }
+
+    /**
+     * Define the specific map params
+     * 
+     * @private
+     * @ignore
+     * @param {object} config
+     * @param {string} config.coordinatesField - The field to use as the GPS coordinates. If not set, the map won't display any marker.
+     * @param {string} config.labelField - The field to use as the label for
+     * @param {string} config.defaultCoordinates - The default coordinates to use when the map is first displayed. Ex: "55.3895,-20.9906"
+     * @param {number} config.defaultZoom - The default zoom level to use when the map is first displayed. Between 1 and 19.
+     * @returns this
+     */
+    _initMapViewParams(config) {
+        if (this.record) {
+            this.coordinatesField = config.coordinatesField || this.record.config.coordinatesField
+            this.labelField = config.labelField || this.record.config.labelField
+            this.defaultCoordinates = config.defaultCoordinates || this.record.config.defaultCoordinates || "55.3895,-20.9906"
+            this.coordinatesFormat = config.coordinatesFormat || this.record.config.coordinatesFormat || "longitude,latitude"
+            this.defaultZoom = config.defaultZoom || this.record.config.defaultZoom
+            this.maxMarkers = config.maxMarkers || this.record.config.maxMarkers || 100
+        } else {
+            this.coordinatesField = config.coordinatesField || this.config.coordinatesField
+            this.labelField = config.labelField || this.config.labelField
+            this.defaultCoordinates = config.defaultCoordinates || this.config.defaultCoordinates || "55.3895,-20.9906"
+            this.coordinatesFormat = config.coordinatesFormat || this.config.coordinatesFormat || "longitude,latitude"
+            this.defaultZoom = config.defaultZoom || this.config.defaultZoom
+            this.maxMarkers = config.maxMarkers || this.config.maxMarkers || 100
+        }
+        return this
+    }
+
+    /**
+     * Update the map view configuration
+     * 
+     * @private
+     * @ignore
+     * @param {object} newConfig 
+     */
+    async _updateConfig(newConfig) {
+        if (newConfig.hasOwnProperty("coordinatesField")) this.coordinatesField = newConfig.coordinatesField
+        if (newConfig.hasOwnProperty("labelField")) this.labelField = newConfig.labelField
+        if (newConfig.hasOwnProperty("defaultCoordinates")) this.defaultCoordinates = newConfig.defaultCoordinates
+        if (newConfig.hasOwnProperty("coordinatesFormat")) this.coordinatesFormat = newConfig.coordinatesFormat
+        if (newConfig.hasOwnProperty("defaultZoom")) this.defaultZoom = newConfig.defaultZoom
+        if (newConfig.hasOwnProperty("maxMarkers")) this.maxMarkers = newConfig.maxMarkers
+
+        this.filterMarkers()
+
+        let currentConfig
+        if (this.record) {
+            currentConfig = this.record.config
+        } else {
+            currentConfig = {
+                coordinatesField: this.coordinatesField,
+                labelField: this.labelField,
+                defaultCoordinates: this.defaultCoordinates,
+                coordinatesFormat: this.coordinatesFormat,
+                defaultZoom: this.defaultZoom,
+                maxMarkers: this.maxMarkers
+            }
+        }
+
+        let config = Object.assign(currentConfig, newConfig)
+        await this.updateConfig({
+            config
+        })
+    }
+
+    /**
+     * Set toolbar visibility
+     * 
+     * @private
+     * @ignore
+     * @returns this
+     */
+    _initElementsVisibility() {
+        if (this.showToolbar === false) this.mapViewToolbar.style.display = "none"
+        return this
+    }
+
+    /**
+     * Initialize map sizes
+     * 
+     * @private
+     * @ignore
+     * @returns this
+     */
+    _initSize(config) {
+        if (config.width) {
+            this._setWidth()
+        } else {
+            this.style.width = this.config.width = "100%"
+        }
+
+        if (config.height) {
+            this._setHeight()
+        } else {
+            this.style.height = this.config.height = "100%"
+        }
+        return this
+    }
+
+    /**
+     * Initialize subscriptions to PubSub
+     * 
+     * @private
+     * @ignore
+     * @returns this
+     */
+    _initSubscriptions() {
+        super._initSubscriptions()
+
+        // React to database mutations
+        this.subscriptions = this.subscriptions.concat([
+            // Local events (not coming from websocket)
+            subscribe("EVT_VIEW_SETUP:" + this.id, (msgData) => this._updateConfig(msgData)),
+
+            // Update the markers when the map bounds change
+            subscribe("EVT_MAP_BOUNDS_CHANGED", (msgData) => {
+                if (msgData.mapId.split(":")[1] !== this.id) return
+                this.filterMarkers(msgData.boundingBox)
+            })
+        ])
+
+        return this
+    }
+
+    /**
+     * Adjust the component width
+     * 
+     * @ignore
+     * @param {(number|string|function)} [width] - The width to set
+     */
+    _setWidth() {
+        let newWidth = this._computeSize("width")
+
+        setTimeout(() => {
+            this.style.width = newWidth
+            this.mapView.style.width = this.clientWidth.toString() + "px"
+        }, 50)
+    }
+
+    /**
+     * Adjust the components height
+     * 
+     * @private
+     * @ignore
+     * @param {(number|string|function)} [height] - The height to set
+     */
+    _setHeight() {
+        let newHeight = this._computeSize("height")
+        this.style.height = this.mapView.style.height = newHeight
+    }
+
+    /**
+     * Render the toolbar
+     * 
+     * @private
+     * @ignore
+     */
+    _renderToolbar() {
+        // If the toolbar is already rendered, we just update it
+        if (this.isToolbarRendered) {
+            return
+        }
+
+        // New record creation button
+        createButton({
+            hidden: !this.canCreateRecord,
+            class: "map-create-record",
+            target: "create:" + this.id,
+            text: this.config.createRecordText || this.model.name.toTitleCase(),
+            icon: "fas fa-plus",
+            iconColor: this.color,
+            borderWidth: 3,
+            borderRadius: "3.2rem",
+            maxWidth: (kiss.screen.isMobile && kiss.screen.isVertical()) ? "16rem" : null,
+            action: async () => this.createRecord(this.model)
+        }).render()
+
+        // Actions button
+        createButton({
+            hidden: this.showActions === false,
+            target: "actions:" + this.id,
+            tip: txtTitleCase("actions"),
+            icon: "fas fa-bolt",
+            iconColor: this.color,
+            width: "3.2rem",
+            action: () => this._buildActionMenu()
+        }).render()
+
+        // Setup the map
+        createButton({
+            hidden: !this.showSetup,
+            target: "setup:" + this.id,
+            tip: txtTitleCase("setup the map"),
+            icon: "fas fa-cog",
+            iconColor: this.color,
+            width: "3.2rem",
+            action: () => this.showSetupWindow()
+        }).render()
+
+        // Filtering button
+        createButton({
+            hidden: !this.canFilter,
+            target: "filter:" + this.id,
+            tip: txtTitleCase("to filter"),
+            icon: "fas fa-filter",
+            iconColor: this.color,
+            width: "3.2rem",
+            action: () => this.showFilterWindow()
+        }).render()
+
+        // View refresh button
+        if (!kiss.screen.isMobile) {
+            createButton({
+                target: "refresh:" + this.id,
+                tip: txtTitleCase("refresh"),
+                icon: "fas fa-undo-alt",
+                iconColor: this.color,
+                width: "3.2rem",
+                events: {
+                    click: () => this.reload()
+                }
+            }).render()
+        }
+
+        // Search button
+        createButton({
+            hidden: !this.canSearch,
+            target: "search:" + this.id,
+            icon: "fas fa-search",
+            iconColor: this.color,
+            width: "3.2rem",
+            events: {
+                click: () => this.showSearchBar()
+            }
+        }).render()
+
+        // Flag the toolbar as "rendered", so that the method _renderToolbar() is idempotent
+        this.isToolbarRendered = true
+    }
+}
+
+// Create a Custom Element and add a shortcut to create it
+customElements.define("a-mapview", kiss.ui.MapView)
+
+/**
+ * Shorthand to create a new Map View. See [kiss.ui.MapView](kiss.ui.MapView.html)
+ * 
+ * @param {object} config
+ * @returns HTMLElement
+ */
+const createMapView = (config) => document.createElement("a-mapview").init(config)
+
+;/** 
+ * 
  * The **Timeline** derives from [DataComponent](kiss.ui.DataComponent.html).
  * 
  * It's a [powerful timeline](https://kissjs.net/#ui=start&section=timeline) with the following features:
@@ -30350,6 +31171,7 @@ const createList = (config) => document.createElement("a-list").init(config)
  * @param {boolean} [config.createRecordText] - Optional text to insert in the button to create a new record, instead of the default model's name
  * @param {boolean} [config.iconAction] - Font Awesome icon class to display the "open record" symbol. Defaults to "far fa-file-alt"
  * @param {object[]} [config.actions] - Array of menu actions, where each menu entry is: {text: "abc", icon: "fas fa-check", action: function() {}}
+ * @param {number|string} [config.firstColumnWidth] - The width of the first column in rem (default = 10rem)
  * @param {number|string} [config.width]
  * @param {number|string} [config.height]
  * @returns this
@@ -30494,7 +31316,7 @@ kiss.ui.Timeline = class Timeline extends kiss.ui.DataComponent {
         this.actions = config.actions || []
 
         this.defaultRowHeight = 4 // in rem
-        this.firstColumnWidth = 10 // in tem
+        this.firstColumnWidth = config.firstColumnWidth || 10 // in rem
         this.resizerWidth = 1.5 // in rem
         this.defaultDayWidth = 50 // in pixels
 
@@ -30581,18 +31403,22 @@ kiss.ui.Timeline = class Timeline extends kiss.ui.DataComponent {
         try {
             log(`kiss.ui - Timeline ${this.id} - Loading collection <${this.collection.id} (changed: ${this.collection.hasChanged})>`)
 
-            // Apply filter, sort, group, projection
-            // Priority is given to local config, then to the passed collection, then to default
-            this.collection.filter = this.filter
-            this.collection.filterSyntax = this.filterSyntax
-            this.collection.sort = this.sort
-            this.collection.sortSyntax = this.sortSyntax
-            this.collection.group = this.group
-            this.collection.projection = this.projection
-            this.collection.groupUnwind = this.groupUnwind
+            // Add the search filter if needed
+            let currentFilter = this.filter
+            if (this.currentSearchTerm) {
+                currentFilter = this.createSearchFilter(this.currentSearchTerm)
+            }
 
             // Load records
-            await this.collection.find()
+            await this.collection.find({
+                filterSyntax: this.filterSyntax,
+                filter: currentFilter,
+                sortSyntax: this.sortSyntax,
+                sort: this.sort,
+                group: this.group,
+                projection: this.projection,
+                groupUnwind: this.groupUnwind
+            })            
 
             // Hide the virtual scroller while the timeline is being built
             this._hideScroller()
@@ -30642,16 +31468,6 @@ kiss.ui.Timeline = class Timeline extends kiss.ui.DataComponent {
         let nextDate = kiss.formula.ADJUST_DATE(this.startDate, 0, 0, shift, 0, 0, 0, "date")
         this.date = new Date(nextDate)
         return this._render()
-    }
-
-    /**
-     * Generic method to refresh / re-render the view
-     * 
-     * Note: used in dataComponent (parent class) showSearchBar method.
-     * This method is invoked to refresh the view after a full-text search has been performed
-     */
-    refresh() {
-        this._render()
     }
 
     /**
@@ -35391,6 +36207,7 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
     _renderValue(file, i) {
         if (!file.path) return ""
         const isPublic = (file.accessReaders && Array.isArray(file.accessReaders) && file.accessReaders.includes("*"))
+        const isOffline = kiss.session.isOffline()
         const lockIcon = (isPublic) ? "fas fa-lock-open" : "fas fa-lock"
         const layout = (this.layout.includes("thumbnails")) ? "-" + this.layout : ""
 
@@ -35418,8 +36235,8 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
                     <span class="field-attachment-buttons">
                         <span class="field-attachment-filesize">${file.size.toFileSize()}</span>
                         <span style="flex:1"></span>
-                        ${(this.readOnly) ? "" : `<span class="field-attachment-delete fas fa-trash" index="${i}" onclick="$('${this.id}')._deleteFile(event, '${file.id}')"></span>`}
-                        ${(this.readOnly) ? "" : `<span class="field-attachment-access ${lockIcon}" index="${i}" onclick="$('${this.id}')._switchFileACL(event, '${file.id}')"></span>`}
+                        ${(this.readOnly || isOffline) ? "" : `<span class="field-attachment-delete fas fa-trash" index="${i}" onclick="$('${this.id}')._deleteFile(event, '${file.id}')"></span>`}
+                        ${(this.readOnly || isOffline) ? "" : `<span class="field-attachment-access ${lockIcon}" index="${i}" onclick="$('${this.id}')._switchFileACL(event, '${file.id}')"></span>`}
                         <a href="${filePath}" download public="${isPublic}" target="_blank"><span class="field-attachment-download far fa-arrow-alt-circle-down"></span></a>
                     </span>
                 </div>`
@@ -36775,7 +37592,7 @@ kiss.ui.ColorPicker = class ColorPicker extends kiss.ui.Component {
         // Set properties
         this._setProperties(config, [
             [
-                ["width", "height", "margin", "padding"],
+                ["width", "minWidth", "maxWidth", "height", "minHeight", "maxHeight", "margin", "padding"],
                 [this.style]
             ],
         ])
@@ -38414,7 +39231,7 @@ kiss.ui.IconPicker = class IconPicker extends kiss.ui.Component {
         // Set properties
         this._setProperties(config, [
             [
-                ["width", "maxWidth", "height", "maxHeight", "margin", "padding"],
+                ["width", "minWidth", "maxWidth", "minHeight", "height", "maxHeight", "margin", "padding"],
                 [this.style]
             ],
         ])
@@ -38811,7 +39628,11 @@ kiss.ui.Rating = class Rating extends kiss.ui.Component {
             [
                 ["labelAlign=textAlign", "labelFlex=flex", "labelFontSize=fontSize", "labelFontWeight=fontWeight", "labelColor=color"],
                 [this?.label?.style]
-            ]
+            ],
+            [
+                ["iconSize=fontSize"],
+                [this.field]
+            ]            
         ])
 
         // Set the default display mode that will be restored by the show() method
@@ -42145,18 +42966,18 @@ const createFormActions = function (form, activeFeatures) {
         (form.canEditModel && !isMobile) ? "-" : "",
         (isMobile) ? "-" : "",
 
-        // Action to expand all sections
-        {
-            icon: "fas fa-plus-circle",
-            text: txtTitleCase("expand all sections"),
-            action: () => form.expandAll()
-        },
-
         // Action to collapse all sections
         {
             icon: "fas fa-minus-circle",
             text: txtTitleCase("collapse all sections"),
             action: () => form.collapseAll()
+        },
+
+        // Action to expand all sections
+        {
+            icon: "fas fa-plus-circle",
+            text: txtTitleCase("expand all sections"),
+            action: () => form.expandAll()
         },
 
         "-",
@@ -42732,6 +43553,7 @@ const createDataFieldsWindow = function (viewId, color = "#00aaee") {
         closable: true,
         draggable: true,
         layout: "vertical",
+        zIndex: 10,
 
         items: [
             // Block that contains the list of checkboxes to show/hide fields
@@ -43049,9 +43871,10 @@ const createDataFilter = function (viewId, color, config) {
      * @param {string} fieldId 
      */
     const generateFilterOperators = function (fieldId) {
-        const fieldType = getFieldType(fieldId)
+        let fieldType = getFieldType(fieldId)
+        if (fieldType == "link") fieldType = "text"
 
-        const possibleOperators = {
+        let possibleOperators = {
             text: ["=", "<>", "contains", "does not contain", "is empty", "is not empty"],
             password: ["is empty", "is not empty"],
             textarea: ["=", "<>", "contains", "does not contain", "is empty", "is not empty"],
@@ -43068,7 +43891,7 @@ const createDataFilter = function (viewId, color, config) {
             summary: ["=", "<>", "<", ">", "<=", ">=", "is empty", "is not empty"],
             attachment: ["is empty", "is not empty"],
             color: ["=", "<>", "is empty", "is not empty"],
-            icon: ["=", "<>", "is empty", "is not empty"]
+            icon: ["=", "<>", "is empty", "is not empty"],
         } [fieldType]
 
         return [{
@@ -43144,6 +43967,7 @@ const createDataFilter = function (viewId, color, config) {
             case "aiTextarea":
             case "selectViewColumn":
             case "selectViewColumns":
+            case "link":
                 fieldType = "text"
                 break
             case "select":
@@ -43831,6 +44655,7 @@ const createDataFilterWindow = function (viewId, color = "#00aaee") {
         align: "center",
         verticalAlign: "center",
         overflowY: "auto",
+        zIndex: 10,
 
         items: [
             // Placeholder for the query builder
@@ -43995,6 +44820,7 @@ const createDataSortWindow = function (viewId, color = "#00aaee") {
         modal: true,
         closable: true,
         draggable: true,
+        zIndex: 10,
 
         maxHeight: () => kiss.screen.current.height - 100,
         align: "center",
@@ -44701,7 +45527,7 @@ const createPreviewWindow = function (files, fileId, recordId, fieldId) {
             },
 
             close: function() {
-                $("preview-window").resetFormPosition()
+                if ($("preview-window")) $("preview-window").resetFormPosition()
                 delete kiss.context.fileId
             }
         },
@@ -48528,6 +49354,46 @@ kiss.data.Collection = class {
     }
 
     /**
+     * Initialize the collection with a configuration object.
+     * 
+     * @param {} config
+     * @param {string} [config.mode] - "memory" | "offline" | "online"
+     * @param {object} [config.model] - The Model used to build the collection
+     * @param {object[]} [config.records] - Records to init the collection: [{...}, {...}, ...]
+     * @param {object} [config.sort] - default sort
+     * @param {object} [config.filter] - default filter
+     * @param {object} [config.filterSyntax] - default filter syntax
+     * @param {object} [config.sort] - default sort
+     * @param {object} [config.sortSyntax] - default sort syntax
+     * @param {object} [config.projection] - default projection
+     * @param {object} [config.group] - default grouping
+     * @param {boolean} [config.groupUnwind] - Unwind allow records belonging to multiple groups to appear as multiple entries
+     * 
+     * @returns this
+     */
+    init(config) {
+        // Set the database mode
+        if (config.mode) this.setMode(config.mode)
+
+        // Set the model
+        if (config.model) this.model = config.model
+
+        // Set the records
+        if (config.records) this.records = config.records
+
+        // Set the filter, sort, projection, group, groupUnwind
+        if (config.filter) this.filter = config.filter
+        if (config.filterSyntax) this.filterSyntax = config.filterSyntax
+        if (config.sort) this.sort = config.sort
+        if (config.sortSyntax) this.sortSyntax = config.sortSyntax
+        if (config.projection) this.projection = config.projection || {}
+        if (config.group) this.group = config.group || []
+        if (config.groupUnwind !== undefined) this.groupUnwind = config.groupUnwind
+
+        return this
+    }
+
+    /**
      * Initialize the collection subscriptions to the PubSub events :
      * 1 - Listen to database mutations (broadcasted via PubSub)
      * 2 - Update collection's records accordingly
@@ -48563,12 +49429,12 @@ kiss.data.Collection = class {
 
             subscribe("EVT_DB_INSERT_MANY:" + this.modelId.toUpperCase(), (msgData) => {
                 if (msgData.dbMode != this.mode) return
-                this.find({}, true)
+                this.reload()
             }, `Collection.insertMany / Model: ${this.model.name}`),
 
             subscribe("EVT_DB_DELETE_MANY:" + this.modelId.toUpperCase(), (msgData) => {
                 if (msgData.dbMode != this.mode) return
-                this.find({}, true)
+                this.reload()
             }, `Collection.deleteMany / Model: ${this.model.name}`)
         ]
     }
@@ -48713,7 +49579,7 @@ kiss.data.Collection = class {
      * @param {object} record 
      */
     _insertOne(record) {
-        log("kiss.data.Collection - _insertOne in collection " + this.id, 0, record)
+        // log("kiss.data.Collection - _insertOne in collection " + this.id, 0, record)
 
         const existingRecord = this.records.get(record.id)
         if (existingRecord) {
@@ -48814,7 +49680,7 @@ kiss.data.Collection = class {
      * @param {string} recordId
      */
     _deleteOne(recordId) {
-        log("kiss.data.Collection - _deleteOne in collection " + this.id, 2)
+        // log("kiss.data.Collection - _deleteOne in collection " + this.id, 2)
 
         // Hook before
         this._hookDelete("before", recordId)
@@ -48958,9 +49824,9 @@ kiss.data.Collection = class {
      * 
      * @async
      * @param {object} [query] - Query object
-     * @param {*} [query.filter] - The query
+     * @param {object} [query.filter] - The query
      * @param {string} [query.filterSyntax] - The query syntax. By default, passed as a normalized object
-     * @param {*} [query.sort] - Sort fields
+     * @param {object|object[]} [query.sort] - Sort fields
      * @param {string} [query.sortSyntax] - The sort syntax. By default, passed as a normalized array
      * @param {string[]} [query.group] - Array of fields to group by: ["country", "city"]
      * @param {boolean} [query.groupUnwind] - true to unwind the fields for records that belongs to multiple groups
@@ -49025,7 +49891,7 @@ kiss.data.Collection = class {
      *  limit: 100,
      * })
      */
-    async find(query = {}, nocache, nospinner) {
+    async find(query = {}, nocache, nospinner, test) {
         let loadingId
 
         try {
@@ -49060,10 +49926,19 @@ kiss.data.Collection = class {
             this.cachedRecords = []
 
             // Update filter, projection, sort, group, skip, limit, normalization
-            if (query.filter) this.filter = query.filter
+            this.filterSyntax = "normalized"
+            this.sortSyntax = "normalized"
+            this.filter = {}
+            this.sort = (this.filterSyntax == "normalized") ? [] : {}
+            this.group = []
+            this.projection = {}
+            this.skip = 0
+            this.limit = 0
+
             if (query.filterSyntax) this.filterSyntax = query.filterSyntax
-            if (query.sort) this.sort = query.sort
+            if (query.filter) this.filter = query.filter
             if (query.sortSyntax) this.sortSyntax = query.sortSyntax
+            if (query.sort) this.sort = query.sort
             if (query.group) this.group = query.group
             if (query.groupUnwind) this.groupUnwind = query.groupUnwind
             if (query.projection) this.projection = query.projection
@@ -49123,6 +49998,44 @@ kiss.data.Collection = class {
             if (this.showLoadingSpinner && nospinner != true) kiss.loadingSpinner.hide(loadingId)
             return this.records
         }
+    }
+
+    /**
+     * Reload the collection using the last query parameters.
+     * 
+     * This method is useful to refresh the collection after a mutation (insert, update, delete) or when the collection has changed.
+     * 
+     * @async
+     * @returns this
+     */
+    async reload() {
+        log(`kiss.data.Collection - reload ${this.model.name} - ${this.id} (${this.mode})`)
+
+        this.isLoaded = false
+        this.isLoading = false
+        this.hasChanged = true
+        let noCache = true
+
+        // Reset the records
+        this.records = []
+
+        // Reload the collection
+        await this.find({
+            filterSyntax: this.filterSyntax,
+            filter: this.filter,
+            sortSyntax: this.sortSyntax,
+            sort: this.sort,
+            group: this.group,
+            projection: this.projection,
+            groupUnwind: this.groupUnwind
+        }, noCache)
+
+        // Reset the loading state
+        this.isLoaded = true
+        this.isLoading = false
+        this.hasChanged = false
+        
+        return this
     }
 
     /**
@@ -49237,7 +50150,17 @@ kiss.data.Collection = class {
     async filterBy(filterConfig) {
         this.filter = filterConfig
         this.hasChanged = true
-        await this.find()
+
+        await this.find({
+            filterSyntax: this.filterSyntax,
+            filter: this.filter,
+            sortSyntax: this.sortSyntax,
+            sort: this.sort,
+            group: this.group,
+            projection: this.projection,
+            groupUnwind: this.groupUnwind
+        })
+
         return this.records
     }
 
@@ -49246,6 +50169,7 @@ kiss.data.Collection = class {
      * 
      * @async
      * @param {object[]} sortConfig - Array of fields to sort by.
+     * @returns {object[]} Array of records
      * 
      * @example
      * await myCollection.sortBy(
@@ -49258,7 +50182,18 @@ kiss.data.Collection = class {
     async sortBy(sortConfig) {
         this.sort = sortConfig
         this.hasChanged = true
-        await this.find()
+
+        await this.find({
+            filterSyntax: this.filterSyntax,
+            filter: this.filter,
+            sortSyntax: this.sortSyntax,
+            sort: this.sort,
+            group: this.group,
+            projection: this.projection,
+            groupUnwind: this.groupUnwind
+        })
+
+        return this.records
     }
 
     /**
@@ -49266,6 +50201,7 @@ kiss.data.Collection = class {
      * 
      * @async
      * @param {string[]} groupFields - Array of fields to group by.
+     * @returns {object[]} Array of records
      * 
      * @example
      * await myCollection.groupBy(["country", "city", "age"])
@@ -49273,7 +50209,18 @@ kiss.data.Collection = class {
     async groupBy(groupFields) {
         this.group = (groupFields.length != 0) ? groupFields : []
         this.hasChanged = true
-        await this.find()
+
+        await this.find({
+            filterSyntax: this.filterSyntax,
+            filter: this.filter,
+            sortSyntax: this.sortSyntax,
+            sort: this.sort,
+            group: this.group,
+            projection: this.projection,
+            groupUnwind: this.groupUnwind
+        })
+
+        return this.records
     }
 
     /**
@@ -52927,7 +53874,7 @@ kiss.data.Model = class {
 
                 // Update the undo log
                 const field = this.model.getField(fieldId)
-                if (field && field.type != "attachment" && field.type != "aiImage") {
+                if (field && field.type != "attachment" && field.type != "aiImage" && kiss.tools.isUid(this.model.id)) {
                     kiss.undoRedo.addOperation({
                         id: uid(),
                         action: "updateField",
@@ -53002,7 +53949,7 @@ kiss.data.Model = class {
                 }
 
                 // Update the undo log
-                if (this.model.id != "trash") {
+                if (kiss.tools.isUid(this.model.id)) {
                     kiss.undoRedo.addOperation({
                         id: uid(),
                         action: "deleteRecord",
@@ -53991,67 +54938,6 @@ kiss.data.relations = {
     },
 
     /**
-     * Calculate the computed fields values based on their source fields
-     * (source fields = other fields involved in their formula).
-     * 
-     * BEWARE:
-     * Highly sensitive recursive algorithm.
-     * Any mistake while updating this code can impact the NoSQL relational model deeply.
-     * 
-     * @private
-     * @ignore
-     * @async
-     * @param {object} model
-     * @param {object} record
-     * @param {string} [update] - original update which triggered the re-compute. If not passed or set to null, recomputes all fields.
-     * @param {object} changes
-     * @param {number} depth - Max number of iterations in the recursive loop
-     * @returns {object} Object containing all updates to perform on the record after all the computed fields have been recalculated
-     */
-    async _computeFields_V1_deprecated(model, record, update, changes = {}, depth = 0, transaction, cacheId) {
-        // Limit the field dependency depth to avoid infinite loops
-        if (depth > 30) {
-            return changes
-        }
-        depth++
-
-        // console.log("UPDATE:", update)
-
-        const updatedFieldIds = (update) ? Object.keys(update) : []
-        const recomputeAllFields = (updatedFieldIds.length == 0)
-
-        for (let computedFieldId of model.computedFields) {
-            let skip = false
-            const computedField = model.getField(computedFieldId)
-
-            // Check if the computed field's formula relies on the field that has changed.
-            // If yes => re-compute the computed field value
-            if (
-                !updatedFieldIds.includes(computedFieldId) &&
-                (
-                    recomputeAllFields ||
-                    kiss.tools.intersects(computedField.formulaSourceFieldIds, updatedFieldIds)
-                )
-            ) {
-                let newComputedFieldValue = await kiss.data.relations._computeField(model, record, computedField, transaction, cacheId)
-
-                if (
-                    newComputedFieldValue === undefined ||
-                    newComputedFieldValue === record[computedField.id] ||
-                    (kiss.tools.isNumericField(computedField) && isNaN(newComputedFieldValue))
-                ) skip = true
-
-                if (!skip) {
-                    record[computedField.id] = changes[computedField.id] = newComputedFieldValue
-                    await kiss.data.relations._computeFields(model, record, changes, changes, depth, transaction, cacheId)
-                }
-            }
-        }
-        // console.log("Changes:", changes, record.id)
-        return changes
-    },
-
-    /**
      * Compute fields of a record for a given update.
      * 
      * @private
@@ -54068,6 +54954,8 @@ kiss.data.relations = {
      * @returns {object} The changes to apply to the record
      */
     async _computeFields(model, record, update = null, changes = {}, depth = 0, transaction, cacheId) {
+        // console.log("---------------------------------------COMPUTE FIELDS:", model.name)
+
         // Apply the update to the record
         Object.assign(record, update)
         
@@ -54089,10 +54977,7 @@ kiss.data.relations = {
         for (let fieldId of model.orderedComputedFields) {
             if (updateAllFields || impactedFieldIds.includes(fieldId)) {
                 const field = model.getField(fieldId)
-                
-                // console.log(field.label, "(", field.id, ")")
                 const newValue = await this._computeField(model, record, field, transaction, cacheId)
-                // console.log(newValue)
 
                 if (newValue === undefined) continue
                 if (kiss.tools.isNumericField(field) && isNaN(newValue)) continue
@@ -54409,7 +55294,9 @@ kiss.data.relations = {
             })
 
         // Get the links where the id of the record is in the **right** column of the join table
-        const right = (modelId == foreignModelId) ? [] : links
+        // Uncomment the next line to prevent links to the same model (e.g. self-referencing links)
+        // const right = (modelId == foreignModelId) ? [] : links
+        const right = links
             .filter(link => link.mY == modelId && link.rY == recordId && link.fX == foreignLinkFieldId)
             .map(link => {
                 return {
@@ -54550,7 +55437,7 @@ kiss.data.relations = {
             let links = kiss.data.relations.getLinksFromField(modelId, recordId, fieldId)
             const ids = links.map(link => link.recordId)
             const records = await kiss.db.findById(foreignModel.id, ids, sort, sortSyntax)
-
+                    
             return records.map(record => {
                 const link = links.find(link => link.recordId == record.id)
                 return Object.assign(link, {
@@ -57509,6 +58396,11 @@ kiss.addToModule("global", {
             description: "#gallery view"
         },
         {
+            name: "map",
+            icon: "fas fa-map",
+            description: "#map view"
+        },
+        {
             name: "chart",
             icon: "fas fa-chart-line",
             description: "#chart view"
@@ -58636,6 +59528,7 @@ kiss.addToModule("tools", {
      * 
      * Manage the case where the regex is defined with the /regex/flags syntax
      * 
+     * @ignore
      * @param {string} input 
      * @returns {RegExp} The regex object
      */

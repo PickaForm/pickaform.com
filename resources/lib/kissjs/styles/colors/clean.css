@@ -1,4 +1,4 @@
-/* LIGHT THEME PARAMETERS */
+/* LÉGER THEME PARAMETERS */
 :root {
     --body: #555555;
     --body-alt: #dddddd;
@@ -7,8 +7,8 @@
     --link: #00aaee;
     --panel-background: #ffffff;
     --panel-header: #00aaee;
-    --panel-border: #dddddd;
-    --panel-box-shadow: 0px 0px 32px #555555;
+    --panel-border: #f0f0f0;
+    --panel-box-shadow: 0 0 10rem #000000;
     --field: #000000;
     --field-label: #556677;
     --field-background: #fafafa;
@@ -24,43 +24,43 @@
     --select-option-box-shadow: 0 0.5rem 1rem #777777;
     --select-value-shadow: 0 0 0 #dddddd;
     --menu-background: #ffffff;
-    --menu-item: #445566;
-    --menu-item-hover: #00aaee;
     --menu-item-background-hover: #f5f5f5;
     --menu-item-background-selected: #e5e5e5;
+    --menu-item: #445566;
+    --menu-item-hover: #00aaee;
     --menu-item-selected: #000000;
-    --menu-border: #dddddd;
+    --menu-border: transparent;
     --menu-separator: #eeeeee;
-    --menu-box-shadow: none;
-    --button-text: #555555;
+    --menu-box-shadow: 0 0 10rem #000000;
+    --button-background: #f5f5f5;
+    --button-background-hover: #f9f9f9;
+    --button-border: transparent;
+    --button-border-hover: transparent;
+    --button-text: #123456;
     --button-text-hover: #446677;
-    --button-icon: #000000;
-    --button-background: #ffffff;
-    --button-background-hover: #eeeeee;
-    --button-border: #e5e5e5;
-    --button-border-hover: #cccccc;
-    --button-shadow: 0 0 1rem #f0f0f0;
-    --button-shadow-hover: 0 0 0 #dddddd;
-    --datacomponent-header: #000000;
+    --button-icon: #123456;
+    --button-shadow: 0;
+    --button-shadow-hover: 0;
+    --datacomponent-toolbar-background: #ffffff;
     --datacomponent-header-background: #f5f5f5;
-    --datacomponent-header-background-hover: #dddddd;
-    --datacomponent-interaction-hover: #00aaee;
-    --datacomponent-alternate-border: #eeeeee;
     --datacomponent-body-background: #fafafa;
-    --datacomponent-input-background: #ffffff;
-    --datacomponent-row-hover: #f5f5f5;
-    --datacomponent-row-selected: #fcffd5;
-    --datacomponent-cell: #000000;
     --datacomponent-cell-background: #ffffff;
     --datacomponent-cell-border: #eeeeee;
-    --datacomponent-1st-column: #aaaaaa;
     --datacomponent-1st-column-background: #fafafa;
-    --datacomponent-toolbar-background: #ffffff;
-    --datacomponent-group-text: #00aaee;
     --datacomponent-group-background: #fafafa;
-    --shadow-1: 0 0 1.5rem 0 rgba(0, 0, 0, 0.05);
-    --shadow-2: 0 0 1.5rem 0 rgba(0, 0, 0, 0.1);
-    --shadow-3: 0 0 1.5rem 0 rgba(0, 0, 0, 0.2);
-    --shadow-4: 0 0 1.5rem 0 rgba(0, 0, 0, 0.25);
+    --datacomponent-alternate-border: #eeeeee;
+    --datacomponent-row-hover: #f5f5f5;
+    --datacomponent-row-selected: #f0f6ff;
+    --datacomponent-header: #000000;
+    --datacomponent-1st-column: #aaaaaa;
+    --datacomponent-cell: #000000;
+    --datacomponent-group-text: #00aaee;
+    --datacomponent-input-background: #ffffff;
+    --datacomponent-interaction-hover: #00aaee;
+    --datacomponent-header-background-hover: #dddddd;
+    --shadow-1: 0;
+    --shadow-2: 0;
+    --shadow-3: 0;
+    --shadow-4: 0;
 }
-/* /LIGHT THEME PARAMETERS */
+/* /LÉGER THEME PARAMETERS */

@@ -590,6 +590,9 @@ kiss.language.texts = {
     "gallery": {
         fr: "gallerie"
     },
+    "map": {
+        fr: "carte"
+    },
     "#gallery view": {
         fr: "affichez vos données en mettant en évidence les images jointes à vos formulaires"
     },
@@ -601,6 +604,9 @@ kiss.language.texts = {
     },
     "#timeline view": {
         fr: "suivez vos tâches ou pipelines d'activités sur une ligne de temps"
+    },
+    "#map view": {
+        fr: "visualisez vos données sur une carte en fonction des champs géolocalisation de vos formulaires"
     },
     "chart": {
         fr: "graphique"
@@ -1121,6 +1127,36 @@ kiss.language.texts = {
     "#gallery show image": {
         fr: "voulez-vous afficher une image ?"
     },
+    "setup the map": {
+        fr: "paramétrer la carte"
+    },
+    "#coordinates field": {
+        fr: "champ pour les coordonnées"
+    },
+    "#label field": {
+        fr: "champ pour le libellé des marqueurs"
+    },
+    "default coordinates": {
+        fr: "coordonnées par défaut"
+    },
+    "#default coordinates help": {
+        fr: "vous pouvez saisir un point GPS (ex: 55.5,-21) ou bien une adresse, une ville (ex: Paris) ou un pays pour centrer la carte"
+    },
+    "coordinates format": {
+        fr: "format des coordonnées"
+    },
+    "longitude": {
+        fr: "longitude"
+    },
+    "latitude": {
+        fr: "latitude"
+    },
+    "default zoom level": {
+        fr: "niveau de zoom par défaut"
+    },
+    "#max markers": {
+        fr: "nombre maximum de marqueurs affichés"
+    },
     "#chart help": {
         fr: "cliquez sur le menu du graphique pour le configurer"
     },
@@ -1225,6 +1261,39 @@ kiss.language.texts = {
     },
     "light": {
         fr: "clair"
+    },
+    "yellow": {
+        fr: "jaune"
+    },
+    "green": {
+        fr: "vert"
+    },
+    "blue": {
+        fr: "bleu"
+    },
+    "purple": {
+        fr: "violet"
+    },
+    "pink": {
+        fr: "rose"
+    },
+    "red": {
+        fr: "rouge"
+    },
+    "orange": {
+        fr: "orange"
+    },
+    "black": {
+        fr: "noir"
+    },
+    "gray": {
+        fr: "gris"
+    },
+    "white": {
+        fr: "blanc"
+    },
+    "minimal": {
+        fr: "épuré"
     },
     "custom": {
         fr: "personnel"

@@ -32,13 +32,13 @@
  * @param {number} [config.boxShadow]
  * @param {integer} [config.width] - Width in pixels
  * @param {integer} [config.height] - Height in pixels
- * @param {boolean} [config.useCDN] - Set to true to use the CDN version of Quill. Default is true.
  * @param {string} [config.theme] - Use "snow" for a docked toolbar, and "bubble" for a floating toolbar. Default is "bubble".
  * @param {object[]} [config.toolbar1] - Toolbar 1. Default is ["clean", { "header": 1 }, { "header": 2 }, { "header": 3 }, { "header": 4 }]
  * @param {object[]} [config.toolbar2] - Toolbar 2. Default is ["bold", "italic", "underline", {color: []}]
  * @param {object[]} [config.toolbar3] - Toolbar 3. Default is [{ "list": "ordered"}, { "list": "bullet" }, { "list": "check" }]
  * @param {object[]} [config.toolbar4] - Toolbar 4. Default is ["blockquote", "code-block"]
  * @param {boolean} [config.imageWithCaption] - If true, the editor will allow to insert images with a caption.
+ * @param {boolean} [config.useCDN] - Set to true to use the CDN version of Quill. Default is true.
  * @returns this
  * 
  * ## Generated markup
@@ -102,7 +102,7 @@ kiss.ux.RichTextField = class RichTextField extends kiss.ui.Component {
         super.init(config)
 
         this.isQuillInitialized = false
-        this.useCDN = (config.useCDN === false) ? false : true
+        this.useCDN = (config.useCDN === false && !kiss.session.isOffline()) ? false : true
         this.readOnly = !!config.readOnly
         this.disabled = !!config.disabled
         this.required = !!config.required
@@ -1092,6 +1092,7 @@ const createRichTextField = (config) => document.createElement("a-richtextfield"
  * @param {boolean} [config.showMargin]
  * @param {boolean} [config.hideHorizontalScrollbar] - Hide the horizontal editor scrollbar if set to true. Default is false.
  * @param {boolean} [config.hideVerticalScrollbar] - Hide the vertical editor scrollbar if set to true. Default is false.
+ * @param {boolean} [config.useCDN] - Set to true to use the CDN version of Ace. Default is true.
  * @returns this
  * 
  * ## Generated markup
@@ -1151,6 +1152,8 @@ kiss.ux.CodeEditor = class CodeEditor extends kiss.ui.Component {
     init(config) {
         super.init(config)
 
+        this.useCDN = (config.useCDN === false && !kiss.session.isOffline()) ? false : true
+
         // Template
         this.innerHTML = /*html*/ `
             ${ (config.label) ? `<label id="field-label-${this.id}" for="${this.id}" class="field-label">
@@ -1204,6 +1207,21 @@ kiss.ux.CodeEditor = class CodeEditor extends kiss.ui.Component {
         }
 
         return this
+    }
+
+    /**
+     * Initialize the editor
+     * 
+     * @private
+     * @ignore
+     */
+    async _initCodeEditor() {
+        if (this.useCDN === false) {
+            await kiss.loader.loadScript("../../kissjs/client/ux/codeEditor/ace")
+        }
+        else {
+            await kiss.loader.loadScript("https://cdnjs.cloudflare.com/ajax/libs/ace/1.43.0/ace")
+        }
     }
 
     /**
@@ -1276,7 +1294,7 @@ kiss.ux.CodeEditor = class CodeEditor extends kiss.ui.Component {
      */
     async _afterRender() {
         if (!window.ace) {
-            await kiss.loader.loadScript("../../kissjs/client/ux/codeEditor/ace")
+            await this._initCodeEditor()
         }
 
         this.editor = ace.edit("editor-for:" + this.id, {
@@ -1868,6 +1886,10 @@ kiss.ux.AiTextarea = class AiTextarea extends kiss.ui.Field {
                             margin: "2rem 0 0 0",
                             height: "4rem",
                             action: async () => {
+                                if (kiss.session.isOffline()) {
+                                    return kiss.tools.featureNotAvailable()  
+                                }
+
                                 if (!$("AI-panel").validate()) {
                                     return
                                 }
@@ -2097,6 +2119,10 @@ kiss.ux.AiImage = class AiImage extends kiss.ui.Attachment {
                     margin: "2rem 0 0 0",
                     height: "4rem",
                     action: async () => {
+                        if (kiss.session.isOffline()) {
+                          return kiss.tools.featureNotAvailable()  
+                        }
+
                         if (!$("AI-panel").validate()) {
                             return
                         }
@@ -2174,14 +2200,23 @@ const createAiImageField = (config) => document.createElement("a-aiimage").init(
  * Encapsulates original OpenLayers inside a KissJS UI component:
  * https://openlayers.org/
  * 
+ * The field has the following features:
+ * - can be initialized with a geolocation (longitude and latitude) or an address
+ * - can show a marker in the initial center of the map
+ * - can define a set of markers to display on the map
+ * - can select between default OpenStreetMap and ESRI satellite view
+ * - can use CDN or local version of OpenLayers
+ * 
  * @param {object} config
  * @param {float} [config.longitude] - Longitude
  * @param {float} [config.latitude] - Latitude
  * @param {string} [config.address] - Address
+ * @param {object[]} [config.markers] - Array of markers to display on the map, where heach marker is an object like: {longitude, latitude, label}. Do not use this if you set the `address` or the `longitude` and `latitude` properties.
  * @param {integer} [config.zoom] - Zoom level (default 10)
  * @param {integer} [config.width] - Width in pixels
  * @param {integer} [config.height] - Height in pixels
- * @param {boolean} [config.showMarker] - Set false to hide the marker. Default is true.
+ * @param {boolean} [config.showMarker] - Set false to hide the marker at the center of the default location. Default is true.
+ * @param {boolean} [config.canSelectLayer] - Set true to add a button to switch between default map and ESRI satellite view. Default is true.
  * @param {boolean} [config.useCDN] - Set to false to use the local version of OpenLayers. Default is true.
  * @returns this
  * 
@@ -2267,8 +2302,11 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
         this.longitude = config.longitude
         this.latitude = config.latitude
         this.address = config.address
+        this.markers = config.markers || []
         this.showMarker = (config.showMarker === false) ? false : true
+        this.canSelectLayer = (config.canSelectLayer === false) ? false : true
         this.useCDN = (config.useCDN === false) ? false : true
+        this.clickCallBack = config.clickCallback || null
 
         super.init(config)
 
@@ -2289,19 +2327,20 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
      */
     async _afterRender() {
         if (window.ol) {
-            this.initMap()
+            this._initMap()
         } else {
-            await this.initOpenLayers()
-            this.initMap()
+            await this._initOpenLayers()
+            this._initMap()
         }
     }
 
     /**
      * Load the OpenLayers library
      * 
+     * @private
      * @ignore
      */
-    async initOpenLayers() {
+    async _initOpenLayers() {
         if (this.useCDN === false) {
             // Local
             await kiss.loader.loadScript("../../kissjs/client/ux/map/map_ol")
@@ -2319,14 +2358,23 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
      * - Set the target
      * - Add a click event to store the click coordinates in the "clicked" property
      * 
+     * @private
      * @ignore
      */
-    initMap() {
+    _initMap() {
         // Create the map
         this.map = new ol.Map({
             layers: [
                 new ol.layer.Tile({
+                    // Default OpenStreetMap layer
                     source: new ol.source.OSM(),
+                }),
+                new ol.layer.Tile({
+                    visible: false,
+                    source: new ol.source.XYZ({
+                        // ESRI Satellite view
+                        url: "https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                    })
                 })
             ],
 
@@ -2338,25 +2386,147 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
         // Insert the map inside the KissJS component
         this.map.setTarget(this.id)
 
+        // Init icon style
+        this._initIconStyle()
+
         if (this.longitude && this.latitude) {
+            // Priority to longitude and latitude
             this.setGeolocation({
                 longitude: this.longitude,
                 latitude: this.latitude
             })
+
         } else if (this.address) {
+
+            // Then try to geocode the address
             this.setAddress(this.address)
+
+        } else if (this.markers.length > 0) {
+
+            // If no geolocation or address, but markers are defined, set the first marker as the center
+            const firstMarker = this.markers[0]
+
+            // Disable single marker display
+            this.showMarker = false
+
+            this.setGeolocation({
+                longitude: firstMarker.longitude,
+                latitude: firstMarker.latitude
+            })
+
+            // Add remaining markers
+            this.addMarkers(this.markers)
         }
 
-        // Store the clicked coordinates
-        // const _this = this
-        // this.map.on("click", function (evt) {
-        //     const coordinate = evt.coordinate
-        //     const lonLat = ol.proj.toLonLat(coordinate)
-        //     _this.clicked = {
-        //         longitude: lonLat[0],
-        //         latitude: lonLat[1]
-        //     }
-        // })
+        // Update the bounding box propery of the map when the map is moved or zoomed
+        this._observeBoundingBox()
+
+        // Add a click event to the map
+        // This will store the last clicked coordinates in the "clicked" property
+        // and call the click callback if defined
+        this.clicked
+        this.map.on("click", (evt) => {
+            // Store the last clicked coordinates
+            const coordinate = evt.coordinate
+            const lonLat = ol.proj.toLonLat(coordinate)
+            this.clicked = {
+                longitude: lonLat[0],
+                latitude: lonLat[1]
+            }
+
+            console.log("kiss.ux - Map clicked at:", this.clicked)
+
+            this.map.forEachFeatureAtPixel(evt.pixel, (feature) => {
+                if (this.clickCallBack) {
+                    // Call the click callback if defined
+                    this.clickCallBack(feature, this.clicked)
+                }
+            })
+        })
+
+        if (this.canSelectLayer) this._addLayerSelectionButton()
+    }
+
+    /**
+     * Add a button to switch between default map and satellite view
+     * 
+     * @private
+     * @ignore
+     */
+    _addLayerSelectionButton() {
+        setTimeout(() => {
+            const buttonSelectLayer = createButton({
+                class: "mapview-button",
+                width: "2rem",
+                height: "2rem",
+                icon: "fas fa-map",
+                iconSize: "0.9rem",
+                action: () => this.selectMapLayer()
+            }).render()
+
+            this.map.getViewport().appendChild(buttonSelectLayer)
+        }, 500)
+    }
+
+    /**
+     * Open a panel to select the map layer
+     */
+    selectMapLayer() {
+        const _this = this
+        createPanel({
+            title: txtTitleCase("select map layer"),
+            draggable: true,
+            modal: true,
+            align: "center",
+            verticalAlign: "center",
+            layout: "vertical",
+            animation: {
+                name: "zoomIn",
+                speed: "faster"
+            },
+            defaultConfig: {
+                type: "button",
+                margin: "0.5rem",
+            },
+            items: [
+                {
+                    text: txtTitleCase("default map"),
+                    action: () => _this.switchToDefaultView(),
+                    icon: "far fa-map",
+                },
+                {
+                    text: txtTitleCase("satellite view"),
+                    icon: "fas fa-space-shuttle",
+                    action: () => _this.switchToSatteliteView()
+                }
+            ]
+        }).render()
+    }
+
+    /**
+     * Switch to the satellite view of the map
+     */
+    switchToSatteliteView() {
+        this.map.getLayers().forEach((layer) => {
+            if (layer.getSource() instanceof ol.source.OSM) {
+                layer.setVisible(false)
+            } else if (layer.getSource() instanceof ol.source.XYZ) {
+                layer.setVisible(true)
+            }
+        })
+    }
+
+    /**
+     * Switch to the default OpenStreetMap view of the map
+     */
+    switchToDefaultView() {
+        this.map.getLayers().forEach((layer) => {
+            if (layer.getSource() instanceof ol.source.OSM) {
+                layer.setVisible(true)
+            } else if (layer.getSource() instanceof ol.source.XYZ) {
+                layer.setVisible(false)
+            }
+        })
     }
 
     /**
@@ -2395,7 +2565,7 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
      * @param {object} geoloc
      * @param {number} geoloc.longitude
      * @param {number} geoloc.latitude
-     * @returns {object} The geolocation object
+     * @returns this
      * 
      * @example
      * myMap.setGeolocation({
@@ -2412,10 +2582,11 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
             const newCenter = ol.proj.fromLonLat(newLonLat)
             this.map.getView().setCenter(newCenter)
 
-            if (this.showMarker) this.addGeoMarker()
+            if (this.showMarker) this.addGeoMarker(this.longitude, this.latitude)
+
             return this
-        }
-        catch(err) {
+
+        } catch (err) {
             // Map is not loaded yet
             return this
         }
@@ -2424,26 +2595,20 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
     /**
      * Add a marker on the map at the current geolocation
      * 
+     * @async
+     * @param {number} longitude - Longitude of the marker
+     * @param {number} latitude - Latitude of the marker
      * @returns this
      */
-    addGeoMarker() {
-        const position = ol.proj.fromLonLat([this.longitude, this.latitude])
+    async addGeoMarker(longitude, latitude) {
+        await this._waitForMap()
 
-        const iconStyle = new ol.style.Style({
-            text: new ol.style.Text({
-                font: '900 24px "Font Awesome 5 Free"',
-                text: "\uf3c5",
-                fill: new ol.style.Fill({
-                    color: "#ff0000"
-                }),
-                offsetY: -12
-            })
-        })
-
+        const position = ol.proj.fromLonLat([longitude, latitude])
         const iconFeature = new ol.Feature({
             geometry: new ol.geom.Point(position)
         })
-        iconFeature.setStyle(iconStyle)
+
+        iconFeature.setStyle(this.iconStyle)
 
         const vectorLayer = new ol.layer.Vector({
             source: new ol.source.Vector({
@@ -2452,6 +2617,65 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
         })
 
         this.map.addLayer(vectorLayer)
+        return this
+    }
+
+    /**
+     * Add multiple markers on the map.
+     * The first marker will be used to set the center of the map.
+     * 
+     * @async
+     * @param {object[]} markers - Array of markers to display on the map, where each marker is an object like: {longitude, latitude, label}
+     * @returns this
+     */
+    async addMarkers(markers = []) {
+        await this._waitForMap()
+
+        const features = markers.map(marker => {
+            const coord = ol.proj.fromLonLat([marker.longitude, marker.latitude])
+            const feature = new ol.Feature({
+                geometry: new ol.geom.Point(coord)
+            })
+
+            if (marker.label) {
+                feature.setStyle([
+                    this.iconStyle,
+                    this._getMarkerLabel(marker.label)
+                ])
+
+                // If the marker has a recordId, set it as a property on the feature
+                if (marker.recordId) {
+                    feature.set("recordId", marker.recordId)
+                }
+            } else {
+                feature.setStyle(this.iconStyle)
+            }
+            return feature
+        })
+
+        this.markerLayer = new ol.layer.Vector({
+            source: new ol.source.Vector({
+                features: features
+            })
+        })
+
+        this.map.addLayer(this.markerLayer)
+        return this
+    }
+
+    /**
+     * Update the markers on the map.
+     * The first marker will be used to set the center of the map.
+     * 
+     * @param {object[]} markers - Array of markers to display on the map, where each marker is an object like: {longitude, latitude, label}
+     * @returns this
+     */
+    updateMarkers(markers = []) {
+        if (this.markerLayer) {
+            this.map.removeLayer(this.markerLayer)
+        }
+
+        this.addMarkers(markers)
         return this
     }
 
@@ -2490,6 +2714,101 @@ kiss.ux.Map = class Map extends kiss.ui.Component {
     setHeight(height) {
         this.style.height = height
         return this
+    }
+
+    /**
+     * Get the current bounding box of the map
+     * 
+     * @async
+     * @returns {object} The bounding box object with the following properties: {minLongitude, minLatitude, maxLongitude, maxLatitude}
+     */
+    async getBounds() {
+        await this._waitForMap()
+
+        const extent = this.map.getView().calculateExtent(this.map.getSize())
+        const bounds = ol.proj.transformExtent(extent, "EPSG:3857", "EPSG:4326")
+
+        this.boundingBox = {
+            minLongitude: bounds[0],
+            minLatitude: bounds[1],
+            maxLongitude: bounds[2],
+            maxLatitude: bounds[3]
+        }
+        return this.boundingBox
+    }
+
+    /**
+     * Initialize the icon style used for markers
+     * 
+     * @private
+     * @ignore
+     */
+    _initIconStyle() {
+        this.iconStyle = new ol.style.Style({
+            text: new ol.style.Text({
+                font: '900 24px "Font Awesome 5 Free"',
+                text: "\uf3c5", // FontAwesome map marker icon
+                fill: new ol.style.Fill({
+                    color: "#ff0000"
+                }),
+                offsetY: -12
+            })
+        })
+    }
+
+    /**
+     * Initialize the text style used for marker labels
+     * 
+     * @private
+     * @ignore
+     * @param {string} label - The label text to display on the marker
+     */
+    _getMarkerLabel(label) {
+        return new ol.style.Style({
+            text: new ol.style.Text({
+                font: "14px sans-serif",
+                text: label || "",
+                fill: new ol.style.Fill({
+                    color: "#ffffff"
+                }),
+                stroke: new ol.style.Stroke({
+                    color: "#000000",
+                    width: 2
+                }),
+                offsetY: -30,
+                textAlign: "center"
+            })
+        })
+    }
+
+    /**
+     * Observe the map bounding box and update the `boundingBox` property
+     * 
+     * @private
+     * @ignore
+     */
+    _observeBoundingBox() {
+        // Update the bounding box of the map after panning or zooming
+        this.map.on("moveend", async () => {
+            await this.getBounds()
+
+            // Broadcast the bounding box change event
+            // This is useful to update other components that depend on the map bounds
+            kiss.pubsub.publish("EVT_MAP_BOUNDS_CHANGED", {
+                mapId: this.id,
+                boundingBox: this.boundingBox
+            })
+        })
+    }
+
+    /**
+     * Wait for the OpenLayers library to be loaded
+     * 
+     * @private
+     * @ignore
+     */
+    async _waitForMap() {
+        await kiss.tools.waitUntil(() => this.map !== undefined, 100, 5000)
     }
 }
 
@@ -2593,10 +2912,7 @@ kiss.ux.MapField = class MapField extends kiss.ui.Field {
      */
     async _afterRender() {
         // Insert a map right after the field
-        this._createMap()
-
-        // Wait for the OpenLayers library to be loaded
-        await this._waitForOpenLayers()
+        await this._createMap()
 
         // Adjust the map height based on the field width, if no height is defined
         if (this.config.mapRatio && !this.config.mapHeight) {
@@ -2629,6 +2945,9 @@ kiss.ux.MapField = class MapField extends kiss.ui.Field {
             height: this.config.mapHeight
         })
 
+        // Wait for the OpenLayers library to be loaded
+        // await this._waitForOpenLayers()
+
         this.map.style.order = 2
         this.map.style.flex = "1 1 100%"
 
@@ -2648,7 +2967,7 @@ kiss.ux.MapField = class MapField extends kiss.ui.Field {
         return new Promise((resolve, reject) => {
             function checkOpenLayers() {
                 if (typeof ol !== "undefined") {
-                    resolve();
+                    resolve()
                 } else if (attempts < maxAttempts) {
                     attempts++
                     setTimeout(checkOpenLayers, 100)
@@ -2960,9 +3279,9 @@ const createQRCode = (config) => document.createElement("a-qrcode").init(config)
  * @param {object} [config.plugins] - Chart plugins (https://www.chartjs.org/docs/latest/developers/plugins.html)
  * @param {integer} [config.width] - Width in pixels
  * @param {integer} [config.height] - Height in pixels
- * @param {boolean} [config.useCDN] - Set to false to use the local version of ChartJS. Default is true.
  * @param {boolean} [config.useDataLabels] - Set to true to use the plugin for data labels. Default is false. See https://chartjs-plugin-datalabels.netlify.app/
  * @param {boolean} [config.useMoment] - Set to true to use the plugin for moment.js. Default is false. See https://github.com/chartjs/chartjs-adapter-moment
+ * @param {boolean} [config.useCDN] - Set to false to use the local version of ChartJS. Default is true.
  * @returns this
  * 
  * ## Generated markup
@@ -3036,7 +3355,7 @@ kiss.ux.Chart = class UxChart extends kiss.ui.Component {
         this.data = config.data
         this.options = config.options
         this.plugins = config.plugins || []
-        this.useCDN = (config.useCDN === false) ? false : true
+        this.useCDN = (config.useCDN === false && !kiss.session.isOffline()) ? false : true
         this.useDataLabels = config.useDataLabels || false
         this.useMoment = config.useMoment || false
 
@@ -3949,6 +4268,10 @@ kiss.ux.Link = class Link extends kiss.ui.Select {
      * @param {object} record
      */
     async _linkRecord(record) {
+
+        // Prevent from linking the record to itself
+        if (record.id == kiss.context.record.id) return
+
         createDialog({
             title: txtTitleCase("#connect records"),
             message: txtTitleCase("#connect confirmation"),
@@ -4363,6 +4686,10 @@ kiss.ux.WizardPanel = class WizardPanel extends kiss.ui.Panel {
                 items: config.items
             },
             {
+                type: "spacer",
+                flex: 1
+            },
+            {
                 id: this.id + "-buttons",
                 layout: "horizontal",
                 defaultConfig: {
@@ -4392,6 +4719,7 @@ kiss.ux.WizardPanel = class WizardPanel extends kiss.ui.Panel {
      */
     _initButtons(config) {
         this.buttonCancel = {
+            hidden: (config.closable === false),
             icon: "fas fa-times",
             text: txtTitleCase("cancel"),
             action: function () {
@@ -4491,6 +4819,8 @@ kiss.ux.WizardPanel = class WizardPanel extends kiss.ui.Panel {
             name: "slideInRight",
             speed: "faster"
         })
+
+        $(this.id).updateLayout()
     }
 
     /**
@@ -4505,6 +4835,8 @@ kiss.ux.WizardPanel = class WizardPanel extends kiss.ui.Panel {
             name: "slideInLeft",
             speed: "faster"
         })
+
+        $(this.id).updateLayout()
     }
 }
 
