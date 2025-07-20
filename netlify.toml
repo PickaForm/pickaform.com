@@ -1,3 +1,10 @@
+[build]
+  command = "node -v"
+  publish = "."
+
+[build.environment]
+  NODE_VERSION = "20"
+
 [[headers]]
   for = "/*"
   [headers.values]
