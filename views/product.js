@@ -490,6 +490,36 @@ kiss.app.defineView({
                 en: "The Timeline view allows you to display your data in a temporal format by adjusting the zoom levels. In addition, it allows you to group data and filters as with other views.",
                 fr: "La vue Chronologie permet d'afficher vos données sous forme temporelle en ajustant les niveaux de zoom. De plus, elle permet en plus d'effectuer des regroupements de données et des filtres comme avec les autres vues.",
                 es: "La vista de Línea de tiempo le permite mostrar sus datos en un formato temporal ajustando los niveles de zoom. Además, le permite agrupar datos y filtros como con otras vistas."
+            },
+            gallery: {
+                en: "gallery view",
+                fr: "vue galerie",
+                es: "vista de galería"
+            },
+            galleryDescription: {
+                en: "The Gallery view allows you to display your data in a visually appealing way, with images and cards. It is ideal for showcasing products or creative content.",
+                fr: "La vue Galerie permet d'afficher vos données de manière visuellement attrayante, avec des images et des cartes. Elle est idéale pour mettre en valeur des produits ou du contenu créatif.",
+                es: "La vista de Galería le permite mostrar sus datos de una manera visualmente atractiva, con imágenes y tarjetas. Es ideal para mostrar productos o contenido creativo."
+            },
+            map: {
+                en: "map view",
+                fr: "vue carte",
+                es: "vista de mapa"
+            },
+            mapDescription: {
+                en: "The Map view allows you to display your data on a map, which is particularly useful for location-based information.",
+                fr: "La vue Carte permet d'afficher vos données sur une carte, ce qui est particulièrement utile pour les informations basées sur la localisation.",
+                es: "La vista de Mapa le permite mostrar sus datos en un mapa, lo que es particularmente útil para la información basada en la ubicación."
+            },
+            dashboard: {
+                en: "dashboard view",
+                fr: "vue tableau de bord",
+                es: "vista de tablero"
+            },
+            dashboardDescription: {
+                en: "The Dashboard view allows you to create a personalized dashboard with widgets to visualize your data in a dynamic way.",
+                fr: "La vue Tableau de bord permet de créer un tableau de bord personnalisé avec des widgets pour visualiser vos données de manière dynamique.",
+                es: "La vista de Tablero le permite crear un tablero personalizado con widgets para visualizar sus datos de manera dinámica."
             }
         })
 
@@ -504,7 +534,7 @@ kiss.app.defineView({
                     title: t("title"),
                     subtitle: t("subtitle")
                 }),
-                kiss.templates.screenshot("nocode templates applications - pickaform.webp"),
+                kiss.templates.screenshot("dashboard - incidents - pickaform.webp"),
 
                 // FORMS
                 kiss.templates.feature({
@@ -835,7 +865,25 @@ kiss.app.defineView({
                                 title: t("timeline"),
                                 description: t("timelineDescription"),
                                 screenshot: "views - timeline - pickaform.webp"
-                            })                     
+                            }),
+                            // Gallery
+                            kiss.templates.featureDetails({
+                                title: t("gallery"),
+                                description: t("galleryDescription"),
+                                screenshot: "views - gallery - pickaform.webp"
+                            }),
+                            // Map
+                            kiss.templates.featureDetails({
+                                title: t("map"),
+                                description: t("mapDescription"),
+                                screenshot: "views - map - pickaform.webp"
+                            }),
+                            // Dashboard
+                            kiss.templates.featureDetails({
+                                title: t("dashboard"),
+                                description: t("dashboardDescription"),
+                                screenshot: "views - dashboard - pickaform.webp"
+                            })
                         ]
                     }]
                 },

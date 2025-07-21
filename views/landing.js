@@ -474,7 +474,7 @@ kiss.app.defineView({
                     title: t("titleFlexibility"),
                     subtitle: t("subtitleFlexibility")
                 }),
-                kiss.templates.screenshot("midjourney integration - pickaform.webp"),
+                kiss.templates.screenshot("ai art gallery - gallery view - pickaform.webp"),
 
                 // STRIP - Comparison with competitors
                 kiss.templates.title({
