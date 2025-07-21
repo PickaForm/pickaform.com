@@ -2526,11 +2526,11 @@ function getNextLanguage() {
             },
             answer1: {
                 en: `Pickaform is made for: companies, associations, the public sector, digital companies who want to accelerate their projects and deliver faster, no-coders & makers who are looking to work with larger clients.
-                More generally, pickaform is useful for any person or organization wishing to organize their data and business processes in a collaborative way.`,
+                More generally, pickaform is useful for any person or organization wishing to organize their data and/or set up business processes to streamline collaboration.`,
                 fr: `Pickaform est fait pour : les entreprises, les associations, le secteur public, les entreprises du numérique qui veulent accélérer leurs projets et livrer plus vite, les no-coders & makers qui cherchent à travailler avec des clients plus gros.
-                Plus généralement, pickaform est utile à toute personne ou organisation souhaitant organiser ses données et ses processus métier de manière collaborative.`,
+                Plus généralement, pickaform est utile à toute personne ou organisation souhaitant organiser ses données et/ou mettre en place des processus métier pour fluidifier la collaboration.`,
                 es: `Pickaform está hecho para: empresas, asociaciones, el sector público, empresas digitales que desean acelerar sus proyectos y entregar más rápido, no-coders y makers que buscan trabajar con clientes más grandes.
-                Más generalmente, pickaform es útil para cualquier persona u organización que desee organizar sus datos y procesos comerciales de manera colaborativa.`
+                Más generalmente, pickaform es útil para cualquier persona u organización que desee organizar sus datos y/o establecer procesos comerciales para agilizar la colaboración.`
             },
             faq2: {
                 en: "How can I take a subscription?",
@@ -2589,13 +2589,13 @@ function getNextLanguage() {
             answer6: {
                 en: `Only you.
                 Each application you create generates a brand new database on our server, 100% dedicated to you, in order to have the best  possible separation between you and other customers. We are nearly alone to do this in a multi-tenancy architecture!
-                Even the members of our team can't access your applications. But don't forget: if you loose your password, nobody will be able to help you!`,
+                Even the members of our team can't access your applications. No statistics are collected on your usage.`,
                 fr: `Seulement vous.  
                 Chacune de vos applications crée une nouvelle base de données qui vous est 100% dédiée, afin de garantir un cloisonnement et une étanchéité absolue avec les autres clients.  
-                Même les membres de notre équipe ne peuvent pas accéder au contenu de vos applications. D'ailleurs, si vous perdez vos codes d'accès, nous ne pourrons absolument rien faire pour vous !`,
+                Même les membres de notre équipe ne peuvent pas accéder au contenu de vos applications. Aucune statistique n'est collectée sur votre usage.`,
                 es: `Solo tú.
                 Cada aplicación que creas genera una nueva base de datos en nuestro servidor, 100% dedicada a ti, para tener la mejor separación posible entre tú y otros clientes. ¡Casi somos los únicos en hacer esto en una arquitectura de multiinquilino!
-                Incluso los miembros de nuestro equipo no pueden acceder a tus aplicaciones. Pero no olvides: si pierdes tu contraseña, ¡nadie podrá ayudarte!`
+                Incluso los miembros de nuestro equipo no pueden acceder a tus aplicaciones. No se recopilan estadísticas sobre tu uso.`,
             },
             faq7: {
                 en: "It's expensive, isn't it?",
@@ -2626,11 +2626,11 @@ function getNextLanguage() {
             },
             answer8: {
                 en: `Pickaform allows you to attach files to your form data, but its goal is not to replace a file management or a virtual drive (like Google Drive, One Drive, DropBox ...), so, we calculated that an average volume of 100MB of attachments per user was sufficient for standard use of our platform. For example, this represents 2GB of data for 20 users.
-                Contact us if you think your needs will exceed this usage. In that case, there is an option to connect your own storage.`,
+                Contact us if you think your needs will exceed this usage. In that case, there is an option to connect your own storage compatible with S3 and store without any limit.`,
                 fr: `Pickaform vous permet bien de joindre des fichiers à vos données de formulaire, mais sa fonction n'est pas de venir en remplacement d'une gestion de fichiers ou d'un drive (Google Drive, One Drive, DropBox...), aussi, nous avons calculé qu'un volume moyen de 100Mo de pièces jointes par utilisateur était suffisant pour un usage standard de notre plateforme. Cela représente 2Go de données pour 20 utilisateurs.
-                Nous consulter si vous pensez que vos besoins dépasseront cet usage. Si c'est le cas, il existe une possibilité pour intégrer votre propre espace de stockage.`,
+                Nous consulter si vous pensez que vos besoins dépasseront cet usage, vous pouvez connecter votre propre stockage compatible S3 et stocker sans aucune limite.`,
                 es: `Pickaform le permite adjuntar archivos a sus datos de formulario, pero su objetivo no es reemplazar una gestión de archivos o una unidad virtual (como Google Drive, One Drive, DropBox ...), por lo que calculamos que un volumen promedio de 100 MB de archivos adjuntos por usuario era suficiente para el uso estándar de nuestra plataforma. Por ejemplo, esto representa 2 GB de datos para 20 usuarios.
-                Contáctenos si cree que sus necesidades superarán este uso. En ese caso, hay una opción para conectar su propio almacenamiento.`
+                Contáctenos si cree que sus necesidades superarán este uso. En ese caso, hay una opción para conectar su propio almacenamiento compatible con S3 y almacenar sin ningún límite.`
             }
         })
 
