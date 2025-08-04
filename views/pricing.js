@@ -33,15 +33,15 @@ kiss.app.defineView({
                 en: `<br>
                 <br>
                 You are a <span class="text-highlight" style="background-color: #00aaee">Freelance NoCoder</span> or a <span class="text-highlight" style="background-color: #a1ed00">NoCode Agency</span>?
-                <br>Claim your special offer by scheduling an appointment <a href="https://calendly.com/pickaform/pickaform-live-demo">here</a>`,
+                <br>Claim your special offer by scheduling an appointment <a href="https://calendly.com/airprocess/pickaform-live-demo">here</a>`,
                 fr: `<br>
                 <br>
                 Vous êtes un <span class="text-highlight" style="background-color: #00aaee">NoCodeur Freelance</span> ou une <span class="text-highlight" style="background-color: #a1ed00">Agence NoCode</span> ?
-                <br>Demandez votre offre spéciale en prenant RDV <a href="https://calendly.com/pickaform/pickaform-live-demo">ici</a>`,
+                <br>Demandez votre offre spéciale en prenant RDV <a href="https://calendly.com/airprocess/pickaform-live-demo">ici</a>`,
                 es: `<br>
                 <br>
                 ¿Eres un <span class="text-highlight" style="background-color: #00aaee">NoCoder Freelance</span> o una <span class="text-highlight" style="background-color: #a1ed00">Agencia NoCode</span>?
-                <br>Reclama tu oferta especial programando una cita <a href="https://calendly.com/pickaform/pickaform-live-demo">aquí</a>`
+                <br>Reclama tu oferta especial programando una cita <a href="https://calendly.com/airprocess/pickaform-live-demo">aquí</a>`
             },
             unlimitedForms: {
                 en: "unlimited forms",

@@ -39,7 +39,7 @@ const kiss = {
     $KissJS: "KissJS - Keep It Simple Stupid Javascript",
 
     // Build number
-    version: 4605,
+    version: 4652,
     
     // Tell isomorphic code we're on the client side
     isClient: true,
@@ -6713,8 +6713,27 @@ log.err = (msg, data) => log(msg, 4, data)
  * 
  * ## Plugin manager
  * 
- * Allow to add / get plugins.
  * Plugins are used to add features to the application.
+ * 
+ * Each feature can be added to a specific place in the application.
+ * For example, a plugin can add a feature to the form section, or the form menu.
+ * A single plugin can add multiple features at the same time.
+ * 
+ * Feature types are:
+ * - form-section: adds a section to the form
+ * - form-header: adds a section to the form header
+ * - form-footer: adds a section to the form footer
+ * - form-menu: adds an item to the form menu
+ * - model-menu: adds an item to the model menu
+ * - attachment-menu: adds an item to the attachment field menu (e.g. to process attachments)
+ * 
+ * A plugin can also have:
+ * - an init() method, which will be automatically called when the plugin is loaded
+ * - custom methods, which will be available in the plugin object
+ * - fields, which will be added to the target model
+ * 
+ * Plugin manage localization, so that the texts can be translated into multiple languages.
+ * 
  * Check the example for further details.
  * 
  * @namespace
@@ -6740,6 +6759,15 @@ kiss.plugins = {
      * 
      *     // The plugin has an icon to recognize it
      *     icon: "fab fa-node-js",
+     * 
+     *     // The plugin has an order, which is used to display the list of plugins to the user.
+     *     order: "0003",
+     * 
+     *     // A plugin can be disabled, so that it is not loaded by default.
+     *     disabled: false,
+     * 
+     *     // A plugin can be admin-only, so that it is only available to administrators to configure a feature.
+     *     admin: false,
      * 
      *     // A plugin must support multi-language texts
      *     texts: {
@@ -6788,6 +6816,16 @@ kiss.plugins = {
      *             })
      *         }
      *     }],
+     * 
+     *     // A plugin can add fields to the target model.
+     *     fields: [
+     *        {
+     *           id: "workflow-initiator",
+     *           type: "directory",
+     *           label: "workflow initiator"
+     *        },
+     *        // ...
+     *     ],
      * 
      *     // The plugin can have an optional "init" method, which will be called when the plugin is loaded
      *     async init() {
@@ -16269,7 +16307,7 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
     _initParameters() {
         if (this.config.record) {
             this.record = this.config.record
-            this.id = this.record.id
+            this.id = this.config.id || this.record.id || kiss.tools.shortUid()
             this.name = this.record.name
             this.filter = this.record.filter || {}
             this.filterSyntax = this.record.filterSyntax || this.collection.filterSyntax || "normalized"
@@ -17333,6 +17371,7 @@ kiss.ui.DataComponent = class DataComponent extends kiss.ui.Component {
             closable: false,
             autoSize: true,
             opacity: 0.8,
+            zIndex: 2,
 
             top: () => {
                 if (!searchButton) return 0
@@ -18444,7 +18483,7 @@ kiss.ui.Panel = class Panel extends kiss.ui.Container {
 
         this._setProperties(config, [
             [
-                ["position", "top", "bottom", "left", "right", "flex", "margin", "border", "borderColor", "borderRadius", "boxShadow", "transform", "zIndex", "opacity"],
+                ["position", "top", "bottom", "left", "right", "flex", "margin", "border", "borderColor", "borderRadius", "boxShadow", "transform", "zIndex", "opacity", "transition"],
                 [this.style]
             ],
             [
@@ -21072,13 +21111,14 @@ kiss.ui.ChartView = class ChartView extends kiss.ui.DataComponent {
             //     // Bar, Line
             //     const timeField = this.model.getField(this.timeField)
             // }
-
-            tempCollection.filter = newFilter
-            tempCollection.group = []
         }
 
         // Load the records
-        await tempCollection.find()
+        await tempCollection.find({
+            filterSyntax: "normalized",
+            filter: newFilter,
+            group: []
+        })
 
         // Create the datatable
         const datatable = createDatatable({
@@ -26212,8 +26252,14 @@ kiss.ui.Datatable = class Datatable extends kiss.ui.DataComponent {
         } else {
             // Multiple records, we open the window to select a record
             kiss.context.records = foreignRecords
-            createRecordSelectionWindow(foreignModel, fieldId, foreignRecords, null, {
-                canSelect: false
+
+            createRecordSelectionWindow({
+                model: foreignModel,
+                fieldId: fieldId,
+                records: foreignRecords,
+                datatableConfig:{
+                    canSelect: false
+                }
             })
         }
     }
@@ -35503,6 +35549,7 @@ kiss.ui.Notification = class Notification {
             height: config.height,
             padding: config.padding,
             position: "fixed",
+            zIndex: 100000,
             header: false,
             class: "a-notification",
             styles: {
@@ -35958,8 +36005,10 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
                 this.renderAs("list")
             } else if (event.target.classList.contains("display-as-thumbnails")) {
                 this.renderAs("thumbnails")
-            }  else if (event.target.classList.contains("display-as-thumbnails-large")) {
+            } else if (event.target.classList.contains("display-as-thumbnails-large")) {
                 this.renderAs("thumbnails-large")
+            } else if (event.target.classList.contains("field-attachment-menu")) {
+                this.showAttachmentMenu(event.target)
             }
         }
     }
@@ -36098,6 +36147,7 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
                 this.value = newValue
                 this._renderValues()
                 if (this.onchange) this.onchange(newValue)
+                this.validate()
             }
         }
     }
@@ -36202,13 +36252,46 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
     }
 
     /**
-     * Validate the field (always true because Attachment fields can't have wrong values)
+     * Validate the field
      * 
      * @returns {boolean}
      */
     validate() {
-        return true
+        if (this.isHidden()) return true
+
+        const isValid = kiss.tools.validateValue(this.type, this.config, this.getValue())
+        if (isValid) {
+            this.setValid()
+        }
+        else {
+            this.setInvalid()
+        }
+        return isValid
     }
+
+    /**
+     * Remove the invalid style
+     * 
+     * @returns this
+     */
+    setValid() {
+        this.isValid = true
+        this.classList.remove("field-input-invalid")
+        return this
+    }
+
+    /**
+     * Change the style when the field is invalid
+     * 
+     * @returns this
+     */
+    setInvalid() {
+        log("kiss.ui - field.setInvalid - Invalid value for the field: " + this.config.label, 4)
+
+        this.isValid = false
+        this.classList.add("field-input-invalid")
+        return this
+    }    
 
     /**
      * Restore the layout (list or thumbnails)
@@ -36298,18 +36381,13 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
                     <span class="field-attachment-buttons">
                         <span class="field-attachment-filesize">${file.size.toFileSize()}</span>
                         <span style="flex:1"></span>
-                        ${(this.readOnly || isOffline) ? "" : `<span class="field-attachment-delete fas fa-trash" index="${i}" onclick="$('${this.id}')._deleteFile(event, '${file.id}')"></span>`}
-                        ${(this.readOnly || isOffline) ? "" : `<span class="field-attachment-access ${lockIcon}" index="${i}" onclick="$('${this.id}')._switchFileACL(event, '${file.id}')"></span>`}
-                        <a href="${filePath}" download public="${isPublic}" target="_blank"><span class="field-attachment-download far fa-arrow-alt-circle-down"></span></a>
+                        ${(this.readOnly || isOffline) ? "" : `<span class="field-attachment-access ${lockIcon}"></span>`}
+                        <span class="field-attachment-menu fas fa-ellipsis-v" index="${i}" onclick="$('${this.id}')._openFileMenu(event, '${file.id}')"></span>     
                     </span>
                 </div>`
-
-        // Add this line *inside* the div to show the file menu icon
-        // <span class="field-attachment-menu fas fa-ellipsis-v" index="${i}" onclick="$('${this.id}')._openFileMenu(event, '${file.id}')"></span>     
     }
 
     /**
-     * !Not used yet
      * Open a menu with the file operations
      * 
      * @private
@@ -36319,44 +36397,97 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
      */
     _openFileMenu(event, fileId) {
         event.stop()
+        if (kiss.session.isOffline()) return
 
         const currentValues = this.getValue()
         const file = currentValues.get(fileId)
-        const ACL = (file.accessReaders.includes("*")) ? "private" : "public"
-        const lockIcon = (ACL == "public") ? "fas fa-lock-open" : "fas fa-lock"
+        const newACL = (file.accessReaders && Array.isArray(file.accessReaders) && file.accessReaders.includes("*")) ? "private" : "public"
+        const lockIcon = (newACL == "public") ? "fas fa-lock-open" : "fas fa-lock"
+
+        // Get the plugin actions to insert in the attachment menu
+        const pluginActions = this._getPluginActions(fileId)
 
         createMenu({
+            id: "attachment-menu-" + fileId,
             top: event.clientY - 10,
             left: event.clientX - 10,
-            items: [{
-                icon: lockIcon,
-                text: txtTitleCase("#update file ACL", null, {
-                    access: txtUpperCase(ACL)
-                }),
-                action: async () => {
-                    const response = await kiss.ajax.request({
-                        url: "/updateFileACL",
-                        method: "patch",
-                        showLoading: true,
-                        body: JSON.stringify({
-                            modelId: this.modelId,
-                            recordId: this.recordId,
-                            fieldId: this.id,
-                            file,
-                            ACL
+            items: [
+                // Download file
+                {
+                    icon: "far fa-arrow-alt-circle-down",
+                    text: txtTitleCase("download file"),
+                    action: () => {
+                        const filePath = kiss.tools.createFileURL(file)
+                        window.open(filePath, "_blank")
+                    }
+                },
+                // Change file ACL
+                {
+                    hidden: this.readOnly,
+                    icon: lockIcon,
+                    text: txtTitleCase("#update file ACL", null, {
+                        access: txtUpperCase(newACL)
+                    }),
+                    action: async () => this._switchFileACL(event, fileId)
+                },
+                // Copy file PUBLIC URL
+                {
+                    hidden: (newACL == "public"),
+                    icon: "fas fa-copy",
+                    text: txtTitleCase("copy file address"),
+                    action: () => {
+                        const filePath = kiss.tools.createFileURL(file)
+                        kiss.tools.copyTextToClipboard(filePath).then(() => {
+                            createNotification({
+                                message: txtTitleCase("copied to clipboard"),
+                                duration: 2000
+                            })
                         })
-                    })
-
-                    if (response.success) {
-                        const message = "<center>" + txtTitleCase("#updating ACL") + "<br><b>" + txtUpperCase(ACL)
-                        createNotification({
-                            message,
-                            duration: 2000
-                        })
-                    }                    
+                    }
+                },
+                
+                // Insert plugin actions, if any
+                ...pluginActions,
+                
+                // Delete file
+                "-",
+                {
+                    hidden: this.readOnly,
+                    icon: "fas fa-trash",
+                    iconColor: "var(--red)",
+                    text: txtTitleCase("delete file"),
+                    action: () => this._deleteFile(event, fileId)
                 }
-            }]
+            ]
         }).render()
+    }
+
+    /**
+     * Get the plugin actions that should be inserted in the attachment menu
+     * 
+     * @private
+     * @ignore
+     * @returns {Array} An array of plugin actions
+     */
+    _getPluginActions(fileId) {
+        const model = kiss.app.models[this.modelId]
+        const modelFeatures = model.features
+        const activePlugins = kiss.plugins.get().filter(plugin => {
+            if (!modelFeatures[plugin.id]) return false
+            if (modelFeatures[plugin.id].active == false) return false
+            return true
+        })
+
+        let menuActions = []
+        activePlugins.forEach(plugin => {
+            plugin.features.forEach(feature => {
+                if (feature.type == "attachment-menu") {
+                    menuActions.push(feature.renderer(this, fileId))
+                }
+            })
+        })
+
+        return menuActions
     }
 
     /**
@@ -36396,6 +36527,30 @@ kiss.ui.Attachment = class Attachment extends kiss.ui.Component {
                 action: () => $("preview-window").switchDisplayMode()
             })
         }
+    }
+
+    showAttachmentMenu(event) {
+        createMenu({
+            items: [
+                {
+                    icon: "fas fa-eye",
+                    text: txtTitleCase("#preview file"),
+                    action: () => this._previewAttachment(event)
+                },
+                {
+                    icon: "fas fa-trash",
+                    text: txtTitleCase("#delete file"),
+                    action: () => this._deleteFile(event, event.target.closest(".field-attachment-item").id)
+                },
+                {
+                    icon: "fas fa-lock",
+                    text: txtTitleCase("#switch file ACL"),
+                    action: () => this._switchFileACL(event, event.target.closest(".field-attachment-item").id)
+                }
+            ]
+        }).render().showAt(event.clientX, event.clientY - 10)
+
+        event.stop()
     }
 
     /**
@@ -36860,13 +37015,21 @@ kiss.ui.Checkbox = class Checkbox extends kiss.ui.Component {
     }
 
     /**
-     * Validate the field (always true because Checkbox fields can't have wrong values)
+     * Validate the field value and apply UI style accordingly
      * 
-     * @ignore
-     * @returns {boolean}
+     * @returns {boolean} true is the field is valid, false otherwise
      */
     validate() {
-        return true
+        if (this.isHidden()) return true
+
+        const isValid = kiss.tools.validateValue(this.type, this.config, this.field.checked)
+        if (isValid) {
+            this.setValid()
+        }
+        else {
+            this.setInvalid()
+        }
+        return isValid
     }    
 
     /**
@@ -36984,6 +37147,30 @@ kiss.ui.Checkbox = class Checkbox extends kiss.ui.Component {
      */
     setColor(color) {
         this.icon.style.color = color
+    }
+
+    /**
+     * Remove the invalid style
+     * 
+     * @returns this
+     */
+    setValid() {
+        this.isValid = true
+        this.icon.classList.remove("field-input-invalid")
+        return this
+    }
+
+    /**
+     * Change the style when the field is invalid
+     * 
+     * @returns this
+     */
+    setInvalid() {
+        log("kiss.ui - field.setInvalid - Invalid value for the field: " + this.config.label, 4)
+
+        this.isValid = false
+        this.icon.classList.add("field-input-invalid")
+        return this
     }
 }
 
@@ -42902,7 +43089,7 @@ const createFormActions = function (form, activeFeatures) {
     }
 
     // If some features have associated menu actions,
-    // add them to the menu right after the list of features
+    // add them to the menu
     let featureMenuItems = []
     let hasSeparator = false
     activeFeatures.forEach(feature => {
@@ -43124,6 +43311,17 @@ const createFormContent = function (config) {
     // Screen orientation
     const orientation = kiss.screen.getOrientation()
 
+    // Utility function to check access
+    // This is used to check if the user has access to a specific field, element, or section
+    function checkAccess(access, userACL, record) {
+        let hasAccess = true
+        if (access && Array.isArray(access) && (access.length > 0)) {
+            if (record) access = access.map(entry => (entry != "$creator") ? entry : record.createdBy)
+            hasAccess = kiss.tools.intersects(access, userACL)
+        }
+        return hasAccess
+    }
+
     // Format model's items in a usable format for a form UI:
     // - filters out deleted fields
     // - regen section ids to be able to open multiple forms of the same type
@@ -43137,16 +43335,17 @@ const createFormContent = function (config) {
             if (item.items) {
                 //
                 // Section
-                // 
-                if (config.record && item.accessRead) item.accessRead = item.accessRead.map(entry => (entry != "$creator") ? entry : config.record.createdBy)
-                const canRead = kiss.tools.intersects(item.accessRead, userACL) || !item.accessRead
+                //
+
+                // Check read access
+                const canRead = checkAccess(item.accessRead, userACL, config.record)
 
                 if (!canRead) {
                     item.hidden = true
                 }
                 else {
-                    if (config.record && item.accessUpdate) item.accessUpdate = item.accessUpdate.map(entry => (entry != "$creator") ? entry : config.record.createdBy)
-                    const canUpdate = (editMode === false) ? false : kiss.tools.intersects(item.accessUpdate, userACL) || !item.accessUpdate
+                    // Check update access
+                    const canUpdate = (editMode === false) ? false : checkAccess(item.accessUpdate, userACL, config.record)
 
                     item.originalId = item.id
                     item.id = kiss.tools.shortUid()
@@ -43155,7 +43354,6 @@ const createFormContent = function (config) {
                     item.items = getFormItems(item.items, canUpdate)
                 }
 
-                // Force clean case
                 item.title = (item.hasOwnProperty("title")) ? item.title.toTitleCase() : ""
 
                 // Set section "light" style
@@ -43168,8 +43366,12 @@ const createFormContent = function (config) {
                 }
             } else {
                 // 
-                // Field or Widget
+                // Field or Element
                 //
+
+                // Check read access
+                const canReadItem = checkAccess(item.accessRead, userACL, config.record)
+                if (!canReadItem) item.hidden = true
 
                 // Display a lock symbol on read only fields
                 if (editMode === false) {
@@ -45025,15 +45227,33 @@ const createDataSortWindow = function (viewId, color = "#00aaee") {
  * - If the user updates the datatable config (columns, sorts, ...), the configuration is automatically stored in the "view" collection.
  * 
  * @ignore
- * @param {object} model - source model
- * @param {string} fieldId - id of the LINK field which generated this window
- * @param {object[]} [records] - Optionnal records to display in the datatable
- * @param {function} [selectRecord] - Optional callback function executed when a record is selected inside the datatable. By default, opens the record.
- * @param {object} [datatableConfig] - Optional parameters to adjust the datatable configuration
+ * @param {object} config
+ * @param {string} [staticId] - Optional static id for the selection window. If provided, cache the window and show it instead of creating a new one each time.
+ * @param {object} config.model - source model
+ * @param {string} config.fieldId - id of the LINK field which generated this window
+ * @param {object[]} [config.records] - Optionnal records to display in the datatable
+ * @param {function} [config.selectRecord] - Optional callback function executed when a record is selected inside the datatable. By default, opens the record.
+ * @param {object} [config.datatableConfig] - Optional parameters to adjust the datatable configuration
  * 
  */
-const createRecordSelectionWindow = function(model, fieldId, records, selectRecord, datatableConfig) {
-    if (Array.isArray(records) && records.length == 0) return
+const createRecordSelectionWindow = function(config) {
+    let {
+        model,
+        fieldId,
+        records,
+        selectRecord,
+        datatableConfig,
+        staticId
+    } = config
+
+    // If a static id is provided, we check if the element exists and show it (cache)
+    if (staticId && $(staticId)) {
+        $(staticId).show()
+        if ($(staticId).datatable.currentSearchTerm) {
+            $(staticId).datatable.showSearchBar()
+        }
+        return
+    }
 
     const isMobile = kiss.screen.isMobile
     let tempModel = {}
@@ -45060,26 +45280,30 @@ const createRecordSelectionWindow = function(model, fieldId, records, selectReco
 
     if (isMobile) {
         responsiveOptions = {
-            expandable: false,
             width: "100%",
             height: "100%",
             top: 0,
             left: 0,
+            expandable: false,
             borderRadius: "0 0 0 0",
             padding: 0
         }
     }
     else {
         responsiveOptions = {
-            width: () => "calc(100vw - 2rem)",
-            height: () => "calc(100vh - 2rem)",
+            width: "calc(100vw - 2rem)",
+            height: "calc(100vh - 2rem)",
+            top: "1rem",
+            left: "1rem"
         }
     }
 
     // Build the panel to show the datatable
     createPanel({
+        id: staticId || kiss.tools.shortUid(),
         modal: true,
         closable: true,
+        closeMethod: (staticId) ? "hide" : "remove",
 
         // Header
         title: "<b>" + model.namePlural + "</b>",
@@ -45089,11 +45313,10 @@ const createRecordSelectionWindow = function(model, fieldId, records, selectReco
         // Size and layout
         display: "flex",
         layout: "vertical",
-        align: "center",
-        verticalAlign: "center",
         autoSize: true,
         background: "var(--body-background)",
         padding: 0,
+        zIndex: 1,
         
         ...responsiveOptions,
 
@@ -45102,11 +45325,11 @@ const createRecordSelectionWindow = function(model, fieldId, records, selectReco
             flex: 1,
             layout: "vertical"
         }],
-
-        // When closing the panel, we must destroy the datatable's temporary source collection
+        
         events: {
             onclose: function () {
-                tempCollection.destroy(useMemory)
+                $("tmp-" + tempDatatableId).hideSearchBar()
+                if (!staticId && records) tempCollection.destroy(useMemory)
             }
         },
 
@@ -45143,13 +45366,31 @@ const createRecordSelectionWindow = function(model, fieldId, records, selectReco
                 }
 
                 // Build a temporary collection for the datatable
-                tempCollection = new kiss.data.Collection({
-                    id: "temp_" + uid(),
-                    mode: (useMemory) ? "memory" : kiss.db.mode,
-                    model: tempModel,
-                    sort,
-                    filter
-                })
+                // If the collection is already configured, we use the existing collection
+                if (viewRecord && !records) {
+                    const tmpViewId = "tmp-" + viewRecord.id
+                    if (kiss.app.collections[tmpViewId]) {
+                        tempCollection = kiss.app.collections[tmpViewId]
+                    }
+                    else {
+                        tempCollection = new kiss.data.Collection({
+                            id: tmpViewId,
+                            mode: (useMemory) ? "memory" : kiss.db.mode,
+                            model: tempModel,
+                            sort,
+                            filter
+                        })
+                    }
+                }
+                else {
+                    tempCollection = new kiss.data.Collection({
+                        id: "tmp-" + uid(),
+                        mode: (useMemory) ? "memory" : kiss.db.mode,
+                        model: tempModel,
+                        sort,
+                        filter
+                    })
+                }
                 
                 if (records) await tempCollection.insertMany(records)
                 
@@ -45174,7 +45415,7 @@ const createRecordSelectionWindow = function(model, fieldId, records, selectReco
 
                 // Finally, build the datatable
                 let config = {
-                    id: "datatable-" + tempDatatableId,
+                    id: "tmp-" + tempDatatableId,
                     fieldId,
                     type: "datatable",
                     collection: tempCollection,
@@ -45208,9 +45449,9 @@ const createRecordSelectionWindow = function(model, fieldId, records, selectReco
                 }
 
                 if (datatableConfig) Object.assign(config, datatableConfig)
-                const datatable = createDatatable(config)
+                this.datatable = createDatatable(config)
 
-                setTimeout(() => $(tempDatatableId).setItems([datatable]), 50)
+                setTimeout(() => $(tempDatatableId).setItems([this.datatable]), 50)
             }
         }
     }).render()
@@ -51153,7 +51394,6 @@ kiss.data.Model = class {
         this.namePluralTranslations = config.namePluralTranslations || {}
         this.icon = config.icon || "fas fa-th"
         this.color = config.color || "#00aaee"
-        this.backgroundColor = config.backgroundColor || "#ffffff"
         this.fullscreen = !!config.fullscreen
         this.align = config.align || "center"
         this.tags = config.tags || []
@@ -51183,6 +51423,11 @@ kiss.data.Model = class {
         this.publicFormWidth = config.publicFormWidth
         this.publicFormMargin = config.publicFormMargin
         this.publicFormHeader = config.publicFormHeader
+        this.publicFormBorder = config.publicFormBorder || "none"
+        this.publicFormBorderRadius = config.publicFormBorderRadius || "5px"
+        this.publicFormBackgroundColor = config.publicFormBackgroundColor || "#ffffff"
+        this.publicFormSubmitText = config.publicFormSubmitText || "Submit"
+        this.publicFormShadow = config.publicFormShadow || "none"
         this.publicEmailTo = config.publicEmailTo
         this.publicFormActionId = config.publicFormActionId
 
@@ -51396,6 +51641,11 @@ kiss.data.Model = class {
         fields.forEach(field => {
             field.dependencies = []
             field.deepDependencies = []
+
+            // Ensure fields involved in relationships are computed
+            if (field.type == "lookup" || field.type == "summary") {
+                field.computed = true
+            }
 
             if (field.computed) {
                 field.formulaSourceFields = []
@@ -54840,6 +55090,8 @@ kiss.data.relations = {
         const transaction = new kiss.data.Transaction({
             userId
         })
+        
+        // Compute the transaction to update the 2 records
         await kiss.data.relations.computeTransactionToUpdate(modelX, recordX, null, transaction, cacheId)
         await kiss.data.relations.computeTransactionToUpdate(modelY, recordY, null, transaction, cacheId)
         const operations = await transaction.process()
@@ -56852,7 +57104,21 @@ kiss.formula = {
     SHORT_ID_HELP:
         `SHORT_ID()
         A short ID like "A84F007X"`,
-        
+
+    /**
+     * Check if the user is authenticated
+     * 
+     * @returns {boolean} true if the user is authenticated
+     * 
+     * @example
+     * IS_AUTHENTICATED() // true or false
+     */
+    IS_AUTHENTICATED: () => (kiss.session.getUserId() != "anonymous"),
+    IS_AUTHENTICATED_TYPES: ["boolean"],
+    IS_AUTHENTICATED_HELP:
+        `IS_AUTHENTICATED()
+        Returns true if the user is authenticated. Useful to show/hide form fields or sections depending on the user's authentication status.`,
+
     /**
      * List of formulae which are not available for the user
      * 
@@ -59075,7 +59341,7 @@ Array.prototype.remove = function (item) {
  * @returns {*} - The found object, or undefined if not found
  */
 Array.prototype.get = function (itemId) {
-    return this.find(item => item.id === itemId)
+    return this.find(item => item.id == itemId)
 }
 
 /**
@@ -59490,7 +59756,8 @@ kiss.addToModule("tools", {
         if (config.readOnly) return true
 
         // Required
-        if (config.required && (value == "" || value == undefined)) return false
+        if (config.required && (value == "" || value == undefined || value === false)) return false
+        if ((dataType == "attachment" || dataType == "aiImage") && config.required && value.length == 0) return false
         if (dataType == "rating" && config.required && value === 0) return false
 
         // Don't try to validate empty fields if they are not required
