@@ -148,7 +148,7 @@ kiss.app.defineView({
                 <h2>✔ we coach you on NoCode design best practices</h2>
 
                 <center>
-                    <a href="https://calendly.com/airprocess/pickaform-live-demo">
+                    <a href="https://calendly.com/airprocess/airprocess-live-demo">
                         <div class="a-button button-booking">Book your private demo now to benefit from this unique offer!</div>
                     </a>
                 </center>`,
@@ -162,7 +162,7 @@ kiss.app.defineView({
                 <h2>✔ nous vous coachons sur les best practices de la conception NoCode</h2>
                               
                 <center>
-                    <a href="https://calendly.com/airprocess/pickaform-live-demo">
+                    <a href="https://calendly.com/airprocess/airprocess-live-demo">
                         <div class="a-button button-booking">Réservez votre démo privée dès maintenant pour bénéficier de cette offre unique !</div>
                     </a>
                 </center>`,
@@ -176,7 +176,7 @@ kiss.app.defineView({
                 <h2>✔ le asesoramos sobre las mejores prácticas de diseño NoCode</h2>
 
                 <center>
-                    <a href="https://calendly.com/airprocess/pickaform-live-demo">
+                    <a href="https://calendly.com/airprocess/airprocess-live-demo">
                         <div class="a-button button-booking">¡Reserve su demostración privada ahora para beneficiarse de esta oferta única!</div>
                     </a>
                 </center>`

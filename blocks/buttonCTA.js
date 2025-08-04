@@ -14,7 +14,7 @@ kiss.templates.buttonCTA = function (text, page) {
                 })
             }
             else if (page == "booking") {
-                const link = "https://calendly.com/airprocess/pickaform-live-demo"
+                const link = "https://calendly.com/airprocess/airprocess-live-demo"
                 window.open(link, "_new")
             }
             else {
