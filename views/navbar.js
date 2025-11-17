@@ -80,7 +80,7 @@ kiss.app.defineView({
             // BLOG
             {
                 text: "Blog",
-                href: `https://blog.pickaform.com/${kiss.language.current}`,
+                href: `https://blog.airprocess.com`,
                 target: "_new",
                 view: ""
             },
@@ -94,7 +94,7 @@ kiss.app.defineView({
             },
             // REGISTER
             {
-                hidden: kiss.screen.isMobile,
+                hidden: true,
                 text: t("Get started"),
                 href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-register",
                 target: "_new",
@@ -102,9 +102,8 @@ kiss.app.defineView({
             },
             // LOGIN
             {
-                // hidden: kiss.screen.isMobile,
                 text: t("Login"),
-                href: kiss.global.pathPickaform + "/client/pickaform/index.html#ui=authentication-login",
+                href: "https://app.airprocess.com",
                 target: "_new",
                 view: ""
             }
